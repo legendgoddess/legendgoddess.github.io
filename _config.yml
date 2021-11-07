@@ -103,5 +103,5 @@ theme: next
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   - type: git
-    repo: ssh://git@github.com/legendgoddes/blog.git
+    repo: ssh://git@github.com/legendgoddes/legendgoddess.github.io.git
     branch: gh-pages
