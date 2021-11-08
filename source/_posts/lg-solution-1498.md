@@ -4,7 +4,7 @@ date: 2019-12-09 12:44:23
 tag:
   - 模拟
 categories:
-  - 题解
+  - 洛谷题解
 ---
 ## [原题链接](https://www.luogu.com.cn/problem/P1498)
 ## 题意分析
