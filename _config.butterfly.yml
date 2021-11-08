@@ -646,7 +646,7 @@ aside:
       link: https://github.com/legendgoddess
   card_announcement:
     enable: true
-    content: This is my Blog
+    content: Welcome to Legendgod's Blog
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all
@@ -806,7 +806,7 @@ pangu:
 # Lazyload (圖片懶加載)
 # https://github.com/verlok/vanilla-lazyload
 lazyload:
-  enable: false
+  enable: true
   field: site # site/post
   placeholder:
   blur: false
