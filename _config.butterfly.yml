@@ -129,7 +129,7 @@ cover:
   default_cover:
     - https://www.dmoe.cc/random.php?return=200
     - https://www.dmoe.cc/random.php?return=250
-    - https://www.dmoe.cc/random.php?return=52049
+    - https://www.dmoe.cc/random.php?return=300
     # - 'linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347)'
 
 # Replace Broken Images (替換無法顯示的圖片)
