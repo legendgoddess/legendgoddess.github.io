@@ -1,5 +1,5 @@
 ---
-title: [PKUWC2018]Minimax
+title: "[PKUWC2018]Minimax"
 date: 2021-10-08 09:10:48
 tags:
   - Dp
