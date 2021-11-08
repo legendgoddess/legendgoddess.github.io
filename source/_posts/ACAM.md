@@ -5,10 +5,9 @@ tags:
   - 数据结构
   - Trie
   - 图论
-  - 算法
 categories: 
-  - 数据结构
   - 算法
+  - 数据结构
 ---
 
 <h3><center>浅谈AC自动机</center></h3>

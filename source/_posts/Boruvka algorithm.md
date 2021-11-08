@@ -1,5 +1,12 @@
 ---
-title : Boruvka 算法
+title: Boruvka 算法
+date: 2021-11-08 15:58:00
+tags: 
+  - 图论
+  - 最小生成树
+categories:
+  - 算法
+  - 最小生成树
 ---
 
 ### [P3366 【模板】最小生成树](https://www.luogu.com.cn/problem/P3366)
