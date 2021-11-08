@@ -1,0 +1,7 @@
+- class_name: 友链
+  class_desc: 大佬们
+  link_list:
+    - name: Hater
+      link: https://www.luogu.com.cn/user/100114
+      avatar: https://cdn.luogu.com.cn/upload/usericon/100114.png
+      descr: 超级强而且温柔的姐姐
