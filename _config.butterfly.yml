@@ -276,14 +276,15 @@ comments:
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo
   use:
+    - Gitalk
   # - Valine
   # - Disqus
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
-  lazyload: false
-  count: false # Display comment count in post's top_img
-  card_post_count: false # Display comment count in Home Page
+  lazyload: true
+  count: true # Display comment count in post's top_img
+  card_post_count: true # Display comment count in Home Page
 
 # disqus
 # https://disqus.com/
@@ -311,12 +312,12 @@ livere:
 # gitalk
 # https://github.com/gitalk/gitalk
 gitalk:
-  client_id:
-  client_secret:
-  repo:
-  owner:
-  admin:
-  language: en # en, zh-CN, zh-TW, es-ES, fr, ru
+  client_id: 3550d09551150ba4f4c8
+  client_secret: fbb30f5d9da28197efe2452887a93e63c391a62b
+  repo: Blog
+  owner: legendgoddess
+  admin: legendgoddess
+  language: zh-CN # en, zh-CN, zh-TW, es-ES, fr, ru
   perPage: 10 # Pagination size, with maximum 100.
   distractionFreeMode: false # Facebook-like distraction free mode.
   pagerDirection: last # Comment sorting direction, available values are last and first.
