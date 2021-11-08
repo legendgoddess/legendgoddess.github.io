@@ -6,8 +6,6 @@ tags:
   - 计数
 categories:
   - 算法
-  - 计数
-  - 三元环计数  
 ---
 
 <h3><center>三元环计数</center></h3>

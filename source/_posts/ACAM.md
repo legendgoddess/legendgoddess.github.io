@@ -7,7 +7,6 @@ tags:
   - 图论
 categories: 
   - 算法
-  - 数据结构
 ---
 
 <h3><center>浅谈AC自动机</center></h3>
