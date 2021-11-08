@@ -257,10 +257,10 @@ reward:
 # Post edit
 # Easily browse and edit blog source code online.
 post_edit:
-  enable: false
+  enable: true
   # url: https://github.com/user-name/repo-name/edit/branch-name/subdirectory-name/
   # For example: https://github.com/jerryc127/butterfly.js.org/edit/main/source/
-  url:
+  url: https://github.com/legendgoddess/Blog/edit/master/source/
 
 # Related Articles
 related_post:
@@ -468,7 +468,7 @@ crisp:
 footer:
   owner:
     enable: true
-    since: 2020
+    since: 2021
   custom_text:
   copyright: true # Copyright of theme and framework
 
@@ -565,7 +565,7 @@ tag_ui: # 留空或 index
 background: "#ffcc00"
 
 # Footer Background
-footer_bg: true
+footer_bg: false
 
 # the position of bottom right button/default unit: px (右下角按鈕距離底部的距離/默認單位為px)
 rightside-bottom:
