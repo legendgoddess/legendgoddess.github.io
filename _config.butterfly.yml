@@ -23,7 +23,7 @@ hide_sidebar_menu_child: false
 # Code Blocks (代碼相關)
 # --------------------------------------
 
-highlight_theme: light #  darker / pale night / light / ocean / mac / mac light / false
+highlight_theme: mac #  darker / pale night / light / ocean / mac / mac light / false
 highlight_copy: true # copy button
 highlight_lang: true # show the code language
 highlight_shrink: false # true: shrink the code blocks / false: expand the code blocks | none: expand code blocks and hide the button
@@ -56,7 +56,7 @@ algolia_search:
 
 # Local search
 local_search:
-  enable: false
+  enable: true
 
 # Math (數學)
 # --------------------------------------
@@ -80,7 +80,7 @@ katex:
 # --------------------------------------
 
 # Favicon（網站圖標）
-favicon: /img/favicon.png
+favicon: /image/favicon.ico
 
 # Avatar (頭像)
 avatar:
@@ -132,13 +132,13 @@ cover:
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
 	flink: /image/friend_404.gif
-	post_page: /image/404_2.webp
+	post_page: /image/404_2.jpg
 
 # A simple 404 page
 error_404:
 	enable: true
 	subtitle: '変なところに入ってきました?'
-	background: /image/404_3.webp
+	background: /image/404_3.png
 
 post_meta:
   page: # Home Page
