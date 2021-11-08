@@ -40,4 +40,8 @@ jobs:
               run: |
                   hexo cl
                   hexo g
+                  echo ">>> test begin"
+                  ls -alF
+                  pwd
+                  echo ">>> test end"
                   hexo d
