@@ -14,6 +14,3 @@ type: "about"
 那么，我是 $\tt legendgod$ 叫我 $dc$ 就好了。
 
 > 可以理解成 $dc$ 是我的小名吧。
-
----
-
