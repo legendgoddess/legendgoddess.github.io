@@ -25,7 +25,6 @@ jobs:
               env:
                   ACTION_DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_KEY }}
               run: |
-                  npm install hexo-deployer-git
                   mkdir -p ~/.ssh/
                   echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
                   chmod 700 ~/.ssh
@@ -33,6 +32,8 @@ jobs:
                   ssh-keyscan github.com >> ~/.ssh/known_hosts
                   git config --global user.email "3456261198@qq.com"
                   git config --global user.name "legendgoddes"
+                  npm install hexo-deployer-git
+                  npm install hexo-renderer-jade hexo-generator-feed hexo-generator-sitemap hexo-browsersync hexo-generator-archive
                   npm install hexo-cli -g
                   npm install
             - name: Deploy
