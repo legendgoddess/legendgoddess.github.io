@@ -1,5 +1,14 @@
 ---
-title: ACAM
+title: AC 自动机
+date: 2021-11-08 15:52:00
+tags:
+  - 数据结构
+  - Trie
+  - 图论
+  - 算法
+categories: 
+  - 数据结构
+  - 算法
 ---
 
 <h3><center>浅谈AC自动机</center></h3>
