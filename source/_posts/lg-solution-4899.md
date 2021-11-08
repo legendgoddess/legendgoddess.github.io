@@ -1,5 +1,5 @@
 ---
-title: [IOI2018] werewolf 狼人 题解
+title: [IOI2018] werewolf 狼人
 date: 2021-10-09 19:38:31
 tags:
   - 数据结构
