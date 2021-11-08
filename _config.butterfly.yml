@@ -127,10 +127,25 @@ cover:
   position: both
   # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
   default_cover:
-    - https://www.dmoe.cc/random.php?return=200
-    - https://www.dmoe.cc/random.php?return=250
-    - https://www.dmoe.cc/random.php?return=300
-    # - 'linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347)'
+    - https://www.dmoe.cc/random.php?return=201
+    - https://www.dmoe.cc/random.php?return=252
+    - https://www.dmoe.cc/random.php?return=303
+    - https://www.dmoe.cc/random.php?return=204
+    - https://www.dmoe.cc/random.php?return=255
+    - https://www.dmoe.cc/random.php?return=306
+    - https://www.dmoe.cc/random.php?return=207
+    - https://www.dmoe.cc/random.php?return=258
+    - https://www.dmoe.cc/random.php?return=309
+    - https://www.dmoe.cc/random.php?return=210
+    - https://www.dmoe.cc/random.php?return=261
+    - https://www.dmoe.cc/random.php?return=312
+    - https://www.dmoe.cc/random.php?return=213
+    - https://www.dmoe.cc/random.php?return=264
+    - https://www.dmoe.cc/random.php?return=315
+    - https://www.dmoe.cc/random.php?return=216
+    - https://www.dmoe.cc/random.php?return=267
+    - https://www.dmoe.cc/random.php?return=318
+
 
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
