@@ -704,7 +704,7 @@ aside:
       text: Follow Me
       link: https://github.com/legendgoddess
   card_announcement:
-    enable: true
+    enable: false
     content: Welcome to Legendgod's Blog
   card_recent_post:
     enable: true
