@@ -1,7 +1,8 @@
 ---
-title: luogu1498 南蛮图腾
+title: Luogu1498 南蛮图腾
 date: 2019-12-09 12:44:23
 tag:
+  - 模拟
 categories:
   - 题解
 ---
