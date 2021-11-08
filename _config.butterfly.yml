@@ -127,25 +127,22 @@ cover:
   position: both
   # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
   default_cover:
-    - https://www.dmoe.cc/random.php?return=201
-    - https://www.dmoe.cc/random.php?return=252
-    - https://www.dmoe.cc/random.php?return=303
-    - https://www.dmoe.cc/random.php?return=204
-    - https://www.dmoe.cc/random.php?return=255
-    - https://www.dmoe.cc/random.php?return=306
-    - https://www.dmoe.cc/random.php?return=207
-    - https://www.dmoe.cc/random.php?return=258
-    - https://www.dmoe.cc/random.php?return=309
-    - https://www.dmoe.cc/random.php?return=210
-    - https://www.dmoe.cc/random.php?return=261
-    - https://www.dmoe.cc/random.php?return=312
-    - https://www.dmoe.cc/random.php?return=213
-    - https://www.dmoe.cc/random.php?return=264
-    - https://www.dmoe.cc/random.php?return=315
-    - https://www.dmoe.cc/random.php?return=216
-    - https://www.dmoe.cc/random.php?return=267
-    - https://www.dmoe.cc/random.php?return=318
-
+    - https://img.xjh.me/random_img.php?type=bg&ctype=acg&return=302&seed=2
+    - https://img.xjh.me/random_img.php?type=bg&ctype=acg&return=302&seed=52046
+    - https://img.xjh.me/random_img.php?type=bg&ctype=acg&return=302&seed=4
+    - https://img.xjh.me/random_img.php?type=bg&ctype=acg&return=302&seed=5
+    - https://img.xjh.me/random_img.php?type=bg&ctype=acg&return=302&seed=6
+    - https://img.xjh.me/random_img.php?type=bg&ctype=acg&return=302&seed=7
+    - https://img.xjh.me/random_img.php?type=bg&ctype=acg&return=302&seed=8
+    - https://img.xjh.me/random_img.php?type=bg&ctype=acg&return=302&seed=9
+    - https://img.xjh.me/random_img.php?type=bg&ctype=acg&return=302&seed=10
+    - https://img.xjh.me/random_img.php?type=bg&ctype=acg&return=302&seed=11
+    - https://img.xjh.me/random_img.php?type=bg&ctype=acg&return=302&seed=12
+    - https://img.xjh.me/random_img.php?type=bg&ctype=acg&return=302&seed=13
+    - https://img.xjh.me/random_img.php?type=bg&ctype=acg&return=302&seed=14
+    - https://img.xjh.me/random_img.php?type=bg&ctype=acg&return=302&seed=15
+    - https://img.xjh.me/random_img.php?type=bg&ctype=acg&return=302&seed=16
+    - https://img.xjh.me/random_img.php?type=bg&ctype=acg&return=302&seed=17
 
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
