@@ -1,11 +1,11 @@
 ---
 title: AT2062 [AGC005D] ~K Perm Counting 题解
 date: 2021-10-11 16:25:43
-tags:
+tags: 
   - 图论
   - 数论
   - 多项式
-categories:
+categories: 
   - AT题解
 ---
 

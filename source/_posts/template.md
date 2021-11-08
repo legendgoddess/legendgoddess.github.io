@@ -1,7 +1,7 @@
 ---
 title: 
 date: 
-tags:
-categories:
+tags: 
+categories: 
 ---
 

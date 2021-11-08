@@ -1,9 +1,9 @@
 ---
 title: CF295D Greg and Caves
 date: 2021-06-28 19:48:05
-tag:
+tag: 
   - Dp
-categories:
+categories: 
   - CF题解
 ---
 [CF295D Greg and Caves](https://www.luogu.com.cn/problem/CF295D)

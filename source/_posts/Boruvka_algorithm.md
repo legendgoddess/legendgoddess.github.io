@@ -4,7 +4,7 @@ date: 2021-11-08 15:58:00
 tags: 
   - 图论
   - 最小生成树
-categories:
+categories: 
   - 算法
 ---
 

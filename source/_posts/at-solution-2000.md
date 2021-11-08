@@ -1,10 +1,10 @@
 ---
 title: AT2000 [AGC002F] Leftmost Ball 题解
 date: 2021-10-11 14:54:26
-tags:
+tags: 
   - 数论
   - Dp
-categories:
+categories: 
   - AT题解
 ---
 

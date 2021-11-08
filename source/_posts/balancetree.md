@@ -1,9 +1,9 @@
 ---
 title: 全局平衡二叉树
 date: 2021-10-01 212911
-tags:
+tags: 
   - 平衡树
-categories:
+categories: 
   - 算法
 ---
 
