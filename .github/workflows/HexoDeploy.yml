@@ -43,5 +43,6 @@ jobs:
                   echo ">>> test begin"
                   ls -alF
                   pwd
+                  echo "legendgod.ml" > ./public/CNAME
                   echo ">>> test end"
                   hexo d
