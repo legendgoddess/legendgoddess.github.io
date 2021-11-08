@@ -84,17 +84,17 @@ favicon: /img/favicon.png
 
 # Avatar (頭像)
 avatar:
-  img: https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png
-  effect: false
+  img: https://imgtu.com/i/I3b9wn
+  effect: true
 
 # Disable all banner image
-disable_top_img: false
+disable_top_img: true
 
 # The banner image of home page
 index_img:
 
 # If the banner of page not setting, it will show the top_img
-default_top_img:
+default_top_img: https://img.xjh.me/random_img.php?type=bg&ctype=acg&return=302 # 'linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347)'
 
 # The banner image of archive page
 archive_img:
