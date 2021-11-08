@@ -1,9 +1,9 @@
 ---
-title: [HNOI2015]亚瑟王
+title: [HNOI2015] 亚瑟王
 date: 2021-10-07 14:03:08
-tags: 
-  - 期望
+tags:
   - Dp
+  - 期望
 categories: 
   - 省选题解
 ---
