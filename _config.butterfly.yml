@@ -359,7 +359,9 @@ gitalk:
   client_secret: fbb30f5d9da28197efe2452887a93e63c391a62b
   repo: Blog
   owner: legendgoddess
-  admin: legendgoddess
+  admin: 
+    - "Ruakker"
+    - "legendgoddess"
   language: zh-CN # en, zh-CN, zh-TW, es-ES, fr, ru
   perPage: 10 # Pagination size, with maximum 100.
   distractionFreeMode: false # Facebook-like distraction free mode.
