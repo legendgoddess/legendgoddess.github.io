@@ -42,3 +42,4 @@ jobs:
                   hexo g
                   echo "legendgod.ml" > ./public/CNAME
                   hexo d
+                  node ./comment.js

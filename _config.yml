@@ -106,3 +106,10 @@ deploy:
     repo:
         github: git@github.com:legendgoddess/Blog.git
     branch: gh-pages
+
+# Sitemap generator
+sitemap:
+  path: sitemap.xml
+
+baidusitemap:
+  path: baidusitemap.xml
