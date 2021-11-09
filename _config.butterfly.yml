@@ -360,7 +360,7 @@ gitalk:
   repo: Blog
   owner: legendgoddess
   admin: 
-    - "Ruakker"
+    - "Rkkr"
     - "legendgoddess"
   language: zh-CN # en, zh-CN, zh-TW, es-ES, fr, ru
   perPage: 10 # Pagination size, with maximum 100.
