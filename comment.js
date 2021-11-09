@@ -5,22 +5,26 @@ const url = require("url");
 const xmlParser = require("xml-parser");
 const YAML = require("yamljs");
 const cheerio = require("cheerio");
+const md5 = require("md5");
 // 根据自己的情况进行配置
 const config = {
     username: "legendgoddess", // GitHub 用户名
-    token: "q3yFBC8LjkOlrKmJUuxkpipgX4j1601WQ3JR",  // GitHub Token
-    repo: "Blog",  // 存放 issues的git仓库
+    token: "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",  // GitHub Token
+    repo: "blog",  // 存放 issues 的 git 仓库
     // sitemap.xml的路径，commit.js放置在根目录下，无需修改，其他情况自行处理
     sitemapUrl: path.resolve(__dirname, "./public/sitemap.xml"),
-    kind: "Gitalk",  // "Gitalk" or "Gitment"
+    kind: "Gitalk",  // "Gitalk" or "Gitment"，
+    baseUrl: "https://legendgod.ml/"
 };
-let issuesUrl = `https://api.github.com/repos/${config.username}/${config.repo}/issues?access_token=${config.token}`;
+// let issuesUrl = `https://api.github.com/repos/${config.username}/${config.repo}/issues?access_token=${config.token}`;
+let issuesUrl = `https://api.github.com/repos/${config.username}/${config.repo}/issues?test=1`;
 
 let requestGetOpt = {
     url: `${issuesUrl}&page=1&per_page=1000`,
     json: true,
     headers: {
-        "User-Agent": "github-user"
+        "User-Agent": "github-user",
+        "Authorization": `token ${config.token}`
     }
 };
 let requestPostOpt = {
@@ -64,6 +68,7 @@ console.log("开始初始化评论...");
                     let html = await send({ ...requestGetOpt, url: item });
                     let title = cheerio.load(html)("title").text();
                     let pathLabel = url.parse(item).path;
+                    pathLabel = md5(config.baseUrl + pathLabel);//中文过长所以要md5
                     let body = `${item}<br><br>${websiteConfig.description}`;
                     let form = JSON.stringify({ body, labels: [config.kind, pathLabel], title });
                     return send({ ...requestPostOpt, form });
@@ -108,3 +113,4 @@ function send(options) {
         });
     });
 }
+
