@@ -8,17 +8,16 @@ const cheerio = require("cheerio");
 // 根据自己的情况进行配置
 const config = {
     username: "legendgoddess", // GitHub 用户名
-    token: "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",  // GitHub Token
+    token: "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",  // GitHub Token
     repo: "Blog",  // 存放 issues的git仓库
     // sitemap.xml的路径，commit.js放置在根目录下，无需修改，其他情况自行处理
     sitemapUrl: path.resolve(__dirname, "./public/sitemap.xml"),
     kind: "Gitalk",  // "Gitalk" or "Gitment"
 };
-//let issuesUrl = `https://api.github.com/repos/${config.username}/${config.repo}/issues?access_token=${config.token}`;
-let issuesUrl = `https://api.github.com/repos/${config.username}/${config.repo}/issues`;
+let issuesUrl = `https://api.github.com/repos/${config.username}/${config.repo}/issues?access_token=${config.token}`;
 
 let requestGetOpt = {
-    url: `${issuesUrl}?page=1&per_page=1000`,
+    url: `${issuesUrl}&page=1&per_page=1000`,
     json: true,
     headers: {
         "User-Agent": "github-user"
