@@ -41,4 +41,5 @@ jobs:
                   echo "legendgod.ml" > ./public/CNAME
                   hexo d
             - name: Setup Gitalk issues
+              run: |
                   node ./comment.js
