@@ -319,7 +319,7 @@ comments:
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo
   use:
-    - Gitalk
+    - Utterances
   # - Valine
   # - Disqus
   text: true # Display the comment name next to the button
@@ -401,7 +401,7 @@ waline:
 # utterances
 # https://utteranc.es/
 utterances:
-  repo:
+  repo: legendgoddess/Blog
   # Issue Mapping: pathname/url/title/og:title
   issue_term: pathname
   # Theme: github-light/github-dark/github-dark-orange/icy-dark/dark-blue/photon-dark
