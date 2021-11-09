@@ -19,7 +19,7 @@ jobs:
             - name: Setup Node.js
               uses: actions/setup-node@v1
               with:
-                  node-version: "12"
+                  node-version: "16"
 
             - name: Setup Hexo
               env:
@@ -40,4 +40,5 @@ jobs:
                   hexo g
                   echo "legendgod.ml" > ./public/CNAME
                   hexo d
+            - name: Setup Gitalk issues
                   node ./comment.js
