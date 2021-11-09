@@ -5,6 +5,7 @@ tags:
   - 构造
 categories:
   - CF题解
+sticky: 2
 ---
 
  [2500 + 构造题](https://codeforces.ml/problemset?order=BY_RATING_ASC&tags=constructive+algorithms%2C2500-)
