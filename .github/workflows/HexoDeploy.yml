@@ -34,12 +34,11 @@ jobs:
                   git config --global user.name "legendgoddess"
                   npm install hexo-cli -g
                   npm install
+
             - name: Deploy
               run: |
                   hexo cl
                   hexo g
                   echo "legendgod.ml" > ./public/CNAME
                   hexo d
-            - name: Setup Gitalk issues
-              run: |
-                  node ./comment.js
+
