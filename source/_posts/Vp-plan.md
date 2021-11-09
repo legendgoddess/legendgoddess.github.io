@@ -4,6 +4,7 @@ date: 2021-09-22 07:43:49
 tags: 
 categories: 
   - 计划
+sticky: 1
 ---
 
 emmm 这里大概会记录一下 $vp$ 的场次和一些想法吧。
