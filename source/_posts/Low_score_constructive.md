@@ -8,7 +8,7 @@ categories:
 ---
 
  [2500 + 构造题](https://codeforces.ml/problemset?order=BY_RATING_ASC&tags=constructive+algorithms%2C2500-)
-@[toc]
+ 
 
 #### CF1344B Monopole Magnets 
 > [CF1344B Monopole Magnets 题解](https://blog.csdn.net/sharp_legendgod/article/details/120531272)
