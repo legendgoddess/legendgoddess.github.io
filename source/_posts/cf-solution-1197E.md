@@ -1,5 +1,5 @@
 ---
-title: CF1197E Culture Code 题解
+title: CF1197E Culture Code
 date: 2021-10-08 10:34:11
 tags:
   - 图论
