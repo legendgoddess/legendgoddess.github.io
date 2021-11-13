@@ -1,7 +1,14 @@
 - class_name: 友链
-  class_desc: 大佬们
-  link_list:
-    - name: Hater
-      link: https://www.luogu.com.cn/user/100114
-      avatar: https://q1.qlogo.cn/g?b=qq&nk=2486656591&s=640
-      descr: 超级强而且温柔的姐姐
+  - class_desc: 大佬们
+    link_list:
+      - name: Hater
+        link: https://www.luogu.com.cn/user/100114
+        avatar: https://q1.qlogo.cn/g?b=qq&nk=2486656591&s=640
+        descr: 超级强而且温柔的姐姐
+
+  - class_desc: 蒟蒻们
+    link_list:
+      - name: Ruakker
+        link: https://ruakker.cn/
+        avatar: https://q1.qlogo.cn/g?b=qq&nk=625850057&s=640
+        descr: 废物
