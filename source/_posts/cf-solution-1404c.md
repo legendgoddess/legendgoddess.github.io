@@ -50,7 +50,7 @@ namespace Read {
 
 using namespace Read;
 
-const int maxn = 2e5 + 5;
+const int maxn = 3e5 + 5;
 
 int n, Q;
 int ans[maxn];
@@ -156,6 +156,7 @@ signed main() {
 }
 
 signed main() { return Legendgod::main(), 0; }
+
 
 ```
 
