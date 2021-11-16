@@ -2,7 +2,6 @@
 title: 「SDOI2017」切树游戏
 date: 2021-09-28 18:33:30
 tags:
-  - 题解
   - Dp
   - FWT
 categories:
