@@ -102,6 +102,88 @@ void dfs(int p) {
 - 字典序最小：贪心走最小的点即可。
 - 字典序最大：贪心走最大的点即可。
 
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+namespace Legendgod {
+
+namespace Read {
+//    #define Fread
+    #ifdef Fread
+    const int Siz = (1 << 21) + 5;
+    char buf[Siz], *iS, *iT;
+    #define gc() (iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iT == iS ? EOF : *iS ++ ) : *iS ++)
+    #define getchar gc
+    #endif // Fread
+
+    template <typename T>
+    void r1(T &x) {
+        x = 0; int f(1); char c(getchar());
+        for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
+        for(; isdigit(c); c = getchar()) x = (x * 10) + (c ^ 48);
+        x *= f;
+    }
+    template <typename T, typename...Args>
+    void r1(T &x, Args&...arg) {
+        r1(x), r1(arg...);
+    }
+
+}
+
+using namespace Read;
+
+const int maxn = 2e5 + 5;
+
+struct Graph {
+    vector<int> vc[maxn];
+    int del[maxn];
+    void add(int u,int v) {
+        vc[u].push_back(v);
+    }
+}G;
+
+int n, m, deg[maxn];
+int st[maxn], ed(0);
+
+void dfs(int p) {
+    for(int &i = G.del[p]; i < (int)G.vc[p].size(); ) {
+        int to = G.vc[p][i];
+        ++ i;
+        dfs(to);
+    }
+    st[++ ed] = p;
+}
+
+signed main() {
+    int i, j;
+    r1(n, m);
+    for(i = 1; i <= m; ++ i) {
+        int u, v;
+        r1(u, v), G.add(u, v);
+        -- deg[v], ++ deg[u];
+    }
+    int sum(0), ps(0);
+    for(i = 1; i <= n; ++ i) {
+        if(deg[i] == 1) ++ sum, ps = i;
+        else if(deg[i] == -1) ++ sum;
+        else if(deg[i] != 0) return puts("No"), 0;
+    }
+    if(sum > 2) return puts("No"), 0;
+    if(ps == 0) ps = 1;
+    for(i = 1; i <= n; ++ i) sort(G.vc[i].begin(), G.vc[i].end());
+    dfs(ps);
+    if(ed - 1 != m) return puts("No"), 0;
+    for(i = ed; i >= 1; -- i) printf("%d%c", st[i], " \n"[i == 1]);
+    return 0;
+}
+
+}
+
+signed main() { return Legendgod::main(), 0; }
+
+```
+
 ------
 
 #### 拆点成边
