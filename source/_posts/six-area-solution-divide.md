@@ -43,12 +43,12 @@ char buf[1 << 21], *iS, *iT;
 
 template <typename T>
 void r1(T &x) {
-	x = 0;
-	char c(getchar());
-	int f(1);
-	for(; c < '0' || c > '9'; c = getchar()) if(c == '-') f = -1;
-	for(; '0' <= c && c <= '9';c = getchar()) x = (x * 10) + (c ^ 48);
-	x *= f;
+    x = 0;
+    char c(getchar());
+    int f(1);
+    for(; c < '0' || c > '9'; c = getchar()) if(c == '-') f = -1;
+    for(; '0' <= c && c <= '9';c = getchar()) x = (x * 10) + (c ^ 48);
+    x *= f;
 }
 
 template <typename T,typename... Args> inline void r1(T& t, Args&... args) {
@@ -97,15 +97,10 @@ signed main() {
     }
     for(i = 1; i <= n; ++ i) ans = 1ll * ans * i % mod;
     printf("%lld\n", ans);
-	return 0;
+    return 0;
 }
 /*
 4 0
 0 0 1 1
 */
-
 ```
-
-
-
-
