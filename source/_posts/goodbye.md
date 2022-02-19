@@ -1,6 +1,7 @@
 ---
 title: 退役记
 date: 2021-11-28 15:57:00
+password: 我爱慕言
 tags:
 categories:
   - 随笔
