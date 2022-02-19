@@ -113,3 +113,8 @@ sitemap:
 
 baidusitemap:
   path: baidusitemap.xml
+  
+# Security
+encrypt:
+    enable: true
+
