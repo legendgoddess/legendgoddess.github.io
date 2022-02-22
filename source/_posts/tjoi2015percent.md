@@ -30,13 +30,13 @@ categories:
 
 $$
 \begin{aligned}
-F(x) &= \frac{1}{2x} \times (1 - \sqrt{1 - 4x}) \\
-&= \frac{1}{2x} \times (1 - \sum_{i \ge 0} \binom{\frac{1}{2}}{i} (-4x)^i)\\
-&= \frac{1}{2x} \times (- \sum_{i \ge 1} \binom{\frac{1}{2}}{i} (-4x)^i) \\
-&= 2\times \sum_{i \ge 1} \binom{\frac{1}{2}}{i} (-4x)^{i - 1} \\
-&= \sum_{i \ge 1} \frac{(2i - 2)!}{(i - 1)! \times i!} (x)^{i - 1}\\
-&= \sum_{i \ge 0} \binom{2i}{i} \times \frac{1}{i + 1}x^i\\
-&= \sum_{i \ge 0} \frac{\binom{2i}{i}}{i + 1}x^i\\
+F(x) &= \frac{1}{2x} \times (1 - \sqrt{1 - 4x}) \\\\
+&= \frac{1}{2x} \times (1 - \sum_{i \ge 0} \binom{\frac{1}{2}}{i} (-4x)^i)\\\\
+&= \frac{1}{2x} \times (- \sum_{i \ge 1} \binom{\frac{1}{2}}{i} (-4x)^i) \\\\
+&= 2\times \sum_{i \ge 1} \binom{\frac{1}{2}}{i} (-4x)^{i - 1} \\\\
+&= \sum_{i \ge 1} \frac{(2i - 2)!}{(i - 1)! \times i!} (x)^{i - 1}\\\\
+&= \sum_{i \ge 0} \binom{2i}{i} \times \frac{1}{i + 1}x^i\\\\
+&= \sum_{i \ge 0} \frac{\binom{2i}{i}}{i + 1}x^i\\\\
 \end{aligned}
 $$
 
@@ -48,7 +48,7 @@ $$
 
 可以得到：
 
- $g(n) = \sum_{i = 0} ^ {n - 1} g(i) \times f(n - i - 1) + g(n - i - 1) \times f(i) $
+$g(n) = \sum_{i = 0} ^ {n - 1} g(i) \times f(n - i - 1) + g(n - i - 1) \times f(i) $
 
 $g(n)=  2 \sum_{i = 0} ^ {n - 1} g(i) \times f(n - i - 1)$ 
 
@@ -58,7 +58,7 @@ $g(n)=  2 \sum_{i = 0} ^ {n - 1} g(i) \times f(n - i - 1)$
 
 $$
 \begin{aligned}
-G(x) &= 2G(x)F(x) x + \sum_{i \ge 0} [n == 1] x^i\\
+G(x) &= 2G(x)F(x) x + \sum_{i \ge 0} [n == 1] x^i\\\\
 &= 2G(x)F(x) + x
 \end{aligned}
 $$
@@ -67,11 +67,11 @@ $$
 
 $$
 \begin{aligned}
-G(x) &= \frac{x}{\sqrt{1 - 4x}} \\
-&= x \times (1 - 4x) ^ {-\frac{1}{2}} \\
-&= x \times \sum_{i \ge 0} \binom{-\frac{1}{2}}{i} (-4x) ^ i \\
-&= x \times \sum_{i \ge 0} \binom{2i}{i} x^i \\
-&= \sum_{i \ge 0} \binom{2i}{i} x^{i + 1}\\
+G(x) &= \frac{x}{\sqrt{1 - 4x}} \\\\
+&= x \times (1 - 4x) ^ {-\frac{1}{2}} \\\\
+&= x \times \sum_{i \ge 0} \binom{-\frac{1}{2}}{i} (-4x) ^ i \\\\
+&= x \times \sum_{i \ge 0} \binom{2i}{i} x^i \\\\
+&= \sum_{i \ge 0} \binom{2i}{i} x^{i + 1}\\\\
 \end{aligned}
 $$
 
