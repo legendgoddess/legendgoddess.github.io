@@ -2,12 +2,10 @@
 title: "[TJOI2015] 概率论"
 date: 2022-02-22 18:52:21
 tags:
-
-- 数论
-- 生成函数
-  categories:
-- 省选题解
-
+  - 数论
+  - 生成函数
+categories:
+  - 省选题解
 ---
 
 <h3><center>[TJOI2015] 概率论</center></h3>
