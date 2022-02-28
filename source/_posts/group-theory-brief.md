@@ -1,5 +1,5 @@
 ---
-title: burnside 定理浅谈
+title: Burnside 定理浅谈
 date: 2022-02-28 09:05:20
 tags:
   - 数论
@@ -102,29 +102,29 @@ $$
 #include <bits/stdc++.h>
 using namespace std;
 namespace Legendgod {
-	namespace Read {
-//		#define Fread
-		#ifdef Fread
-		const int Siz = (1 << 21) + 5;
-		char *iS, *iT, buf[Siz];
-		#define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
-		#define getchar gc
-		#endif
-		template <typename T>
-		void r1(T &x) {
-		    x = 0;
-			char c(getchar());
-			int f(1);
-			for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
-			for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
-			x *= f;
-		}
-		template <typename T, typename...Args>
-		void r1(T &x, Args&...arg) {
-			r1(x), r1(arg...);
-		}
-		#undef getchar
-	}
+    namespace Read {
+//        #define Fread
+        #ifdef Fread
+        const int Siz = (1 << 21) + 5;
+        char *iS, *iT, buf[Siz];
+        #define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
+        #define getchar gc
+        #endif
+        template <typename T>
+        void r1(T &x) {
+            x = 0;
+            char c(getchar());
+            int f(1);
+            for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
+            for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
+            x *= f;
+        }
+        template <typename T, typename...Args>
+        void r1(T &x, Args&...arg) {
+            r1(x), r1(arg...);
+        }
+        #undef getchar
+    }
 
 using namespace Read;
 
@@ -153,8 +153,8 @@ int phi(int x) {
 }
 
 signed main() {
-	int i, j, T;
-//	printf("%d\n", phi(4));
+    int i, j, T;
+//    printf("%d\n", phi(4));
     r1(T);
     while(T --) {
         r1(n);
@@ -166,14 +166,13 @@ signed main() {
         res = 1ll * res * ksm(n, mod - 2) % mod;
         printf("%d\n", res);
     }
-	return 0;
+    return 0;
 }
 
 }
 
 
 signed main() { return Legendgod::main(), 0; }
-
 ```
 
 [[SHOI2006] 有色图 - 洛谷](https://www.luogu.com.cn/problem/P4128)
@@ -204,29 +203,29 @@ $b_i$ 表示第 $i$ 个置换的长度，考虑内部是一个圆排列，本质
 #include <bits/stdc++.h>
 using namespace std;
 namespace Legendgod {
-	namespace Read {
-//		#define Fread
-		#ifdef Fread
-		const int Siz = (1 << 21) + 5;
-		char *iS, *iT, buf[Siz];
-		#define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
-		#define getchar gc
-		#endif
-		template <typename T>
-		void r1(T &x) {
-		    x = 0;
-			char c(getchar());
-			int f(1);
-			for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
-			for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
-			x *= f;
-		}
-		template <typename T, typename...Args>
-		void r1(T &x, Args&...arg) {
-			r1(x), r1(arg...);
-		}
-		#undef getchar
-	}
+    namespace Read {
+//        #define Fread
+        #ifdef Fread
+        const int Siz = (1 << 21) + 5;
+        char *iS, *iT, buf[Siz];
+        #define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
+        #define getchar gc
+        #endif
+        template <typename T>
+        void r1(T &x) {
+            x = 0;
+            char c(getchar());
+            int f(1);
+            for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
+            for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
+            x *= f;
+        }
+        template <typename T, typename...Args>
+        void r1(T &x, Args&...arg) {
+            r1(x), r1(arg...);
+        }
+        #undef getchar
+    }
 
 using namespace Read;
 #define int long long
@@ -276,7 +275,7 @@ void dfs(int dep,int left,int last) {
 }
 
 signed main() {
-	int i, j;
+    int i, j;
     r1(n, m, mod);
 //    assert(mod > (int)(1e9));
     fac[0] = 1;
@@ -284,14 +283,13 @@ signed main() {
     dfs(1, n, 1);
     ans = 1ll * ans * ksm(fac[n], mod - 2) % mod;
     printf("%lld\n", ans);
-	return 0;
+    return 0;
 }
 
 }
 
 
 signed main() { return Legendgod::main(), 0; }
-
 ```
 
 [[HNOI2009]图的同构计数 - 洛谷](https://www.luogu.com.cn/problem/P4727)
@@ -304,29 +302,29 @@ signed main() { return Legendgod::main(), 0; }
 #include <bits/stdc++.h>
 using namespace std;
 namespace Legendgod {
-	namespace Read {
-//		#define Fread
-		#ifdef Fread
-		const int Siz = (1 << 21) + 5;
-		char *iS, *iT, buf[Siz];
-		#define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
-		#define getchar gc
-		#endif
-		template <typename T>
-		void r1(T &x) {
-		    x = 0;
-			char c(getchar());
-			int f(1);
-			for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
-			for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
-			x *= f;
-		}
-		template <typename T, typename...Args>
-		void r1(T &x, Args&...arg) {
-			r1(x), r1(arg...);
-		}
-		#undef getchar
-	}
+    namespace Read {
+//        #define Fread
+        #ifdef Fread
+        const int Siz = (1 << 21) + 5;
+        char *iS, *iT, buf[Siz];
+        #define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
+        #define getchar gc
+        #endif
+        template <typename T>
+        void r1(T &x) {
+            x = 0;
+            char c(getchar());
+            int f(1);
+            for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
+            for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
+            x *= f;
+        }
+        template <typename T, typename...Args>
+        void r1(T &x, Args&...arg) {
+            r1(x), r1(arg...);
+        }
+        #undef getchar
+    }
 
 using namespace Read;
 #define int long long
@@ -381,7 +379,7 @@ void dfs(int dep,int left,int last) {
 }
 
 signed main() {
-	int i, j;
+    int i, j;
     r1(n);
     m = 2, mod = 997;
     for(i = 1; i <= n; ++ i) for(j = i; j <= n; ++ j) Gcd[i][j] = Gcd[j][i] = gcd1(i, j);
@@ -391,14 +389,13 @@ signed main() {
     dfs(1, n, 1);
     ans = 1ll * ans * ksm(fac[n], mod - 2) % mod;
     printf("%lld\n", ans);
-	return 0;
+    return 0;
 }
 
 }
 
 
 signed main() { return Legendgod::main(), 0; }
-
 ```
 
 [[SDOI2013]项链 - 洛谷](https://www.luogu.com.cn/problem/P3307)
@@ -482,29 +479,29 @@ int64 Mul(int64 a,int64 b) {
 #include <bits/stdc++.h>
 using namespace std;
 namespace Legendgod {
-	namespace Read {
-//		#define Fread
-		#ifdef Fread
-		const int Siz = (1 << 21) + 5;
-		char *iS, *iT, buf[Siz];
-		#define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
-		#define getchar gc
-		#endif
-		template <typename T>
-		void r1(T &x) {
-		    x = 0;
-			char c(getchar());
-			int f(1);
-			for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
-			for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
-			x *= f;
-		}
-		template <typename T, typename...Args>
-		void r1(T &x, Args&...arg) {
-			r1(x), r1(arg...);
-		}
-		#undef getchar
-	}
+    namespace Read {
+//        #define Fread
+        #ifdef Fread
+        const int Siz = (1 << 21) + 5;
+        char *iS, *iT, buf[Siz];
+        #define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
+        #define getchar gc
+        #endif
+        template <typename T>
+        void r1(T &x) {
+            x = 0;
+            char c(getchar());
+            int f(1);
+            for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
+            for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
+            x *= f;
+        }
+        template <typename T, typename...Args>
+        void r1(T &x, Args&...arg) {
+            r1(x), r1(arg...);
+        }
+        #undef getchar
+    }
 
 using namespace Read;
 
@@ -616,9 +613,9 @@ void dfs(int dep, int64 d, int64 phi) {
 
 signed main() {
 //    printf("%.3lf\n", fabs(&edd - &bg) / 1024.0 / 1024.0);
-	int i, j, T;
-	init(maxn - 5);
-//	puts("SSS");
+    int i, j, T;
+    init(maxn - 5);
+//    puts("SSS");
     r1(T);
     while(T --) {
         r1(n, A);
@@ -633,7 +630,7 @@ signed main() {
         ans = (ans + mod0) % mod0;
         printf("%lld\n", ans);
     }
-	return 0;
+    return 0;
 }
 /*
 1
@@ -642,5 +639,4 @@ signed main() {
 }
 
 signed main() { return Legendgod::main(), 0; }
-
 ```
