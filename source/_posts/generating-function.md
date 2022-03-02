@@ -318,7 +318,7 @@ $$
 
 $$
 \begin{aligned}
-[z^n]G(z) = \frac{1}{n}[z^{n - 1}](\frac{z}{F(z)})^n
+[z^n]G(z) = \frac{1}{n} [z^{n - 1}] (\frac{z}{F(z)})^n
 \end{aligned}
 $$
 
@@ -340,7 +340,7 @@ $$
 
 $$
 \begin{aligned}
-[z^n] H(F(z)) = \frac{1}{n}[z^{n - 1}](\frac{z}{G(z)})^n H'(z)
+[z^n] H(F(z)) = \frac{1}{n} [z^{n - 1}] (\frac{z}{G(z)})^n H'(z)
 \end{aligned}
 $$
 
@@ -414,8 +414,8 @@ $$
 
 $$
 \begin{aligned}
-[z^n] C(z) &= \frac{1}{n}[z^{n - 1}](\frac{z}{F(z)})^n \\\\
-&= \frac{1}{n}[z^{n - 1}](\frac{z^3}{z-1})^n
+[z^n] C(z) &= \frac{1}{n} [z^{n - 1}] (\frac{z}{F(z)})^n \\\\
+&= \frac{1}{n} [z^{n - 1}] (\frac{z^3}{z-1})^n
 \end{aligned}
 $$
 
@@ -424,7 +424,7 @@ $$
 $$
 \begin{aligned}
 (\frac{z^3}{z - 1}) ^ n &= z^{3n} \sum_{i \ge 0} \binom{i+n-1}{i}(-1)^iz^i \\\\
-[z^{n - 1}](\frac{z^3}{z - 1}) &= \binom{-n-2}{-2n-1} \times (-1)^{-2n-1}\\\\
+[z^{n - 1}] (\frac{z^3}{z - 1}) &= \binom{-n-2}{-2n-1} \times (-1)^{-2n-1}\\\\
 \end{aligned}
 $$
 
@@ -436,8 +436,8 @@ $$
 
 $$
 \begin{aligned}
-[z^n](C(z)-1)&=\frac{1}{n}[z^{n-1}](\frac{z}{F(z)})^n\\\\
-&=\frac{1}{n}[z^{n-1}](z+1)^{2n}\\\\
+[z^n] (C(z)-1)&=\frac{1}{n} [z^{n-1}] (\frac{z}{F(z)})^n\\\\
+&=\frac{1}{n} [z^{n-1}] (z+1)^{2n}\\\\
 &=\frac{\binom{2n}{n-1}}{n}\\\\
 &=\frac{\binom{2n}{n}}{n+1}
 \end{aligned}
@@ -463,7 +463,7 @@ $$
 
 $$
 \begin{aligned}
-[z^n]F(z) = \frac{1}{n}[z^{n - 1}] e^{zn} \\\\
+[z^n] F(z) = \frac{1}{n} [z^{n - 1}] e^{zn} \\\\
 = \frac{1}{n}\times \frac{n^{n - 1}}{(n - 1)!}
 \end{aligned}
 $$
