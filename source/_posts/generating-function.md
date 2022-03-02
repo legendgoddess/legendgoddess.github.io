@@ -317,13 +317,17 @@ $$
 如果有 $F(G(z)) = G(F(z)) = x$。不妨拿 $F(G(z))$ 当做例子，我们可以得到：
 
 $$
+\begin{aligned}
 [z^n]G(z) = \frac{1}{n}[z^{n - 1}](\frac{z}{F(z)})^n
+\end{aligned}
 $$
 
 $\color{red}\text{注意}$ 我们不能只拘泥于这种形式，其本质是：
 
 $$
+\begin{aligned}
 [z^n]G(z) = \frac{1}{n}[z^{- 1}] \frac{1}{F^n(z)}
+\end{aligned}
 $$
 
 我们上面进行平移是为了保证其能用整数来表示出来，注意我们对于 $F$ 需要进行平移直到第一项非零为止，所以这个 $-1$ 本质上就是减去向左平移的位置，之后 $n$ 就是单纯来平衡的。
@@ -335,7 +339,9 @@ $$
 > 主要是感觉写到一起不是很明显，但是事实上这个东西的用处更大一些。
 
 $$
+\begin{aligned}
 [z^n] H(F(z)) = \frac{1}{n}[z^{n - 1}](\frac{z}{G(z)})^n H'(z)
+\end{aligned}
 $$
 
 - $\color{red}(8)$ **常用的多项式形式**
@@ -376,7 +382,9 @@ $$
 发现里面的式子本质上和 $\frac{1}{1-az}$ 是一样的，根据加法原理我们直接可以得到：
 
 $$
+\begin{aligned}
 [z^n]Fib(z) = \frac{1}{\sqrt 5}\left(- \left(\frac{1 - \sqrt 5}{2}\right)^n + \left(\frac{1 + \sqrt 5}{2}\right)^n\right)
+\end{aligned}
 $$
 
 - $\color{blue}(2)$ **使用牛顿二项式定理**
@@ -427,7 +435,12 @@ $$
 设 $F(z) = \frac{z}{(1+z)^2}$ 那么我们有 $F(C(z) - 1) = z$。
 
 $$
-[z^n](C(z)-1)=\frac{1}{n}[z^{n-1}](\frac{z}{F(z)})^n=\frac{1}{n}[z^{n-1}](z+1)^{2n}=\frac{\binom{2n}{n-1}}{n}=\frac{\binom{2n}{n}}{n+1}
+\begin{aligned}
+[z^n](C(z)-1)&=\frac{1}{n}[z^{n-1}](\frac{z}{F(z)})^n\\\\
+&=\frac{1}{n}[z^{n-1}](z+1)^{2n}\\\\
+&=\frac{\binom{2n}{n-1}}{n}\\\\
+&=\frac{\binom{2n}{n}}{n+1}
+\end{aligned}
 $$
 
 > 其实常数项 $1$ 并不可怕，可怕的是 $2$。
