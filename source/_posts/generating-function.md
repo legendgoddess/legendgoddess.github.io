@@ -16,7 +16,7 @@ categories:
 - $\color{red}(1)$ **拆开组合数**
 
 $$
-\binom{n}{m} = \frac{n!}{m!(n - m)!}
+\binom{n}{m} = \frac{n!} {m!(n - m)!}
 $$
 
 组合意义就是总共有 $n$ 个物品，我们选择 $m$ 个出来的方案数。
@@ -25,9 +25,9 @@ $$
 
 一些**推论**：
 
-1. 对称性 $\binom{n}{m} = \binom{n}{n - m}$
+1. 对称性 $\binom{n} {m} = \binom{n} {n - m}$
 
-2. 吸收恒等式 $\binom{n}{m} = \frac{n}{m}\binom{n - 1}{m - 1}$
+2. 吸收恒等式 $\binom{n} {m} = \frac{n} {m}\binom{n - 1} {m - 1}$
 - $\color{red}(2)$ **经典二项式定理**
 
 $$
