@@ -427,9 +427,7 @@ $$
 设 $F(z) = \frac{z}{(1+z)^2}$ 那么我们有 $F(C(z) - 1) = z$。
 
 $$
-[z^n](C(z)-1)=\frac{1}{n}[z^{n-1}](\frac{z}{F(z)})^n
-=\frac{1}{n}[z^{n-1}](z+1)^{2n}
-=\frac{\binom{2n}{n-1}}{n}=\frac{\binom{2n}{n}}{n+1}
+[z^n](C(z)-1)=\frac{1}{n}[z^{n-1}](\frac{z}{F(z)})^n=\frac{1}{n}[z^{n-1}](z+1)^{2n}=\frac{\binom{2n}{n-1}}{n}=\frac{\binom{2n}{n}}{n+1}
 $$
 
 > 其实常数项 $1$ 并不可怕，可怕的是 $2$。
