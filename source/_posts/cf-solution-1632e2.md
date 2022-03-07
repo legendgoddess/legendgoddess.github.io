@@ -25,7 +25,7 @@ categories:
 
 其实我们只要考虑两棵子树中深度最大的点构成的距离即可。
 
-> 事实上到这里这个题目就做完了，还有一些细节需要完善，已经明白的大佬可以直接去看代码。
+> 事实上到这里这个题目就做完了，还有一些细节需要完善，已经明白的大佬可以直接去看[代码](#Code)。
 
 对于这样的两个点，显然深度小的点如果不需要考虑那么对于深度大的点我们可以**直接**进行连边，所以这个点对生效**当且仅当** $\tt Ans$ **小于**深度较小的点。
 
@@ -37,33 +37,35 @@ categories:
 
 答案显然是单调递增的。
 
+<div id = "Code"><div>
+
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
 namespace Legendgod {
-	namespace Read {
-//		#define Fread
-		#ifdef Fread
-		const int Siz = (1 << 21) + 5;
-		char *iS, *iT, buf[Siz];
-		#define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
-		#define getchar gc
-		#endif
-		template <typename T>
-		void r1(T &x) {
-		    x = 0;
-			char c(getchar());
-			int f(1);
-			for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
-			for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
-			x *= f;
-		}
-		template <typename T, typename...Args>
-		void r1(T &x, Args&...arg) {
-			r1(x), r1(arg...);
-		}
-		#undef getchar
-	}
+    namespace Read {
+//        #define Fread
+        #ifdef Fread
+        const int Siz = (1 << 21) + 5;
+        char *iS, *iT, buf[Siz];
+        #define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
+        #define getchar gc
+        #endif
+        template <typename T>
+        void r1(T &x) {
+            x = 0;
+            char c(getchar());
+            int f(1);
+            for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
+            for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
+            x *= f;
+        }
+        template <typename T, typename...Args>
+        void r1(T &x, Args&...arg) {
+            r1(x), r1(arg...);
+        }
+        #undef getchar
+    }
 
 using namespace Read;
 
@@ -112,9 +114,9 @@ void Solve() {
 }
 
 signed main() {
-	int i, j, T;
+    int i, j, T;
     r1(T); while(T --) Solve();
-	return 0;
+    return 0;
 }
 /*
 1
@@ -131,5 +133,4 @@ signed main() {
 
 
 signed main() { return Legendgod::main(), 0; }
-
 ```
