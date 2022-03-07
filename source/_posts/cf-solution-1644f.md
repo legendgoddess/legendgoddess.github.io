@@ -8,6 +8,8 @@ categories:
   - CF题解
 ---
 
+[Problem - 1644F - Codeforces](https://codeforces.com/problemset/problem/1644/F)
+
 发现第一个操作不是很好考虑，我们优先从第二个操作入手。
 
 如果一个数组 $a_1$ 可以通过操作 $2$ 变成数组 $a_2$ **当且仅当** $a_1$ 中每种颜色的下标集合恰好和 $a_2$ 中一种颜色的集合对应。

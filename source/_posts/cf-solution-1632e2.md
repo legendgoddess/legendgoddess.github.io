@@ -7,6 +7,8 @@ categories:
   - CF题解
 ---
 
+[Problem - 1632E2 - Codeforces](https://codeforces.com/problemset/problem/1632/E2)
+
 首先有一个很直观的解法，发现对于连边肯定是贪心去连**最长链**到根节点的一条边，之后通过两遍 $\tt dfs$ 来找到答案，复杂度 $O(n)$。
 
 但是上述的解法有很明显的问题：
