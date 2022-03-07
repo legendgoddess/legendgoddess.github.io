@@ -14,7 +14,13 @@ categories:
 
 也就是意味着我们需要的 $a_1$ 其实不一定要考虑颜色，只需要计算出不同的集合的集合的数量即可。
 
-也就是在 $n$ 中选出 $i$ 个集合，本质就是 $\left \{ \begin{matrix}n\\i\end{matrix} \right \}$。
+也就是在 $n$ 中选出 $i$ 个集合，本质就是
+
+$$
+
+$$
+
+
 
 之后我们再考虑操作 $1$，显然我们原来多算了答案，对于 $F(a_1, j), j > 1$ 我们发现每个数组都是可能变成一个新的数组，显然存在 $F(a_1, j) = F(a_1, 2j)$ 的情况，就是说明需要容斥来解决。
 
@@ -43,29 +49,29 @@ $$
 #include <bits/stdc++.h>
 using namespace std;
 namespace Legendgod {
-	namespace Read {
-//		#define Fread
-		#ifdef Fread
-		const int Siz = (1 << 21) + 5;
-		char *iS, *iT, buf[Siz];
-		#define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
-		#define getchar gc
-		#endif
-		template <typename T>
-		void r1(T &x) {
-		    x = 0;
-			char c(getchar());
-			int f(1);
-			for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
-			for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
-			x *= f;
-		}
-		template <typename T, typename...Args>
-		void r1(T &x, Args&...arg) {
-			r1(x), r1(arg...);
-		}
-		#undef getchar
-	}
+    namespace Read {
+//        #define Fread
+        #ifdef Fread
+        const int Siz = (1 << 21) + 5;
+        char *iS, *iT, buf[Siz];
+        #define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
+        #define getchar gc
+        #endif
+        template <typename T>
+        void r1(T &x) {
+            x = 0;
+            char c(getchar());
+            int f(1);
+            for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
+            for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
+            x *= f;
+        }
+        template <typename T, typename...Args>
+        void r1(T &x, Args&...arg) {
+            r1(x), r1(arg...);
+        }
+        #undef getchar
+    }
 
 using namespace Read;
 
@@ -131,7 +137,7 @@ signed main() {
     init(20);
 //    puts("SSS");
     init1(maxn - 5);
-	int i, j;
+    int i, j;
     r1(n, K);
     GetS(n);
     for(i = 1; i <= n; ++ i) prf[i] = S[i], dl[i] = -1;
@@ -148,7 +154,7 @@ signed main() {
     long long ans(0);
     for(i = 1; i <= min(n, K); ++ i) ans = (ans + prf[i] + mod) % mod;
     printf("%lld\n", ans);
-	return 0;
+    return 0;
 }
 
 int inv[maxn], wn[2][20][maxn];
@@ -287,7 +293,6 @@ void Ksm(const int *F, int *G,int n,int miyuan,int mi) {
 }
 
 signed main() { return Legendgod::main(), 0; }
-
 ```
 
 反演：
@@ -296,29 +301,29 @@ signed main() { return Legendgod::main(), 0; }
 #include <bits/stdc++.h>
 using namespace std;
 namespace Legendgod {
-	namespace Read {
-//		#define Fread
-		#ifdef Fread
-		const int Siz = (1 << 21) + 5;
-		char *iS, *iT, buf[Siz];
-		#define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
-		#define getchar gc
-		#endif
-		template <typename T>
-		void r1(T &x) {
-		    x = 0;
-			char c(getchar());
-			int f(1);
-			for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
-			for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
-			x *= f;
-		}
-		template <typename T, typename...Args>
-		void r1(T &x, Args&...arg) {
-			r1(x), r1(arg...);
-		}
-		#undef getchar
-	}
+    namespace Read {
+//        #define Fread
+        #ifdef Fread
+        const int Siz = (1 << 21) + 5;
+        char *iS, *iT, buf[Siz];
+        #define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
+        #define getchar gc
+        #endif
+        template <typename T>
+        void r1(T &x) {
+            x = 0;
+            char c(getchar());
+            int f(1);
+            for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
+            for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
+            x *= f;
+        }
+        template <typename T, typename...Args>
+        void r1(T &x, Args&...arg) {
+            r1(x), r1(arg...);
+        }
+        #undef getchar
+    }
 
 using namespace Read;
 
@@ -384,7 +389,7 @@ signed main() {
     init(20);
 //    puts("SSS");
     init1(maxn - 5);
-	int i, j;
+    int i, j;
     r1(n, K);
     if(min(n, K) == 1) return puts("1"), 0;
     GetS(n);
@@ -397,7 +402,7 @@ signed main() {
         ans = (ans + 1ll * mu[i] * tmp) % mod;
     }
     printf("%lld\n", ans);
-	return 0;
+    return 0;
 }
 
 int inv[maxn], wn[2][20][maxn];
@@ -536,5 +541,4 @@ void Ksm(const int *F, int *G,int n,int miyuan,int mi) {
 }
 
 signed main() { return Legendgod::main(), 0; }
-
 ```
