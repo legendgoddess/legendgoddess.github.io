@@ -41,4 +41,4 @@ emmm 这里大概会记录一下 $vp$ 的场次和一些想法吧。
 
 写出来了 $5$ 题，排名挺高的。
 
-[CF1633E 题解 | Legendgod's Blog](https://legendgod.ml/2022/03/07/cf-solution-1633e/)
+[CF1633E 题解 | Legendgod's Blog](https://legendgod.ml/2022/03/07/cf-solution-1633E/)
