@@ -15,9 +15,9 @@ emmm 这里大概会记录一下 $vp$ 的场次和一些想法吧。
 
 反正我是心态崩了，就是 $A, B$ 其中 $A$ 直接猜结论，然后 $B$ 是一个找规律的题目，因为画出来之后可以发现矩阵是规则的。对于 $C$ 题直接秒杀了不多说了。 $D$ 看起来是可撤销贪心实际上是 $\tt Dp$。
 
-[E 题解](https://blog.csdn.net/sharp_legendgod/article/details/120405455?spm=1001.2014.3001.5501)
+[E 题解](https://legendgod.ml/2021/09/21/cf-solution-1458c/)
 
-[F 题解](https://blog.csdn.net/sharp_legendgod/article/details/120405328?spm=1001.2014.3001.5501)
+[F 题解](https://legendgod.ml/2021/09/21/cf-solution-1458d/)
 
 总结一下就是说还是要从多方面进行思考，对于看起来比较复杂的题目是否有简化的方案。同时不要放过任何可能的突破点。
 
@@ -53,6 +53,6 @@ emmm 这里大概会记录一下 $vp$ 的场次和一些想法吧。
 > 
 > 3. 不要拘泥于固有的东西，比如说第 $6$ 题事实上我的做法是 $O(n \log n)$ 的暴力线段树，然后完全可以使用差分解决问题。**差分**是一种思想，不是一个算法，差分需要利用合适的性质，对于位置进行差分，这个往往体现在**等式**中。
 
-[CF1634E 题解 | Legendgod's Blog](https://legendgod.ml/2022/03/09/cf-solution-1634E/)
+[CF1634E 题解 | Legendgod's Blog](https://legendgod.ml/2022/03/09/cf-solution-1634e/)
 
 发现第 $6$ 题实际上是一个简单的数据结构题，所以发现做题目的时候需要好好把握时间。
