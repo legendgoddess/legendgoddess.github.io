@@ -4,7 +4,8 @@ date: 2021-09-28 10:27:59
 tags: 
   - 构造
 categories:
-  - 专题
+  - 专题训练
+  - CF题解
 ---
 
 [2500 + 构造题](https://codeforces.ml/problemset?order=BY_RATING_ASC&tags=constructive+algorithms%2C2500-)
