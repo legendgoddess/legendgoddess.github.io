@@ -41,4 +41,18 @@ emmm 这里大概会记录一下 $vp$ 的场次和一些想法吧。
 
 写出来了 $5$ 题，排名挺高的。
 
-[CF1633E 题解 | Legendgod's Blog](https://legendgod.ml/2022/03/07/cf-solution-1633E/)
+[CF1633E 题解 | Legendgod's Blog](https://legendgod.ml/2022/03/07/cf-solution-1633e/)
+
+- [Dashboard - Codeforces Round #770 (Div. 2) - Codeforces](https://codeforces.com/contest/1634)
+
+属于比较思维的一场，写了 $4$ 题，第 $5$ 题还是欧拉回路不会，第 $6$ 题没时间了。
+
+> 1. 要注意时间的把控，可以多看看别的题目。
+> 
+> 2. 需要更优秀的调试方法，比如说交互题可以在程序内自己随机自己交互。
+> 
+> 3. 不要拘泥于固有的东西，比如说第 $6$ 题事实上我的做法是 $O(n \log n)$ 的暴力线段树，然后完全可以使用差分解决问题。**差分**是一种思想，不是一个算法，差分需要利用合适的性质，对于位置进行差分，这个往往体现在**等式**中。
+
+[CF1633E 题解 | Legendgod's Blog](https://legendgod.ml/2022/03/09/cf-solution-1633e/)
+
+
