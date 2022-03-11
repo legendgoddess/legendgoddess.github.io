@@ -24,5 +24,105 @@ categories:
 我们通过维护区间最小的右端点即可，使用线段树进行维护，复杂度 $O(n \log n)$。
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+namespace Legendgod {
+	namespace Read {
+//		#define Fread
+		#ifdef Fread
+		const int Siz = (1 << 21) + 5;
+		char *iS, *iT, buf[Siz];
+		#define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
+		#define getchar gc
+		#endif
+		template <typename T>
+		void r1(T &x) {
+		    x = 0;
+			char c(getchar());
+			int f(1);
+			for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
+			for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
+			x *= f;
+		}
+		template <typename T, typename...Args>
+		void r1(T &x, Args&...arg) {
+			r1(x), r1(arg...);
+		}
+		#undef getchar
+	}
+
+using namespace Read;
+
+const int maxn = 2e5 + 5;
+
+int n, Q;
+
+set<int> wr;
+int vl[maxn << 2], md[maxn << 2];
+struct Seg {
+    #define ls (p << 1)
+    #define rs (p << 1 | 1)
+    #define mid md[p]
+    void build(int p,int l,int r) {
+        vl[p] = 0x3f3f3f3f;
+        if(l == r) return ;
+        mid = (l + r) >> 1;
+        build(ls, l, mid), build(rs, mid + 1, r);
+    }
+    void pushup(int p) { vl[p] = min(vl[p], min(vl[ls], vl[rs])); }
+    void Insert(int p, int l,int r,int ps,int c) {
+        if(l == r) return vl[p] = min(vl[p], c), void();
+        if(ps <= mid) Insert(ls, l, mid, ps, c);
+        else Insert(rs, mid + 1, r, ps, c);
+        pushup(p);
+    }
+    int Ask(int p,int l,int r,int ll,int rr) {
+        if(ll > rr) return 0x3f3f3f3f;
+        if(ll <= l && r <= rr) return vl[p];
+        int res(0x3f3f3f3f);
+        if(ll <= mid) res = min(res, Ask(ls, l, mid, ll, rr));
+        if(mid < rr) res = min(res, Ask(rs, mid + 1, r, ll, rr));
+        return res;
+    }
+}T;
+
+
+signed main() {
+	int i, j;
+    r1(n, Q);
+    T.build(1, 1, n);
+    for(i = 1; i <= n; ++ i) wr.insert(i);
+    for(int _ = 1; _ <= Q; ++ _) {
+        int opt, l, r, x;
+        r1(opt);
+        if(opt == 0) {
+            r1(l, r, x);
+            if(x == 0) {
+                vector<set<int>::iterator> buc; buc.clear();
+                for(auto it = wr.lower_bound(l); it != wr.end() && *it <= r; ++ it)
+                    buc.emplace_back(it);
+                for(const auto &it : buc) wr.erase(it);
+            }
+            else T.Insert(1, 1, n, l, r);
+        }
+        else {
+            r1(x);
+            auto it = wr.lower_bound(x), it1 = wr.lower_bound(x + 1);
+            if(it == wr.end() || *it != x) { puts("NO"); continue; }
+            int L, R;
+            if(it == wr.begin()) L = 1; else L = *(-- it) + 1;
+            if(it1 == wr.end()) R = n; else R = *it1 - 1;
+            int tmp = T.Ask(1, 1, n, L, x);
+            if(tmp <= R) puts("YES");
+            else puts("N/A");
+        }
+    }
+	return 0;
+}
+
+}
+
+
+signed main() { return Legendgod::main(), 0; }
 
 ```
