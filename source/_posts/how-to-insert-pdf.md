@@ -5,7 +5,10 @@ categories:
   - 语法
 ---
 
-具体语法就是 '<embed src="pdf-link" type="application/pdf" style="overflow: auto; width: 100%; height: 600px"/>'
+具体语法就是：
+```cpp
+<embed src="pdf-link" type="application/pdf" style="overflow: auto; width: 100%; height: 600px"/>'
+```
 
 其中 $\tt pdf-link$ 表示的是路径，最好是相对路径。
 
