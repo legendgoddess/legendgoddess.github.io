@@ -10,7 +10,7 @@ categories:
 
 下面有配套练习：
 
-<embed src="/image/sam-1" type="application/pdf" style="overflow: auto; width: 100%; height: 600px"/>'
+<embed src="/image/sam-1.pdf" type="application/pdf" style="overflow: auto; width: 100%; height: 600px"/>'
 
 [LCS - Longest Common Substring - 洛谷](https://www.luogu.com.cn/problem/SP1811)
 
