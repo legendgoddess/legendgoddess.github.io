@@ -62,9 +62,9 @@ $$
 
 $$
 \begin{aligned}
-g_n + g_{n - 1} &= 2^ng_n - 2^{r + n - 1}g_{n - 1} \\
-g_n &= \frac{2^{r + n - 1} - 1}{2^n - 1} g_{n - 1} \\
-g_n &= \prod_{i = 1} ^ n \frac{2^{r + i - 1} - 1}{2^i - 1} \\
+g_n + g_{n - 1} &= 2^ng_n - 2^{r + n - 1}g_{n - 1} \\\\
+g_n &= \frac{2^{r + n - 1} - 1}{2^n - 1} g_{n - 1} \\\\
+g_n &= \prod_{i = 1} ^ n \frac{2^{r + i - 1} - 1}{2^i - 1} \\\\
 g_1 &= 1
 \end{aligned}
 $$
