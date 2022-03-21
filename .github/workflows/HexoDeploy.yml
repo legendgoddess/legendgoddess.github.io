@@ -34,8 +34,6 @@ jobs:
                   git config --global user.name "legendgoddess"
                   npm install hexo-cli -g
                   npm install --save hexo-blog-encrypt
-                  npm uninstall --save hexo-renderer-marked
-                  npm install --save hexo-renderer-kramed
                   npm install
 
             - name: Deploy
