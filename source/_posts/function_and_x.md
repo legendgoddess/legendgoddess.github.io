@@ -94,14 +94,16 @@ $FFT​$
 
 首先我们先假设一个多项式的系数 ~~假设 n 为偶数~~ $A(x) = (a_0,a_1,a_{n - 1})$
 
-$$A(x)=a_0+a_1*x+a_2*{x^2}+a_3*{x^3}+a_4*{x^4}+a_5*{x^5}+ \dots+a_{n-2}*x^{n-2}+a_{n-1}*x^{n-1}$$
+$$
+A(x)=a_0+a_1*x+a_2*{x^2}+a_3*{x^3}+a_4*{x^4}+a_5*{x^5}+ \dots+a_{n-2}*x^{n-2}+a_{n-1}*x^{n-1}
+$$
 
 我们把它的下标按奇偶性分类
 $$
 \begin{cases}
-A(x) = \sum_{i = 0} ^ {n -1} a_i x^i \\
-A_1(x) = \sum_{i = 0} ^ {m - 1} a_{2i} x^{2i} \\
-A_2(x) = \sum_{i = 0} ^ {m - 1}a_{2i + 1} x ^{2i + 1} \\
+A(x) = \sum_{i = 0} ^ {n -1} a_i x^i \\\\
+A_1(x) = \sum_{i = 0} ^ {m - 1} a_{2i} x^{2i} \\\\
+A_2(x) = \sum_{i = 0} ^ {m - 1}a_{2i + 1} x ^{2i + 1} \\\\
 m = \frac{n}{2}
 \end{cases}
 $$
@@ -120,9 +122,9 @@ $A(x) = \sum_{i = 0} ^ {m - 1}a_{2i} (x^2) ^i + x\sum_{i = 0} ^ {m - 1} a_{2i + 
 所以可以化简
 $$
 \begin{aligned}
-m &= \frac{n}{2} \\
-A(w_n^k) &= A_1(w_m^k) + w_n^kA_2(w^k_m) \\
-&\text{之后来看后半部分} \\
+m &= \frac{n}{2} \\\\
+A(w_n^k) &= A_1(w_m^k) + w_n^kA_2(w^k_m) \\\\
+&\text{之后来看后半部分} \\\\
 A(w_n^{k + m}) &= A_1(w_m^k) - w_{n}^kA_2(w_m^k) 
 \end{aligned}
 $$
@@ -180,8 +182,8 @@ for(int i = 0; i < lim; ++ i) if(i < rev[i])
 $m = \frac{n}{2}$ 的所有值已经计算好并且放到 A 中了
 $$
 \begin{aligned}
-A_1(w_m^k) &= A[k], A_1(w_m^k) = A[k + m] \\
-\Rightarrow A(w_m^k) &= A[k] + w_n^k \times A[k + m] \\
+A_1(w_m^k) &= A[k], A_1(w_m^k) = A[k + m] \\\\
+\Rightarrow A(w_m^k) &= A[k] + w_n^k \times A[k + m] \\\\
 \Rightarrow A(w_m^{k + m}) &= A[k] - w_n^k \times A[k + m]
 \end{aligned}
 $$
@@ -197,8 +199,8 @@ $$
 $$
 p = 
 \begin{cases}
-998244353  = 479 \times 2 ^{21} + 1, g = 3\\
-1004535809 = 7 \times 17 \times 2^{23} +1, g = 3\\
+998244353  = 479 \times 2 ^{21} + 1, g = 3\\\\
+1004535809 = 7 \times 17 \times 2^{23} +1, g = 3\\\\
 469762049 = 7 \times 2^{26} + 1, g = 3
 \end{cases}
 $$
@@ -230,11 +232,11 @@ $g^{qn} = e^{2\pi n}$ 我们如果迭代到长度 $l$ 的时候 $\omega_n = g_l 
 
 我们考虑将系数拆成两部分
 
-$ A = P_i >> 15, B = P_i \& (32767) $
+$ A = P_i >> 15, B = P_i \text{&} (32767) $
 
-$C = Q_i >> 15, D = Q_i \& (32767)$
+$C = Q_i >> 15, D = Q_i \text{&} (32767)$
 
-$P*Q=AC*2^{30}+(AD+BC)*2^{15}+BD$
+$ P * Q = AC * 2 ^ {30}+(AD+BC)*2 ^ {15} + BD$
 
 之后我们考虑通过复数来表示，设 $F = A + iB, G = C + i \times D$
 
@@ -248,29 +250,29 @@ $P*Q=AC*2^{30}+(AD+BC)*2^{15}+BD$
 
 用 $P_t$ 表示 P 的 DFT。
 $$
-\text{证明：P = A + iB, Q = A - iB}\\
+\text{证明：P = A + iB, Q = A - iB}\\\\
 \color{red}\text{注意这里 P, Q 与之前的不同}
 $$
 
 $$
 \begin{aligned}
-p_t(x) =& A(w_n^k) + iB(w_n^k) \\
-=& \sum_{j = 0} ^ {n - 1} A_jw_n^{jk} + i B_jw_n^{jk} \\
-=& \sum_{j = 0} 6 {n - 1} (A_j + iB_j) w_n^{jk}\\
+p_t(x) =& A(w_n^k) + iB(w_n^k) \\\\
+=& \sum_{j = 0} ^ {n - 1} A_jw_n^{jk} + i B_jw_n^{jk} \\\\
+=& \sum_{j = 0} 6 {n - 1} (A_j + iB_j) w_n^{jk}\\\\
 \end{aligned}
 $$
 
 之后我们考虑能不能将 Q 用 P 表示出来，我们考虑将 Q 进行展开。
 $$
 \begin{aligned}
-Q_t(x) =& Aw_n^k - iB(w_n^k) \\
-=& \sum_{j = 0} ^{n - 1} (A_j - iB_j) w_n^{jk} \\
-=& \sum_{j = 0} ^ {n - 1} (A_j - iB_j)\Bigg(cos\bigg(\frac{2\pi jk}{n}\bigg) + isin\bigg(\frac{2\pi jk}{n}\bigg)\Bigg) \\
-= & \sum_{j = 0} ^ {n - 1} A_jcos\bigg(\frac{2\pi jk}{n}\bigg)  + B_j sin\bigg(\frac{2\pi jk}{n}\bigg) + i(A_jsin\bigg(\frac{2\pi jk}{n}\bigg) - B_jcos\bigg(\frac{2\pi jk}{n}\bigg)) \\
-= & conj(\sum_{j = 0} ^ {n - 1} A_jcos\bigg(\frac{-2\pi jk}{n}\bigg)  + B_j sin\bigg(\frac{-2\pi jk}{n}\bigg) - i(A_jsin\bigg(\frac{-2\pi jk}{n}\bigg) - B_jcos\bigg(\frac{-2\pi jk}{n}\bigg))) \\
-= & conj(\sum_{j = 0} ^ {n - 1} (A_j + iB_j) \times (cos\bigg(\frac{-2\pi jk}{n}\bigg) - isin\bigg(\frac{-2\pi jk}{n}\bigg))) \\
-= & conj(\sum_{j = 0} ^ {n - 1} (A_j + iB_j)(w_n^{-jk}) \\
-    = & conj(\sum_{j = 0}^{n - 1} (A_j + iB_j)(w_n^{-jk})) \\
+Q_t(x) =& Aw_n^k - iB(w_n^k) \\\\
+=& \sum_{j = 0} ^{n - 1} (A_j - iB_j) w_n^{jk} \\\\
+=& \sum_{j = 0} ^ {n - 1} (A_j - iB_j)\Bigg(cos\bigg(\frac{2\pi jk}{n}\bigg) + isin\bigg(\frac{2\pi jk}{n}\bigg)\Bigg) \\\\
+= & \sum_{j = 0} ^ {n - 1} A_jcos\bigg(\frac{2\pi jk}{n}\bigg)  + B_j sin\bigg(\frac{2\pi jk}{n}\bigg) + i(A_jsin\bigg(\frac{2\pi jk}{n}\bigg) - B_jcos\bigg(\frac{2\pi jk}{n}\bigg)) \\\\
+= & conj(\sum_{j = 0} ^ {n - 1} A_jcos\bigg(\frac{-2\pi jk}{n}\bigg)  + B_j sin\bigg(\frac{-2\pi jk}{n}\bigg) - i(A_jsin\bigg(\frac{-2\pi jk}{n}\bigg) - B_jcos\bigg(\frac{-2\pi jk}{n}\bigg))) \\\\
+= & conj(\sum_{j = 0} ^ {n - 1} (A_j + iB_j) \times (cos\bigg(\frac{-2\pi jk}{n}\bigg) - isin\bigg(\frac{-2\pi jk}{n}\bigg))) \\\\
+= & conj(\sum_{j = 0} ^ {n - 1} (A_j + iB_j)(w_n^{-jk}) \\\\
+    = & conj(\sum_{j = 0}^{n - 1} (A_j + iB_j)(w_n^{-jk})) \\\\
     = & conj(P_t(n - k))
 \end{aligned}
 $$
@@ -310,9 +312,9 @@ F \times (Q - Q_1) \equiv 0 \pmod {x^{\frac{n}{2}}}
 $$
 因为 $F$ 肯定不是 0，所以考虑将其消掉，之后再考虑平方。
 $$
-(Q - Q_1) ^ 2 \equiv 0\pmod {x^n} \\
-Q^2 + Q_1^2 - 2QQ_1 \equiv 0 \pmod {x^n} \\
-Q + FQ_1^2 - 2Q_1 \equiv 0 \pmod {x^n} ,\text{这里两边乘了 F}\\
+(Q - Q_1) ^ 2 \equiv 0\pmod {x^n} \\\\
+Q^2 + Q_1^2 - 2QQ_1 \equiv 0 \pmod {x^n} \\\\
+Q + FQ_1^2 - 2Q_1 \equiv 0 \pmod {x^n} ,\text{这里两边乘了 F}\\\\
 Q \equiv 2Q_1 - FQ_1^2 \pmod {x^n}
 $$
 这样递归去做就可以了。
@@ -340,10 +342,10 @@ $Q' \equiv \frac{F'}{F} \pmod {x^n}$
 我们优先考虑 Ln 转换成 $\ln Q \equiv F \pmod {x^n}$ 之后考虑进行牛顿迭代。
 $$
 \begin{aligned}
-y &= f(x_0) + f'(x_0)(x - x_0) \\
-0 &= f(x_0) + f'(x_0)(x - x_0) \\
-0 &= f(x_0) - f'(x_0)x_0 + f'(x_0)\\
-x &= \frac{f'(x_0)x_0 - f(x_0)}{f'(x_0)}\\
+y &= f(x_0) + f'(x_0)(x - x_0) \\\\
+0 &= f(x_0) + f'(x_0)(x - x_0) \\\\
+0 &= f(x_0) - f'(x_0)x_0 + f'(x_0)\\\\
+x &= \frac{f'(x_0)x_0 - f(x_0)}{f'(x_0)}\\\\
 x &= x_0 - \frac{f(x_0)}{f'(x_0)}
 \end{aligned}
 $$
@@ -355,8 +357,8 @@ $$
 
 这里说明一下 $S'(G) = \frac{1}{G}$ 的原因，我们本质上是将整个 G 看成一个变量，而不是里面的每一个 $x^i$ 所以这里并不是符合函数求导。
 $$
-G = G_0 - \frac{\ln G_0 - F}{\frac{1}{G_0}} \\
-G = G_0 - G_0 \times (\ln G_0 - F)\\
+G = G_0 - \frac{\ln G_0 - F}{\frac{1}{G_0}} \\\\
+G = G_0 - G_0 \times (\ln G_0 - F)\\\\
 G = G_0 \times (1 - \ln G_0 + F)
 $$
 之后有手就行。
@@ -369,10 +371,10 @@ $$
 
 还是考虑消元 
 $$
-F \equiv F_1 \pmod {x^{\frac{n}{2}}}\\
-F - F_1 \equiv 0 \pmod {x^{\frac{n}{2}}} \\
-F^2 + F_1^2 - 2FF_1 \equiv 0 \pmod {x^n} \\
-G  F_1^2 - 2F_1F \equiv 0 \pmod {x^n} \\
+F \equiv F_1 \pmod {x^{\frac{n}{2}}}\\\\
+F - F_1 \equiv 0 \pmod {x^{\frac{n}{2}}} \\\\
+F^2 + F_1^2 - 2FF_1 \equiv 0 \pmod {x^n} \\\\
+G  F_1^2 - 2F_1F \equiv 0 \pmod {x^n} \\\\
 F \equiv \frac{G}{2F_1 + F_1^2} \pmod {x^n}
 $$
 还是很简单。
