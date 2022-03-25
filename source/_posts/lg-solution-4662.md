@@ -22,29 +22,29 @@ categories:
 #include <bits/stdc++.h>
 using namespace std;
 namespace Legendgod {
-	namespace Read {
-//		#define Fread
-		#ifdef Fread
-		const int Siz = (1 << 21) + 5;
-		char *iS, *iT, buf[Siz];
-		#define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
-		#define getchar gc
-		#endif
-		template <typename T>
-		void r1(T &x) {
-		    x = 0;
-			char c(getchar());
-			int f(1);
-			for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
-			for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
-			x *= f;
-		}
-		template <typename T, typename...Args>
-		void r1(T &x, Args&...arg) {
-			r1(x), r1(arg...);
-		}
-		#undef getchar
-	}
+    namespace Read {
+//        #define Fread
+        #ifdef Fread
+        const int Siz = (1 << 21) + 5;
+        char *iS, *iT, buf[Siz];
+        #define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
+        #define getchar gc
+        #endif
+        template <typename T>
+        void r1(T &x) {
+            x = 0;
+            char c(getchar());
+            int f(1);
+            for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
+            for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
+            x *= f;
+        }
+        template <typename T, typename...Args>
+        void r1(T &x, Args&...arg) {
+            r1(x), r1(arg...);
+        }
+        #undef getchar
+    }
 
 using namespace Read;
 
@@ -112,7 +112,7 @@ void dfs(int p) {
 }
 
 signed main() {
-	int i, j;
+    int i, j;
     r1(n, m, S, T);
     T += n;
     for(i = 1; i <= n; ++ i) {
@@ -135,13 +135,11 @@ signed main() {
     for(const int& v : vc) printf("%d ", v);
     puts("");
 //    printf("%d\n", ans);
-	return 0;
+    return 0;
 }
 
 }
 
 
 signed main() { return Legendgod::main(), 0; }//
-
-
 ```
