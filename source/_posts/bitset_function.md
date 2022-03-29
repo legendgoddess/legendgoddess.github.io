@@ -1,5 +1,5 @@
 ---
-title: "Bitset 和 __builtin 函数"
+title: "bitset 和 __builtin 函数"
 date: 2022-3-29 07:34:00
 categories:
   - 算法
