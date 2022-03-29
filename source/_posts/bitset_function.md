@@ -55,7 +55,7 @@ bitset<maxn> vis2("100101"); // 000...100101
 
 - `_Find_next(x)` 找到在 $x$ 之后的第一个为 $1$ 的下标（不包含 $x$），如果不存在就返回 $\tt bitset$ 的大小。
 
-### $\tt \_\_builtin$
+### $\tt \text{__builtin}$
 
 下面说的都有 $\tt unsigned\ int$ 和 $\tt unsigned\ long\ long$ 的版本，只要在函数名称末尾加 $\tt l$ 或者 $\tt ll$ 即可。
 
