@@ -1,5 +1,5 @@
 ---
-title: "Bitset 的用法功能"
+title: "Bitset 和 __builtin 函数"
 date: 2022-3-29 07:34:00
 categories:
   - 算法
@@ -23,7 +23,7 @@ bitset<maxn> vis1(5);// 000...00101
 bitset<maxn> vis2("100101"); // 000...100101
 ```
 
-### 函数
+### $\tt Bitset$ 函数
 
 - `flip()` 全部取反。 
 
@@ -55,6 +55,50 @@ bitset<maxn> vis2("100101"); // 000...100101
 
 - `_Find_next(x)` 找到在 $x$ 之后的第一个为 $1$ 的下标（不包含 $x$），如果不存在就返回 $\tt bitset$ 的大小。
 
+### $\tt \_\_builtin$
+
+下面说的都有 $\tt unsigned\ int$ 和 $\tt unsigned\ long\ long$ 的版本，只要在函数名称末尾加 $\tt l$ 或者 $\tt ll$ 即可。
+
+- `__builtin_ffs(x)` 返回 $x$ 的**最低位的** $1$ 是从后向前第几位。 
+
+```cpp
+int n = 10, m = 5; // 1010(2), 101(2)
+printf("%d %d\n", __builtin_ffs(n), __builtin_ffs(m)); // 2, 1
+```
+
+- `__builtin_clz(x)` 返回 $x$ 左边前导零的个数。
+
+```cpp
+int n = 5;//101
+printf("%d\n", __builtin_clz(n));//29 = 31 - 3 + 1
+/*
+具体来说就是总共有 32 个位置，左边有 29 个位置是 0.
+为什么只有 31 呢？符号位！！！
+所以 __builtin_clz(-1) = 0
+*/
+```
+
+- `__builtin_ctz(x)` 返回 $x$ 右边 $0$ 的个数。
+
+```cpp
+int n = 6;// 110(2)
+printf("%d\n", __builtin_ctz(n));// 1
+```
+
+- `__builtin_popcount(x)` 返回 $x$ 二进制位上有几个 $1$。
+
+```cpp
+int n = 7;
+printf("%d\n", __builtin_popcount(n )); // 3
+```
+
+- `__builtin_parity(x)` 返回 $x$ 二进制上 $1$ 的奇偶性。
+
+```cpp
+int n = 7, m = 6;
+printf("%d %d\n", __builtin_parity(n), __builtin_parity(m)); // 1 0
+```
+
 ### 例题
 
 [[Ynoi2017] 由乃的玉米田 - 洛谷](https://www.luogu.com.cn/problem/P5355)
@@ -72,12 +116,12 @@ char buf[1 << 21], *p1, *p2;
 
 template <typename T>
 void r1(T &x) {
-	x = 0;
-	char c(getchar());
-	int f(1);
-	for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
-	for(; isdigit(c);c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
-	x *= f;
+    x = 0;
+    char c(getchar());
+    int f(1);
+    for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
+    for(; isdigit(c);c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
+    x *= f;
 }
 
 const int maxn = 1e5 + 5;
@@ -123,7 +167,7 @@ int ans[maxn];
 signed main() {
 //    freopen(".in", "r", stdin);
 //    freopen(".out", "w", stdout);
-	int i, j, B;
+    int i, j, B;
     r1(n), r1(m);
     B = sqrt(n);
     for(i = 1; i <= n; ++ i) r1(a[i]);
@@ -196,9 +240,6 @@ signed main() {
 //        else puts("yumi");
 //    }
 //    for(i = 1; i <= m1; ++ i) printf("%d\n", ans[i]);
-	return 0;
+    return 0;
 }
-
-
-
 ```
