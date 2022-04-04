@@ -26,33 +26,37 @@ categories:
 
 所以考虑使用并查集来维护即可，注意要维护红边的哈希值的和，但是有翻转操作所以两边都要维护。
 
+可能最近生病了（借口），一开始写的时候一点都不清晰，在看题解。
+
+但事实上我们只需要考虑每个点正好断掉的路径，然后记录整条路径当前是否被翻转过，显然如果中间连接一条边必定满足该边和左右两条路径颜色都不同，且左右两条颜色相同。
+
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
 namespace Legendgod {
-	namespace Read {
-//		#define Fread
-		#ifdef Fread
-		const int Siz = (1 << 21) + 5;
-		char *iS, *iT, buf[Siz];
-		#define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
-		#define getchar gc
-		#endif
-		template <typename T>
-		void r1(T &x) {
-		    x = 0;
-			char c(getchar());
-			int f(1);
-			for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
-			for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
-			x *= f;
-		}
-		template <typename T, typename...Args>
-		void r1(T &x, Args&...arg) {
-			r1(x), r1(arg...);
-		}
-		#undef getchar
-	}
+    namespace Read {
+//        #define Fread
+        #ifdef Fread
+        const int Siz = (1 << 21) + 5;
+        char *iS, *iT, buf[Siz];
+        #define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
+        #define getchar gc
+        #endif
+        template <typename T>
+        void r1(T &x) {
+            x = 0;
+            char c(getchar());
+            int f(1);
+            for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
+            for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
+            x *= f;
+        }
+        template <typename T, typename...Args>
+        void r1(T &x, Args&...arg) {
+            r1(x), r1(arg...);
+        }
+        #undef getchar
+    }
 
 using namespace Read;
 
@@ -113,7 +117,7 @@ void Link(int x,int y,int id) {
 }
 
 signed main() {
-	int i, j;
+    int i, j;
     r1(n1, n2, m), n = n1 + n2;
     pw[0] = 1;
     for(i = 1; i < maxn; ++ i) pw[i] = 2ll * pw[i - 1] % mod;
@@ -138,17 +142,11 @@ signed main() {
         }
         fflush(stdout);
     }
-	return 0;
+    return 0;
 }
 
 }
 
 
 signed main() { return Legendgod::main(), 0; }//
-
-
 ```
-
-
-
-
