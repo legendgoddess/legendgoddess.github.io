@@ -1,6 +1,6 @@
 ---
 title: "CF1477D Nezzar and Hidden Permutations 题解"
-date: 2022-4-4 9:19:00
+date: 2022-4-4 09:19:00
 tags:
   - 图论
 categories:
