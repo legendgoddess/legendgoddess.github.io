@@ -5,6 +5,7 @@ tags:
   - 数据结构
 categories:
   - 专题
+sticky: 1
 ---
 
 [Legendgod's Blog](https://legendgod.ml/)

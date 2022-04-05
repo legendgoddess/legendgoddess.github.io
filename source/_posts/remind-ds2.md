@@ -6,6 +6,7 @@ tags:
   - 平衡树
 categories:
   - 专题
+sticky: 1
 ---
 
 [Legendgod's Blog](https://legendgod.ml/)
