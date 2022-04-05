@@ -382,3 +382,183 @@ signed main() { return Legendgod::main(), 0; }
 ```
 
 #### 维护同色连通块
+
+[QTREE6 - Query on a tree VI - 洛谷](https://www.luogu.com.cn/problem/SP16549)
+
+考虑直接暴力修改点的的话容易被星图卡没，所以考虑点权放到边权上，这样每次修改只需要修改一条边。
+
+考虑使用两个 $\tt LCT$ 来维护不同颜色的连通块，原询问可以转化成询问子树大小。
+
+但是根节点是没有父亲的，这个好办直接加一个虚拟节点即可。
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+namespace Legendgod {
+	namespace Read {
+//		#define Fread
+		#ifdef Fread
+		const int Siz = (1 << 21) + 5;
+		char *iS, *iT, buf[Siz];
+		#define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
+		#define getchar gc
+		#endif
+		template <typename T>
+		void r1(T &x) {
+		    x = 0;
+			char c(getchar());
+			int f(1);
+			for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
+			for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
+			x *= f;
+		}
+		template <typename T, typename...Args>
+		void r1(T &x, Args&...arg) {
+			r1(x), r1(arg...);
+		}
+		#undef getchar
+	}
+
+using namespace Read;
+
+const int maxn = 2e5 + 5;
+int n, m, cnt(1);
+int head[maxn];
+struct Edge {
+    int to, next;
+}edg[maxn << 1];
+void add(int u,int v) {
+    edg[++ cnt] = (Edge) {v, head[u]}, head[u] = cnt;
+}
+int fa[maxn];
+void dfs(int p,int pre) {
+    fa[p] = pre;
+    for(int i = head[p];i;i = edg[i].next) {
+        int to = edg[i].to; if(to == pre) continue;
+        dfs(to, p);
+    }
+}
+
+int col[maxn];
+
+struct LCT {
+    int ch[maxn][2], fa[maxn], sz[maxn], tg[maxn], szlt[maxn]; //answer, size light
+    #define ls ch[p][0]
+    #define rs ch[p][1]
+    int pd(int x) { return ch[fa[x]][1] == x; }
+    int nrt(int x) { return ch[fa[x]][0] == x || ch[fa[x]][1] == x; }
+    void pushup(int p) {
+        sz[p] = sz[ls] + sz[rs] + 1 + szlt[p];
+    }
+    void pushrev(int p) {
+        if(!p) return ;
+        swap(ls, rs), tg[p] ^= 1;
+    }
+    void pushdown(int p) {
+        if(tg[p] == 0) return ;
+        pushrev(ls), pushrev(rs), tg[p] = 0;
+    }
+    void Rotate(int x) {
+        int f = fa[x], ff = fa[f], k = pd(x);
+        if(nrt(f)) ch[ff][pd(f)] = x;
+        fa[x] = ff, fa[f] = x;
+        fa[ch[x][!k]] = f, ch[f][k] = ch[x][!k];
+        ch[x][!k] = f;
+        pushup(f), pushup(x);
+//        printf("%d : %d, %d : %d\n", f, sz[f], x, sz[x]);
+    }
+    void Splay(int p) {
+//        static int st[maxn]; int ed(0);
+//        for(int x = p; nrt(x); x = fa[x]) st[++ ed] = x;
+//        for(int i = ed; i >= 1; -- i) pushdown(st[i]);
+        for(int f; f = fa[p], nrt(p); Rotate(p)) if(nrt(f)) {
+            Rotate(pd(p) == pd(f) ? f : p);
+        }
+    }
+    void access(int p) {
+        for(int y = 0; p; y = p, p = fa[p]) {
+            Splay(p);
+//            printf("p = %d, %d %d %d\n", p, nrt(p), fa[p], nrt(fa[p]));
+            int tmp = ch[p][1];
+            szlt[p] -= sz[y], szlt[p] += sz[tmp], ch[p][1] = y;
+            pushup(p);
+//            printf("p = %d\n", p);
+        }
+    }
+    void mkrt(int p) {
+        access(p), Splay(p), pushrev(p);
+    }
+    int fdrt(int p) {
+        access(p), Splay(p);
+        for(; ch[p][0]; p = ch[p][0]);
+        return p;
+    }
+    void print(int x) {
+        if(!x) return ;
+        printf("%d : %d %d\n", x, ch[x][0], ch[x][1]);
+        print(ch[x][0]), print(ch[x][1]);
+    }
+    void Gprint() {
+        int x = fdrt(1);
+        Splay(x);
+        puts("GST\n");
+        print(x);
+        puts("Ged");
+    }
+    void Link(int u,int v) {// v -> u
+        Splay(v), access(u), Splay(u);
+        ch[u][1] = v, fa[v] = u;
+        pushup(u);
+//        puts("ST");
+//        print(u);
+//        puts("Ed");
+//        printf("%d : %d\n", u, sz[u]);
+    }
+    void Cut(int u,int v) {
+        access(v), Splay(u);
+        ch[u][1] = 0, fa[v] = 0;
+        pushup(u);
+    }
+    int Ask(int x) {
+        int rt = fdrt(x);
+        access(rt), Splay(rt), access(x);
+//        puts("ST\n");
+//        for(int i = 1; i <= n; ++ i) printf("%d : %d\n", i, szlt[i]);
+//        print(rt);
+//        puts("Ed\n");
+//        printf("rt = %d, sn = %d\n", rt, ch[rt][1]);
+        return sz[ch[rt][1]];
+    }
+}T[2];
+
+signed main() {
+	int i, j;
+    r1(n);
+    for(i = 1; i < n; ++ i) {
+        int u, v; r1(u, v);
+        add(u, v), add(v, u);
+    }
+    add(n + 1, 1);
+    dfs(n + 1, 0);
+    for(i = 1; i <= n; ++ i) T[0].pushup(i), T[1].pushup(i);
+    for(i = 1; i <= n; ++ i) T[0].Link(fa[i], i);
+    r1(m);
+    while(m --) {
+        int opt, x; r1(opt, x);
+        if(opt == 0) printf("%d\n", T[col[x]].Ask(x));
+        else {
+            T[col[x]].Cut(fa[x], x);
+            col[x] ^= 1;
+            T[col[x]].Link(fa[x], x);
+        }
+    }
+	return 0;
+}
+
+}
+
+
+signed main() { return Legendgod::main(), 0; }//
+
+
+```
