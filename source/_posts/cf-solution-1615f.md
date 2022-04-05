@@ -1,6 +1,8 @@
 ---
 title: "CF1615F LEGOndary Grandmaster 题解"
 date: 2022-4-4 20:14:00
+tags:
+  - Dp
 categories:
   - CF题解
 ---
