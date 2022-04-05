@@ -15,7 +15,7 @@ sticky: 1
 
 ## 树状数组
 
-一个函数 $\tt lowbit(x) = x \text{&} (-x)$ 表示 $x$ 的最低二进制位的位置。
+一个函数 $\tt lowbit(x) = x \text{\&} (-x)$ 表示 $x$ 的最低二进制位的位置。
 
 可以维护区间加区间和，常数比较**小**。
 
@@ -172,15 +172,212 @@ void pushup(int p) {
 
 > 只会 $\tt LCT$。
 
-支持修改路径，实链剖分，换根，维护连通性。
+支持修改路径，实链剖分，换根，维护连通性等。
 
 有些题目的复杂度可以通过实链剖分联想到使用 $\tt LCT$ 来维护。
 
 [CF1344E Train Tracks 题解 | Legendgod's Blog](https://legendgod.ml/2022/04/01/cf-solution-1344e/)
 
-可以动态维护最小生成树，记得有个题是每条边两种边权 $a_i, b_i$，求和 $a_i, b_i$ 同时相关的最小生成树。
+1. 维护子树可增减信息
 
-我们可以考虑按照 $a_i$ 排序之后使用 $\tt LCT$ 维护 $b_i$。
+在 $\tt access$ 的时候减去原来信息，合并新的信息即可。
+
+2. 维护子树不可增减信息
+
+比如说维护最大值，使用 $\tt multiset$ 维护虚儿子的信息，在 `pushup` 和 `access` 修改即可。
+
+> `Bjpers2:`  记得开始要把**自己的信息**加入堆中，以回避 `pushup` 时的特判。同类的还有最近/远白点。
+> 
+> ```cpp
+> void access(int x){
+>     for(int y=0;x;x=f[y=x]){
+>         splay(x);
+>         if(rs)   h[x].insert(mx[rs]);
+>         if(rs == y) h[x].erase(h[x].find(mx[rs]));
+>         pushup(x);
+>     }
+> }
+> ```
+
+3. 维护最小生成树
+
+[[NOIP2013 提高组] 货车运输 - 洛谷](https://www.luogu.com.cn/problem/P1967)
+
+> 这个题用到性质：最小生成树上的边权的最大值是最小的。所以直接 $\tt MST$ 之后树剖就行了。
+
+[[NOI2014] 魔法森林 - 洛谷](https://www.luogu.com.cn/problem/P2387)
+
+**简化题意：**
+
+一条边的权值是 $(a, b)$ 对于一条路径的权值定义为 $\max(a) + \max(b)$ 求 $1 \to n$ 路径的最小权值。
+
+直接想法就是考虑 $a$ 从小到大，之后维护最优的 $b$ 生成树计算答案，但是问题在于 $\tt splay$ 只能维护点权。我们考虑拆边 $(u, v, b)$ 变成 $(u, z), (z, v)$ 将点 $z$ 赋值上 $b$ 即可。
+
+通过 $\tt link$ 和 $\tt cut$ 来处理，记录一下最大值的点编号即可。
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+namespace Legendgod {
+	namespace Read {
+		#define Fread
+		#ifdef Fread
+		const int Siz = (1 << 21) + 5;
+		char *iS, *iT, buf[Siz];
+		#define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
+		#define getchar gc
+		#endif
+		template <typename T>
+		void r1(T &x) {
+		    x = 0;
+			char c(getchar());
+			int f(1);
+			for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
+			for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
+			x *= f;
+		}
+		template <typename T, typename...Args>
+		void r1(T &x, Args&...arg) {
+			r1(x), r1(arg...);
+		}
+		#undef getchar
+	}
+
+using Read::r1;
+
+const int maxn = 2e5 + 5;
+
+int n, m;
+struct Edd {
+    int u, v, a, b;
+    void init() { r1(u, v, a, b); }
+    int operator < (const Edd &z) const {
+        return a == z.a ? b < z.b : a < z.a;
+    }
+}E[maxn];
+
+
+int f[maxn], sz[maxn];
+int getfa(int x) { return x == f[x] ? x : f[x] = getfa(f[x]); }
+
+void merge(int u,int v) {
+    u = getfa(u), v = getfa(v);
+    if(u == v) return ;
+    if(sz[u] > sz[v]) swap(u, v);
+    sz[v] += sz[u];
+    f[u] = v;
+}
+
+int val[maxn], smx[maxn], ch[maxn][2], fa[maxn];
+int rev[maxn];
+#define ls ch[p][0]
+#define rs ch[p][1]
+int isrt(int x) { return ch[fa[x]][0] != x && ch[fa[x]][1] != x; }
+int pd(int x) { return ch[fa[x]][1] == x; }
+void pushup(int p) {
+    smx[p] = p;
+    if(ls && val[smx[ls]] > val[smx[p]]) smx[p] = smx[ls];
+    if(rs && val[smx[rs]] > val[smx[p]]) smx[p] = smx[rs];
+}
+void Rotate(int p) {
+    int f = fa[p], ff = fa[f], k = pd(p);
+    if(ff && !isrt(f)) ch[ff][pd(f)] = p;
+    fa[p] = ff, fa[f] = p;
+    if(ch[p][!k]) fa[ch[p][!k]] = f;
+    ch[f][k] = ch[p][!k];
+    ch[p][!k] = f;
+    pushup(f), pushup(p);
+}
+
+void Rev(int p) {
+    if(!rev[p]) return ;
+    swap(ls, rs);
+    if(ls) rev[ls] ^= 1;
+    if(rs) rev[rs] ^= 1;
+    rev[p] = 0;
+}
+
+int buf[maxn];
+void pushdown(int p) {
+    int tot(1); buf[1] = p;
+    for(int i = p; !isrt(i); i = fa[i]) buf[++ tot] = fa[i];
+    for(int i = tot; i >= 1; -- i) Rev(buf[i]);
+}
+
+void Splay(int p) {
+    pushdown(p);
+    for(; !isrt(p); Rotate(p)) if(!isrt(fa[p])) {
+        Rotate(pd(fa[p]) == pd(p) ? fa[p] : p);
+    }
+    pushup(p);
+}
+
+void access(int p) {
+    for(int y = 0; p; y = p, p = fa[p]) {
+        Splay(p), rs = y;
+        if(y) fa[y] = p, pushup(p);
+    }
+}
+
+int fdrt(int p) {
+    access(p), Splay(p);
+    for(; pushdown(p), ls; p = ls) ;
+    Splay(p);
+    return p;
+}
+
+void mkrt(int p) {
+    access(p), Splay(p);
+    rev[p] ^= 1;
+}
+
+void Link(int u,int v) { mkrt(u), fa[u] = v; }
+void Cut(int u,int v) {
+    mkrt(u), access(v), Splay(v);
+    if(ch[v][0] != u || ch[u][0] != ch[u][1]) return ;
+    ch[v][0] = 0, fa[u] = 0, pushup(v);
+}
+
+int getpos(int u,int v) {
+    mkrt(u), access(v), Splay(v);
+    return smx[v];
+}
+
+signed main() {
+	int i, j;
+    r1(n, m);
+    for(i = 1; i <= m; ++ i) E[i].init();
+    sort(E + 1, E + m + 1);
+    for(i = 1; i <= n + m; ++ i) f[i] = i, sz[i] = 1;
+    for(i = 1; i <= m; ++ i) val[i + n] = E[i].b;
+    int ans(2e9);
+    for(i = 1; i <= m; ++ i) {
+        int u = E[i].u, v = E[i].v;
+        int fl(1);
+        if(getfa(u) == getfa(v)) {
+            int w = getpos(u, v);
+            if(val[w] > E[i].b)
+                Cut(E[w - n].u, w), Cut(w, E[w - n].v);
+            else fl = 0;
+        }
+        else merge(u, v);
+        if(fl) Link(u, i + n), Link(i + n, v);
+        if(getfa(1) == getfa(n)) ans = min(ans, E[i].a + val[getpos(1, n)]);
+    }
+    if(ans < 2e9) printf("%d\n", ans);
+    else puts("-1");
+	return 0;
+}
+
+}
+
+
+signed main() { return Legendgod::main(), 0; }
+
+
+```
+
+
 
 
 
