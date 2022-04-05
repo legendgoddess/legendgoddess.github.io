@@ -47,7 +47,7 @@ int Kth(int k) {
 
 - 存在单位元。
 
-$\tt \text{广义线段树}：$
+#### 广义线段树
 
 常规的线段树的 $\tt mid = \frac{l + r}{2}$，但是广义的线段树 $\tt mid$ 可以是任意的合法值。
 
@@ -55,7 +55,7 @@ $\tt \text{广义线段树}：$
 
 > 用于解决模拟线段树上的操作上的问题。
 
-1. $[1, n]$ 的广义线段树 $[l, r]$ 内的区间定位数是 $2 \times (r - l+ 1) - |S|$，其中 $S$ 表示当前区间的子区间个数，区间定位数表示 $[l, r]$ 最少拆成多少线段树上区间的并。
+- $[1, n]$ 的广义线段树 $[l, r]$ 内的区间定位数是 $2 \times (r - l+ 1) - |S|$，其中 $S$ 表示当前区间的子区间个数，区间定位数表示 $[l, r]$ 最少拆成多少线段树上区间的并。
 
 取出所有在 $[l, r]$ 内的节点，显然构成了一个满二叉树森林，其中根的个数就是 $[l, r]$ 的区间定位数。
 
@@ -63,7 +63,7 @@ $\tt \text{广义线段树}：$
 
 所以总点数就是 $2(r - l + 1)  - ans = |S|$，其中 $ans$ 表示联通块的个数，那么 $\tt ans$ 就是根的数量，也就是区间定位数，可以得到 $ans = 2(r - l + 1) - |S|$。
 
-2. $[1, n]$ 的线段树 $[l, r]$ 内的区间定位数是由 $[l - 1, l - 1], [r + 1, r + 1]$ 的 $\tt Lca$ (设其分别为 $L, R$) 到 $L$ 路径上的所有节点的右边一个的兄弟，和到 $R$ 路径上的所有节点的左边一个兄弟。
+- $[1, n]$ 的线段树 $[l, r]$ 内的区间定位数是由 $[l - 1, l - 1], [r + 1, r + 1]$ 的 $\tt Lca$ (设其分别为 $L, R$) 到 $L$ 路径上的所有节点的右边一个的兄弟，和到 $R$ 路径上的所有节点的左边一个兄弟。
 
 考虑设 $P$ 到所有祖先里面的左偏儿子的右兄弟集合为 $LFT(P)$ 右偏儿子的左兄弟的集合为 $RGT(P)$。
 
@@ -73,25 +73,31 @@ $$
 (LFT(L) \setminus LFT(ls_S)) \cup (RGT(R) \setminus RGT(rs_S))
 $$
 
-3. 跳跃树，对于**广义线段树区间定位**更加强的结构。
+#### 跳跃树
+
+对于**广义线段树区间定位**更加强的结构。
 
 > 这个东西之后再详细研究。[NOI 一轮复习 III：数据结构 - ix35_ 的博客 - 洛谷博客](https://www.luogu.com.cn/blog/ix-35/noi-yi-lun-fu-xi-iii-shuo-ju-jie-gou)
 
 ## 线段树技巧
 
-1. 动态开点，可以考虑开内存池。
+- 动态开点，可以考虑开内存池。
 
-2. 线段树合并，复杂度是两棵树中节点较少的 $O(\text{节点数})$。
+- 线段树合并，复杂度是两棵树中节点**较少**的 $O(\text{节点数})$。
 
-3. 线段树二分，信息具有二分性即可。
+- 线段树二分，信息具有二分性即可。
 
-4. 线段树分裂，与线段树合并类似，可以使得权值线段树按照第 $\tt K$ 大进行分裂。
+#### 线段树分裂
 
-5. 线段树合并优化卷积，考虑 $\sum_i \sum_j val(i, j)$ 这样的式子，下标其实无所谓，但是重点是下标的上下界是明确的，比如说 $\sum_{i = 1} ^ n \sum_{j = i + 1} ^ n val(i ) \times val(j)$，这个东西可以看成对于一个 $j$ 使用左边的所有 $i$ 去更新它。
+与线段树合并类似，可以使得权值线段树按照第 $\tt K$ 大进行分裂。
+
+#### 线段树合并优化卷积。
+
+考虑 $\sum_i \sum_j val(i, j)$ 这样的式子，下标其实无所谓，但是重点是下标的上下界是明确的，比如说 $\sum_{i = 1} ^ n \sum_{j = i + 1} ^ n val(i ) \times val(j)$，这个东西可以看成对于一个 $j$ 使用左边的所有 $i$ 去更新它。
 
 > 因为我比较菜，所以后面内容可能就是按照别人的博客写了，[线段树相关技巧的小小总结 - 木xx木大 的博客 - 洛谷博客](https://www.luogu.com.cn/blog/flyingfan/xian-duan-shu-xiang-guan-ji-qiao-di-xiao-xiao-zong-jie)
 
-6. 线段树维护树直径：
+#### 线段树维护树直径：
 
 可以考虑贪心，合并两个点集的时候，新的直径肯定是被合并的两个端点其中的一个。
 
@@ -110,7 +116,7 @@ void pushup(int p) {
 }
 ```
 
-7. 线段树维护单调栈
+#### 线段树维护单调栈
 
 [楼房重建 - 洛谷](https://www.luogu.com.cn/problem/P4198)
 
@@ -126,13 +132,13 @@ void pushup(int p) {
 
 > 不知道我之前是什么弱智，这种东西都要抄题解。
 
-8. 线段树维护历史值
+#### 线段树维护历史值
 
 [CPU 监控 - 洛谷](https://www.luogu.com.cn/problem/P4314)
 
 感觉总是比较弱智，多开几个标记就行了。
 
-9. 线段树维护历史版本和
+#### 线段树维护历史版本和
 
 **问题**：维护一个数列 A，要求支持**区间加**，**区间查历史版本和**。
 
@@ -162,7 +168,7 @@ void pushup(int p) {
 
 注意区间翻转是可以使用平衡树处理的，其他的话线段树能走的平衡树也行，但是平衡树使用线段树合并的话是 $O(\log^2n)$ 的。
 
-1. 区间平移
+#### 区间平移
 
 这个东西之前不是很会，感觉就是把这个区间 $[l, r]$ 拿出来之后给其他位置打上区间减法标记，然后连接到需要的位置合并上去就行了。
 
@@ -178,11 +184,11 @@ void pushup(int p) {
 
 [CF1344E Train Tracks 题解 | Legendgod's Blog](https://legendgod.ml/2022/04/01/cf-solution-1344e/)
 
-1. 维护子树可增减信息
+#### 维护子树可增减信息
 
 在 $\tt access$ 的时候减去原来信息，合并新的信息即可。
 
-2. 维护子树不可增减信息
+#### 维护子树不可增减信息
 
 比如说维护最大值，使用 $\tt multiset$ 维护虚儿子的信息，在 `pushup` 和 `access` 修改即可。
 
@@ -199,7 +205,7 @@ void pushup(int p) {
 > }
 > ```
 
-3. 维护最小生成树
+#### 维护最小生成树
 
 [[NOIP2013 提高组] 货车运输 - 洛谷](https://www.luogu.com.cn/problem/P1967)
 
@@ -219,29 +225,29 @@ void pushup(int p) {
 #include <bits/stdc++.h>
 using namespace std;
 namespace Legendgod {
-	namespace Read {
-		#define Fread
-		#ifdef Fread
-		const int Siz = (1 << 21) + 5;
-		char *iS, *iT, buf[Siz];
-		#define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
-		#define getchar gc
-		#endif
-		template <typename T>
-		void r1(T &x) {
-		    x = 0;
-			char c(getchar());
-			int f(1);
-			for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
-			for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
-			x *= f;
-		}
-		template <typename T, typename...Args>
-		void r1(T &x, Args&...arg) {
-			r1(x), r1(arg...);
-		}
-		#undef getchar
-	}
+    namespace Read {
+        #define Fread
+        #ifdef Fread
+        const int Siz = (1 << 21) + 5;
+        char *iS, *iT, buf[Siz];
+        #define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
+        #define getchar gc
+        #endif
+        template <typename T>
+        void r1(T &x) {
+            x = 0;
+            char c(getchar());
+            int f(1);
+            for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
+            for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
+            x *= f;
+        }
+        template <typename T, typename...Args>
+        void r1(T &x, Args&...arg) {
+            r1(x), r1(arg...);
+        }
+        #undef getchar
+    }
 
 using Read::r1;
 
@@ -344,7 +350,7 @@ int getpos(int u,int v) {
 }
 
 signed main() {
-	int i, j;
+    int i, j;
     r1(n, m);
     for(i = 1; i <= m; ++ i) E[i].init();
     sort(E + 1, E + m + 1);
@@ -366,19 +372,13 @@ signed main() {
     }
     if(ans < 2e9) printf("%d\n", ans);
     else puts("-1");
-	return 0;
+    return 0;
 }
 
 }
 
 
 signed main() { return Legendgod::main(), 0; }
-
-
 ```
 
-
-
-
-
-
+#### 维护同色连通块
