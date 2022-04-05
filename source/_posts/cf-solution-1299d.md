@@ -1,223 +1,195 @@
 ---
-title: CF1299D Around the World
-date: 2021-09-02 09:43:08 
+title: "CF1299D Around the World 题解"
+date: 2022-4-5 15:33:00
 tags:
-  - 线性基
-  - Dp
+  - 图论
 categories:
   - CF题解
 ---
 
-### [CF1299D Around the World](https://www.luogu.com.cn/problem/CF1299D)
+[Problem - 1299D - Codeforces](https://codeforces.com/problemset/problem/1299/D)
 
-就是是否能有为 $0$ 的路径直接会想到线性基，也就是里面的环是可以走或者不走的。
+> 切了，但是没有完全切。
+> 
+> 有的时候还要打表一下证明一下结论。
+> 
+> md 不用打表，直接算就行了，之前直接感觉就是 $2^x$，比较大。
+> 
+> 好吧，之前写过，严谨地说是抄过。现在能想到了还是挺好的。
 
-我们写一手暴力发现大小为 $5$ 的线性基的个数不会很多，那么我们可以考虑对于每个联通块存一个线性基。
+打表得到线性基本质不同的个数为 $374$ 个。
 
-如果说联通块内部已经有环线性相关那么肯定是不能连边的。
+考虑合并连通块就是线性基之间的转移，直接设 $f(i)$ 表示当前是第 $i$ 个线性基的方案数。
 
-如果线性无关那么考虑题目给出的性质，也就是和 $1$ 相连的环大小最多为 $3$。那么我们对于一个联通块最多有 $2$ 个点和 $1$ 相连。我们进行分类讨论有 $2$ 条边相连的情况。
+转移的时候保证线性无关就行了。
 
-- 断掉两条边也就是直接加入即可。
-- 断掉一条边也是同理，枚举一下断掉那条边。
-- 不断边，也就是意味着多一个 $3$ 元环我们需要将其加入并且判断线性关系。
+之后考虑三元环的情况：
 
-不妨设 $dp(i, j)$ 表示考虑到底 $i$ 个联通块，之前的联通块的连接关系构成的线性基为 $j$。
+> 因为没有重边所以没有二元环。
 
-设当前联通块的线性基是 $B$。
+都是有 $2$ 条边连接节点 $1$，考虑分类讨论一下：
 
-我们所有的情况都可以不加入，所以 $dp(i - 1, j) \to dp(i, j)$。
+- 不选择，方案数为 $1$。
 
-只有一条边 $dp(i - 1, j) \to dp(i, j \cup B)$。
+- 选择 $1$ 条边，随便选择即可方案数为 $2$。
 
-如果有两条边 
-$$
-dp(i - 1, j) \times 2 \to dp(i, j \cup B) \\
-dp(i - 1, j) \to dp(i, j \cup B \cup w)
-$$
-前面是判断断那条边，另外是考虑多加入一个 $3$ 元环的贡献。
-
-------
-
-我们只需要对于每个联通块维护和 $1$ 相连的三元环异或值，自己内部的线性基即可。
+- 选择两条边，加上当前线性基，方案数为 $1$。
 
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
+namespace Legendgod {
+	namespace Read {
+//		#define Fread
+		#ifdef Fread
+		const int Siz = (1 << 21) + 5;
+		char *iS, *iT, buf[Siz];
+		#define gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )
+		#define getchar gc
+		#endif
+		template <typename T>
+		void r1(T &x) {
+		    x = 0;
+			char c(getchar());
+			int f(1);
+			for(; !isdigit(c); c = getchar()) if(c == '-') f = -1;
+			for(; isdigit(c); c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
+			x *= f;
+		}
+		template <typename T, typename...Args>
+		void r1(T &x, Args&...arg) {
+			r1(x), r1(arg...);
+		}
+		#undef getchar
+	}
 
-//#define Fread
-#define Getmod
+using namespace Read;
 
-#ifdef Fread
-char buf[1 << 21], *iS, *iT;
-#define gc() (iS == iT ? (iT = (iS = buf) + fread (buf, 1, 1 << 21, stdin), (iS == iT ? EOF : *iS ++)) : *iS ++)
-#define getchar gc
-#endif // Fread
-
-template <typename T>
-void r1(T &x) {
-	x = 0;
-	char c(getchar());
-	int f(1);
-	for(; c < '0' || c > '9'; c = getchar()) if(c == '-') f = -1;
-	for(; '0' <= c && c <= '9';c = getchar()) x = (x * 10) + (c ^ 48);
-	x *= f;
-}
-
-#ifdef Getmod
-const int mod  = 1e9 + 7;
-template <int mod>
-struct typemod {
-    int z;
-    typemod(int a = 0) : z(a) {}
-    inline int inc(int a,int b) const {return a += b - mod, a + ((a >> 31) & mod);}
-    inline int dec(int a,int b) const {return a -= b, a + ((a >> 31) & mod);}
-    inline int mul(int a,int b) const {return 1ll * a * b % mod;}
-    typemod<mod> operator + (const typemod<mod> &x) const {return typemod(inc(z, x.z));}
-    typemod<mod> operator - (const typemod<mod> &x) const {return typemod(dec(z, x.z));}
-    typemod<mod> operator * (const typemod<mod> &x) const {return typemod(mul(z, x.z));}
-    typemod<mod>& operator += (const typemod<mod> &x) {*this = *this + x; return *this;}
-    typemod<mod>& operator -= (const typemod<mod> &x) {*this = *this - x; return *this;}
-    typemod<mod>& operator *= (const typemod<mod> &x) {*this = *this * x; return *this;}
-    int operator == (const typemod<mod> &x) const {return x.z == z;}
-    int operator != (const typemod<mod> &x) const {return x.z != z;}
-};
-typedef typemod<mod> Tm;
-#endif
-
-template <typename T,typename... Args> inline void r1(T& t, Args&... args) {
-    r1(t);  r1(args...);
-}
-
-//#define int long long
 const int maxn = 2e5 + 5;
 const int maxm = 374 + 5;
-const int maxK = 31744 + 5;
-
-int head[maxn], cnt;
+const int maxk = (1 << 16) + 5;
+int n, m, head[maxn], cnt(1);
 struct Edge {
     int to, next, w;
 }edg[maxn << 1];
-
 void add(int u,int v,int w) {
-    edg[++ cnt] = (Edge) { v, head[u], w }, head[u] = cnt;
+    edg[++ cnt] = (Edge) {v, head[u], w}, head[u] = cnt;
 }
-
-const int N = 4;
+constexpr int N = 4;
 struct Seg {
-    int a[5]; Seg(void) { memset(a, 0, sizeof(a)); }
-    bool Insert(int x) {
-        for(int i = N; ~ i; -- i) if((x >> i) & 1) {
+    int a[5];
+    Seg(void) { memset(a, 0, sizeof(a)); }
+    int Insert(int x) {
+        for(int i = N; i >= 0; -- i) if((x >> i) & 1) {
             if(a[i]) x ^= a[i];
             else {
                 a[i] = x;
-                for(int j = i - 1; ~ j; -- j) if((a[i] >> j) & 1) a[i] ^= a[j];
+                for(int j = i - 1; j >= 0; -- j) if((a[i] >> j) & 1) a[i] ^= a[j];
                 for(int j = N; j > i; -- j) if((a[j] >> i) & 1) a[j] ^= a[i];
                 return true;
             }
         }
         return false;
     }
-    int Hash() {
-        return (a[0] | (a[1] << 1) | (a[2] << 3) | (a[3] << 6) | (a[4] << 10));
-    }
-}b[maxm], c[maxn];
-int tr[maxm][maxm];
-int id[maxK], num(0);
+    int Hash() { return (a[0] | (a[1] << 1) | (a[2] << 3) | (a[3] << 6) | (a[4] << 10)); }
+}fid[maxn], c[maxn];
 
-//int Mx(0);
+int id[maxk];
+int segtot(0);
 
-void dfs(Seg p) {
-    int hs = p.Hash(); if(id[hs]) return ;
-    id[hs] = ++ num, b[num] = p;
-//    Mx = max(Mx, hs);
-    for(int i = 1; i <= 31; ++ i) {
-        Seg np = p;
-        if(np.Insert(i)) dfs(np);
+void Dfs(Seg p) {
+    if(id[p.Hash()]) return ;
+    id[p.Hash()] = ++ segtot;
+    fid[segtot] = p;
+    for(int i = 1; i < 32; ++ i) {
+        Seg np = p; if(np.Insert(i)) Dfs(np);
     }
 }
+
+int trans[maxm][maxm];
 
 void init() {
-    dfs(Seg());
-//    printf("Mx = %d\n", Mx);
-//    puts("ZZZ");
-//    printf("num = %d\n", num);
-    for(int i = 1; i <= num; ++ i) {
-        for(int j = 1; j <= num; ++ j) {
-            Seg tmp = b[i]; bool flag(1);
-            for(int k = 0; k <= 4; ++ k) if(b[j].a[k]) flag &= tmp.Insert(b[j].a[k]);
-            if(flag) tr[i][j] = id[tmp.Hash()];
-        }
+    Seg tmp; Dfs(tmp);
+    int i, j;
+    for(i = 1; i <= segtot; ++ i) for(j = 1; j <= segtot; ++ j) {
+        int fl(1);
+        Seg tmp1 = fid[i];
+        for(int k = N; k >= 0; -- k) if(fid[j].a[k] != 0) fl &= tmp1.Insert(fid[j].a[k]);
+        if(fl) trans[i][j] = id[tmp1.Hash()];
     }
 }
 
-int n, m;
-bool pd[maxn];
-int dis[maxn], Siz(0), st[maxn], Ec[maxn];
-int bel[maxn], dfn[maxn], dfntot(0);
-bool sed[maxn];
-void dfs1(int p,int pre) {
-    dfn[p] = ++ dfntot, bel[p] = Siz;
+int dfn[maxn], dfntot(0), bl[maxn], ctot(0), dis[maxn], pd[maxn], st[maxn], edw[maxn], islp[maxn];
+
+void dfs1(int p,int pre,Seg& now) {
+    bl[p] = ctot, dfn[p] = ++ dfntot;
     for(int i = head[p];i;i = edg[i].next) {
-        int to = edg[i].to;
-        if(to == 1 || to == pre) continue;
-        if(!bel[to])  dis[to] = edg[i].w ^ dis[p], dfs1(to, p);
-        else if(dfn[p] > dfn[to]) pd[Siz] &= c[Siz].Insert(dis[p] ^ dis[to] ^ edg[i].w);
+        int to = edg[i].to, w = edg[i].w; if(to == pre || to == 1) continue;
+        if(!bl[to]) dis[to] = dis[p] ^ w, dfs1(to, p, now);
+        else if(dfn[to] < dfn[p]) pd[ctot] &= now.Insert(dis[p] ^ dis[to] ^ w);
     }
 }
+
+int f[maxn][maxm];
+
+const int mod = 1e9 + 7;
+
+void Add(int& x,const int& c) { x = (x + c) % mod; }
 
 signed main() {
-//    freopen("S.in", "r", stdin);
-//    freopen("S.out", "w", stdout);
-    int i, j;
-    r1(n, m); init();
+	int i, j;
+    init();
+//    printf("tot = %d\n", segtot);
+    r1(n, m);
     for(i = 1; i <= m; ++ i) {
-        int u, v, w;
-        r1(u, v, w), add(u, v, w), add(v, u, w);
+        int u, v, w; r1(u, v, w), add(u, v, w), add(v, u, w);
     }
     for(i = head[1];i;i = edg[i].next) {
         int to = edg[i].to, w = edg[i].w;
-        if(!bel[to]) {
-            pd[++ Siz] = 1, Ec[Siz] = w, st[Siz] = to;
-            dfs1(to, 0);
+        if(!bl[to]) {
+            ++ ctot, pd[ctot] = 1, edw[ctot] = w, st[ctot] = to, dfs1(to, 1, c[ctot]);
         }
         else {
-            for(int j = head[to]; j; j = edg[j].next) {
-                int to = edg[j].to, w1 = edg[j].w;
-                if(st[bel[to]] == to) {
-                    sed[bel[to]] = 1, Ec[bel[to]] ^= w ^ w1;
+            for(j = head[to];j;j = edg[j].next) {
+                int nt = edg[j].to;
+                if(st[bl[nt]] == nt) {
+                    edw[bl[nt]] ^= w ^ edg[j].w;
+                    islp[bl[nt]] = 1;
                 }
             }
         }
     }
-
-    vector<vector<Tm> > dp(Siz + 2, vector<Tm>(num + 2, 0) );
-    dp[0][id[0]] = 1;
-    for(i = 1; i <= Siz; ++ i) {
-        for(j = 1; j <= num; ++ j) dp[i][j] = dp[i - 1][j];
+//    for(i = 1; i <= ctot; ++ i) printf("%d %d %d\n", i, islp[i], st[i]);
+    f[0][id[0]] = 1;
+    for(i = 1; i <= ctot; ++ i) {
+        for(j = 1; j <= segtot; ++ j) f[i][j] = f[i - 1][j];
         if(!pd[i]) continue;
-        if(!sed[i]) {
+        if(!islp[i]) {
             int hs = id[c[i].Hash()];
-            for(j = 1; j <= num; ++ j) if(tr[j][hs])
-                dp[i][tr[j][hs]] += dp[i - 1][j];
+//            printf("%d : %d\n", hs, trans[1][hs]);
+            for(j = 1; j <= segtot; ++ j) Add(f[i][trans[j][hs]], f[i - 1][j]);
         }
         else {
-            int hs = id[c[i].Hash()];
-            bool flag = c[i].Insert(Ec[i]);
-            int hs1 = id[c[i].Hash()];
-            for(j = 1; j <= num; ++ j) {
-                if(tr[j][hs]) dp[i][tr[j][hs]] += dp[i - 1][j] * 2;
-                if(flag && tr[j][hs1]) dp[i][tr[j][hs1]] += dp[i - 1][j];
+            int hs = id[c[i].Hash()]; Seg tmp = c[i];
+            int fl = tmp.Insert(edw[i]);
+            int hs1 = id[tmp.Hash()];
+//            printf("(%d, %d) = %d\n", hs, hs1, edw[i]);
+            for(j = 1; j <= segtot; ++ j) {
+                if(trans[j][hs]) Add(f[i][trans[j][hs]], 2ll * f[i - 1][j] % mod);
+                if(fl && trans[j][hs1]) Add(f[i][trans[j][hs1]], f[i - 1][j]);
             }
         }
     }
-    Tm ans(0);
-    for(i = 1; i <= num; ++ i) ans += dp[Siz][i];
-    printf("%d\n", ans.z);
+    int ans(0);
+    for(i = 1; i <= segtot; ++ i) Add(ans, f[ctot][i]);
+    printf("%d\n", ans);
 	return 0;
 }
+
+}
+
+
+signed main() { return Legendgod::main(), 0; }//
+
+
 ```
-
-
-
-
