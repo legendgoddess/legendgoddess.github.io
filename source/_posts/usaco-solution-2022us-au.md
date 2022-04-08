@@ -1,8 +1,9 @@
 ---
 title: "USACO 2022 US Open Contest Au 题解"
-date: 2022-4-8 8:58:00
+date: 2022-4-8 18:51:00
 tags:
   - 贪心
+  - Dp
 categories:
   - USACO题解
 ---
