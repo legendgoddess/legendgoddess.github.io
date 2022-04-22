@@ -84,7 +84,7 @@ $$
 
 - $\color{red}(5)$ **广义二项式系数 + 广义二项式定理**
 
-定义**广义二项式系数**：$\binom{n}{m} = \frac{n^{\underline {i}}}{m}$。
+定义**广义二项式系数**：$\binom{n}{m} = \frac{n^{\underline {m}}}{m!}$。
 
 这样我们就有：
 
