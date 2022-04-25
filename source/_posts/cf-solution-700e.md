@@ -1,6 +1,6 @@
 ---
 title: "CF700E Cool Slogans 题解"
-date：2022-4-24 19:34:00
+date: 2022-4-24 19:34:00
 tags:
   - 后缀自动机
 categories:
