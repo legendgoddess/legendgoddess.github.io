@@ -1343,12 +1343,12 @@ inject:
 CDN:
   # main
   main_css: /css/index.css
-  jquery: https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js
+  jquery: https://fastly.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js
   main: /js/main.js
   utils: /js/utils.js
 
   # pjax
-  pjax: https://cdn.jsdelivr.net/npm/pjax/pjax.min.js
+  pjax: https://fastly.jsdelivr.net/npm/pjax/pjax.min.js
 
   # comments
   gitalk: https://fastly.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js
