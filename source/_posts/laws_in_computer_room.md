@@ -3,7 +3,7 @@ title: "机房守则"
 date: 2022-05-28 19:08:20
 categories:
   - 随笔
-password: legendgod
+password: enrosecongratulation
 sticky: 3
 ---
 
