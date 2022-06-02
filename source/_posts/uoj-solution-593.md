@@ -117,14 +117,14 @@ $$
 带入 $t = 0, t = 1$ 设 $I = \int_{0}^1 F(x) dx$ 可以列出二元方程：
 $$
 \begin{cases}
-    1+vI=C\\
+    1+vI=C\\\\
     1+uI=C\;\mathrm{e}^{(u-v)t}
 \end{cases}
 $$
 得到：
 $$
 \begin{cases}
-    C &= \dfrac{u-v}{u-v\;\mathrm{e}^{u-v}}\\
+    C &= \dfrac{u-v}{u-v\;\mathrm{e}^{u-v}}\\\\
     F &= \dfrac{(u-v)\mathrm{e}^{(u-v)t}}{u-v\;\mathrm{e}^{u-v}}
 \end{cases}
 $$
@@ -137,8 +137,8 @@ $$
 之后写出函数：
 $$
 \begin{aligned}
-    L &= \frac{(1-y)\;\mathrm{e}^{x(1-y)t}}{(1-y\;\mathrm{e}^{x(1-y)})}\\
-    R &= \frac{(y-1)\;\mathrm{e}^{x(y-1)t}}{(y-\;\mathrm{e}^{x(y-1)})}\\
+    L &= \frac{(1-y)\;\mathrm{e}^{x(1-y)t}}{(1-y\;\mathrm{e}^{x(1-y)})}\\\\
+    R &= \frac{(y-1)\;\mathrm{e}^{x(y-1)t}}{(y-\;\mathrm{e}^{x(y-1)})}\\\\
     &= \frac{(1-y)\;\mathrm{e}^{x(y-1)(t-1)}}{(1-y\;\mathrm{e}^{x(1-y)})}
 \end{aligned}
 $$
@@ -151,7 +151,7 @@ $$
 
 合并生成函数可以得到：
 $$
-[y^m p^{n_1} q^{n_2}](1-y)^2 \frac{\mathrm{e}^{pt(1-y)+q(1-t)(1-y)}}{(1-y\;\mathrm{e}^{p(1-y)})(1-y\;\mathrm{e}^{q(1-y)})}
+[ y^m p^{n_1} q^{n_2} ](1-y)^2 \frac{\mathrm{e}^{pt(1-y)+q(1-t)(1-y)}}{(1-y\;\mathrm{e}^{p(1-y)})(1-y\;\mathrm{e}^{q(1-y)})}
 $$
 发现对于 $p, q$ 都附带一个 $(1 - y)$ 考虑提出来：
 $$
@@ -170,7 +170,7 @@ $$
 考虑这个 $e^p - e^q$ 肯定是需要消除的，我们唯一能做的就是将其看成一体，也就是之后肯定需要考虑 $p - q$，我们决心将 $e^q$ 除掉。
 $$
 \begin{aligned}
-& = (1-y)^{n+1} \mathrm{e}^{pt+q(1-t)} \mathrm{e}^{-q} \frac{ (p-q) }{\mathrm{e}^{p-q}-1}\left(\frac{\mathrm{e}^p}{1-y\mathrm{e}^p} - \frac{\mathrm{e}^q}{1-y\mathrm{e}^q}\right) \\
+& = (1-y)^{n+1} \mathrm{e}^{pt+q(1-t)} \mathrm{e}^{-q} \frac{ (p-q) }{\mathrm{e}^{p-q}-1}\left(\frac{\mathrm{e}^p}{1-y\mathrm{e}^p} - \frac{\mathrm{e}^q}{1-y\mathrm{e}^q}\right) \\\\
 & = (1-y)^{n+1} \mathrm{e}^{(p-q)t} B(p-q) \left(\frac{\mathrm{e}^p}{1-y\mathrm{e}^p} - \frac{\mathrm{e}^q}{1-y\mathrm{e}^q}\right)
 \end{aligned}
 $$
@@ -193,9 +193,9 @@ $$
 对于解决这类问题我们通常使用求导，但是这里其实可以偷个懒，因为没有别的项，两项的递推很好求出，直接作比即可。
 $$
 \begin{aligned}
-    (n-m+1+i)f_i &= -(m-i+1)f_{i-1} + [i=0]C\\
-    (n-m+1)f(x) + xf\;'(x)&= -mxf(x) + x^2 f\;'(x) + C\\
-    (n-m+1+mx)f(x) + (x-x^2)f\;'(x)&=C\\
+    (n-m+1+i)f_i &= -(m-i+1)f_{i-1} + [i=0]C\\\\
+    (n-m+1)f(x) + xf\;'(x)&= -mxf(x) + x^2 f\;'(x) + C\\\\
+    (n-m+1+mx)f(x) + (x-x^2)f\;'(x)&=C
 \end{aligned}
 $$
 这里的 $f_0$ 事实上就是 $\binom{n + 1}{m} (-1)^m$，为了方便我们直接让其为 $(n - m + 1)\binom{n + 1}{m}(-1)^m$。
@@ -203,21 +203,21 @@ $$
 之后带入 $G$ 得到：
 $$
 \begin{aligned}
-    (n+1-m+m\mathrm e^x)g(x)+(1-\mathrm e^x)g'(x) &=C\\
+    (n+1-m+m\mathrm e^x)g(x)+(1-\mathrm e^x)g'(x) &=C\\\\
     ((n-m)\mathrm e^{-x} +m+1)G + (\mathrm e^{-x}-1)G' &= C
 \end{aligned}
 $$
 考虑展开求出 $G$，提取 $[x^i]$ 得到：
 $$
 \begin{aligned}
-(n-m)\sum\limits_{j=1}^i \frac{(-1)^j}{j!} G_{i-j} &+ (n+1) G_i \\
+(n-m)\sum\limits_{j=1}^i \frac{(-1)^j}{j!} G_{i-j} &+ (n+1) G_i \\\\
 +\sum\limits_{j=1}^i \frac{(-1)^j}{j!} (i-j+1) G_{i-j+1} &= [i=0]C
 \end{aligned}
 $$
 最终可以得到：
 $$
 \begin{aligned}
-(n-i+1)G_i &= [i=0]C \\
+(n-i+1)G_i &= [i=0]C \\\\
 -(n-m)\sum\limits_{j=0}^{i-1} G_j \frac{ (-1)^{i-j} }{(i-j)!} &-\sum\limits_{j=1}^{i-1} j G_j \frac{ (-1)^{i-j+1} }{(i-j+1)!}
 \end{aligned}
 $$
