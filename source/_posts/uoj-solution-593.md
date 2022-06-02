@@ -118,14 +118,14 @@ $$
 $$
 \begin{cases}
     1+vI=C\\\\
-    1+uI=C\;\mathrm{e}^{(u-v)t}
+    1+uI=C\mathrm{e}^{(u-v)t}
 \end{cases}
 $$
 得到：
 $$
 \begin{cases}
-    C &= \dfrac{u-v}{u-v\;\mathrm{e}^{u-v}}\\\\
-    F &= \dfrac{(u-v)\mathrm{e}^{(u-v)t}}{u-v\;\mathrm{e}^{u-v}}
+    C &= \dfrac{u-v}{u-v\mathrm{e}^{u-v}}\\\\
+    F &= \dfrac{(u-v)\mathrm{e}^{(u-v)t}}{u-v\mathrm{e}^{u-v}}
 \end{cases}
 $$
 我们考虑左右两边的情况，不要忘记我们的 $F$ 是表示排列末尾的情况，所以我们合并的时候对于右边的生成函数需要倒置。
@@ -137,9 +137,9 @@ $$
 之后写出函数：
 $$
 \begin{aligned}
-    L &= \frac{(1-y)\;\mathrm{e}^{x(1-y)t}}{(1-y\;\mathrm{e}^{x(1-y)})}\\\\
-    R &= \frac{(y-1)\;\mathrm{e}^{x(y-1)t}}{(y-\;\mathrm{e}^{x(y-1)})}\\\\
-    &= \frac{(1-y)\;\mathrm{e}^{x(y-1)(t-1)}}{(1-y\;\mathrm{e}^{x(1-y)})}
+    L &= \frac{(1-y)\mathrm{e}^{x(1-y)t}}{(1-y\mathrm{e}^{x(1-y)})}\\\\
+    R &= \frac{(y-1)\mathrm{e}^{x(y-1)t}}{(y-\mathrm{e}^{x(y-1)})}\\\\
+    &= \frac{(1-y)\mathrm{e}^{x(y-1)(t-1)}}{(1-y\mathrm{e}^{x(1-y)})}
 \end{aligned}
 $$
 
@@ -151,8 +151,7 @@ $$
 
 合并生成函数可以得到：
 $$
-[ y^m p^{n_1} q^{n_2} ] 
-(1-y)^2 \frac{\mathrm{e}^{pt(1-y)+q(1-t)(1-y)}}{(1-y\;\mathrm{e}^{p(1-y)})(1-y\;\mathrm{e}^{q(1-y)})}
+[ y^m p^{n_1} q^{n_2} ] (1-y)^2 \frac{\mathrm{e}^{pt(1-y)+q(1-t)(1-y)}}{(1-y\mathrm{e}^{p(1-y)})(1-y\mathrm{e}^{q(1-y)})}
 $$
 发现对于 $p, q$ 都附带一个 $(1 - y)$ 考虑提出来：
 $$
@@ -165,7 +164,7 @@ $$
 很遗憾我们出现了 $\dfrac{1}{e^p - e^q}$ 这样出现在指数上的生成函数我们不能求出系数，试试求导（套路）。
 $$
 \begin{aligned}
-& \quad\; (1-y)^{n+1} \mathrm{e}^{pt+q(1-t)} \frac{p-q}{\mathrm{e}^p-\mathrm{e}^q}\left(\frac{\mathrm{e}^p}{1-y\mathrm{e}^p} - \frac{\mathrm{e}^q}{1-y\mathrm{e}^q}\right) \\
+& \quad (1-y)^{n+1} \mathrm{e}^{pt+q(1-t)} \frac{p-q}{\mathrm{e}^p-\mathrm{e}^q}\left(\frac{\mathrm{e}^p}{1-y\mathrm{e}^p} - \frac{\mathrm{e}^q}{1-y\mathrm{e}^q}\right) \\
 \end{aligned}
 $$
 考虑这个 $e^p - e^q$ 肯定是需要消除的，我们唯一能做的就是将其看成一体，也就是之后肯定需要考虑 $p - q$，我们决心将 $e^q$ 除掉。
@@ -195,8 +194,8 @@ $$
 $$
 \begin{aligned}
     (n-m+1+i)f_i &= -(m-i+1)f_{i-1} + [i=0]C\\\\
-    (n-m+1)f(x) + xf\;'(x)&= -mxf(x) + x^2 f\;'(x) + C\\\\
-    (n-m+1+mx)f(x) + (x-x^2)f\;'(x)&=C
+    (n-m+1)f(x) + xf'(x)&= -mxf(x) + x^2 f'(x) + C\\\\
+    (n-m+1+mx)f(x) + (x-x^2)f'(x)&=C
 \end{aligned}
 $$
 这里的 $f_0$ 事实上就是 $\binom{n + 1}{m} (-1)^m$，为了方便我们直接让其为 $(n - m + 1)\binom{n + 1}{m}(-1)^m$。
