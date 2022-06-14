@@ -42,6 +42,7 @@ $$
 如果不考虑 $k^j$ 的话可以直接二项式定理。
 
 考虑拆掉 $k$。
+
 $$
 \begin{aligned}
 & \sum_{j = 0} ^ m \sum_{k = 0} ^ n k^j \binom{n}{k} x^k (1 - x) ^ {n - k} \\\\
@@ -56,13 +57,16 @@ k^{\underline{z}} \\\\
 \begin{Bmatrix} j \\ z\end{Bmatrix} 
 \end{aligned}
 $$
+
 考虑将右边的东西展开：
+
 $$
 \begin{aligned}
 & \sum_{j  =0} ^ m a_i \sum_{z = 0} ^ j \binom{n}{z} x^z \sum_{s = 0} ^ z
 (-1)^{z - s} \binom{z}{s} s^j  \\\\
 =& \sum_{z = 0} ^ m \binom{n}{z} x^z \sum_{s = 0} ^ z (-1) ^ {z - s} \binom{z}{s} \sum_{j = z} ^ m a_j s^j \end{aligned}
 $$
+
 $\tt Trick:$ 对于斯特林数的公式当 $i < j$ 的时候也适用，所以后面可以直接变成 $j = 0$，那么后面就是点值了。
 
 直接进行操作即可。
