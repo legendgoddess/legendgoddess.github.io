@@ -22,14 +22,15 @@ categories:
 
 那么就是求 $Q = \sum_{k = 0} ^ n f(k) \binom{n}{k} c_i$。
 
-考虑拆开来看：
+考虑拆开来看:
+
 $$
 \begin{aligned}
 &\sum_{k = 0} ^ n \sum_{j = 0} ^ m k^j \binom{n}{k} c_k \\\\
 =& \sum_{k  =0}^ n c_k \binom{n}{k} \sum_{j = 0} ^ m k^j \\\\
-
 \end{aligned}
 $$
+
 考虑后面的部分怎么操作：
 
 显然后面部分为 $\frac{k^{m + 1} - 1}{k - 1}$。
