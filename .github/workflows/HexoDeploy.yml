@@ -35,11 +35,9 @@ jobs:
                   npm install hexo-cli -g
                   npm install --save hexo-blog-encrypt
                   npm install
-
             - name: Deploy
               run: |
                   hexo cl
                   hexo g
                   echo "legendgod.ml" > ./public/CNAME
                   hexo d
-
