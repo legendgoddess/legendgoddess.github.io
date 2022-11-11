@@ -3,7 +3,6 @@ title: "给学弟的模拟赛1"
 date: 2022-3-30 15:31:00
 categories:
   - 专题
-password: fuyimin
 ---
 
 <embed src="/image/examination-20220330.pdf" type="application/pdf" style="overflow: auto; width: 100%; height: 600px"/>
