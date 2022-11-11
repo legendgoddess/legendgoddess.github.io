@@ -1,0 +1,623 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>数学回忆1 | Legendgod's Blog</title><meta name="keywords" content="数论,反演"><meta name="author" content="legendgoddes"><meta name="copyright" content="legendgoddes"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="加乘原理对于给定的集合 $S$ 对于其中满足某一性质 $P$ 的元素 $x$ 求和 $f(x)$ 即求出： $$\sum_{x \in S} f(x) [P(x)]$$  将 $S$ 称为组合类，$x$ 称为组合对象，$f$ 称为权值函数。  $\color{blue}\Delta$ 构造双射   不同的两个组合类中的组合对象可以一一对应，这样对于两个组合类进行计数是等价的。 另一种情况是同一组合">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数学回忆1">
+<meta property="og:url" content="https://hater.ml/2022/04/22/remind-math1/index.html">
+<meta property="og:site_name" content="Legendgod&#39;s Blog">
+<meta property="og:description" content="加乘原理对于给定的集合 $S$ 对于其中满足某一性质 $P$ 的元素 $x$ 求和 $f(x)$ 即求出： $$\sum_{x \in S} f(x) [P(x)]$$  将 $S$ 称为组合类，$x$ 称为组合对象，$f$ 称为权值函数。  $\color{blue}\Delta$ 构造双射   不同的两个组合类中的组合对象可以一一对应，这样对于两个组合类进行计数是等价的。 另一种情况是同一组合">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=307348307">
+<meta property="article:published_time" content="2022-04-22T13:29:00.000Z">
+<meta property="article:modified_time" content="2022-11-11T12:39:51.622Z">
+<meta property="article:author" content="legendgoddes">
+<meta property="article:tag" content="数论">
+<meta property="article:tag" content="反演">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=307348307"><link rel="shortcut icon" href="/image/favicon.ico"><link rel="canonical" href="https://hater.ml/2022/04/22/remind-math1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://npm.elemecdn.com/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '数学回忆1',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-11-11 20:39:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Legendgod's Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Legendgod's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">数学回忆1<a class="post-edit-link" href="https://github.com/legendgoddess/Blog/edit/master/source/_posts/remind-math1.md" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-22T13:29:00.000Z" title="发表于 2022-04-22 21:29:00">2022-04-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-11T12:39:51.622Z" title="更新于 2022-11-11 20:39:51">2022-11-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="数学回忆1"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h3 id="加乘原理"><a href="#加乘原理" class="headerlink" title="加乘原理"></a>加乘原理</h3><p>对于给定的集合 $S$ 对于其中满足某一性质 $P$ 的元素 $x$ 求和 $f(x)$ 即求出：</p>
+<p>$$<br>\sum_{x \in S} f(x) [P(x)]<br>$$</p>
+<p> 将 $S$ 称为<strong>组合类</strong>，$x$ 称为<strong>组合对象</strong>，$f$ 称为<strong>权值函数</strong>。</p>
+<ul>
+<li><h4 id="color-blue-Delta-构造双射"><a href="#color-blue-Delta-构造双射" class="headerlink" title="$\color{blue}\Delta$ 构造双射"></a>$\color{blue}\Delta$ 构造双射</h4></li>
+</ul>
+<ol>
+<li>不同的两个组合类中的组合对象可以一一对应，这样对于两个组合类进行计数是等价的。</li>
+<li>另一种情况是同一组合类中的组合对象可以建立对应关系 ( 或多个为一组 )，我们只需要对于每组中的一个进行计数，再乘上组的大小。</li>
+</ol>
+<ul>
+<li><h4 id="color-blue-Delta-加法原理"><a href="#color-blue-Delta-加法原理" class="headerlink" title="$\color{blue}\Delta$ 加法原理"></a>$\color{blue}\Delta$ <strong>加法原理</strong></h4></li>
+</ul>
+<p>对 $S$ 中的所有元素求和 $f(x)$ 等价于将 $S$ 划分成若干个集合 $S_i$ 分别求和再相加：</p>
+<p>$$<br>\sum_{x \in S} f(x) &#x3D; \sum_{i &#x3D; 1} ^ m (\sum_{x \in S_i} f(x))<br>$$</p>
+<ul>
+<li><h4 id="color-blue-Delta-乘法原理"><a href="#color-blue-Delta-乘法原理" class="headerlink" title="$\color{blue}\Delta$ 乘法原理"></a>$\color{blue}\Delta$ <strong>乘法原理</strong></h4></li>
+</ul>
+<p>将 $S$ 拆分成 $S_i$ 的笛卡尔积， $S$ 中元素的权值 $f(x)$ 等于其拆分出的各 $f_i(x_i)$ 只积，则对 $S$ 中的所有元素求和 $f(x)$ 等价于对于每个 $S_i$ 进行 $f_i(x_i)$ 求和之后相乘。</p>
+<p>$$<br>\sum_{x \in S} f(x) &#x3D; \prod_{i &#x3D; 1} ^ m (\sum_{x_i \in S_i} f_i(x_i))<br>$$</p>
+<p>我们除了可以交换 $\prod, \sum$ 我们还可以交换多个 $\sum$：</p>
+<p>$$<br>\sum_{x \in A} \sum_{y \in B} f(x, y) &#x3D; \sum_{y \in B} \sum_{x \in A} f(x, y)<br>$$</p>
+<p>这个常在 $B$ 受到 $x$ 的限制时的组合计数。</p>
+<blockquote>
+<p>求 $n$ 原正整数组 $(x_1, \cdots, x_n)$ 的数量，满足：</p>
+<ul>
+<li>$x_i \le a_i$</li>
+<li>$x_i$ 互不相同</li>
+</ul>
+</blockquote>
+<p>设 $S &#x3D; [a_i], f(x_1, \cdots, x_n) &#x3D; [x1 \ne x_2] \cdots [x_1 \ne x_n] \cdots [x_{n -1} \ne x_n]$。</p>
+<p>那么本质就是对于 $\sum_{x_1 \in S_1, x_2 \in S_2 \cdots} f(x1, \cdots, x_n)$。</p>
+<p>设 $f(x_1, \cdots, x_{i - 1} | x_i) &#x3D; [x_i \ne x_1] \cdots [x_i \ne x_{i - 1}]$。</p>
+<p>那么原式可以变成：</p>
+<p>$$<br>\sum_{x_1 \in S1} \sum_{x_2 \in S_2} f(x_1 | x_2) \cdots \sum_{x_n \in S_n} f(x_1, \cdots, x_{n - 1} | x_n)<br>$$</p>
+<p>显然 $x_i$ 受到了前面权值的限制，我们通过交换求和符号使得 $a_i \le a_{i + 1}$ 那么 $x_{i + 1}$ 的所有限制就是可以被描述出来的，对于 $x_i$ 恰好有 $a_i - i + 1$ 种方案：</p>
+<p>$$<br>\prod_{i &#x3D; 1} ^ m (\sum_{x_i \in S_i} f_i(x_i)) &#x3D; \prod_{i &#x3D; 1} ^ m (a_i - i + 1)<br>$$</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT3956">AT3956 [AGC023E] Inversions</a></p>
+</blockquote>
+<p>对于逆序对合并计算是比较复杂的，更何况加上 $P_i \le A_i$ 的限制，我们考虑对于 $i &lt; j, P_i &gt; P_j$ 的所有贡献。</p>
+<p>$i &lt; j, P_i &gt; P_j$ 在前一例题的基础上我们只是多钦定了两个数的大小关系，对于 $A_i &lt; A_j$ 我们可以看成 $A_j &#x3D; A_i$ 的情况。</p>
+<p>发现单独的方案限制很难描述，既然是 $A_j &#x3D; A_i$ 而且是互不相同我们那么逆序的方案就是总方案的 $\frac{1}{2}$。</p>
+<p>对于 $i &lt; j, A_i &gt; A_j$ 的情况我们发现顺序对是很好求的，我们使用总方案减去顺序对方案。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7140">P7140 [THUPC2021 初赛] 区间矩阵乘法</a></p>
+</blockquote>
+<p>看成矩阵 $A \times B$ 的形式，有 $\sum_{i} \sum_j \sum_k A(i, k) \times B(k, j)$。</p>
+<p>考虑将 $k$ 移到最前面，对于 $A$ 就是列和，$B$ 就是行和。</p>
+<p>我们有 $\sum_k (\sum_i A(i, k))(\sum_{j} B(k, j))$ 。</p>
+<p>发现题目保证合法，意味着 $p + d^2 \le n$ 所以 $d$ 是 $O(\sqrt n)$ 级别的。</p>
+<blockquote>
+<ul>
+<li>求给定的长度为 $n$ 的序列所有区间异或和的和。</li>
+<li>求给定的大小为 $n$ 的集合所有子集异或和的和。</li>
+</ul>
+</blockquote>
+<p>枚举每一位。</p>
+<ul>
+<li>区间异或和之和：对于位置 $r$ 只需要记录左边有多少个和当前值不同的。</li>
+<li>子集异或和之和：明显子集个数太多信息不能保存，考虑构造双射，对于一个集合我们只关心其 $1$ 的个数。不妨考虑有 $x$ 个 $1$，对于任意位置选取和不选取是只是改变奇偶性，对于每个位置是独立的，所以奇和偶的方案是相同的。所以方案数是 $2^{n - 1}$。</li>
+</ul>
+<blockquote>
+<p>给定一棵包含 $n$ 个结点的外向树，求其拓扑排序的个数。</p>
+</blockquote>
+<p>可以变成有根数，考虑对于节点 $i$ 其必须在其所有子树的节点前面。</p>
+<p>对于所有排列，$i$ 最先出现的概率是 $\frac{1}{siz_i}$，对于每个节点都是不会相互影响的，因为要么是无关要么是父亲已经出现过了，所以方案数是 $\frac{n!}{\prod siz_i}$。</p>
+<p>这里启发了我们我们不一定是考虑同时出现在 <code>queue</code> 中的点数可以任意排列，可以转而考虑每个点的限制，或者每个点限制了什么。</p>
+<blockquote>
+<p>给定 $n$ 个正整数 $d_{1, \cdots, n}$，求有多少个数列 $a_{1 \cdots, n}$ 满足：</p>
+<ul>
+<li>$a_i | d_i$</li>
+<li>$\prod_{i}a_i \le \prod_{i} \frac{d_i}{a_i}$</li>
+</ul>
+</blockquote>
+<p>发现直接进行计算不好处理限制，先想构造双射。</p>
+<p>对于限制 $1$ 如果 $a_i^2 \ne d_i$ 对于一个 $a_i$ 显然可以对应一个唯一的 $\frac{d_i}{a_i}$。换言之就是对于一个满足条件的肯定可以映射到一个不满足条件的。总方案数就是 $d$ 的因子个数之积。</p>
+<p>之后考虑 $\prod a_i &#x3D; \prod \frac{d_i}{a_i}$ 的情况。</p>
+<p>移项，之后考虑每个质因子的出现次数是固定的，对于每个质因子分别进行背包。</p>
+<h3 id="组合数"><a href="#组合数" class="headerlink" title="组合数"></a>组合数</h3><ul>
+<li><h4 id="color-blue-Delta-tt-lucas-定理"><a href="#color-blue-Delta-tt-lucas-定理" class="headerlink" title="$\color{blue}\Delta$ $\tt lucas$ 定理"></a>$\color{blue}\Delta$ $\tt lucas$ 定理</h4></li>
+</ul>
+<p>设 $n, m$ 的 $p$ 进制为 $a_k\dots a_0, b_k \dots b_0$ 那么</p>
+<p>$$<br>\binom{n}{m} \equiv \prod_{i &#x3D; 0} ^ k \binom{a_i}{b_i} \pmod p<br>$$</p>
+<p>其中 $p$ 是质数，$n, m$ 是自然数。</p>
+<p><strong>命题</strong>：$\binom{n + m}{n} \equiv 0 \pmod p$ 当且仅当 $n, m$ 的加法在 $p$ 进制下进位。</p>
+<blockquote>
+<p>根据上述定理可以知道如果 $a_i &lt; b_i$ 就去世了，显然如果 $a + b$ 进位了那么剩下的部分肯定是小于 $a, b$ 的。</p>
+</blockquote>
+<ul>
+<li><h4 id="color-blue-Delta-Kummer-定理"><a href="#color-blue-Delta-Kummer-定理" class="headerlink" title="$\color{blue}\Delta$ Kummer 定理"></a>$\color{blue}\Delta$ Kummer 定理</h4></li>
+</ul>
+<p>$\dfrac{(n + m)!}{n! m!}$ 中质因子 $p$ 的次数恰好为 $n + m$ 计算过程中在 $p$ 进制小进位的个数。</p>
+<ul>
+<li><h4 id="color-blue-Delta-扩展-tt-lucas"><a href="#color-blue-Delta-扩展-tt-lucas" class="headerlink" title="$\color{blue}\Delta$ 扩展 $\tt lucas$"></a>$\color{blue}\Delta$ 扩展 $\tt lucas$</h4></li>
+</ul>
+<p>对于 $\dbinom{n}{m} &#x3D; \dfrac{n!}{m!(n - m)!}$ ，考虑分成是 $p$ 的倍数和不是 $p$ 的倍数两部分进行计算。</p>
+<p>对于 $p$ 拆成 $\prod_i p_i^{a_i}$ 其中 $p_i$ 是质数，之后 $\tt CRT$ 回去。</p>
+<p>不妨考虑 $n!, m!,(n - m)!$  中 $p_i$ 的因子分别为 $u, v, w$。</p>
+<p>那么有 $\dbinom{n}{m} &#x3D; \dfrac{\dfrac{n!}{p_i^u}}{\dfrac{m!}{p_i^v}\dfrac{(n - m)!}{p_i^w}} \times p_i^{u - v - w}$。</p>
+<p>对于 $u$ 的计算是容易的 $u &#x3D; \sum_{i &#x3D; 1} \dfrac{a_i}{p_i^i}$。</p>
+<p>可以发现 $a! &#x3D; p_i^{\frac{a}{p_i}} \times \frac{a}{p_i}! \times \prod_{i &#x3D; 1, i \not \equiv 0 \pmod {p_i}} i$ 后面是一个周期函数可以预处理 $O(1)$ 计算。</p>
+<p>左边的阶乘继续递归。</p>
+<ul>
+<li><h4 id="color-blue-Delta-组合数比大小"><a href="#color-blue-Delta-组合数比大小" class="headerlink" title="$\color{blue}\Delta$ 组合数比大小"></a>$\color{blue}\Delta$ 组合数比大小</h4></li>
+</ul>
+<p>给定 $\dbinom{a}{b}, \dbinom{c}{d}$ 比较大小，直接取对数。</p>
+<ul>
+<li><h4 id="color-blue-Delta-组合数前缀和"><a href="#color-blue-Delta-组合数前缀和" class="headerlink" title="$\color{blue}\Delta$ 组合数前缀和"></a>$\color{blue}\Delta$ 组合数前缀和</h4></li>
+</ul>
+<p>有 $q$ 组询问，每次给定 $n, m$ 求出 $\sum_{i &#x3D; 0} ^ m \dbinom{n}{i}$。</p>
+<p>考虑使用莫队，设答案为 $f(n, m)$ 我们有 $f(n, m + 1) &#x3D; f(n, m) + \binom{n}{m + 1}$，$f(n + 1, m) &#x3D; 2f(n, m) - \binom{n}{m}$。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zwfymqz/p/9751173.html">别人的代码</a></p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3726">[AHOI 2017 &#x2F; HNOI 2017] 抛硬币</a></p>
+</blockquote>
+<p>考虑对于 $a &#x3D; b$ 的情况对于甲胜和乙胜的情况是双射。</p>
+<p>只要算出平局的数量即可。</p>
+<p>对于 $a &gt; b$ 的情况，可能会出现反转和之前都是甲胜的情况。</p>
+<p>考虑甲正面朝上 $i$ 次，乙 $j$ 次，我们有 $i &gt; j, a - i &gt; b - j$ 得到 $i - j \ge 1, a - b - 1 \ge i - j$。</p>
+<p>考虑计数 $\dfrac{2^{a + b} + \sum_{u &#x3D; 0} ^ b \sum_{v &#x3D; 1} ^ {a - b - 1} \binom{b}{u}\binom{a}{u + v}}{2}$。</p>
+<blockquote>
+<p>$j, i - j$。</p>
+</blockquote>
+<p>后面部分是个范德蒙德卷积等于 $\binom{a + b}{b + v}$。</p>
+<p>如果 $a &#x3D; b$ 的话需要特判。</p>
+<blockquote>
+<p>求有多少组 $a_1, \cdots, a_k$ 满足：</p>
+<ul>
+<li>$a_i \le x_i$</li>
+<li>$\binom{\sum a_i}{a_1, \cdots, a_k}$ 是奇数</li>
+</ul>
+</blockquote>
+<p>考虑 $\tt lucas$ 也就是不存在 $2$ 的倍数。</p>
+<p>首先考虑 $\binom{\sum a_i}{a_1, \cdots, a_k}$ 是多项式系数，先转化 $\binom{\sum a_i}{a_1, \cdots, a_k} &#x3D; \prod \binom{a_i + \cdots + a_k}{a_i}$。</p>
+<p>也就是任意 $a_i$ 与为 $0$。</p>
+<p>直接进行数位 $\tt Dp$。</p>
+<h3 id="容斥原理"><a href="#容斥原理" class="headerlink" title="容斥原理"></a>容斥原理</h3><p>$$<br>|\bigcup_{i &#x3D; 1} ^ n S_i| &#x3D; \sum_{\empty \ne T \subseteq [n]} (-1) ^ {|T| - 1} |\bigcap_{i \in T} S_i|<br>$$</p>
+<p>其中 $[n]$  指 ${1,2,\cdots,n}$，这个式子的含义是，这些集合并集的大小可以通过枚举一个子集的集合，将它们求交并乘上 $−1$ 的子集大小次方求和得到。</p>
+<p>一种理解是二项式定理：</p>
+<p>$$<br>\sum_{i &#x3D; 1} ^ n (-1) ^ i \binom{n}{i} &#x3D; \sum_{i &#x3D; 0} ^n \left((-1)^n \binom{n}{i}\right) - \binom{n}{0} &#x3D; - 1<br>$$</p>
+<p>所以 $s$ 的每个元素恰好被计算 $1$ 次。</p>
+<blockquote>
+<p>考虑任意元素，其在大小为 $i$ 的集合的计算次数。</p>
+</blockquote>
+<p>其还有一个常见形式：</p>
+<p>$$<br>|\bigcup_{i &#x3D; 1} ^ n S_i| &#x3D; \sum_{T \subseteq [n]} (-1) ^ {|T|} |\bigcap_{i \in T} S_i|<br>$$</p>
+<p>聪明的你会发现这个东西就是原来的补集，我们定义 $T &#x3D; \emptyset$ 的时候后面的式子定义为全集大小。</p>
+<p>我们可以直观地理解容斥原理：</p>
+<ul>
+<li>$n$ 件事至少发生一件的方案数，可以通过其中每个子集同时发生的方案计算；</li>
+<li>$n$ 件事都不发生的方案数，可以通过其中每个子集同时发生的方案计算。</li>
+</ul>
+<blockquote>
+<p>全错排问题</p>
+<p>求 $1, \ldots, n$ 的偶爱列 $p_1, \ldots, p_n$ 的数量，使得 $i \ne p_i$。</p>
+</blockquote>
+<p>设 $S_i$ 为所有满足 $i &#x3D; p_i$ 的集合，我们求的就是 $\bigcup_{i &#x3D; 1} ^ n S_i$。</p>
+<p>使用容斥原理考虑钦定了 $i$ 个 $p_i &#x3D; i$ 的方案数，可以写出答案：</p>
+<p>$$<br>|\bigcup_{i &#x3D; 1} ^n S_i| &#x3D; \sum_{i &#x3D; 0} ^ n (-1) ^ i \binom{n}{i} (n - i) !<br>$$</p>
+<p>我们甚至可以使用生成函数得到递推式，这个不提 $a_n &#x3D; (n - 1) (a_{n - 1} + a_{n - 2})$。</p>
+<blockquote>
+<p>求正整数列 $a_{1 \ldots n}$ 的数量，满足：</p>
+<ul>
+<li>$a_i \le x_i$</li>
+<li>$\sum a_i &#x3D; S$</li>
+</ul>
+</blockquote>
+<p>设 $S_i$ 是满足 $a_i &gt; x_i$ 的集合，我们要求 $\bigcup_{i &#x3D; 1} ^ n S_i$。</p>
+<p>容斥原理，不妨考虑钦定 $a_i &#x3D; x_i + c$。</p>
+<p>我们直接使用隔板法即可。</p>
+<blockquote>
+<p>给定 $n$ 个字符串 $T_1, \ldots, T_n$，字符串中有些问号表示可以填上任意小写字母，问所有填写方案中这些串构成的字典树结点数之和。</p>
+</blockquote>
+<p>考虑 $S_i$ 是字典树上第 $i$ 个串的所有前缀对应结点构成的集合，我们求 $\bigcup_{i &#x3D; 1} ^ nS_i$。</p>
+<p>容斥原理，交集就是 $\tt Lcp$，可以通过枚举 $\tt lcp$ 长度算方案数。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT2062">[AGC 005 D] ~K Perm Counting</a></p>
+<p>求 $1, \ldots, n$ 的排列 $p_1, \ldots, p_n$ 的数量，使得 $|i - p_i| \ne k$。</p>
+</blockquote>
+<p>容斥，不讲。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT4352">[ARC 101 C] Ribbons on Tree</a></p>
+<p>将给定的包含偶数 $n$ 个点的树上的点两两配对，使得每对点之间路径的并集包含了每一条树边，求方案数。</p>
+</blockquote>
+<p>容斥枚举不合法的边集，考虑删除了 $E$ 之后树变成 $E + 1$ 个连通块，每个连通块都内部匹配，不妨考虑连通块大小为 $n$ 那么方案数就是 $(n - 1) !!$。</p>
+<p>设 $f(i, j)$ 表示点 $i$ 子树中 $i$ 所在连通块大小为 $j$ 时的容斥系数。</p>
+<p>$f(i, 0)$ 表示 $i$ 到父亲边没有被覆盖，特别计算。</p>
+<h3 id="二项式反演"><a href="#二项式反演" class="headerlink" title="二项式反演"></a>二项式反演</h3><p>问题：有 $n$ 个集合 $S_1,\ldots,S_n$，我们要求其中属于恰好某指定 $k$ 个集合的元素数量，并且任选 $k$ 个集合算出来的<strong>答案是一样的</strong>。</p>
+<p>设答案为 $g_k$，考虑求出 $f_k$ 表示钦定某属于 $k$ 个集合的元素数量，有：</p>
+<p>$$<br>f_k &#x3D; \sum_{i &#x3D; k} ^ n g_i \binom{i}{k}<br>$$</p>
+<p>使用容斥推出 $g_k$：</p>
+<p>$$<br>g_k &#x3D; \sum_{S \in T} f_{|T|} \times (-1)^{|T| - k} &#x3D; \sum_{|T| &#x3D; k} ^ n f_{|T|} \times \binom{|T|}{k} \times (-1) ^ {|T| - k}<br>$$</p>
+<p>二项式反演还有另一形式：</p>
+<p>$$<br>\begin{aligned}<br>f_k &amp;&#x3D; \sum_{i &#x3D; 0} ^k g_i \times \binom{k}{i} \\<br>g_k &amp;&#x3D; \sum_{i &#x3D; 0} ^ k f_i \binom{k}{i} \times (-1) ^ {k - i}<br>\end{aligned}<br>$$</p>
+<p>这里 $f_k$ 表示至多属于某指定 $k$ 个集合的元素数量。</p>
+<p>我们还有：</p>
+<p>$$<br>\begin{aligned}<br>f_k &#x3D; \sum_{i &#x3D; 0} ^ k g_i \times \binom{k}{i} \times (-1) ^ i \\<br>g_k &#x3D; \sum_{i &#x3D; 0} ^ k f_i \times \binom{k}{i} \times (-1) ^ i<br>\end{aligned}<br>$$</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1228E">[CF 1228 E] Another Filling the Grid</a></p>
+</blockquote>
+<p>这种情况是二维的，具体讲一下二维怎么反演。</p>
+<p>我们设 $f(a, b)$ 表示每一维钦定了 $a, b$ 是不符合条件的，$g(a, b)$ 是恰好。</p>
+<p>我们有 ：</p>
+<p>$$<br>f(a, b) &#x3D; \sum_{i &#x3D; a} ^ n \sum_{j &#x3D;b} ^ n g(i, j) \times \binom{i}{a} \times \binom{j}{b}<br>$$</p>
+<p>这个是显然的。</p>
+<p>反演的时候我们考虑一维一维进行反演，设 $h(a, b)$ 表示 $a$ 是钦定，$b$ 是恰好，我们有。</p>
+<p>$$<br>h(a, b) &#x3D; \sum_{i &#x3D; b} ^ n (-1) ^{i - b} \binom{i}{b} f(a, i)<br>$$</p>
+<p>$$<br>g(a, b) &#x3D; \sum_{i &#x3D; a} ^ n (-1) ^ {i - 1} \binom{i}{a} h(i, b)<br>$$</p>
+<p>所以综合一下有：</p>
+<p>$$<br>g(a, b) &#x3D; \sum_{i &#x3D; a} ^n \sum_{j &#x3D; b} ^ n (-1) ^ {i - a} (-1) ^{j - b} \binom{i}{a} \binom{j}{b} f(a, b)<br>$$</p>
+<p>更高维度也是同理的，因为 $\sum$ 是可以分步反演的。</p>
+<h3 id="莫比如斯反演"><a href="#莫比如斯反演" class="headerlink" title="莫比如斯反演"></a>莫比如斯反演</h3><blockquote>
+<p>只讲基础内容</p>
+</blockquote>
+<p>自然的前缀和与差分之间就是反演，二项式反演可以看作一种“二项前缀和”和“二项差分”的转化，而莫比乌斯反演是 $Dirichlet$ 前缀和与 $Dirichlet$ 差分的转化。</p>
+<p>设有数论函数 $g_i, f_i$ 如果满足：</p>
+<p>$$<br>f_k &#x3D; \sum_{d | k} g_d<br>$$</p>
+<p>那么成 $f$ 是 $g$ 的 $\tt Dirichlet $ 前缀和，$g$ 是 $f$ 的 $\tt Dirichlet $ 差分。</p>
+<p>我们可以找到很多数论中这种运算与多项式乘法之间的关系，例如 Dirichlet 前缀和实际上就是将一个函数 $g$ 与 $1$ 函数 $1(n) &#x3D; 1$ 进行 Dirichlet 卷积（其实就是高维多项式卷积）的结果，一如前缀和可以看成一个函数与 $\frac{1}{x - 1}$ 的卷积，事实上 <strong>Dirichlet 前缀和就是高维前缀和</strong>。</p>
+<p>设 $k$ 有 $c$ 个素因子 $p_1, \ldots, p_c$，$c$ 维函数 $F(a_1, \ldots, a_c)$ 的前缀和，其差分为：</p>
+<p>$$<br>G(a_1, \ldots, a_c) &#x3D; \sum_{S \in [c]} F(a_1 - [1 \in S], \ldots, a_c - [c \in S]) (-1) ^ {|S|}<br>$$</p>
+<p>在数论背景下，这个就是 $\mu(k)$。</p>
+<p>所以我们有 $g_k &#x3D; \sum_{d | k} f_d \times \mu(\frac{k}{d})$。</p>
+<p>这就是<strong>莫比乌斯反演</strong>，这和上面的高维差分是等价的，这告诉我们数论函数的 Dirichlet 差分由它与莫比乌斯函数卷积得到。</p>
+<p>对于后缀和也有类似的反演形式：</p>
+<p>$$<br>f_k &#x3D; \sum_{d | k} g_d<br>$$</p>
+<p>$$<br>g_k &#x3D; \sum_{d | k} f_d \times \mu(\frac{d}{k})<br>$$</p>
+<p>还有 $\varphi &#x3D; \mu \times id, id &#x3D; \varphi \times 1, \mu \times 1 &#x3D; \epsilon$，其中 $\epsilon(n) &#x3D; [n &#x3D; 1]$。</p>
+<p>我们通常将 $\gcd(a, b) &#x3D; d$ 转化成 $d | \gcd(a, b)$。</p>
+<h3 id="Min-Max-容斥"><a href="#Min-Max-容斥" class="headerlink" title="Min - Max 容斥"></a>Min - Max 容斥</h3><p>Min-Max 容斥是一种将集合最大值用其子集最小值表示的方法，当然由于相对全体实数来说，Min 和 Max 这两种运算是对称的，所以反过来也成立。</p>
+<p>设有数集 $S$ 令 $\max(S), \min(S)$ 分别表示其中最大值和最小值那么有：</p>
+<p>$$<br>\max(S) &#x3D; \sum_{\emptyset \ne T \subseteq S} (-1) ^{|T| - 1} \min(T)<br>$$</p>
+<p>设 $S &#x3D; {S_1, \ldots, S_n}$，令 $T_i$ 表示不大于 $S_i$ 的正整数集合，则 $\max(S) &#x3D; |\bigcup T_i|, \min(S) &#x3D; |\bigcap T_i|$。就是基础的容斥原理。</p>
+<p>由于 $\max(S) &#x3D; - \min(-S)$。</p>
+<p>我们也有：</p>
+<p>$$<br>\min(S) &#x3D; \sum_{\emptyset \ne T \subseteq S} (-1) ^{|T| - 1} \max(T)<br>$$</p>
+<p>到这里，观察普通的容斥和 Min-Max 容斥，我们已经注意到了：</p>
+<ul>
+<li>针对集合的普通容斥中，<strong>包含</strong>是定义在集合上的偏序关系，而交并分别是取下界和上界；</li>
+<li>针对实数的 Min-Max 容斥中，<strong>不大于</strong>是定义在实数集合上的偏序关系，而 ⁡$\min,\max$ 分别是取下界和上界。</li>
+</ul>
+<p>由整数的整除偏序可以导出 <strong>GCD-LCM 容斥</strong>：</p>
+<p>$$<br>\gcd(S) &#x3D; \prod_{\emptyset \ne T \subseteq S} (lcm(T)) ^ {(-1) ^{ |T| - 1}}<br>$$</p>
+<p>$$<br>lcm(S) &#x3D; \prod_{\emptyset \ne T \subseteq S} (\gcd(T)) ^ {(-1) ^{ |T| - 1}}<br>$$</p>
+<p>考虑如何使用子集的 $\tt min$ 表示出一个集合的第 $k$ 大数:</p>
+<p>$$<br>\max_k(S) &#x3D; \sum_{T \subseteq S, |T| \ge k} (-1) ^ {|T| - k} \times \binom{|T| - 1}{k - 1} \times \min(T)<br>$$</p>
+<p>证明同样考虑贡献，由于 $|T| \ge k$，所以比第 $k$ 大数更大的数一定不会再右边出现。</p>
+<p>然后考虑第 $l &gt; k$ 大的数的贡献，它是：</p>
+<p>$$<br>\sum_{i &#x3D; k} ^ l (-1) ^ {i - k} \times \binom{i - 1}{k - 1} \times \binom{l - 1}{i - 1} &#x3D; \binom{l - 1}{k - 1} \sum_{i &#x3D; k} ^ l (-1) ^ {i - k} \binom[l - k]{i - k}<br>$$<br>后者只有 $l &#x3D; k$ 时才为 $1$。</p>
+<p>Min-Max 容斥的一个常见用途也是将“完全”转化为“至少”，假设有 $n$ 个事件，我们需要计算它们全部发生的期望时间，可以转化为计算某个子集至少发生一件的期望时间。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4707">P4707 重返现世</a></p>
+<p>有 $n$ 种原料，美妙随机生成一种，生成第 $i$ 中的概率为 $\dfrac{p_i}{m} (m &#x3D; \sum p_i)$，问第一次集齐 $k$ 中原料的期望时间。</p>
+</blockquote>
+<p>考虑选取集合需要进行 $\tt Dp$ 设 $f(i, j, k)$ 表示考虑了前 $i$ 个数选择了 $j$ 个 $\sum p &#x3D; k$ 的方案数。<br>$$<br>f(i, j, k) &#x3D; f(i - 1, j, k) + f(i - 1, j - 1,p - p_i)<br>$$<br>复杂度是 $O(n^2m)$ 的。</p>
+<p>下面就需要优化了，一般这种 DP 的优化思路就是<strong>将一部分系数通过组合意义或组合恒等式化到 DP 值中去</strong>，这里我们就进行这样的尝试。</p>
+<p>首先这个 $k$ 不妨变成收集了 $k$ 个材料中任意一个的最小时间。</p>
+<p>那么不妨假设集合为 $P$ 没有收集到该集合的概率为 $u &#x3D; \frac{\sum_{x \not \in P} p_x}{m}$。</p>
+<p>所以我们期望时间为 $\frac{1}{1 - u}$。</p>
+<p>考虑 $n -k &#x3D; 10$ 的限制，我们不妨考虑求第 $k$ 大。</p>
+<p>那么 $q &#x3D; n - k + 1$。</p>
+<p>之后考虑对于相同的 $\sum p$ 我们的 $\min(T)$ 本质是一样的，所以我们只需要求前面部分的系数和。</p>
+<p>如果不选转移比较显然，考虑选择的情况：<br>$$<br>\sum_{T \subseteq S, |T| \ge q} (-1) ^ {|T| - q} \times \binom{|T| - 1}{q - 1}<br>$$<br>考虑拆开得到 $\binom{|T| - 1}{q - 1} &#x3D; \binom{|T| - 2}{q - 2} + \binom{|T| - 2}{q - 1}$，发现我们只需要知道 $q$ 就可以在转移了。</p>
+<p>考虑更改状态设 $f(i, j, p)$ 表示考虑前 $i$ 个，$q &#x3D; j, \sum p_i &#x3D; p$ 的系数和。</p>
+<p>发现左边部分就是 $f(i - 1, j - 1, p - p_i)$ 对于右边部分是 $f(i - 1, j, p - p_i)$，考虑配一下系数。</p>
+<p>前者是 $-$ 后者是 $+$。</p>
+<p>所以 $f(i, j, p) &#x3D; f(i - 1, k, p) + f(i - 1, j, p - p_i) - f(i - 1, j - 1, p - p_i)$。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3175">P3175 [HAOI2015]按位或</a></p>
+<p>有一个初始为 $0$ 的数 $x$，美妙按照数 $i$ 权重 $p_i$ 来随机选择一个 $[0, 2^n - 1]$ 中的数，然后将 $x$ 或上这个数，求第一次 $x$ 变为 $2^n - 1$ 的期望时间。</p>
+</blockquote>
+<p>考虑 $x$ 二进制第 $i$ 个 $1$ 出现时间为 $t_i$ 我们要求 $\max(t_i)$ 的期望， 就是需要求子集 $T$，$\min(T)$ 的期望。</p>
+<p>同理可得期望时间为：<br>$$<br>\frac{1}{1 - \sum_{x \not \in T} p_x}<br>$$<br>需要计算子集和使用 $\tt FWT$。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5644">P5644 [PKUWC2018]猎人杀</a></p>
+<p>按如下规则构造 $1, \ldots, n$ 的排列，每次从未被选择的元素中以第 $i$ 个元素 $p_i$ 的权重随机选择一个，求 $1$ 是最后一个的概率。 </p>
+</blockquote>
+<p>发现直接计算不方便，考虑容斥设 $1$ 之后钦定去世的点集合为 $S$。</p>
+<p>不妨考虑这个概率为 $p(S)$ 那么我们的答案就是 $\sum_S p(S) (-1) ^{|S|}$。</p>
+<p>设 $sum(S) &#x3D; \sum_{i \in S} a_i$ 考虑如何求 $p(S)$。</p>
+<p>因为至少包含点集 $S$ 内的所有人考虑之前 $\tt uoj$ 喂鸽子的套路，考虑无限开枪，我们有：<br>$$<br>p(S) &#x3D; \sum_{i\ ge 0} \left(\frac{tot - a_1  - sum(S)}{tot}\right)^ i \frac{a_1}{tot} &#x3D; \frac{a_1}{a_1 + sum(S)}<br>$$<br>那么有：<br>$$<br>ans &#x3D; \sum (-1) ^ {|S|} \frac{a_1}{a_1 + sum(S)}<br>$$<br>题目中给出 $\sum w_i &#x3D; 10^5$ 会想到生成函数。</p>
+<p>考虑对于同一个 $sum(S)$ 计算其系数设为 $f(sum(S))$。<br>$$<br>ans &#x3D; \sum_{i &#x3D; 0} ^ {tot} f(i) \frac{a_1}{a_1 + i}<br>$$<br>考虑每个向是否可以选择显然是 $\prod_{i &#x3D; 2} ^ n (1 - x^{w_i})$。</p>
+<p>使用分治 $\tt NTT$ 求出。</p>
+<h3 id="生成函数"><a href="#生成函数" class="headerlink" title="生成函数"></a>生成函数</h3><p>很入门的东西已经写过很多了，就不谈了。</p>
+<ul>
+<li><h4 id="color-blue-Delta-牛顿迭代"><a href="#color-blue-Delta-牛顿迭代" class="headerlink" title="$\color{blue}\Delta$ 牛顿迭代"></a>$\color{blue}\Delta$ 牛顿迭代</h4></li>
+</ul>
+<p>根据群论我们知道 $\ge 5$ 次的方程是没有根式解的，我们考虑如何逼近求出这个解。不妨设 $r$ 是 $f(x) &#x3D; 0$ 的一个解。</p>
+<p>选取 $x_0$ 作为初始近似值，我们可以过点 $(x_0, f(x_0))$ 做曲线 $y &#x3D; f(x)$ 的切线 $L$ 我们知道切点与 $x$ 轴有交点。</p>
+<p>$L:y &#x3D; f(x_0) + (x - x_0)f’(x_0)$ 其与 $x$ 的交点为 $x_1 &#x3D; x_0 - \frac{f(x_0)}{f’(x_0)}$。</p>
+<p>那么我们就有了迭代公式。</p>
+<p>逝一逝：</p>
+<blockquote>
+<p>多项式 $\exp$。</p>
+<p>给定 $F(x)$，求满足 $\exp(F(x)) \equiv G(x) \pmod {x^n}$ 的 $G(x)$。</p>
+</blockquote>
+<p>$$<br>\begin{aligned}<br>\exp(F(x)) &amp;\equiv G(x) \\<br>F(x) &amp;\equiv \ln G(x) \\<br>\ln G(x) - F(x) &amp;\equiv 0<br>\end{aligned}<br>$$</p>
+<p>考虑通过牛顿迭代求出 $G(x)$ 不妨设 $H(x) &#x3D; \ln x - F(x)$。</p>
+<p>带入上述公式得到：<br>$$<br>G_1(x) &#x3D; G_0(x) - \frac{\ln G_0(x) - F(x)}{\frac{G_0’(x)}{G_0(x)}} &#x3D; \frac{G_0(x) (1 - \ln G_0(x) + F(x))}{G_0’(x)}<br>$$<br>因为 $a_0 &#x3D; 0$，发现对于 $n &#x3D; 1$ 的情况我们是可以直接得到答案 $g_0 &#x3D; 1$，之后通过迭代来增加幂次即可。</p>
+<ul>
+<li><h4 id="color-blue-Delta-欧拉变换"><a href="#color-blue-Delta-欧拉变换" class="headerlink" title="$\color{blue}\Delta$ 欧拉变换"></a>$\color{blue}\Delta$ 欧拉变换</h4></li>
+</ul>
+<p>设一个 $ogf$ 是 $A(x)$ 的<strong>无标号</strong>组合类 $S$，其中大小为 $i$ 的对象有 $a_i$ 个。</p>
+<ul>
+<li>每个对象是 $S$ 中若干个对象的组成的多重集。</li>
+</ul>
+<p>我们称这个操作为欧拉变换，记作 $\mathcal E(A(x))$，这个东西就是一个完全背包考虑直接进行 $\tt Dp$ 本质上就是给答案乘上 $(1 + x^i +x^{2i}\cdots)$。<br>$$<br>\mathcal E(A(x)) &#x3D; \prod_{i &#x3D; 1} \frac{1}{(1 - x^i)^{a_i}}<br>$$</p>
+<ul>
+<li>每个对象是 $S$ 若干个对象的不可重集。</li>
+</ul>
+<p>$$<br>C(x) &#x3D; \prod_{i &#x3D; 1} (1 +x^i) ^{a_i}<br>$$</p>
+<p>如何计算 $\mathcal E(A(x))$，乘积式的常见处理手法是化乘为加。<br>$$<br>\begin{aligned}<br>\mathcal E(A(x)) &amp;&#x3D; \exp(\ln \prod_{i&#x3D; 1} (1 - x^i) ^ {-a_i}) \\<br>&amp;&#x3D; \exp(- \sum_{i &#x3D; 1} a_i \sum_{i | j} - \frac{i}{j}x^j) \\<br>&amp;&#x3D; \exp(\sum_{i &#x3D; 1} a_i \sum_{j &#x3D; 1}\frac{x^{ij}}{j})<br>\end{aligned}<br>$$<br>复合的计算需要使用拉反之类的。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4389">P4389 付公主的背包</a></p>
+<p>有 $n$ 个物品，第 $i$ 个大小为 $v_i$，有无限建，对每个 $i \in [1, m]$，求选择一些物品大小和为 $i$ 的方案数，不区分放入物品的顺序。</p>
+</blockquote>
+<p>物品无标号，组合无标号，就是 $\mathcal E(x)$。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5748">P5748 集合划分计数</a></p>
+<p>求出 $\tt bell(n)$ 表示将集合 ${1, 2, \ldots, n}$ 划分为若干个无标号非空子集的方案数。</p>
+</blockquote>
+<p>集合是 ${1, 2, \ldots, n}$ 本身是有标号的，划分成无标号子集，组合是无标号的。</p>
+<p>使用 $\tt egf$ 做 $\exp$，我们只需要做出每个非空子集的生成函数就是 $e^x - 1$。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF438E">CF438E The Child and Binary Tree</a></p>
+<p>求有多少点带权二叉树，点权在给定集合 $S$ 中（$|S| &#x3D; n$），且所有点的点权和为 $m$，二叉树点无标号，但区分左右儿子。</p>
+</blockquote>
+<p>二叉树大小为点权和，设 $\tt ogf$ 是 $F(x)$，集合的生成函数是 $G(x)$。</p>
+<p>$F(x) &#x3D; G(x)F^2(x) + 1$。这里 $+1$ 表示递归 $f_0$ 的时候，也就是点权为 $0$ 的树的方案数。<br>$$<br>F(x) &#x3D; \frac{1 \pm \sqrt{1 - 4G(x)}}{2G(x)}<br>$$<br>对于 $f_0 &#x3D; 1$ 我们带入 $x &#x3D; 0$ 观察是否复合答案。</p>
+<p>使用分母无理化：<br>$$<br>F(x) &#x3D; \frac{2G(x)}{1 \pm \sqrt{1 - 4G(x)}}<br>$$<br>显然下面取 $+$ 所以上面取 $-$。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5824">十二重计数法 X</a></p>
+<p>将 $n$ 划分成 $m$ 个无序自然数之和的方案数。 </p>
+</blockquote>
+<p>考虑最终划分之后的数，因为 $n &#x3D; \sum_{i \ge 1} [n \ge i]$，设 $t_x$ 表示划分之后 $\ge x$ 的数个数。</p>
+<blockquote>
+<p>因为每个数 $a$ 会对 $1 \sim a$ 做贡献，根据 $n$ 的那个式子拆分。</p>
+</blockquote>
+<p>因为 $t_x \in [1, m]$ 本质上就是背包。<br>$$<br>[x^n] \prod_{i &#x3D; 1} ^ m \frac{1}{1 - x^i}<br>$$</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">legendgoddes</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hater.ml/2022/04/22/remind-math1/">https://hater.ml/2022/04/22/remind-math1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hater.ml" target="_blank">Legendgod's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E8%AE%BA/">数论</a><a class="post-meta__tags" href="/tags/%E5%8F%8D%E6%BC%94/">反演</a></div><div class="post_share"><div class="social-share" data-image="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=307348307" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://npm.elemecdn.com/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://npm.elemecdn.com/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/04/24/cf-solution-700e/"><img class="prev-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=603798175" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CF700E Cool Slogans 题解</div></div></a></div><div class="next-post pull-right"><a href="/2022/04/22/lg-solution-4351/"><img class="next-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=597654315" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">P4351 [CERC2015]Frightful Formula 题解</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/08/21/AT-solution-212g/" title="ABC212G Power Pair"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=309395451" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-21</div><div class="title">ABC212G Power Pair</div></div></a></div><div><a href="/2021/07/23/binomial-inversion/" title="二项式反演"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=681110075" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-23</div><div class="title">二项式反演</div></div></a></div><div><a href="/2022/02/22/bzoj3684/" title="BZOJ3684 大朋友和多叉树"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=430442425" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-22</div><div class="title">BZOJ3684 大朋友和多叉树</div></div></a></div><div><a href="/2021/08/04/ceoi-2019-playplace/" title="「CEOI2019」游乐园"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=283504729" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-04</div><div class="title">「CEOI2019」游乐园</div></div></a></div><div><a href="/2021/09/14/cf-solution-1034f/" title="CF1043F Make It One"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=164044043" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-14</div><div class="title">CF1043F Make It One</div></div></a></div><div><a href="/2021/08/26/cf-solution-1278f/" title="CF1278F Cards 加强版"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=533753769" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-26</div><div class="title">CF1278F Cards 加强版</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">legendgoddes</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/legendgoddess"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/legendgoddess" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3456261198@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E4%B9%98%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">加乘原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#color-blue-Delta-%E6%9E%84%E9%80%A0%E5%8F%8C%E5%B0%84"><span class="toc-number">1.1.</span> <span class="toc-text">$\color{blue}\Delta$ 构造双射</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#color-blue-Delta-%E5%8A%A0%E6%B3%95%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">$\color{blue}\Delta$ 加法原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#color-blue-Delta-%E4%B9%98%E6%B3%95%E5%8E%9F%E7%90%86"><span class="toc-number">1.3.</span> <span class="toc-text">$\color{blue}\Delta$ 乘法原理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">组合数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#color-blue-Delta-tt-lucas-%E5%AE%9A%E7%90%86"><span class="toc-number">2.1.</span> <span class="toc-text">$\color{blue}\Delta$ $\tt lucas$ 定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#color-blue-Delta-Kummer-%E5%AE%9A%E7%90%86"><span class="toc-number">2.2.</span> <span class="toc-text">$\color{blue}\Delta$ Kummer 定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#color-blue-Delta-%E6%89%A9%E5%B1%95-tt-lucas"><span class="toc-number">2.3.</span> <span class="toc-text">$\color{blue}\Delta$ 扩展 $\tt lucas$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#color-blue-Delta-%E7%BB%84%E5%90%88%E6%95%B0%E6%AF%94%E5%A4%A7%E5%B0%8F"><span class="toc-number">2.4.</span> <span class="toc-text">$\color{blue}\Delta$ 组合数比大小</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#color-blue-Delta-%E7%BB%84%E5%90%88%E6%95%B0%E5%89%8D%E7%BC%80%E5%92%8C"><span class="toc-number">2.5.</span> <span class="toc-text">$\color{blue}\Delta$ 组合数前缀和</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E6%96%A5%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">容斥原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%8F%8D%E6%BC%94"><span class="toc-number">4.</span> <span class="toc-text">二项式反演</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%AB%E6%AF%94%E5%A6%82%E6%96%AF%E5%8F%8D%E6%BC%94"><span class="toc-number">5.</span> <span class="toc-text">莫比如斯反演</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Min-Max-%E5%AE%B9%E6%96%A5"><span class="toc-number">6.</span> <span class="toc-text">Min - Max 容斥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0"><span class="toc-number">7.</span> <span class="toc-text">生成函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#color-blue-Delta-%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3"><span class="toc-number">7.1.</span> <span class="toc-text">$\color{blue}\Delta$ 牛顿迭代</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#color-blue-Delta-%E6%AC%A7%E6%8B%89%E5%8F%98%E6%8D%A2"><span class="toc-number">7.2.</span> <span class="toc-text">$\color{blue}\Delta$ 欧拉变换</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=239604752" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UOJ 269 [清华集训2016] 如何优雅地求和 题解"/></a><div class="content"><a class="title" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解">UOJ 269 [清华集训2016] 如何优雅地求和 题解</a><time datetime="2022-06-13T11:55:00.000Z" title="发表于 2022-06-13 19:55:00">2022-06-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=119753057" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="#593. 新年的军队 题解"/></a><div class="content"><a class="title" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解">#593. 新年的军队 题解</a><time datetime="2022-06-01T23:50:00.000Z" title="发表于 2022-06-02 07:50:00">2022-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=850658581" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P4548 [CTSC2006]歌唱王国"/></a><div class="content"><a class="title" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国">P4548 [CTSC2006]歌唱王国</a><time datetime="2022-05-29T12:17:00.000Z" title="发表于 2022-05-29 20:17:00">2022-05-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=415064773" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AT2369 [AGC013C] Ants on a Circle 多解法讨论"/></a><div class="content"><a class="title" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论">AT2369 [AGC013C] Ants on a Circle 多解法讨论</a><time datetime="2022-04-29T08:01:00.000Z" title="发表于 2022-04-29 16:01:00">2022-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=199018446" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P7987 [USACO21DEC] Paired Up G 题解"/></a><div class="content"><a class="title" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解">P7987 [USACO21DEC] Paired Up G 题解</a><time datetime="2022-04-28T12:27:00.000Z" title="发表于 2022-04-28 20:27:00">2022-04-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By legendgoddes</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://npm.elemecdn.com/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://npm.elemecdn.com/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadUtterances () {
+  let ele = document.createElement('script')
+  ele.setAttribute('id', 'utterances_comment')
+  ele.setAttribute('src', 'https://utteranc.es/client.js')
+  ele.setAttribute('repo', 'legendgoddess/Blog')
+  ele.setAttribute('issue-term', 'pathname')
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+  ele.setAttribute('theme', nowTheme)
+  ele.setAttribute('crossorigin', 'anonymous')
+  ele.setAttribute('async', 'true')
+  document.getElementById('utterances-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function utterancesTheme () {
+  if (document.querySelector('.utterances-frame')) {
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+    const message = {
+      type: 'set-theme',
+      theme: theme
+    };
+    const iframe = document.querySelector('.utterances-frame');
+    iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+}
+
+if ('Utterances' === 'Utterances' || !false) {
+  if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+  else loadUtterances()
+} else {
+  function loadOtherComment () {
+    loadUtterances()
+  }
+}</script></div><script src="https://npm.elemecdn.com/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

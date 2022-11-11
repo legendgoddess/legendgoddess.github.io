@@ -1,0 +1,391 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>pbds 学习笔记 | Legendgod's Blog</title><meta name="keywords" content="线段树,平衡树,堆,Hash"><meta name="author" content="legendgoddes"><meta name="copyright" content="legendgoddes"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="主要是 $\tt pbds$ 有很多封装好了的小常数代码，比自己手写会方便很多。 头文件 #include&lt;bits&#x2F;extc++.h&gt;，需要使用命名空间 __gnu_pbds 平衡树【模板】普通平衡树 - 洛谷 $\tt STL$ 容器：tree 123tree&lt;Key, Mapped, Cmp_Fn &#x3D; std::less&lt;Key&gt;, Tag &#x3D; rb_tree_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pbds 学习笔记">
+<meta property="og:url" content="https://hater.ml/2022/04/07/pbds-notes/index.html">
+<meta property="og:site_name" content="Legendgod&#39;s Blog">
+<meta property="og:description" content="主要是 $\tt pbds$ 有很多封装好了的小常数代码，比自己手写会方便很多。 头文件 #include&lt;bits&#x2F;extc++.h&gt;，需要使用命名空间 __gnu_pbds 平衡树【模板】普通平衡树 - 洛谷 $\tt STL$ 容器：tree 123tree&lt;Key, Mapped, Cmp_Fn &#x3D; std::less&lt;Key&gt;, Tag &#x3D; rb_tree_">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=772822171">
+<meta property="article:published_time" content="2022-04-07T13:13:00.000Z">
+<meta property="article:modified_time" content="2022-11-11T12:39:51.622Z">
+<meta property="article:author" content="legendgoddes">
+<meta property="article:tag" content="线段树">
+<meta property="article:tag" content="平衡树">
+<meta property="article:tag" content="堆">
+<meta property="article:tag" content="Hash">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=772822171"><link rel="shortcut icon" href="/image/favicon.ico"><link rel="canonical" href="https://hater.ml/2022/04/07/pbds-notes/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://npm.elemecdn.com/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'pbds 学习笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-11-11 20:39:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Legendgod's Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Legendgod's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">pbds 学习笔记<a class="post-edit-link" href="https://github.com/legendgoddess/Blog/edit/master/source/_posts/pbds-notes.md" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-07T13:13:00.000Z" title="发表于 2022-04-07 21:13:00">2022-04-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-11T12:39:51.622Z" title="更新于 2022-11-11 20:39:51">2022-11-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="pbds 学习笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><p>主要是 $\tt pbds$ 有很多封装好了的小常数代码，比自己手写会方便很多。</p>
+<p>头文件 <code>#include&lt;bits/extc++.h&gt;</code>，需要使用命名空间 <code>__gnu_pbds</code></p>
+<h3 id="平衡树"><a href="#平衡树" class="headerlink" title="平衡树"></a>平衡树</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3369">【模板】普通平衡树 - 洛谷</a></p>
+<p>$\tt STL$ 容器：<code>tree</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tree&lt;Key, Mapped, Cmp_Fn = std::less&lt;Key&gt;, Tag = rb_tree_tag,</span><br><span class="line">                  Node_Update = null_tree_node_update,</span><br><span class="line">                  Allocator = std::allocator&lt;<span class="type">char</span>&gt; &gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Key</code>: 储存的元素类型，如果想要存储多个相同的 <code>Key</code> 元素，则需要使用类似于 <code>std::pair</code> 和 <code>struct</code> 的方法，并配合使用 <code>lower_bound</code> 和 <code>upper_bound</code> 成员函数进行查找</li>
+<li><code>Mapped</code>: 映射规则（$\tt Mapped-Policy$）类型，如果要指示关联容器是 <strong>集合</strong>，类似于存储元素在 <code>std::set</code> 中，此处填入 <code>null_type</code>，低版本 <code>g++</code> 此处为 <code>null_mapped_type</code>；如果要指示关联容器是 <strong>带值的集合</strong>，类似于存储元素在 <code>std::map</code> 中，此处填入类似于 <code>std::map&lt;Key, Value&gt;</code> 的 <code>Value</code> 类型</li>
+<li><code>Cmp_Fn</code>: 关键字比较函子，例如 <code>std::less&lt;Key&gt;</code></li>
+<li><code>Tag</code>: 选择使用何种底层数据结构类型，默认是 <code>rb_tree_tag</code>。<code>__gnu_pbds</code> 提供不同的三种平衡树，分别是：<ul>
+<li><code>rb_tree_tag</code>：红黑树，一般使用这个，后两者的性能一般不如红黑树</li>
+<li><code>splay_tree_tag</code>：$splay$ 树。</li>
+<li><code>ov_tree_tag</code>：有序向量树，只是一个由 <code>vector</code> 实现的有序结构，类似于排序的 <code>vector</code> 来实现平衡树，性能取决于数据想不想卡你</li>
+</ul>
+</li>
+<li><code>Node_Update</code>：用于更新节点的策略，默认使用 <code>null_node_update</code>，若要使用 <code>order_of_key</code> 和 <code>find_by_order</code> 方法，需要使用 <code>tree_order_statistics_node_update</code></li>
+<li><code>Allocator</code>：空间分配器类型</li>
+</ul>
+<h4 id="成员函数"><a href="#成员函数" class="headerlink" title="成员函数"></a>成员函数</h4><ul>
+<li><code>insert(x)</code>：向树中插入一个元素 $x$，返回 <code>std::pair&lt;point_iterator, bool&gt;</code>。</li>
+<li><code>erase(x)</code>：从树中删除一个元素&#x2F;迭代器 $x$，返回一个 <code>bool</code> 表明是否删除成功。</li>
+<li><code>order_of_key(x)</code>：返回 $x$ 以 <code>Cmp_Fn</code> 比较的排名，排名为 $&lt; x$ 的数的个数。</li>
+<li><code>find_by_order(x)</code>：返回 <code>Cmp_Fn</code> 比较的排名所对应元素的迭代器，排名区间为 $[0, siz-1]$。</li>
+<li><code>lower_bound(x)</code>：以 <code>Cmp_Fn</code> 比较做 <code>lower_bound</code>，返回迭代器。</li>
+<li><code>upper_bound(x)</code>：以 <code>Cmp_Fn</code> 比较做 <code>upper_bound</code>，返回迭代器。</li>
+<li><code>join(x)</code>：将 $x$ 树并入当前树，前提是两棵树的类型一样，$x$ 树被删除。</li>
+<li><code>split(x,b)</code>：以 <code>Cmp_Fn</code> 比较，小于等于 $x$ 的属于当前树，其余的属于 $b$ 树。</li>
+<li><code>empty()</code>：返回是否为空。</li>
+<li><code>size()</code>：返回大小。</li>
+</ul>
+<hr>
+<p>首先 <code>pbds</code> 是不支持区间翻转的，所以这个比 $\tt set$ 优秀的一点仅仅是在于查询排名和第 $K$ 大，还有平衡树的分裂合并。</p>
+<blockquote>
+<p>合并是按照值进行分裂的，而不是按照大小分裂的，不过这个也无关紧要。</p>
+</blockquote>
+<p>对于平衡树是<strong>去重的</strong>。</p>
+<p><a target="_blank" rel="noopener" href="https://loj.ac/s/1436294">#104. 普通平衡树</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/extc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> __gnu_cxx;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> __gnu_pbds;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> Legendgod &#123;</span><br><span class="line">	<span class="keyword">namespace</span> Read &#123;</span><br><span class="line"><span class="comment">//		#define Fread</span></span><br><span class="line">		<span class="meta">#<span class="keyword">ifdef</span> Fread</span></span><br><span class="line">		<span class="type">const</span> <span class="type">int</span> Siz = (<span class="number">1</span> &lt;&lt; <span class="number">21</span>) + <span class="number">5</span>;</span><br><span class="line">		<span class="type">char</span> *iS, *iT, buf[Siz];</span><br><span class="line">		<span class="meta">#<span class="keyword">define</span> gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )</span></span><br><span class="line">		<span class="meta">#<span class="keyword">define</span> getchar gc</span></span><br><span class="line">		<span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">		<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">		<span class="function"><span class="type">void</span> <span class="title">r1</span><span class="params">(T &amp;x)</span> </span>&#123;</span><br><span class="line">		    x = <span class="number">0</span>;</span><br><span class="line">			<span class="function"><span class="type">char</span> <span class="title">c</span><span class="params">(getchar())</span></span>;</span><br><span class="line">			<span class="function"><span class="type">int</span> <span class="title">f</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">			<span class="keyword">for</span>(; !<span class="built_in">isdigit</span>(c); c = <span class="built_in">getchar</span>()) <span class="keyword">if</span>(c == <span class="string">&#x27;-&#x27;</span>) f = <span class="number">-1</span>;</span><br><span class="line">			<span class="keyword">for</span>(; <span class="built_in">isdigit</span>(c); c = <span class="built_in">getchar</span>()) x = (x &lt;&lt; <span class="number">1</span>) + (x &lt;&lt; <span class="number">3</span>) + (c ^ <span class="number">48</span>);</span><br><span class="line">			x *= f;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>...Args&gt;</span><br><span class="line">		<span class="function"><span class="type">void</span> <span class="title">r1</span><span class="params">(T &amp;x, Args&amp;...arg)</span> </span>&#123;</span><br><span class="line">			<span class="built_in">r1</span>(x), <span class="built_in">r1</span>(arg...);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="meta">#<span class="keyword">undef</span> getchar</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Read;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">2e5</span> + <span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> int64;</span><br><span class="line">tree&lt;int64, null_type, less&lt;int64&gt;, rb_tree_tag, tree_order_statistics_node_update&gt; rb;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i, j;</span><br><span class="line">    <span class="built_in">r1</span>(n);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) &#123;</span><br><span class="line">        int64 opt, x, ans;</span><br><span class="line">        <span class="built_in">r1</span>(opt, x), x &lt;&lt;= <span class="number">20</span>;</span><br><span class="line">        <span class="keyword">switch</span>(opt) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>: rb.<span class="built_in">insert</span>(x + i); <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>: rb.<span class="built_in">erase</span>(rb.<span class="built_in">lower_bound</span>(x)); <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">3</span>: <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, <span class="number">1</span> + rb.<span class="built_in">order_of_key</span>(x)); <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">4</span>: ans = *rb.<span class="built_in">find_by_order</span>((x &gt;&gt; <span class="number">20</span>) - <span class="number">1</span>), <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, ans &gt;&gt; <span class="number">20</span>); <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">5</span>: ans = *-- rb.<span class="built_in">lower_bound</span>(x), <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, ans &gt;&gt; <span class="number">20</span>); <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">6</span>: ans = *rb.<span class="built_in">upper_bound</span>(x + n), <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, ans &gt;&gt; <span class="number">20</span>); <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">10</span></span><br><span class="line"><span class="comment">1 106465</span></span><br><span class="line"><span class="comment">4 1</span></span><br><span class="line"><span class="comment">1 317721</span></span><br><span class="line"><span class="comment">1 460929</span></span><br><span class="line"><span class="comment">1 644985</span></span><br><span class="line"><span class="comment">1 84185</span></span><br><span class="line"><span class="comment">1 89851</span></span><br><span class="line"><span class="comment">6 81968</span></span><br><span class="line"><span class="comment">1 492737</span></span><br><span class="line"><span class="comment">5 493598</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> Legendgod::<span class="built_in">main</span>(), <span class="number">0</span>; &#125;<span class="comment">//</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>但是我们可不能只看这点功能，之前说了 <code>order_of_key</code> 和 <code>find_by_order</code> 是根据 <code>tree_order_statistics_node_update</code> 来的，我们可以自己写这个更新函数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">Node_CItr</span>,<span class="keyword">class</span> <span class="title class_">Node_Itr</span>,<span class="keyword">class</span> <span class="title class_">Cmp_Fn</span>,<span class="keyword">class</span> <span class="title class_">_Alloc</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">my_node_update</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">typedef</span> my_type metadata_type;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(Node_Itr it, Node_CItr end_it)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>my_type</code> 是自己的类型，比如说 <code>int, Node, pair&lt;int, int&gt;</code> 之类的。</p>
+<p><code>Node_Itr it</code> 为调用该函数的元素的迭代器，<code>Node_CItr end_it</code> 可以 <code>const</code> 到叶子节点的迭代器，<code>Node_Itr</code> 有以下的操作：</p>
+<ol>
+<li><p><code>get_l_child(), get_r_child()</code>  获取左右儿子。</p>
+</li>
+<li><p><code>get_metadata()</code> 获取该节点的信息。</p>
+</li>
+<li><p><code>**it</code> 获取 <code>it</code> 的信息。</p>
+</li>
+</ol>
+<p>现在我们学会了更新，那么我们该如何自己写操作呢？<code>node_update</code>所有<code>public</code>方法都会在树中公开。如果我们在<code>node_update</code>中将它们声明为<code>virtual</code>，则可以访问基类中的所有<code>virtual</code>。所以，我们在类里添加以下内容：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> Node_CItr <span class="title">node_begin</span><span class="params">()</span> <span class="type">const</span> </span>= <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">virtual</span> Node_CItr <span class="title">node_end</span><span class="params">()</span> <span class="type">const</span> </span>= <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">Node_CItr</span>,<span class="keyword">class</span> <span class="title class_">Node_Itr</span>,<span class="keyword">class</span> <span class="title class_">Cmp_Fn</span>,<span class="keyword">class</span> <span class="title class_">_Alloc</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">my_node_update</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">typedef</span> <span class="type">int</span> metadata_type;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">order_of_key</span><span class="params">(pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt; x)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        Node_CItr it = <span class="built_in">node_begin</span>();</span><br><span class="line">        <span class="keyword">while</span>(it ! =<span class="built_in">node_end</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            Node_CItr l = it.<span class="built_in">get_l_child</span>();</span><br><span class="line">            Node_CItr r = it.<span class="built_in">get_r_child</span>();</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">Cmp_Fn</span>()(x,**it))</span><br><span class="line">                it = l;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                ans ++;</span><br><span class="line">                <span class="keyword">if</span>(l != <span class="built_in">node_end</span>()) ans += l.<span class="built_in">get_metadata</span>();</span><br><span class="line">                it = r;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(Node_Itr it, Node_CItr end_it)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Node_Itr l = it.<span class="built_in">get_l_child</span>();</span><br><span class="line">        Node_Itr r = it.<span class="built_in">get_r_child</span>();</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>,right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(l != end_it) left = l.<span class="built_in">get_metadata</span>();</span><br><span class="line">        <span class="keyword">if</span>(r != end_it) right = r.<span class="built_in">get_metadata</span>();</span><br><span class="line">        <span class="built_in">const_cast</span>&lt;<span class="type">int</span>&amp;&gt;(it.<span class="built_in">get_metadata</span>()) = left + right + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> Node_CItr <span class="title">node_begin</span><span class="params">()</span> <span class="type">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> Node_CItr <span class="title">node_end</span><span class="params">()</span> <span class="type">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__gnu_pbds ::priority_queue&lt;T, Compare, Tag, Allocator&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="模板形参"><a href="#模板形参" class="headerlink" title="模板形参"></a>模板形参</h4><ul>
+<li><code>T</code>: 储存的元素类型</li>
+<li><code>Compare</code>: 提供严格的弱序比较类型</li>
+<li><code>Tag</code>: 是 <code>__gnu_pbds</code> 提供的不同的五种堆，Tag 参数默认是 <code>pairing_heap_tag</code> 五种分别是：</li>
+<li><code>pairing_heap_tag</code>：配对堆 官方文档认为在非原生元素（如自定义结构体&#x2F;<code>std :: string</code>&#x2F;<code>pair</code>) 中，配对堆表现最好</li>
+<li><code>binary_heap_tag</code>：二叉堆 官方文档认为在原生元素中二叉堆表现最好，不过我测试的表现并没有那么好</li>
+<li><code>binomial_heap_tag</code>：二项堆 二项堆在合并操作的表现要优于二叉堆，但是其取堆顶元素操作的复杂度比二叉堆高</li>
+<li><code>rc_binomial_heap_tag</code>：冗余计数二项堆</li>
+<li><code>thin_heap_tag</code>：除了合并的复杂度都和 Fibonacci 堆一样的一个 tag</li>
+<li><code>Allocator</code>：空间配置器，由于 OI 中很少出现，故这里不做讲解</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">__gnu_pbds ::priority_queue&lt;<span class="type">int</span>&gt; </span><br><span class="line">__gnu_pbds::priority_queue&lt;<span class="type">int</span>, greater&lt;<span class="type">int</span>&gt; &gt;</span><br><span class="line">__gnu_pbds ::priority_queue&lt;<span class="type">int</span>, greater&lt;<span class="type">int</span>&gt;, pairing_heap_tag&gt;</span><br><span class="line">__gnu_pbds ::priority_queue&lt;<span class="type">int</span>&gt;::point_iterator id; <span class="comment">// 迭代器</span></span><br><span class="line"><span class="comment">// 在 modify 和 push 的时候都会返回一个 point_iterator，下文会详细的讲使用方法</span></span><br><span class="line">id = q.<span class="built_in">push</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="成员函数-1"><a href="#成员函数-1" class="headerlink" title="成员函数"></a>成员函数</h4><ul>
+<li><code>push()</code>: 向堆中压入一个元素，返回该元素位置的迭代器。</li>
+<li><code>pop()</code>: 将堆顶元素弹出。</li>
+<li><code>top()</code>: 返回堆顶元素。</li>
+<li><code>size()</code> 返回元素个数。</li>
+<li><code>empty()</code> 返回是否非空。</li>
+<li><code>modify(point_iterator, const key)</code>: 把迭代器位置的 <code>key</code> 修改为传入的 <code>key</code>，并对底层储存结构进行排序。</li>
+<li><code>erase(point_iterator)</code>: 把迭代器位置的键值从堆中擦除。</li>
+<li><code>join(__gnu_pbds :: priority_queue &amp;other)</code>: 把 <code>other</code> 合并到 <code>*this</code> 并把 <code>other</code> 清空。</li>
+</ul>
+<hr>
+<p>只有 <code>pairing_heap_tag</code> 比较快，不然 <code>std::priority</code> 就已经很不错了。</p>
+<p>根据试验测试，配对堆对于图稍微强的一点的情况有较为明显的优化：</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/843/problem/D">Problem - D - Codeforces</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/extc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> __gnu_pbds;</span><br><span class="line"><span class="keyword">namespace</span> Legendgod &#123;</span><br><span class="line">	<span class="keyword">namespace</span> Read &#123;</span><br><span class="line">		<span class="meta">#<span class="keyword">define</span> Fread</span></span><br><span class="line">		<span class="meta">#<span class="keyword">ifdef</span> Fread</span></span><br><span class="line">		<span class="type">const</span> <span class="type">int</span> Siz = (<span class="number">1</span> &lt;&lt; <span class="number">21</span>) + <span class="number">5</span>;</span><br><span class="line">		<span class="type">char</span> *iS, *iT, buf[Siz];</span><br><span class="line">		<span class="meta">#<span class="keyword">define</span> gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )</span></span><br><span class="line">		<span class="meta">#<span class="keyword">define</span> getchar gc</span></span><br><span class="line">		<span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">		<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">		<span class="function"><span class="type">void</span> <span class="title">r1</span><span class="params">(T &amp;x)</span> </span>&#123;</span><br><span class="line">		    x = <span class="number">0</span>;</span><br><span class="line">			<span class="function"><span class="type">char</span> <span class="title">c</span><span class="params">(getchar())</span></span>;</span><br><span class="line">			<span class="function"><span class="type">int</span> <span class="title">f</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">			<span class="keyword">for</span>(; !<span class="built_in">isdigit</span>(c); c = <span class="built_in">getchar</span>()) <span class="keyword">if</span>(c == <span class="string">&#x27;-&#x27;</span>) f = <span class="number">-1</span>;</span><br><span class="line">			<span class="keyword">for</span>(; <span class="built_in">isdigit</span>(c); c = <span class="built_in">getchar</span>()) x = (x &lt;&lt; <span class="number">1</span>) + (x &lt;&lt; <span class="number">3</span>) + (c ^ <span class="number">48</span>);</span><br><span class="line">			x *= f;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>...Args&gt;</span><br><span class="line">		<span class="function"><span class="type">void</span> <span class="title">r1</span><span class="params">(T &amp;x, Args&amp;...arg)</span> </span>&#123;</span><br><span class="line">			<span class="built_in">r1</span>(x), <span class="built_in">r1</span>(arg...);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="meta">#<span class="keyword">undef</span> getchar</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Read;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">2e5</span> + <span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> n, m, Q;</span><br><span class="line">vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; &gt; vc[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> v,<span class="type">int</span> i)</span> </span>&#123;</span><br><span class="line">    vc[u].<span class="built_in">push_back</span>(&#123;v, i&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> int64;</span><br><span class="line"><span class="type">const</span> int64 inf = <span class="number">1e15</span>;</span><br><span class="line">int64 d[maxn], w[maxn];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">    <span class="type">int</span> id; int64 dis;</span><br><span class="line">    <span class="type">int</span> <span class="keyword">operator</span> &lt; (<span class="type">const</span> Node &amp;z) <span class="type">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> dis &gt; z.dis;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">__gnu_pbds :: priority_queue&lt;Node&gt; q;</span><br><span class="line"><span class="type">int</span> vis[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Dij</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(!q.<span class="built_in">empty</span>()) q.<span class="built_in">pop</span>();</span><br><span class="line">    <span class="built_in">fill</span>(d + <span class="number">1</span>, d + n + <span class="number">1</span>, inf);</span><br><span class="line">    d[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    q.<span class="built_in">push</span>(&#123;<span class="number">1</span>, <span class="number">0</span>&#125;);</span><br><span class="line">    <span class="keyword">while</span>(!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        <span class="type">int</span> u = q.<span class="built_in">top</span>().id; q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">if</span>(vis[u]) <span class="keyword">continue</span>;</span><br><span class="line">        vis[u] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> i : vc[u]) &#123;</span><br><span class="line">            <span class="type">int</span> to = i.first; int64 wt = w[i.second];</span><br><span class="line">            <span class="keyword">if</span>(d[to] &gt; d[u] + wt) &#123;</span><br><span class="line">                d[to] = d[u] + wt;</span><br><span class="line">                <span class="keyword">if</span>(!vis[to]) q.<span class="built_in">push</span>(&#123;to, d[to]&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">queue&lt;<span class="type">int</span>&gt; buc[maxn];</span><br><span class="line"></span><br><span class="line">int64 ad[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i, j;</span><br><span class="line">    <span class="built_in">r1</span>(n, m, Q);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= m; ++ i) &#123;</span><br><span class="line">        <span class="type">int</span> u, v;</span><br><span class="line">        <span class="built_in">r1</span>(u, v, w[i]);</span><br><span class="line">        <span class="built_in">add</span>(u, v, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">Dij</span>();</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) <span class="keyword">if</span>(d[i] == inf) d[i] = <span class="number">-1</span>;</span><br><span class="line"><span class="comment">//    for(i = 1; i &lt;= n; ++ i) printf(&quot;%d : %lld\n&quot;, i, d[i]);</span></span><br><span class="line">    <span class="keyword">while</span>(Q --) &#123;</span><br><span class="line">        <span class="type">int</span> opt, c;</span><br><span class="line">        <span class="built_in">r1</span>(opt); <span class="keyword">if</span>(opt == <span class="number">1</span>) &#123; <span class="built_in">r1</span>(c); <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, d[c]); &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">int</span> c; <span class="built_in">r1</span>(c);</span><br><span class="line">            <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= c; ++ i) &#123; <span class="type">int</span> x; <span class="built_in">r1</span>(x); w[x] ++; &#125;</span><br><span class="line">            <span class="built_in">fill</span>(ad + <span class="number">1</span>, ad + n + <span class="number">1</span>, c + <span class="number">1</span>);</span><br><span class="line">            buc[ad[<span class="number">1</span>] = <span class="number">0</span>].<span class="built_in">emplace</span>(<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> _ = <span class="number">0</span>; _ &lt;= c; ++ _) &#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> v; !buc[_].<span class="built_in">empty</span>(); buc[_].<span class="built_in">pop</span>()) &#123;</span><br><span class="line">                    v = buc[_].<span class="built_in">front</span>();</span><br><span class="line">                    <span class="keyword">if</span>(ad[v] != _) <span class="keyword">continue</span>;</span><br><span class="line"><span class="comment">//                    printf(&quot;%d : %d\n&quot;, _, v);</span></span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">auto</span> x : vc[v]) &#123;</span><br><span class="line">                        <span class="type">int</span> to = x.first; int64 wt = w[x.second];</span><br><span class="line">                        int64 tmp = d[v] + ad[v] + wt - d[to];</span><br><span class="line"><span class="comment">//                        printf(&quot;(%d ,%d) = wt = %lld\n&quot;, v, to, wt);</span></span><br><span class="line">                        <span class="keyword">if</span>(tmp &lt; ad[to]) buc[ad[to] = tmp].<span class="built_in">emplace</span>(to);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) <span class="keyword">if</span>(ad[i] != c + <span class="number">1</span>) d[i] += ad[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> Legendgod::<span class="built_in">main</span>(), <span class="number">0</span>; &#125;<span class="comment">//legendgod</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="tt-Hash-Table"><a href="#tt-Hash-Table" class="headerlink" title="$\tt Hash\ Table$"></a>$\tt Hash\ Table$</h3><p>就两种：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cc_hash_table&lt;string, <span class="type">int</span>&gt; mp1;<span class="comment">// 平方探测</span></span><br><span class="line">gp_hash_table&lt;string, <span class="type">int</span>&gt; mp2;<span class="comment">// 链式探测</span></span><br></pre></td></tr></table></figure>
+
+<p>一般来说平方探测要快一点，但是哈希冲突比较多，用处不是很明显，建议使用 <code>unorder_map</code>，当然这些都会被卡。需要用手写 $\tt hash$ 函数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">custom_hash</span> &#123;</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">uint64_t</span> <span class="title">splitmix64</span><span class="params">(<span class="type">uint64_t</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// http://xorshift.di.unimi.it/splitmix64.c</span></span><br><span class="line">        x += <span class="number">0x9e3779b97f4a7c15</span>;</span><br><span class="line">        x = (x ^ (x &gt;&gt; <span class="number">30</span>)) * <span class="number">0xbf58476d1ce4e5b9</span>;</span><br><span class="line">        x = (x ^ (x &gt;&gt; <span class="number">27</span>)) * <span class="number">0x94d049bb133111eb</span>;</span><br><span class="line">        <span class="keyword">return</span> x ^ (x &gt;&gt; <span class="number">31</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">size_t</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="type">uint64_t</span> x)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        <span class="type">static</span> <span class="type">const</span> <span class="type">uint64_t</span> FIXED_RANDOM = chrono::steady_clock::<span class="built_in">now</span>().<span class="built_in">time_since_epoch</span>().<span class="built_in">count</span>();</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">splitmix64</span>(x + FIXED_RANDOM);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//unorder_map&lt;long long, int, custom_hash&gt; mp;</span></span><br><span class="line"><span class="comment">//cc_hash_table&lt;long long, int, custom_hash&gt; mp;</span></span><br><span class="line"><span class="comment">//gp_hash_table&lt;long long, int, custom_hash&gt; mp;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>所以，如果能用 <code>map</code> 就最好用吧。</p>
+</blockquote>
+<h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><ul>
+<li><p><code>mp1[x] = y</code>。</p>
+</li>
+<li><p><code>mp1.find(x)</code>。</p>
+</li>
+<li><p><code>map</code> 能用的基本都能用。</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">legendgoddes</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hater.ml/2022/04/07/pbds-notes/">https://hater.ml/2022/04/07/pbds-notes/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hater.ml" target="_blank">Legendgod's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/">线段树</a><a class="post-meta__tags" href="/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/">平衡树</a><a class="post-meta__tags" href="/tags/%E5%A0%86/">堆</a><a class="post-meta__tags" href="/tags/Hash/">Hash</a></div><div class="post_share"><div class="social-share" data-image="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=772822171" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://npm.elemecdn.com/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://npm.elemecdn.com/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/04/08/usaco-solution-2022us-cu/"><img class="prev-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=160049661" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">USACO 2022 US Open Contest Cu 题解</div></div></a></div><div class="next-post pull-right"><a href="/2022/04/06/cf-solution-1508d/"><img class="next-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=643090942" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CF1508D Swap Pass 题解</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/03/21/remind-ds2/" title="数据结构回忆2"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=336320095" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-21</div><div class="title">数据结构回忆2</div></div></a></div><div><a href="/2021/09/26/SP1716/" title="SP1716 GSS3 - Can you answer these queries III"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=551458255" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-26</div><div class="title">SP1716 GSS3 - Can you answer these queries III</div></div></a></div><div><a href="/2022/04/22/at-solution-agc023e/" title="AT3956 [AGC023E] Inversions 题解"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=325339839" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-22</div><div class="title">AT3956 [AGC023E] Inversions 题解</div></div></a></div><div><a href="/2022/03/28/bzoj4369/" title="#4369. [IOI2015]teams分组 题解"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=664361690" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-28</div><div class="title">#4369. [IOI2015]teams分组 题解</div></div></a></div><div><a href="/2021/11/16/cf-solution-1404c/" title="CF1404C Fixed Point Removal"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=131865876" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-16</div><div class="title">CF1404C Fixed Point Removal</div></div></a></div><div><a href="/2022/03/31/cf-solution-1635f/" title="CF1635F Closest Pair 题解"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=45834659" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-31</div><div class="title">CF1635F Closest Pair 题解</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">legendgoddes</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/legendgoddess"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/legendgoddess" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3456261198@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B3%E8%A1%A1%E6%A0%91"><span class="toc-number">1.</span> <span class="toc-text">平衡树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.</span> <span class="toc-text">成员函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86"><span class="toc-number">2.</span> <span class="toc-text">堆</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E5%BD%A2%E5%8F%82"><span class="toc-number">2.1.</span> <span class="toc-text">模板形参</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0-1"><span class="toc-number">2.2.</span> <span class="toc-text">成员函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tt-Hash-Table"><span class="toc-number">3.</span> <span class="toc-text">$\tt Hash\ Table$</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">用法</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=239604752" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UOJ 269 [清华集训2016] 如何优雅地求和 题解"/></a><div class="content"><a class="title" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解">UOJ 269 [清华集训2016] 如何优雅地求和 题解</a><time datetime="2022-06-13T11:55:00.000Z" title="发表于 2022-06-13 19:55:00">2022-06-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=119753057" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="#593. 新年的军队 题解"/></a><div class="content"><a class="title" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解">#593. 新年的军队 题解</a><time datetime="2022-06-01T23:50:00.000Z" title="发表于 2022-06-02 07:50:00">2022-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=850658581" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P4548 [CTSC2006]歌唱王国"/></a><div class="content"><a class="title" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国">P4548 [CTSC2006]歌唱王国</a><time datetime="2022-05-29T12:17:00.000Z" title="发表于 2022-05-29 20:17:00">2022-05-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=415064773" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AT2369 [AGC013C] Ants on a Circle 多解法讨论"/></a><div class="content"><a class="title" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论">AT2369 [AGC013C] Ants on a Circle 多解法讨论</a><time datetime="2022-04-29T08:01:00.000Z" title="发表于 2022-04-29 16:01:00">2022-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=199018446" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P7987 [USACO21DEC] Paired Up G 题解"/></a><div class="content"><a class="title" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解">P7987 [USACO21DEC] Paired Up G 题解</a><time datetime="2022-04-28T12:27:00.000Z" title="发表于 2022-04-28 20:27:00">2022-04-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By legendgoddes</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://npm.elemecdn.com/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://npm.elemecdn.com/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadUtterances () {
+  let ele = document.createElement('script')
+  ele.setAttribute('id', 'utterances_comment')
+  ele.setAttribute('src', 'https://utteranc.es/client.js')
+  ele.setAttribute('repo', 'legendgoddess/Blog')
+  ele.setAttribute('issue-term', 'pathname')
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+  ele.setAttribute('theme', nowTheme)
+  ele.setAttribute('crossorigin', 'anonymous')
+  ele.setAttribute('async', 'true')
+  document.getElementById('utterances-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function utterancesTheme () {
+  if (document.querySelector('.utterances-frame')) {
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+    const message = {
+      type: 'set-theme',
+      theme: theme
+    };
+    const iframe = document.querySelector('.utterances-frame');
+    iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+}
+
+if ('Utterances' === 'Utterances' || !false) {
+  if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+  else loadUtterances()
+} else {
+  function loadOtherComment () {
+    loadUtterances()
+  }
+}</script></div><script src="https://npm.elemecdn.com/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

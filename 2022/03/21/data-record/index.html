@@ -1,0 +1,387 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>每日随记 | Legendgod's Blog</title><meta name="author" content="legendgoddes"><meta name="copyright" content="legendgoddes"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="$\tt 2022-3-31$ 逃了一天模拟赛，自己写题。 话说 $\tt Hater$ 的题好难呀，一天只搞了 $4$ 题。 然后学了一个 bitset 关于字符串匹配的应用 | Legendgod’s Blog。 感觉自己图论和数据结构都不是很行，就已经拖后腿了。 之前写的 $\tt ds$ 浅谈都没有更新了。 哦对了，还有一个 $\tt \large \text{分块}$ 我不会啊啊啊啊啊">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日随记">
+<meta property="og:url" content="https://hater.ml/2022/03/21/data-record/index.html">
+<meta property="og:site_name" content="Legendgod&#39;s Blog">
+<meta property="og:description" content="$\tt 2022-3-31$ 逃了一天模拟赛，自己写题。 话说 $\tt Hater$ 的题好难呀，一天只搞了 $4$ 题。 然后学了一个 bitset 关于字符串匹配的应用 | Legendgod’s Blog。 感觉自己图论和数据结构都不是很行，就已经拖后腿了。 之前写的 $\tt ds$ 浅谈都没有更新了。 哦对了，还有一个 $\tt \large \text{分块}$ 我不会啊啊啊啊啊">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=866861397">
+<meta property="article:published_time" content="2022-03-21T13:21:21.000Z">
+<meta property="article:modified_time" content="2022-11-11T12:39:51.614Z">
+<meta property="article:author" content="legendgoddes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=866861397"><link rel="shortcut icon" href="/image/favicon.ico"><link rel="canonical" href="https://hater.ml/2022/03/21/data-record/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://npm.elemecdn.com/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '每日随记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: false,
+  postUpdate: '2022-11-11 20:39:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Legendgod's Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Legendgod's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">每日随记<a class="post-edit-link" href="https://github.com/legendgoddess/Blog/edit/master/source/_posts/data-record.md" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-03-21T13:21:21.000Z" title="发表于 2022-03-21 21:21:21">2022-03-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-11T12:39:51.614Z" title="更新于 2022-11-11 20:39:51">2022-11-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="每日随记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><hr>
+<p>$\tt 2022-3-31$</p>
+<p>逃了一天模拟赛，自己写题。</p>
+<p>话说 $\tt Hater$ 的题好难呀，一天只搞了 $4$ 题。</p>
+<p>然后学了一个 <a target="_blank" rel="noopener" href="https://legendgod.ml/2022/03/31/bitset-apply1/">bitset 关于字符串匹配的应用 | Legendgod’s Blog</a>。</p>
+<p>感觉自己图论和数据结构都不是很行，就已经拖后腿了。</p>
+<p>之前写的 $\tt ds$ 浅谈都没有更新了。</p>
+<p>哦对了，还有一个 $\tt \large \text{分块}$ 我不会啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊。</p>
+<hr>
+<p>$\tt 2022-3-30$</p>
+<p>还是考试，别人都 $\tt AK$ 了，就我只会 $\tt T1$。</p>
+<p>$\tt T2$ 和正解一样，没有调出来，$\tt T3$ 本质上可以建图之后进行 $\tt Dp$。</p>
+<p>提一下 $\tt T3$：<a target="_blank" rel="noopener" href="https://loj.ac/p/2727"># 2727. 「JOI 2015 Final」舞会</a></p>
+<p>发现本质上就是将 $3$ 个数合并成一个数，而且对于最终答案我们显然可以二分变成 $0&#x2F;1$ 的情况。</p>
+<p>之后我们考虑合并的话直接重构树，然后从下到上进行 $\tt Dp$ 设 $f(i)$ 表示满足 $i$ 是 $1$ 的最小花费。</p>
+<p>转移显然是 $f(i) &#x3D; f(s1) + f(s2) + f(s3) - \max(f(s1), f(s2), f(s3))$。</p>
+<blockquote>
+<p>建图比较妙。</p>
+</blockquote>
+<hr>
+<p>$\tt 2022-3-29$</p>
+<p>考试。</p>
+<p>$\tt T1$ 被卡常了，$\tt T2$ 发现是环了直接暴力对于拆分数 $\tt Dp$ 就行了，$\tt T3$ 一个神仙题， 有大师用 $\tt tarjan$ 直接过了。</p>
+<p>日常被吊打。</p>
+<hr>
+<p>$\tt 2022-3-28$</p>
+<p>日常考试。</p>
+<p>$\tt T1$ 考试时候过了，蠢蛋题。</p>
+<p>$\tt T2$ 需要转化一下平面上二维数点，之后单调栈维护一个东西，比较有趣。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://legendgod.ml/2022/03/28/bzoj4369/">#4369. [IOI2015]teams分组 题解 | Legendgod’s Blog</a> 。</p>
+</blockquote>
+<p>$\tt T3$ 需要使用线段树维护直径不是很想写 &#x2F;qd</p>
+<hr>
+<p>$\tt 2022-3-27$</p>
+<p>完蛋了，之前忘记更新了，今天已经是 $31$ 号了。</p>
+<p>原来以为昨天是 $\tt online$ 已经考了 $6$ 天了，可以休息一下，结果教练直接一手把远古模拟赛拿来考，还是继续爆炸。</p>
+<p>持续裂开。</p>
+<hr>
+<p>$\tt 2022-3-26$</p>
+<p>今天是 $\tt noi\ online$，我说一下往年的战绩吧。</p>
+<ul>
+<li><p>我初二那年，刚学，不会打开网页，没错。我没有进去，结果保龄。</p>
+</li>
+<li><p>初三，来到 $\tt HL$ 打 $\tt online$ 的时候在家里，比较菜， 也不是很想打，就最简单的题目写了一个序列自动机。</p>
+</li>
+</ul>
+<p>话说今年题目比较简单。</p>
+<p>$\tt T1$ 我想了 $\tt 2h$，最后发现就是直接考虑一个数的合法区间，之后离线询问维护区间和就行了。</p>
+<p>$\tt T2$ 考虑区间按照长度排序之后有性质，从大到小做可以直接做，从小到大做需要建树做。</p>
+<p>$\tt T3$ 三维偏序。</p>
+<p>期望得分 $100 + 100 + 20$ 但是 $\tt T1$ 我 $n, m$ 写反了。</p>
+<blockquote>
+<p>但是总归是高兴的，毕竟也算是一种进步了吧，或者说这个东西就是安慰了 &#x2F;qd</p>
+</blockquote>
+<p>听到机房之前口头 $\tt Ak$ 的大佬都伪了，比较离谱。</p>
+<p>$\tt 2022-3-25$</p>
+<p>好像变成每隔两天更新了。</p>
+<p>打了一场模拟赛，其实别人基本上都是会 $2$ 题以上的，就我只会 $\tt T1$。但是问题尴尬的就是其他人全部挂分，就我 $\tt T1$ A 了，结果就是莫名其妙校内 $\tt rk 1$。我寻思着 $\tt T1$ 肯定是一个半幺群呀，为啥不用线段树直接整呢？</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5874">[IOI2015]horses 马 - 洛谷</a></p>
+<p>说实话这题我所有的做法都是想到过了，显然是需要考虑 $x_i, y_i$ 的性质的，发现乘到大于 $\tt mod$ 了肯定更加优，假设马不会把自己搞死，所以 $x_i \ge 1$。那么显然我们只需要维护后缀乘积刚好 $\tt &gt; mod$ 的情况就行了。</p>
+<p>可以直接对于乘积取 $\tt lg$ 变成加法，用线段树维护就行了。</p>
+<p>但是也是有用 $\tt set$ 维护最后几个有值的位置的，但是这玩意贼难写。</p>
+</blockquote>
+<p>然后开心了一整天，难得不被别人吊打的日子。</p>
+<p>$\tt 2022-3-24$</p>
+<p>想不到吧，我是同一天写的两篇。</p>
+<p>今天模拟赛，$\tt T1$ 直接建立反图就结束了，就是想不到呀。</p>
+<p>$\tt T3$ 考虑决策树是一棵二叉树，二叉树本质上就是将一个数进行二进制拆分。就算之后直接进行小数的二进制拆分判环不懂，前面的 $\tt 40$ 分总是应该能拿到的吧。</p>
+<p>$\tt T2$ 是考虑线段树维护那个位置是没有出现过的，之后维护树上一条链的情况。</p>
+<p>晚上在复习网络流和二分图，昨天那篇说了很多了，放轻松压力永远不在我这边。</p>
+<p>有梦想，但是不是每个梦想都能实现的。</p>
+<hr>
+<p>$\tt 2022-3-23$</p>
+<p>没错还是之后一天来补日记，感觉上昨天的状态不是很好，到八点钟之后基本上就没有效率了。</p>
+<p>昨天主要是订正题目之后写数据结构的博客，但是看了各位大佬的博客之后发现自己仅仅线段树方面还是有很多很多要学习的。</p>
+<blockquote>
+<p>可以确定有一点就是当初学习的时候也是很浅的，所以现在如果说要让我打一个线段树区间加，乘，我都不能有把握说是一定可以过的。</p>
+</blockquote>
+<p>线段树，平衡树，动态树，分块，分治，这几个东西可以说是完全没有系统学过的。这个就是和其他同学比如杨队，徐队他们就有十分明显的差距。有些比较显然的东西，考场上却是完全没有想到的。</p>
+<blockquote>
+<p>举个例子：我的理解上就是单纯的可以分成两部分，但是事实上我们这里可以把询问离线，之后考虑对于跨过区间的部分是可以计算，不然的话直接分治。</p>
+</blockquote>
+<p>唯一可以抱怨的就是自己真正开始学学得太晚了，算算从 $2021$ 年初开始真正知道自己应该学什么，仅仅过去了一年，从认识 $\tt OI$ 已经过去了 $3$ 年了。我学了 $1$ 年成绩差是理所当然的，正是因为如此别人学了 $6$ 年，$7$ 年甚至 $8$ 年还是在这边挣扎，我又有什么压力吗？</p>
+<p>emmm，就这样吧。</p>
+<hr>
+<p>$\tt 2022-3-22$</p>
+<p>其实已经是下一天了，来补一下日记。</p>
+<p>考试挂分有点惨烈，本来就没有多少分，一下挂分就基本没有了，晚上没有订完题目，心态有点爆炸。</p>
+<p>学了一个 $\tt Dij$ 费用流。</p>
+<hr>
+<p>$\tt 2022-3-21$ </p>
+<p>今天是开始这个的第一天，选了一个很好的时间，是这个月最 $\tt 21$ 的日子。</p>
+<p>好吧，我们说点正经的。</p>
+<p>昨天的 $\tt CF$ 属于上分场这个毋庸置疑吧，但是 $\tt D$ 的过于麻烦的实现以及不熟练的 $\tt STL$ 直接去世。最后甚至需要用一些阴间方法才能不下分，想一想 $\tt D$ 稍微快一点是前 $100$。换一句话说表现分太低了，和 $\tt VP$ 差距太远。</p>
+<p>变菜了吗？</p>
+<p>可能是吧。</p>
+<p>没有心情做题目，整体感觉上都是一种颓废但是又不划水的感觉，假努力吧。</p>
+<p>但凡少只猫陪我，我的心态就会发生微妙的变化了。</p>
+<p>还有一个事情。</p>
+<p>自己的东西都忘掉了对吧，学过的都不会了，会的都不会用了对吧，一点一点去复习吧。</p>
+<p>思维<strong>是不能短时间提升的</strong>。</p>
+<blockquote>
+<p>换句话说就是 <strong>菜会一直菜下去</strong>。</p>
+<p>不是很能接受这个事实，毕竟谁都想好，但是看到时间的减少但是实力却在下降，心态总是会发生微妙的变化的。</p>
+</blockquote>
+<p>emmm，就先说这么多吧，希望今后可以好，希望省选之前不用上$\color{red}\text{红}$了，先不掉出$\color{purple}\text{紫}$好吧。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">legendgoddes</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hater.ml/2022/03/21/data-record/">https://hater.ml/2022/03/21/data-record/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hater.ml" target="_blank">Legendgod's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=866861397" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://npm.elemecdn.com/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://npm.elemecdn.com/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/03/23/three-element-counting2/"><img class="prev-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=398162035" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">再谈三(四)元环计数</div></div></a></div><div class="next-post pull-right"><a href="/2022/03/21/remind-ds2/"><img class="next-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=336320095" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">数据结构回忆2</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">legendgoddes</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/legendgoddess"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/legendgoddess" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3456261198@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=239604752" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UOJ 269 [清华集训2016] 如何优雅地求和 题解"/></a><div class="content"><a class="title" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解">UOJ 269 [清华集训2016] 如何优雅地求和 题解</a><time datetime="2022-06-13T11:55:00.000Z" title="发表于 2022-06-13 19:55:00">2022-06-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=119753057" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="#593. 新年的军队 题解"/></a><div class="content"><a class="title" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解">#593. 新年的军队 题解</a><time datetime="2022-06-01T23:50:00.000Z" title="发表于 2022-06-02 07:50:00">2022-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=850658581" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P4548 [CTSC2006]歌唱王国"/></a><div class="content"><a class="title" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国">P4548 [CTSC2006]歌唱王国</a><time datetime="2022-05-29T12:17:00.000Z" title="发表于 2022-05-29 20:17:00">2022-05-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=415064773" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AT2369 [AGC013C] Ants on a Circle 多解法讨论"/></a><div class="content"><a class="title" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论">AT2369 [AGC013C] Ants on a Circle 多解法讨论</a><time datetime="2022-04-29T08:01:00.000Z" title="发表于 2022-04-29 16:01:00">2022-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=199018446" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P7987 [USACO21DEC] Paired Up G 题解"/></a><div class="content"><a class="title" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解">P7987 [USACO21DEC] Paired Up G 题解</a><time datetime="2022-04-28T12:27:00.000Z" title="发表于 2022-04-28 20:27:00">2022-04-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By legendgoddes</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://npm.elemecdn.com/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://npm.elemecdn.com/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadUtterances () {
+  let ele = document.createElement('script')
+  ele.setAttribute('id', 'utterances_comment')
+  ele.setAttribute('src', 'https://utteranc.es/client.js')
+  ele.setAttribute('repo', 'legendgoddess/Blog')
+  ele.setAttribute('issue-term', 'pathname')
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+  ele.setAttribute('theme', nowTheme)
+  ele.setAttribute('crossorigin', 'anonymous')
+  ele.setAttribute('async', 'true')
+  document.getElementById('utterances-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function utterancesTheme () {
+  if (document.querySelector('.utterances-frame')) {
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+    const message = {
+      type: 'set-theme',
+      theme: theme
+    };
+    const iframe = document.querySelector('.utterances-frame');
+    iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+}
+
+if ('Utterances' === 'Utterances' || !false) {
+  if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+  else loadUtterances()
+} else {
+  function loadOtherComment () {
+    loadUtterances()
+  }
+}</script></div><script src="https://npm.elemecdn.com/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

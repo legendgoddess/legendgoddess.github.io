@@ -1,0 +1,428 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>多项式浅谈 | Legendgod's Blog</title><meta name="keywords" content="多项式"><meta name="author" content="legendgoddes"><meta name="copyright" content="legendgoddes"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="$$\Large\color{blue} Jhb\color{red}\text{的多项式浅谈}$$  这个的后半部分似乎可以当做金策大佬论文的人话解读。  推销一下窝的博客,本文所有的代码都在窝的博客上。  多项式主要的用途是用来优化式子，因为笔者也刚刚入门多项式，可能谈到的内容也十分浅，有错请直接开 D。 我们从大整数乘法入手，我们经常写的算法是通过枚举两个整数的每一位，通过位权来更新答案，这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多项式浅谈">
+<meta property="og:url" content="https://hater.ml/2021/04/10/function_and_x/index.html">
+<meta property="og:site_name" content="Legendgod&#39;s Blog">
+<meta property="og:description" content="$$\Large\color{blue} Jhb\color{red}\text{的多项式浅谈}$$  这个的后半部分似乎可以当做金策大佬论文的人话解读。  推销一下窝的博客,本文所有的代码都在窝的博客上。  多项式主要的用途是用来优化式子，因为笔者也刚刚入门多项式，可能谈到的内容也十分浅，有错请直接开 D。 我们从大整数乘法入手，我们经常写的算法是通过枚举两个整数的每一位，通过位权来更新答案，这">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=896692520">
+<meta property="article:published_time" content="2021-04-10T10:14:42.000Z">
+<meta property="article:modified_time" content="2022-11-11T12:39:51.618Z">
+<meta property="article:author" content="legendgoddes">
+<meta property="article:tag" content="多项式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=896692520"><link rel="shortcut icon" href="/image/favicon.ico"><link rel="canonical" href="https://hater.ml/2021/04/10/function_and_x/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://npm.elemecdn.com/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '多项式浅谈',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-11-11 20:39:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Legendgod's Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Legendgod's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">多项式浅谈<a class="post-edit-link" href="https://github.com/legendgoddess/Blog/edit/master/source/_posts/function_and_x.md" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-04-10T10:14:42.000Z" title="发表于 2021-04-10 18:14:42">2021-04-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-11T12:39:51.618Z" title="更新于 2022-11-11 20:39:51">2022-11-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="多项式浅谈"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><p>$$<br>\Large\color{blue} Jhb\color{red}\text{的多项式浅谈}<br>$$</p>
+<blockquote>
+<p>这个的后半部分似乎可以当做金策大佬论文的人话解读。</p>
+</blockquote>
+<p>推销一下<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/legendgod/zhang-ji-xiang-mu-duo-xiang-shi-ji-lie">窝的博客</a>,本文所有的代码都在窝的博客上。</p>
+<hr>
+<p>多项式主要的用途是用来优化式子，因为笔者也刚刚入门多项式，可能谈到的内容也十分浅，有错请直接开 D。</p>
+<p>我们从大整数乘法入手，我们经常写的算法是通过枚举两个整数的每一位，通过位权来更新答案，这里显然是 $O(n^2)$ 。还有一种是分治乘法，还是通过位权，原理是 ：<br>$$<br>(Ax^m + B)(Cx^m + D) &#x3D;ACx^{2m} + ((A + B)(C +D) - AC - BD))x^m + BD<br>$$<br>我们直接分治可以算出答案复杂度 $O(n^{2})$ 复杂度比较优秀？其实这种想法和之后的 MTT 优化是相同的。其中 n 表示位数。</p>
+<blockquote>
+<p>复杂度怎么算？ $T(n) &#x3D; 4T(\frac{n}{2}) + O(n)$</p>
+<p>$T(n)  &#x3D; O(n^2)$</p>
+</blockquote>
+<p>之后我们考虑优化 $ACx^m + ((A - B)(D - C) + AC + BD) \times x^{\frac{n}{2}} + BD$ 这边只有 3 个乘积可以考虑优化 $T(n) &#x3D; 3T(\frac{n}{2}) + O(n) &#x3D; O(n^{\log_23})$ 可以接受。</p>
+<blockquote>
+<p>主定理：<br>$$<br>T(n) &#x3D; aT(\lceil\frac{n}{b}\rceil) &#x3D; O(n^d)\<br>T(n) &#x3D;<br>\begin{cases}<br>O(n^d), d &gt; log_ba \<br>O(n^d \log n), d &#x3D; log_b a\<br>O(n^{log_ba}), d &lt; log_ba<br>\end{cases}<br>$$</p>
+</blockquote>
+<p>但是我们可以我们 FFT 将系数表示法变成点值表示法，从而得到答案复杂度 $O(n \log n)$。</p>
+<p>我们常用的表示法是系数表示法 $f(x) &#x3D; \sum_{i &#x3D; 0} a_i x^i $  我们可以从中取 n + 1 个点来表示这个多项式，也就是 $f(x) &#x3D; {a_0,a_1\dots a_n}$</p>
+<p>DFT 就是把一个多项式从系数转化成点值，IDFT 反之。</p>
+<h2 id="FFT"><a href="#FFT" class="headerlink" title="FFT"></a>FFT</h2><p>对于两个个点值表示法的多项式 $f(x) &#x3D; (x_0, f(x_0)) \dots (x_n, f(x_n))$ 和 $g(x) &#x3D; (x_0, g(x_0)) \dots (x_n,g(x_n))$</p>
+<p>设 $F(x) &#x3D; f(x) \cdot g(x) &#x3D; (x_0, f(x_0)g(x_0)) \dots (x_n, f(x_n)g(x_n))$  可以看出我们能够快速得将其相乘。</p>
+<p>但是直接暴力 DFT,IDFT 是 $O(n^2)$ 的，有些暴力还是用高斯消元。。。</p>
+<p>我们发现 $x^i$ 在 $x &#x3D; 1,-1$ 的时候是很简单的，这会让我们想到圆，之后我们需要 n + 1 个数，那么我们不妨用模长为 1 的复数。</p>
+<p>$\omega_n &#x3D; e^{\frac{2\pi i}{n}}$ 则 $x^n &#x3D; 1$ 的解集为 ${\omega_n^k|k &#x3D; 0,1\dots n - 1}$ 也就是将一个圆分成 n 等分。</p>
+<p>$\omega_n &#x3D; e^{\frac{2\pi i}{n}} &#x3D; cos (\frac{2\pi}{n}) + i \cdot sin(\frac{2\pi}{n})$</p>
+<p>$\text{单位圆}$</p>
+<p>在一个复平面上，以原点为圆心, 1 为半径作圆，所得到的圆就是单位圆，将其 n 等分（ n 等分点就是终点），形成 n 个向量，设幅角为正且最小的向量 $w_n$ ，称为 n 次单位根</p>
+<p>剩下的复数为 $w_n^2 \dots w_n^n$</p>
+<p>$w_n^0 &#x3D; w^n_n &#x3D; 1$</p>
+<p>$w_n^k &#x3D; \cos k \times \frac{2\pi}{n} + i \sin k \times \frac{2\pi}{n}$</p>
+<p>单位根的幅角为周角的 $\frac{1}{n}$</p>
+<p>$w_n^{\frac{n}{2} + k} &#x3D; - w_n^k$</p>
+<blockquote>
+<p>证明考虑将其展开 $w_n^{\frac{n}{2}} \times w_n^k$</p>
+<p>将左边的那项展开得到 $-1$</p>
+</blockquote>
+<p>$(w^k_n)^2 &#x3D; w_{\frac{n}{2}}^k$</p>
+<blockquote>
+<p>证明考虑，复数相乘，幅角相加，模长为 $1 \times 1 &#x3D;1$ 因为都是单位根</p>
+</blockquote>
+<hr>
+<p>$FFT​$</p>
+<p>首先我们先假设一个多项式的系数 <del>假设 n 为偶数</del> $A(x) &#x3D; (a_0,a_1,a_{n - 1})$</p>
+<p>$$<br>A(x)&#x3D;a_0+a_1<em>x+a_2</em>{x^2}+a_3*{x^3}+a_4*{x^4}+a_5*{x^5}+ \dots+a_{n-2}*x^{n-2}+a_{n-1}*x^{n-1}<br>$$</p>
+<p>我们把它的下标按奇偶性分类<br>$$<br>\begin{cases}<br>A(x) &#x3D; \sum_{i &#x3D; 0} ^ {n -1} a_i x^i \\<br>A_1(x) &#x3D; \sum_{i &#x3D; 0} ^ {m - 1} a_{2i} x^{2i} \\<br>A_2(x) &#x3D; \sum_{i &#x3D; 0} ^ {m - 1}a_{2i + 1} x ^{2i + 1} \\<br>m &#x3D; \frac{n}{2}<br>\end{cases}<br>$$<br>所以我们可以得到</p>
+<p>$A(x) &#x3D; \sum_{i &#x3D; 0} ^ {m - 1}a_{2i} (x^2) ^i + x\sum_{i &#x3D; 0} ^ {m - 1} a_{2i + 1} (x^2) ^ i$</p>
+<p>所以我们可以将其分成两部分进行递归，也就是 $A(x) &#x3D; A_1(x^2) + x A_2(x^2)$</p>
+<p>但是根据主定理，这是 $O(n^2)$</p>
+<p>我们考虑 $A(w^k_n) &#x3D; A_1((w_n^k)^2) + w_n^k A_1((w_n^k)^2)$</p>
+<blockquote>
+<p>$(w_n^k)^2 &#x3D; w_{\frac{n}{2}} ^ k$</p>
+</blockquote>
+<p>所以可以化简<br>$$<br>\begin{aligned}<br>m &amp;&#x3D; \frac{n}{2} \\<br>A(w_n^k) &amp;&#x3D; A_1(w_m^k) + w_n^kA_2(w^k_m) \\<br>&amp;\text{之后来看后半部分} \\<br>A(w_n^{k + m}) &amp;&#x3D; A_1(w_m^k) - w_{n}^kA_2(w_m^k)<br>\end{aligned}<br>$$<br>发现只要知道了 RHS 就可以直接求出， 复杂度为 $O(n \log n)$</p>
+<p>这叫蝴蝶变换</p>
+<hr>
+<p>$IDFF$</p>
+<p>这里就只想结论 $B(x) &#x3D; \sum_{i &#x3D; 0} ^ {n- 1} b_i \times x^i$ 在 $w_n^{ki}$</p>
+<p>其中 $0 \le k &lt; n$ 的点值</p>
+<p>发现 $w_n^{-k}$ 与 $w_n ^ k$ 是对应的， $w_n^{-k} &#x3D; w_n ^ {n + k}$</p>
+<p>所以我们只要用 FFT 之后再将数组反过来就可以了</p>
+<hr>
+<p>递归形式的 FFT</p>
+<p>我们发现原来的每一个位置，在结束之后会变成其的反序</p>
+<p>具体来说</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">原来的序列: <span class="number">000</span> <span class="number">001</span> <span class="number">010</span> <span class="number">011</span> <span class="number">100</span> <span class="number">101</span> <span class="number">110</span> <span class="number">111</span></span><br><span class="line">结束的序列: <span class="number">000</span> <span class="number">100</span> <span class="number">010</span> <span class="number">110</span> <span class="number">001</span> <span class="number">101</span> <span class="number">011</span> <span class="number">111</span></span><br><span class="line">也就是二进制倒了</span><br></pre></td></tr></table></figure>
+
+<p>我们考虑求出最终的位置，之后再倒序回去，因为</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">i 和 i / <span class="number">2</span> 的关系:</span><br><span class="line">i = i &gt;&gt; <span class="number">1</span> 也就是二进制向左移动 <span class="number">1</span> 位</span><br><span class="line">既然是倒序,所以要向右移动 <span class="number">1</span> 位</span><br><span class="line">之后考虑奇数的情况,最后的一个 <span class="number">1</span> 只要移动到最高位上就行了     </span><br></pre></td></tr></table></figure>
+
+<p>$Code$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; lim; ++ i) </span><br><span class="line">    rev[i] = (rev[i &gt;&gt; <span class="number">1</span>] &gt;&gt; <span class="number">1</span>) | ((i &amp; <span class="number">1</span>) &lt;&lt; (len - <span class="number">1</span>));</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; lim; ++ i) <span class="keyword">if</span>(i &lt; rev[i]) </span><br><span class="line">    <span class="built_in">swap</span>(A[i], A[rev[i]]);</span><br></pre></td></tr></table></figure>
+
+<p>最后我们考虑蝴蝶操作过程</p>
+<p>$m &#x3D; \frac{n}{2}$ 的所有值已经计算好并且放到 A 中了<br>$$<br>\begin{aligned}<br>A_1(w_m^k) &amp;&#x3D; A[k], A_1(w_m^k) &#x3D; A[k + m] \\<br>\Rightarrow A(w_m^k) &amp;&#x3D; A[k] + w_n^k \times A[k + m] \\<br>\Rightarrow A(w_m^{k + m}) &amp;&#x3D; A[k] - w_n^k \times A[k + m]<br>\end{aligned}<br>$$<br>之后我们一层层向上递推就可以了</p>
+<hr>
+<h2 id="NTT"><a href="#NTT" class="headerlink" title="NTT"></a>NTT</h2><p>我们发现 FFT 的精度其实不是很够，最多处理 $10^8$ 的数据。我们考虑用什么东西来代替这个 FFT。这里有一个很好的替代品就是原根。对于质数 $p &#x3D; qn + 1, n &#x3D; 2^m$ 原根 $g$ 满足 $g^{qn} &#x3D; 1 \pmod p$ 所以将 $g_n$ 看做 $\omega_n$ 也是可以的。</p>
+<p>常用的模数是：<br>$$<br>p &#x3D;<br>\begin{cases}<br>998244353  &#x3D; 479 \times 2 ^{21} + 1, g &#x3D; 3\\<br>1004535809 &#x3D; 7 \times 17 \times 2^{23} +1, g &#x3D; 3\\<br>469762049 &#x3D; 7 \times 2^{26} + 1, g &#x3D; 3<br>\end{cases}<br>$$<br>因为他们的原根都是 3。(这里的模数都是常在 3% NTT 中使用的)</p>
+<p>$g^{qn} &#x3D; e^{2\pi n}$ 我们如果迭代到长度 $l$ 的时候 $\omega_n &#x3D; g_l &#x3D; g_n^{\frac{n}{l}} &#x3D; g_n^{\frac{p - 1}{l}}$</p>
+<hr>
+<h2 id="3-模数-NTT"><a href="#3-模数-NTT" class="headerlink" title="3 模数 NTT"></a>3 模数 NTT</h2><p>我们考虑如果模数不支持 NTT 怎么办？我们可以自己定模数，只要保证答案符合（大于）范围即可。</p>
+<p>其实很简单，就是用 3 个模数做一遍 NTT 之后 CRT 合并即可，用的就是之前说的模数。</p>
+<hr>
+<h2 id="MTT"><a href="#MTT" class="headerlink" title="MTT"></a>MTT</h2><p>我们考虑如果模数不支持 NTT 而且还卡常怎么办？<del>虽然说 NTT 跑得很快</del>，如果码力不行怎么办？用 MTT。</p>
+<blockquote>
+<p>这里其实有点争议，就是  3% NTT 到底算不算 MTT。</p>
+</blockquote>
+<p>本文只介绍一种最简单的，但是最常用的优化。</p>
+<p>我们考虑进行 FFT 的时候我们用到了复数。那么我们为什么不把一个多项式的系数拆成几的部分分别进行处理，这样就可以保证精度。</p>
+<p>假设我们要求 $P \times Q, P &#x3D; \sum_{i &#x3D; 0}p_ix^i, Q &#x3D; \sum_{i &#x3D; 1}q_ix^i$</p>
+<p>我们考虑将系数拆成两部分</p>
+<p>$ A &#x3D; P_i &gt;&gt; 15, B &#x3D; P_i \text{&amp;} (32767) $</p>
+<p>$C &#x3D; Q_i &gt;&gt; 15, D &#x3D; Q_i \text{&amp;} (32767)$</p>
+<p>$ P * Q &#x3D; AC * 2 ^ {30}+(AD+BC)*2 ^ {15} + BD$</p>
+<p>之后我们考虑通过复数来表示，设 $F &#x3D; A + iB, G &#x3D; C + i \times D$</p>
+<p>这样我们可以先通过 FFT 之后再将其表示成答案的形式，最后在计算。</p>
+<p>但是我们发现，需要表示之前的式子需要 $\overline{F}, \overline{G}$</p>
+<blockquote>
+<p>$\overline{F}$ 表示 F 的共轭复数。</p>
+</blockquote>
+<p>那么我们来证明一个东西。我们不妨记 $conj(x)$ 表示 x 的共轭复数。</p>
+<p>用 $P_t$ 表示 P 的 DFT。<br>$$<br>\text{证明：P &#x3D; A + iB, Q &#x3D; A - iB}\\<br>\color{red}\text{注意这里 P, Q 与之前的不同}<br>$$</p>
+<p>$$<br>\begin{aligned}<br>p_t(x) &#x3D;&amp; A(w_n^k) + iB(w_n^k) \\<br>&#x3D;&amp; \sum_{j &#x3D; 0} ^ {n - 1} A_jw_n^{jk} + i B_jw_n^{jk} \\<br>&#x3D;&amp; \sum_{j &#x3D; 0} 6 {n - 1} (A_j + iB_j) w_n^{jk}\\<br>\end{aligned}<br>$$</p>
+<p>之后我们考虑能不能将 Q 用 P 表示出来，我们考虑将 Q 进行展开。<br>$$<br>\begin{aligned}<br>Q_t(x) &#x3D;&amp; Aw_n^k - iB(w_n^k) \\<br>&#x3D;&amp; \sum_{j &#x3D; 0} ^{n - 1} (A_j - iB_j) w_n^{jk} \\<br>&#x3D;&amp; \sum_{j &#x3D; 0} ^ {n - 1} (A_j - iB_j)\Bigg(cos\bigg(\frac{2\pi jk}{n}\bigg) + isin\bigg(\frac{2\pi jk}{n}\bigg)\Bigg) \\<br>&#x3D; &amp; \sum_{j &#x3D; 0} ^ {n - 1} A_jcos\bigg(\frac{2\pi jk}{n}\bigg)  + B_j sin\bigg(\frac{2\pi jk}{n}\bigg) + i(A_jsin\bigg(\frac{2\pi jk}{n}\bigg) - B_jcos\bigg(\frac{2\pi jk}{n}\bigg)) \\<br>&#x3D; &amp; conj(\sum_{j &#x3D; 0} ^ {n - 1} A_jcos\bigg(\frac{-2\pi jk}{n}\bigg)  + B_j sin\bigg(\frac{-2\pi jk}{n}\bigg) - i(A_jsin\bigg(\frac{-2\pi jk}{n}\bigg) - B_jcos\bigg(\frac{-2\pi jk}{n}\bigg))) \\<br>&#x3D; &amp; conj(\sum_{j &#x3D; 0} ^ {n - 1} (A_j + iB_j) \times (cos\bigg(\frac{-2\pi jk}{n}\bigg) - isin\bigg(\frac{-2\pi jk}{n}\bigg))) \\<br>&#x3D; &amp; conj(\sum_{j &#x3D; 0} ^ {n - 1} (A_j + iB_j)(w_n^{-jk}) \\<br>    &#x3D; &amp; conj(\sum_{j &#x3D; 0}^{n - 1} (A_j + iB_j)(w_n^{-jk})) \\<br>    &#x3D; &amp; conj(P_t(n - k))<br>\end{aligned}<br>$$<br>这里有两个细节，我们一开始是将两个式子都展开，之后通过欧拉定理进行展开，猜测两个数是共轭质数。</p>
+<p>这里变成共轭的时候，将 cos 部分变成负数。</p>
+<p>我们考虑一个更加普通的形式对于一个 $w_n^k$ 的共轭复数是多少？将 $w_n^k$ 表示成 $a + ib$ 的形式，其共轭复数容易得到是 $a -i b$ 之后我们考虑在数轴上对应的是多少</p>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-pQ3sobeh-1618049627378)(<a target="_blank" rel="noopener" href="https://z3.ax1x.com/2021/04/10/cabTrq.png)]]">https://z3.ax1x.com/2021/04/10/cabTrq.png)]]</a></p>
+<p>可以发现其在轴上的对应点就是 $w_n^{ -k}$ 可以理解成，原来是向上数 k 的单位，现在是向下数。</p>
+<p>之后将其展开也是同理，可以得到 $w_n^{-k} &#x3D; cos(\frac{-2\pi k}{n}) + isin(\frac{-2\pi k}{n})$</p>
+<p>但是我们计算答案的时候可没有负的指数，我们可以用 $n - k$ 来表示 $-k$ 因为圆上总共有 n 个点。</p>
+<p>这样我们就证明了 $Q$ 可以由 $P$ 表示出来。</p>
+<p>所以我们总共只需要进行 4 次 FFT 就可以得到答案了。</p>
+<hr>
+<h2 id="多项式求逆"><a href="#多项式求逆" class="headerlink" title="多项式求逆"></a>多项式求逆</h2><p>我们需要求 $F \times Q \equiv 1 \pmod {x^n}$ 中的 $Q$。</p>
+<p>考虑使用递归解决，假设我们已经得到 $Q_1 \times F \equiv 1 \pmod {x^\frac{n}{2}}$ </p>
+<p>我们需要求 $F \times Q \equiv 1 \pmod {x^n}$</p>
+<p>可以得到 $F \times Q \equiv 1 \pmod {x^{\frac{n}{2}}}$</p>
+<p>考虑将两个式子进行相减来消除 1<br>$$<br>F \times (Q - Q_1) \equiv 0 \pmod {x^{\frac{n}{2}}}<br>$$<br>因为 $F$ 肯定不是 0，所以考虑将其消掉，之后再考虑平方。<br>$$<br>(Q - Q_1) ^ 2 \equiv 0\pmod {x^n} \\<br>Q^2 + Q_1^2 - 2QQ_1 \equiv 0 \pmod {x^n} \\<br>Q + FQ_1^2 - 2Q_1 \equiv 0 \pmod {x^n} ,\text{这里两边乘了 F}\\<br>Q \equiv 2Q_1 - FQ_1^2 \pmod {x^n}<br>$$<br>这样递归去做就可以了。</p>
+<hr>
+<h2 id="多项式-Ln"><a href="#多项式-Ln" class="headerlink" title="多项式 Ln"></a>多项式 Ln</h2><p>需要求 $Q \equiv \ln F \pmod {x^ n}$</p>
+<p>我们考虑直接进行 exp <del>发现我们还没学过</del></p>
+<p>那么能消去 Ln 的还有什么呢？ 求导！</p>
+<p>$Q’ \equiv \frac{F’}{F} \pmod {x^n}$</p>
+<p>之后又手就行。</p>
+<hr>
+<h2 id="多项式-Exp"><a href="#多项式-Exp" class="headerlink" title="多项式 Exp"></a>多项式 Exp</h2><p>需要求 $Q \equiv e^F \pmod {x^n}$</p>
+<p>我们优先考虑 Ln 转换成 $\ln Q \equiv F \pmod {x^n}$ 之后考虑进行牛顿迭代。<br>$$<br>\begin{aligned}<br>y &amp;&#x3D; f(x_0) + f’(x_0)(x - x_0) \\<br>0 &amp;&#x3D; f(x_0) + f’(x_0)(x - x_0) \\<br>0 &amp;&#x3D; f(x_0) - f’(x_0)x_0 + f’(x_0)\\<br>x &amp;&#x3D; \frac{f’(x_0)x_0 - f(x_0)}{f’(x_0)}\\<br>x &amp;&#x3D; x_0 - \frac{f(x_0)}{f’(x_0)}<br>\end{aligned}<br>$$<br>我们考虑将之前的式子变换得到 $\ln Q - F \equiv 0 $</p>
+<p>我们设函数 $S(G) &#x3D; \ln G - F$</p>
+<p>然后考虑带入之前的式子</p>
+<p>这里说明一下 $S’(G) &#x3D; \frac{1}{G}$ 的原因，我们本质上是将整个 G 看成一个变量，而不是里面的每一个 $x^i$ 所以这里并不是符合函数求导。<br>$$<br>G &#x3D; G_0 - \frac{\ln G_0 - F}{\frac{1}{G_0}} \\<br>G &#x3D; G_0 - G_0 \times (\ln G_0 - F)\\<br>G &#x3D; G_0 \times (1 - \ln G_0 + F)<br>$$<br>之后有手就行。</p>
+<hr>
+<h2 id="多项式开根"><a href="#多项式开根" class="headerlink" title="多项式开根"></a>多项式开根</h2><p>我们需要求 $F^2 &#x3D; G$ 还是考虑递归，假设 $F_1^2  \equiv G \pmod {x^{\frac{n}{2}}}$</p>
+<p>还是考虑消元<br>$$<br>F \equiv F_1 \pmod {x^{\frac{n}{2}}}\\<br>F - F_1 \equiv 0 \pmod {x^{\frac{n}{2}}} \\<br>F^2 + F_1^2 - 2FF_1 \equiv 0 \pmod {x^n} \\<br>G  F_1^2 - 2F_1F \equiv 0 \pmod {x^n} \\<br>F \equiv \frac{G}{2F_1 + F_1^2} \pmod {x^n}<br>$$<br>还是很简单。</p>
+<hr>
+<h2 id="多项式除法"><a href="#多项式除法" class="headerlink" title="多项式除法"></a>多项式除法</h2><blockquote>
+<p>给定多项式 $F, G$ 求出多项式 $R, Q$ 使得 $F &#x3D; G \times Q + R$。</p>
+</blockquote>
+<blockquote>
+<p>其中 $F$ 的次数为 $n,G$ 的次数为 $m$。</p>
+</blockquote>
+<p>可以想到如果没有余数的话，我们直接用多项式求逆就可以水掉。</p>
+<p>因为这是个多项式，我们考虑将 R 给消掉，然后就可以与愉快得求逆了。</p>
+<p>考虑构造 4 个多项式，满足 $F_1 &#x3D; G_1 \times Q_1 + x^k R_1$ 这样子只要 $\mod x^k$ 就可以得到答案了。考虑构造这个多项式，为了让外面有 $x^k$ 这个系数，所以考虑将 $F(x)$ 变成 $F(\frac{1}{x})$。 可以知道变成这样之后的式子仍然是满足的，我们考虑两边同时乘以 $x^n$。</p>
+<p>$x^nF(\frac{1}{x}) &#x3D; x^{n}G \times Q + x^n R$ 我们考虑 $x^nF(\frac{1}{x})$ 的每一个系数其实等价于将原来的 F 给翻转一下的系数。那么我们不妨让 $F_1 &#x3D; x^nF(\frac{1}{n}), Q_1 &#x3D; x^mQ(\frac{1}{n})$ 其他同理。</p>
+<p>那么我们得到 $F_1 &#x3D; G_1 \times Q_1 + x^{n - m + 1}R_1$ 看出 $k &#x3D; n - m + 1$。之后发现一个神奇的事情 $Q_1$ 的次数是 $n - m$ 所以我们即使 $\mod x^{n - m + 1}$ 也不会影响 $Q_1$。所以我们得到式子 $F_1(x) &#x3D; G_1(x) \times Q_1(x) \mod x^{n - m + 1}$ 也就是 $Q_1(x) &#x3D; \frac{F_1(x)}{G_1(x)}$。</p>
+<p>之后我们求出了 $G_1$ 之后将其翻转一下就变成 $G$ 了，然后就可以得到 $R(x) &#x3D; F(x) - G(x) \times Q(x)$。</p>
+<p>很简单。</p>
+<hr>
+<p>这边之后还会更新。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">legendgoddes</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hater.ml/2021/04/10/function_and_x/">https://hater.ml/2021/04/10/function_and_x/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hater.ml" target="_blank">Legendgod's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%A4%9A%E9%A1%B9%E5%BC%8F/">多项式</a></div><div class="post_share"><div class="social-share" data-image="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=896692520" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://npm.elemecdn.com/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://npm.elemecdn.com/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/06/25/sam-practice-1/"><img class="prev-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=256266774" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">后缀自动机 SAM 做题记录</div></div></a></div><div class="next-post pull-right"><a href="/2020/09/17/lg-solution-2882/"><img class="next-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=994103902" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Luogu2882 [USACO07MAR]Face The Right Way</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/10/11/at-solution-2062/" title="AT2062 [AGC005D] ~K Perm Counting 题解"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=971195067" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-11</div><div class="title">AT2062 [AGC005D] ~K Perm Counting 题解</div></div></a></div><div><a href="/2021/08/27/cf-solution-1548c/" title="CF1548C The Three Little Pigs"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=226507652" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-27</div><div class="title">CF1548C The Three Little Pigs</div></div></a></div><div><a href="/2021/09/01/generating-function-and-characteristic-equation/" title="递推式的通项之生成函数和特征方程"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=267166443" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-01</div><div class="title">递推式的通项之生成函数和特征方程</div></div></a></div><div><a href="/2021/11/16/uoj-solution-514/" title="[UR #19]通用测评号"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=198993971" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-16</div><div class="title">[UR #19]通用测评号</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">legendgoddes</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/legendgoddess"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/legendgoddess" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3456261198@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#FFT"><span class="toc-number">1.</span> <span class="toc-text">FFT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NTT"><span class="toc-number">2.</span> <span class="toc-text">NTT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%A8%A1%E6%95%B0-NTT"><span class="toc-number">3.</span> <span class="toc-text">3 模数 NTT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MTT"><span class="toc-number">4.</span> <span class="toc-text">MTT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E9%80%86"><span class="toc-number">5.</span> <span class="toc-text">多项式求逆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F-Ln"><span class="toc-number">6.</span> <span class="toc-text">多项式 Ln</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F-Exp"><span class="toc-number">7.</span> <span class="toc-text">多项式 Exp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%BC%80%E6%A0%B9"><span class="toc-number">8.</span> <span class="toc-text">多项式开根</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E9%99%A4%E6%B3%95"><span class="toc-number">9.</span> <span class="toc-text">多项式除法</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=239604752" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UOJ 269 [清华集训2016] 如何优雅地求和 题解"/></a><div class="content"><a class="title" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解">UOJ 269 [清华集训2016] 如何优雅地求和 题解</a><time datetime="2022-06-13T11:55:00.000Z" title="发表于 2022-06-13 19:55:00">2022-06-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=119753057" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="#593. 新年的军队 题解"/></a><div class="content"><a class="title" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解">#593. 新年的军队 题解</a><time datetime="2022-06-01T23:50:00.000Z" title="发表于 2022-06-02 07:50:00">2022-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=850658581" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P4548 [CTSC2006]歌唱王国"/></a><div class="content"><a class="title" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国">P4548 [CTSC2006]歌唱王国</a><time datetime="2022-05-29T12:17:00.000Z" title="发表于 2022-05-29 20:17:00">2022-05-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=415064773" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AT2369 [AGC013C] Ants on a Circle 多解法讨论"/></a><div class="content"><a class="title" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论">AT2369 [AGC013C] Ants on a Circle 多解法讨论</a><time datetime="2022-04-29T08:01:00.000Z" title="发表于 2022-04-29 16:01:00">2022-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=199018446" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P7987 [USACO21DEC] Paired Up G 题解"/></a><div class="content"><a class="title" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解">P7987 [USACO21DEC] Paired Up G 题解</a><time datetime="2022-04-28T12:27:00.000Z" title="发表于 2022-04-28 20:27:00">2022-04-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By legendgoddes</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://npm.elemecdn.com/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://npm.elemecdn.com/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadUtterances () {
+  let ele = document.createElement('script')
+  ele.setAttribute('id', 'utterances_comment')
+  ele.setAttribute('src', 'https://utteranc.es/client.js')
+  ele.setAttribute('repo', 'legendgoddess/Blog')
+  ele.setAttribute('issue-term', 'pathname')
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+  ele.setAttribute('theme', nowTheme)
+  ele.setAttribute('crossorigin', 'anonymous')
+  ele.setAttribute('async', 'true')
+  document.getElementById('utterances-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function utterancesTheme () {
+  if (document.querySelector('.utterances-frame')) {
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+    const message = {
+      type: 'set-theme',
+      theme: theme
+    };
+    const iframe = document.querySelector('.utterances-frame');
+    iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+}
+
+if ('Utterances' === 'Utterances' || !false) {
+  if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+  else loadUtterances()
+} else {
+  function loadOtherComment () {
+    loadUtterances()
+  }
+}</script></div><script src="https://npm.elemecdn.com/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

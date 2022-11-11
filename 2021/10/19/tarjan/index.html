@@ -1,0 +1,348 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tarjan 缩点, 强联通分量 | Legendgod's Blog</title><meta name="keywords" content="图论"><meta name="author" content="legendgoddes"><meta name="copyright" content="legendgoddes"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Tarjan 缩点，强联通分量  @[toc] 引入如果说需要对于一个图上进行 $\tt Dp$，但是同一个环上的点无法进行转移怎么办？ 我们只能做 $\tt DAG$ 上的 $\tt Dp$，但是有环我们该怎么办？ 缩环！缩点！求强联通！  当然我不是说隔壁的带花树。    虽然说所有的代码都是我随手打的，但是都已经经过测试，请放心阅读。  代码基础定义 dfn[x]表示当前点遍历顺序的编号。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tarjan 缩点, 强联通分量">
+<meta property="og:url" content="https://hater.ml/2021/10/19/tarjan/index.html">
+<meta property="og:site_name" content="Legendgod&#39;s Blog">
+<meta property="og:description" content="Tarjan 缩点，强联通分量  @[toc] 引入如果说需要对于一个图上进行 $\tt Dp$，但是同一个环上的点无法进行转移怎么办？ 我们只能做 $\tt DAG$ 上的 $\tt Dp$，但是有环我们该怎么办？ 缩环！缩点！求强联通！  当然我不是说隔壁的带花树。    虽然说所有的代码都是我随手打的，但是都已经经过测试，请放心阅读。  代码基础定义 dfn[x]表示当前点遍历顺序的编号。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=68785851">
+<meta property="article:published_time" content="2021-10-19T07:40:48.000Z">
+<meta property="article:modified_time" content="2022-11-11T12:39:51.622Z">
+<meta property="article:author" content="legendgoddes">
+<meta property="article:tag" content="图论">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=68785851"><link rel="shortcut icon" href="/image/favicon.ico"><link rel="canonical" href="https://hater.ml/2021/10/19/tarjan/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://npm.elemecdn.com/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Tarjan 缩点, 强联通分量',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-11-11 20:39:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Legendgod's Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Legendgod's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Tarjan 缩点, 强联通分量<a class="post-edit-link" href="https://github.com/legendgoddess/Blog/edit/master/source/_posts/tarjan.md" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-10-19T07:40:48.000Z" title="发表于 2021-10-19 15:40:48">2021-10-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-11T12:39:51.622Z" title="更新于 2022-11-11 20:39:51">2022-11-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Tarjan 缩点, 强联通分量"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h3><center>Tarjan 缩点，强联通分量</center></h3>
+
+<p>@[toc]</p>
+<h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>如果说需要对于一个图上进行 $\tt Dp$，但是同一个环上的点无法进行转移怎么办？</p>
+<p>我们只能做 $\tt DAG$ 上的 $\tt Dp$，但是有环我们该怎么办？</p>
+<p>缩环！缩点！求强联通！</p>
+<blockquote>
+<p>当然我不是说隔壁的带花树。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>虽然说所有的代码都是我随手打的，但是都已经经过测试，请放心阅读。</p>
+</blockquote>
+<h3 id="代码基础定义"><a href="#代码基础定义" class="headerlink" title="代码基础定义"></a>代码基础定义</h3><ul>
+<li><code>dfn[x]</code>表示当前点遍历顺序的编号。</li>
+<li><code>low[x]</code>表示当前点通过其 $\tt dfs$ 的子树以及能通过一条边到达的点，最浅能到达的编号。</li>
+</ul>
+<h3 id="强联通分量"><a href="#强联通分量" class="headerlink" title="强联通分量"></a>强联通分量</h3><h4 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h4><p>&amp;emsp; 有向图中能任意到达的极大点集，被称为一个强联通分量。</p>
+<p>&amp;emsp; 对于一张图，我们将其划分成若干个这样的极大点集，每个点集之间的连边关系构成一张 $\color{red}\tt DAG$。   </p>
+<h4 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h4><p>&amp;emsp; 我们遍历每一个弱联通分量，考虑使用一个栈来维护每个点的进入顺序。</p>
+<p>&amp;emsp; 每次通过其能到达的点来更新 <code>low[p]</code>。</p>
+<blockquote>
+<ul>
+<li>如果说当前的儿子没有被遍历过，先遍历然后通过 <code>low</code>更新。</li>
+<li>如果说当前的儿子在栈中，直接通过 <code>dfn</code>更新就好了。</li>
+</ul>
+</blockquote>
+<p>&amp;emsp; 这个更新就是根据定义来的。</p>
+<p>&amp;emsp; 那么什么时候可以统计一个强联通分量呢？当 <code>dfn[p] = low[p]</code>的时候，也就是意味着其是该强联通分量 $\tt dfs$ 时候遍历的第一个点，这样可以保证剩下的点都在栈中，我们直接退栈即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">tarjan</span><span class="params">(<span class="type">int</span> p)</span> </span>&#123;</span><br><span class="line">    dfn[p] = low[p] = ++ tot, vis[p] = <span class="number">1</span>, st[++ ed] = p;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = head[p];i;i = edg[i].next) &#123;</span><br><span class="line">        <span class="type">int</span> to = edg[i].to;</span><br><span class="line">        <span class="keyword">if</span>(!dfn[to]) <span class="built_in">tarjan</span>(to), low[p] = <span class="built_in">min</span>(low[p], low[to]);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(vis[to]) low[p] = <span class="built_in">min</span>(low[p], dfn[to]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(dfn[p] == low[p]) &#123;</span><br><span class="line">        <span class="type">int</span> y; bel[p] = ++ Sz, vis[p] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>((y = st[ed --]) != p) &#123;</span><br><span class="line">            bel[y] = Sz, vis[y] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="边双联通分量和桥"><a href="#边双联通分量和桥" class="headerlink" title="边双联通分量和桥"></a>边双联通分量和桥</h3><blockquote>
+<p>注意是在无向联通图中的。</p>
+</blockquote>
+<h4 id="定义：-1"><a href="#定义：-1" class="headerlink" title="定义："></a>定义：</h4><p>&amp;emsp; 桥：割掉当前的边，使得图不连通。</p>
+<p>&amp;emsp; 边双联通分量：一个点集，使得任意两点之间有两条本质不同的路径，本质不同指路径上没有相同的边。</p>
+<h4 id="代码实现：-1"><a href="#代码实现：-1" class="headerlink" title="代码实现："></a>代码实现：</h4><p>&amp;emsp; 和之前的强联通分量相似。我们考虑先计算出所有桥，之后直接遍历连通块即可。</p>
+<p>&amp;emsp; 和之前不同的在于，我们需要考虑父亲节点的贡献，我们考虑一条边 $u \to v$ 是桥意味着 <code>low[v] &gt; dfn[u]</code>。</p>
+<p>&amp;emsp; 具体含义表示其最浅$\color{red}\text{不能}$到达点 $u$，那么割掉 $u \to v$ 的边就不能联通了。</p>
+<p>&amp;emsp; 正是因为这个定义所以需要考虑$\color{red}\text{父亲节点}$，对于父亲节点我们不能让其产生贡献。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> brg[maxn &lt;&lt; <span class="number">1</span>]; <span class="comment">// 表示当前边是否为桥</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">tarjan</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> pre)</span> </span>&#123;</span><br><span class="line">    dfn[p] = low[p] = ++ tot;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = head[p];i;i = edg[i].next) &#123;</span><br><span class="line">        <span class="type">int</span> to = edg[i].to;</span><br><span class="line">        <span class="keyword">if</span>(!dfn[to]) &#123;</span><br><span class="line">            <span class="built_in">tarjan</span>(to, i);</span><br><span class="line">            low[p] = <span class="built_in">min</span>(low[p], low[to]);</span><br><span class="line">            <span class="keyword">if</span>(dfn[p] &lt; low[to]) brg[i] = brg[i ^ <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(i != (pre ^ <span class="number">1</span>)) low[p] = <span class="built_in">min</span>(low[p], dfn[to]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">注意前向星建边，开始值是 cnt = 1，每次 ++ cnt。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>&amp;emsp; 如果说需要求边双，我们直接对于每一个点进行搜索，不走桥边即可。</p>
+<blockquote>
+<p>本质上就是将桥都断开，看联通的极大点集。</p>
+</blockquote>
+<hr>
+<h3 id="点双联通分量和割点"><a href="#点双联通分量和割点" class="headerlink" title="点双联通分量和割点"></a>点双联通分量和割点</h3><blockquote>
+<p>注意是在无向联通图中的。</p>
+</blockquote>
+<h4 id="定义：-2"><a href="#定义：-2" class="headerlink" title="定义："></a>定义：</h4><p>&amp;emsp; 割点：删除了该点，使得图不连通。</p>
+<p>&amp;emsp; 点双联通分量：点集中任意两点间，存在两条本质不同路径，本质不同指不经过相同的点和边（除了这两个点）。</p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><p>&amp;emsp; 回忆一下我们边双的求法，判定条件是 <code>dfn[p] &lt; low[to]</code>，但是我们割点不同。</p>
+<p>&amp;emsp; 即使儿子能到达当前点，但是我们割掉当前点之后还是不连通，所以是 <code>dfn[p] &lt;= low[to]</code>。</p>
+<p>&amp;emsp; 可以发现这时我们就不需要考虑父亲节点是否产生贡献了。</p>
+<p>&amp;emsp; 我们可以直接在条件合法的时候将儿子节点的 $\tt dfs$ 树上的节点都加入，同时加入当前节点 $u$。</p>
+<p>&amp;emsp; $\Large\color{red}\text{注意：}$</p>
+<p>&amp;emsp; 同一个点可能属于多个点双联通分量，所以我们最终建立点双图的时候需要再注意。</p>
+<p>&amp;emsp; 我们需要特判，每个开始遍历的节点，必须遍历两个儿子之后才可能称为割点，但是点双是不影响的。</p>
+<p>&amp;emsp; 单个点也是一个 $\tt dcc$。</p>
+<p>&amp;emsp; 我们考虑把割点都单独建立成新的点，之后遍历每一个点双，将其和其子集中的割点连边即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> Rt; <span class="comment">// Rt 表示遍历的开始节点</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">tarjan</span><span class="params">(<span class="type">int</span> p)</span> </span>&#123;</span><br><span class="line">    dfn[p] = low[p] = ++ tot, st[++ ed] = p;</span><br><span class="line">    <span class="keyword">if</span>(!head[p] &amp;&amp; rt == p) <span class="keyword">return</span> dcc[++ Sz].<span class="built_in">push_back</span>(p), <span class="built_in">void</span>();</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">fl</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = head[p];i;i = edg[i].next) &#123;</span><br><span class="line">        <span class="type">int</span> to = edg[i].to;</span><br><span class="line">        <span class="keyword">if</span>(!dfn[to]) &#123;</span><br><span class="line">            ++ fl;</span><br><span class="line">            <span class="built_in">tarjan</span>(to);</span><br><span class="line">            low[p] = <span class="built_in">min</span>(low[p], low[to]);</span><br><span class="line">            <span class="keyword">if</span>(dfn[p] &lt;= low[to]) &#123;</span><br><span class="line">                <span class="keyword">if</span>(fl &gt; <span class="number">1</span> || p != rt) cut[p] = <span class="number">1</span>;</span><br><span class="line">                ++ Sz; <span class="type">int</span> y;</span><br><span class="line">                <span class="keyword">do</span> &#123;</span><br><span class="line">                    y = st[ed --];</span><br><span class="line">                    dcc[Sz].<span class="built_in">push_back</span>(y);</span><br><span class="line">                &#125;<span class="keyword">while</span>(y != to);</span><br><span class="line">                dcc[Sz].<span class="built_in">push_back</span>(p);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> low[p] = <span class="built_in">min</span>(low[p], dfn[to]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&amp;emsp; 下面是重新建图。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">tSz</span><span class="params">(Sz)</span></span>;</span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) <span class="keyword">if</span>(cut[i]) nid[i] = ++ tSz, bel[i] = tSz;</span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= Sz; ++ i) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v : dcc[i]) <span class="keyword">if</span>(cut[v]) &#123;</span><br><span class="line">        <span class="built_in">Add</span>(i, nid[v]), <span class="built_in">Add</span>(nid[v], i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> bel[v] = i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">legendgoddes</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hater.ml/2021/10/19/tarjan/">https://hater.ml/2021/10/19/tarjan/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hater.ml" target="_blank">Legendgod's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%9B%BE%E8%AE%BA/">图论</a></div><div class="post_share"><div class="social-share" data-image="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=68785851" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://npm.elemecdn.com/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://npm.elemecdn.com/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/10/19/wqs/"><img class="prev-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=881598710" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">浅谈 Wqs 二分</div></div></a></div><div class="next-post pull-right"><a href="/2021/10/14/constraint_spfa/"><img class="next-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=550276105" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">差分约束浅谈</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/11/08/ACAM/" title="AC 自动机"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=606904626" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-08</div><div class="title">AC 自动机</div></div></a></div><div><a href="/2021/11/08/Boruvka_algorithm/" title="Boruvka 算法"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=256266774" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-08</div><div class="title">Boruvka 算法</div></div></a></div><div><a href="/2021/10/21/Euler_path/" title="浅谈欧拉路径，欧拉回路，以及有向图欧拉回路的计数"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=727573703" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-21</div><div class="title">浅谈欧拉路径，欧拉回路，以及有向图欧拉回路的计数</div></div></a></div><div><a href="/2021/11/08/Three_roop_counting/" title="三元环计数"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=276315201" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-08</div><div class="title">三元环计数</div></div></a></div><div><a href="/2021/10/11/at-solution-2062/" title="AT2062 [AGC005D] ~K Perm Counting 题解"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=971195067" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-11</div><div class="title">AT2062 [AGC005D] ~K Perm Counting 题解</div></div></a></div><div><a href="/2022/03/25/bzoj4249/" title="#4249. Walls 防壁 题解"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=851841376" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-25</div><div class="title">#4249. Walls 防壁 题解</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">legendgoddes</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/legendgoddess"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/legendgoddess" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3456261198@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">Tarjan 缩点，强联通分量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E5%85%A5"><span class="toc-number">2.</span> <span class="toc-text">引入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%9F%BA%E7%A1%80%E5%AE%9A%E4%B9%89"><span class="toc-number">3.</span> <span class="toc-text">代码基础定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E8%81%94%E9%80%9A%E5%88%86%E9%87%8F"><span class="toc-number">4.</span> <span class="toc-text">强联通分量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A"><span class="toc-number">4.1.</span> <span class="toc-text">定义：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="toc-number">4.2.</span> <span class="toc-text">代码实现：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%B9%E5%8F%8C%E8%81%94%E9%80%9A%E5%88%86%E9%87%8F%E5%92%8C%E6%A1%A5"><span class="toc-number">5.</span> <span class="toc-text">边双联通分量和桥</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A-1"><span class="toc-number">5.1.</span> <span class="toc-text">定义：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%EF%BC%9A-1"><span class="toc-number">5.2.</span> <span class="toc-text">代码实现：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%82%B9%E5%8F%8C%E8%81%94%E9%80%9A%E5%88%86%E9%87%8F%E5%92%8C%E5%89%B2%E7%82%B9"><span class="toc-number">6.</span> <span class="toc-text">点双联通分量和割点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A-2"><span class="toc-number">6.1.</span> <span class="toc-text">定义：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">6.2.</span> <span class="toc-text">代码实现</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=239604752" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UOJ 269 [清华集训2016] 如何优雅地求和 题解"/></a><div class="content"><a class="title" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解">UOJ 269 [清华集训2016] 如何优雅地求和 题解</a><time datetime="2022-06-13T11:55:00.000Z" title="发表于 2022-06-13 19:55:00">2022-06-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=119753057" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="#593. 新年的军队 题解"/></a><div class="content"><a class="title" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解">#593. 新年的军队 题解</a><time datetime="2022-06-01T23:50:00.000Z" title="发表于 2022-06-02 07:50:00">2022-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=850658581" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P4548 [CTSC2006]歌唱王国"/></a><div class="content"><a class="title" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国">P4548 [CTSC2006]歌唱王国</a><time datetime="2022-05-29T12:17:00.000Z" title="发表于 2022-05-29 20:17:00">2022-05-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=415064773" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AT2369 [AGC013C] Ants on a Circle 多解法讨论"/></a><div class="content"><a class="title" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论">AT2369 [AGC013C] Ants on a Circle 多解法讨论</a><time datetime="2022-04-29T08:01:00.000Z" title="发表于 2022-04-29 16:01:00">2022-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=199018446" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P7987 [USACO21DEC] Paired Up G 题解"/></a><div class="content"><a class="title" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解">P7987 [USACO21DEC] Paired Up G 题解</a><time datetime="2022-04-28T12:27:00.000Z" title="发表于 2022-04-28 20:27:00">2022-04-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By legendgoddes</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://npm.elemecdn.com/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://npm.elemecdn.com/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadUtterances () {
+  let ele = document.createElement('script')
+  ele.setAttribute('id', 'utterances_comment')
+  ele.setAttribute('src', 'https://utteranc.es/client.js')
+  ele.setAttribute('repo', 'legendgoddess/Blog')
+  ele.setAttribute('issue-term', 'pathname')
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+  ele.setAttribute('theme', nowTheme)
+  ele.setAttribute('crossorigin', 'anonymous')
+  ele.setAttribute('async', 'true')
+  document.getElementById('utterances-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function utterancesTheme () {
+  if (document.querySelector('.utterances-frame')) {
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+    const message = {
+      type: 'set-theme',
+      theme: theme
+    };
+    const iframe = document.querySelector('.utterances-frame');
+    iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+}
+
+if ('Utterances' === 'Utterances' || !false) {
+  if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+  else loadUtterances()
+} else {
+  function loadOtherComment () {
+    loadUtterances()
+  }
+}</script></div><script src="https://npm.elemecdn.com/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

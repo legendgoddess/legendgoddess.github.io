@@ -1,0 +1,323 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CF1477D Nezzar and Hidden Permutations 题解 | Legendgod's Blog</title><meta name="keywords" content="图论"><meta name="author" content="legendgoddes"><meta name="copyright" content="legendgoddes"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Problem - 1477D - Codeforces 题目描述： 给定一张 $n$ 个点 $m$ 条边的简单无向图，构造两个排列 $p,q$，使得：  对任意 $(u,v) \in E，(p_u​−p_v​)(q_u​−q_v​)&gt;0$。 在此基础上，最大化 $p_i \ne q_i$ 的个数。  $1\le n,m \le 5×10^5$。  考虑上述限制的本质，如果说已经确定了排列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CF1477D Nezzar and Hidden Permutations 题解">
+<meta property="og:url" content="https://hater.ml/2022/04/04/cf-solution-1477d/index.html">
+<meta property="og:site_name" content="Legendgod&#39;s Blog">
+<meta property="og:description" content="Problem - 1477D - Codeforces 题目描述： 给定一张 $n$ 个点 $m$ 条边的简单无向图，构造两个排列 $p,q$，使得：  对任意 $(u,v) \in E，(p_u​−p_v​)(q_u​−q_v​)&gt;0$。 在此基础上，最大化 $p_i \ne q_i$ 的个数。  $1\le n,m \le 5×10^5$。  考虑上述限制的本质，如果说已经确定了排列">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=796467393">
+<meta property="article:published_time" content="2022-04-04T01:19:00.000Z">
+<meta property="article:modified_time" content="2022-11-11T12:39:51.610Z">
+<meta property="article:author" content="legendgoddes">
+<meta property="article:tag" content="图论">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=796467393"><link rel="shortcut icon" href="/image/favicon.ico"><link rel="canonical" href="https://hater.ml/2022/04/04/cf-solution-1477d/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://npm.elemecdn.com/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CF1477D Nezzar and Hidden Permutations 题解',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: false,
+  postUpdate: '2022-11-11 20:39:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Legendgod's Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Legendgod's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">CF1477D Nezzar and Hidden Permutations 题解<a class="post-edit-link" href="https://github.com/legendgoddess/Blog/edit/master/source/_posts/cf-solution-1477d.md" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-04T01:19:00.000Z" title="发表于 2022-04-04 09:19:00">2022-04-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-11T12:39:51.610Z" title="更新于 2022-11-11 20:39:51">2022-11-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CF%E9%A2%98%E8%A7%A3/">CF题解</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="CF1477D Nezzar and Hidden Permutations 题解"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1477/D">Problem - 1477D - Codeforces</a></p>
+<p><strong>题目描述：</strong></p>
+<p>给定一张 $n$ 个点 $m$ 条边的简单无向图，构造两个排列 $p,q$，使得：</p>
+<ul>
+<li>对任意 $(u,v) \in E，(p_u​−p_v​)(q_u​−q_v​)&gt;0$。</li>
+<li>在此基础上，最大化 $p_i \ne q_i$ 的个数。</li>
+</ul>
+<p>$1\le n,m \le 5×10^5$。</p>
+<hr>
+<p>考虑上述限制的本质，如果说已经确定了排列 $p$，那么对于 $p_u, p_v$，$(u, v)$ 在 $q$ 中的相对位置也是确定的。所以本质上就是给边定向，在这之后求出拓扑排序的两个排列使得对应位置不同的元素个数最大。</p>
+<p>观察样例发现大部分情况下都是可以构造全部错位的情况，显然如果一个点同时被所有点限制才能确定位置，也就是度数为 $n - 1$。所以这样的点其实本质上不需要考虑，考虑删除点之后对于每个连通块进行计算。</p>
+<p>考虑之后的图是怎么样的，就是所有点的度数至多为 $n - 2$，但是感觉一下子没有什么用。</p>
+<p>考虑直接对于连通块进行 $\tt bfs$ 分层，同一层错位排序发现如果存在一层只有 $1$ 个点就去世了，所以我们考虑一下星图的情况。对于星图貌似已经不行了。</p>
+<p>我们尝试一下补图，这样每个点的度数至少为 $1$ 所以每个连通块的大小至少为 $2$。</p>
+<p>考虑补图的星图情况，本质上就是确定了原图中若干连通分量的先后顺序，这样我们显然可以直接暴力进行钦定也是没有问题的。</p>
+<p>不妨钦定 $p &#x3D; 1, 2, \cdots , n, q &#x3D; n, 1, 2, \cdots, n - 1$。因为原图中根节点本质上是没有连边得到，所以只要保证剩下节点顺序相同即可。</p>
+<p>那么我们只要将补图做完不就行了吗？</p>
+<p>考虑对于补图可以拆成<strong>若干个星图</strong>，每个星图的大小都是 $\ge 2$ 的。</p>
+<p>如何进行剖分？</p>
+<ul>
+<li><p>首先如果一个点的周围点都没有处理，直接成为一个星图。</p>
+</li>
+<li><p>如果周围存在点被处理了，显然这个点<strong>不是根</strong>，考虑我们不能直接使用点 $u$ 作为根。</p>
+<ul>
+<li><p>如果 $siz_v &#x3D; 2$ 考虑直接钦定 $v$ 作为根节点，之后连接 $u$。</p>
+</li>
+<li><p>如果 $siz_v &gt; 2$ 考虑拆掉 $v$，让 $u$ 进行操作 $1$。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>可以发现肯定是可以剖分成一个合法的情况的，考虑对于星图之间的顺序怎么处理。</p>
+<p>我们参考之前对于单个星图的处理，星图之间本质上是不用管的，对于任意两个星图总有一个星图的所有点的位置是比另外一个大的。</p>
+<p>对于这个东西我们还是考虑找到一个 $\tt dfs$ 生成树来计算，使用 $\tt set$ 维护补图。</p>
+<p>具体来说就是考虑遍历所有的当前存在点集 $S$，对于一个点 $v$ 不在边上就直接加边之后删除当前节点。</p>
+<p>可以发现对于当前的点 $p$ 考虑的补图的边都是没有加入到补图的边，而且一个点被访问的次数最多为边数 $m$ 次，所以复杂度是正确的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">namespace</span> Legendgod &#123;</span><br><span class="line">	<span class="keyword">namespace</span> Read &#123;</span><br><span class="line"><span class="comment">//		#define Fread</span></span><br><span class="line">		<span class="meta">#<span class="keyword">ifdef</span> Fread</span></span><br><span class="line">		<span class="type">const</span> <span class="type">int</span> Siz = (<span class="number">1</span> &lt;&lt; <span class="number">21</span>) + <span class="number">5</span>;</span><br><span class="line">		<span class="type">char</span> *iS, *iT, buf[Siz];</span><br><span class="line">		<span class="meta">#<span class="keyword">define</span> gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )</span></span><br><span class="line">		<span class="meta">#<span class="keyword">define</span> getchar gc</span></span><br><span class="line">		<span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">		<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">		<span class="function"><span class="type">void</span> <span class="title">r1</span><span class="params">(T &amp;x)</span> </span>&#123;</span><br><span class="line">		    x = <span class="number">0</span>;</span><br><span class="line">			<span class="function"><span class="type">char</span> <span class="title">c</span><span class="params">(getchar())</span></span>;</span><br><span class="line">			<span class="function"><span class="type">int</span> <span class="title">f</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">			<span class="keyword">for</span>(; !<span class="built_in">isdigit</span>(c); c = <span class="built_in">getchar</span>()) <span class="keyword">if</span>(c == <span class="string">&#x27;-&#x27;</span>) f = <span class="number">-1</span>;</span><br><span class="line">			<span class="keyword">for</span>(; <span class="built_in">isdigit</span>(c); c = <span class="built_in">getchar</span>()) x = (x &lt;&lt; <span class="number">1</span>) + (x &lt;&lt; <span class="number">3</span>) + (c ^ <span class="number">48</span>);</span><br><span class="line">			x *= f;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>...Args&gt;</span><br><span class="line">		<span class="function"><span class="type">void</span> <span class="title">r1</span><span class="params">(T &amp;x, Args&amp;...arg)</span> </span>&#123;</span><br><span class="line">			<span class="built_in">r1</span>(x), <span class="built_in">r1</span>(arg...);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="meta">#<span class="keyword">undef</span> getchar</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Read;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">5e5</span> + <span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line">set&lt;<span class="type">int</span>&gt; vc[maxn], S;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; tr[maxn], buc[maxn];</span><br><span class="line"><span class="type">int</span> bl[maxn], siz[maxn], rt[maxn], deg[maxn];</span><br><span class="line"><span class="type">int</span> p[maxn], q[maxn], <span class="built_in">ctot</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs1</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> pre)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">const</span> <span class="keyword">auto</span>&amp; v: S) <span class="keyword">if</span>(!vc[p].<span class="built_in">count</span>(v)) tr[p].<span class="built_in">emplace_back</span>(v), tr[v].<span class="built_in">emplace_back</span>(p);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">const</span> <span class="keyword">auto</span>&amp; v: tr[p]) <span class="keyword">if</span>(v != pre) S.<span class="built_in">erase</span>(v);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">const</span> <span class="keyword">auto</span>&amp; v: tr[p]) <span class="keyword">if</span>(v != pre) <span class="built_in">dfs1</span>(v, p);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs2</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> pre)</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">fl</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">if</span>(!bl[p]) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">const</span> <span class="keyword">auto</span>&amp; v: tr[p]) <span class="keyword">if</span>(!bl[v]) fl = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(fl) &#123;</span><br><span class="line">            bl[p] = ++ ctot, siz[ctot] = <span class="number">1</span>, rt[bl[p]] = p;</span><br><span class="line"><span class="comment">//            printf(&quot;p = %d, siz = %d\n&quot;, p, ctot);</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="type">const</span> <span class="keyword">auto</span>&amp; v: tr[p]) <span class="keyword">if</span>(!bl[v]) bl[v] = ctot, ++ siz[ctot];</span><br><span class="line"><span class="comment">//            for(int i = 1; i &lt;= n; ++ i) przintf(&quot;%d : %d\n&quot;, i, bl[i]);</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">const</span> <span class="keyword">auto</span>&amp; v: tr[p]) <span class="keyword">if</span>(bl[v]) &#123;</span><br><span class="line">                <span class="keyword">if</span>(rt[bl[v]] == v) bl[p] = bl[v], ++ siz[bl[v]];</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(siz[bl[v]] == <span class="number">2</span>) &#123; rt[bl[v]] = v, bl[p] = bl[v], ++ siz[bl[v]]; &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(siz[bl[v]] &gt; <span class="number">2</span>) &#123; -- siz[bl[v]], bl[p] = bl[v] = ++ ctot; siz[ctot] = <span class="number">2</span>, rt[ctot] = p; &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">const</span> <span class="keyword">auto</span>&amp; v: tr[p]) <span class="keyword">if</span>(v != pre) <span class="built_in">dfs2</span>(v, p);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> i, j;</span><br><span class="line">    <span class="type">static</span> queue&lt;<span class="type">int</span>&gt; qu; <span class="keyword">while</span>(!qu.<span class="built_in">empty</span>()) qu.<span class="built_in">pop</span>();</span><br><span class="line">    S.<span class="built_in">clear</span>();</span><br><span class="line">    ctot = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">r1</span>(n, m);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) buc[i].<span class="built_in">clear</span>(), tr[i].<span class="built_in">clear</span>(), vc[i].<span class="built_in">clear</span>(), S.<span class="built_in">insert</span>(i);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) bl[i] = siz[i] = rt[i] = deg[i] = p[i] = q[i] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= m; ++ i) &#123;</span><br><span class="line">        <span class="type">int</span> u, v; <span class="built_in">r1</span>(u, v), vc[u].<span class="built_in">insert</span>(v), vc[v].<span class="built_in">insert</span>(u);</span><br><span class="line">        ++ deg[u], ++ deg[v];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">nowtot</span><span class="params">(n)</span></span>;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) <span class="keyword">if</span>(deg[i] == n - <span class="number">1</span>) qu.<span class="built_in">emplace</span>(i), S.<span class="built_in">erase</span>(i);</span><br><span class="line">    <span class="keyword">while</span>(!qu.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        <span class="type">int</span> u = qu.<span class="built_in">front</span>(); qu.<span class="built_in">pop</span>();</span><br><span class="line">        p[u] = q[u] = nowtot --;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">const</span> <span class="keyword">auto</span>&amp; v: vc[u]) &#123;</span><br><span class="line">            -- deg[v];</span><br><span class="line">            <span class="keyword">if</span>(deg[v] &gt;= nowtot - <span class="number">1</span> &amp;&amp; S.<span class="built_in">count</span>(v)) S.<span class="built_in">erase</span>(v), qu.<span class="built_in">emplace</span>(v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) <span class="keyword">if</span>(S.<span class="built_in">count</span>(i)) S.<span class="built_in">erase</span>(i), <span class="built_in">dfs1</span>(i, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) <span class="keyword">if</span>(!p[i] &amp;&amp; !bl[i]) <span class="built_in">dfs2</span>(i, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) <span class="keyword">if</span>(bl[i] &gt; <span class="number">0</span> &amp;&amp; rt[bl[i]] != i) buc[bl[i]].<span class="built_in">emplace_back</span>(i);</span><br><span class="line"><span class="comment">//    for(i = 1; i &lt;= n; ++ i) &#123;</span></span><br><span class="line"><span class="comment">//        printf(&quot;%d : &quot;,i);</span></span><br><span class="line"><span class="comment">//        for(const auto&amp; v: tr[i]) printf(&quot;%d &quot;, v);</span></span><br><span class="line"><span class="comment">//        puts(&quot;&quot;);</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//    for(i = 1; i &lt;= n; ++ i) printf(&quot;%d : %d\n&quot;, i, bl[i]);</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> _ = <span class="number">1</span>, s = <span class="number">1</span>; _ &lt;= ctot; ++ _, ++ s) &#123;</span><br><span class="line">        p[rt[_]] = s;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">const</span> <span class="type">int</span>&amp; v: buc[_]) &#123;</span><br><span class="line">            q[v] = s, p[v] = ++ s;</span><br><span class="line">        &#125;</span><br><span class="line">        q[rt[_]] = s;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) <span class="built_in">printf</span>(<span class="string">&quot;%d%c&quot;</span>, p[i], <span class="string">&quot; \n&quot;</span>[i == n]);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) <span class="built_in">printf</span>(<span class="string">&quot;%d%c&quot;</span>, q[i], <span class="string">&quot; \n&quot;</span>[i == n]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">6 6</span></span><br><span class="line"><span class="comment">1 2</span></span><br><span class="line"><span class="comment">2 3</span></span><br><span class="line"><span class="comment">3 4</span></span><br><span class="line"><span class="comment">3 5</span></span><br><span class="line"><span class="comment">3 6</span></span><br><span class="line"><span class="comment">3 1</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i, j, T;</span><br><span class="line">    <span class="built_in">r1</span>(T); <span class="keyword">while</span>(T --) <span class="built_in">Solve</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> Legendgod::<span class="built_in">main</span>(), <span class="number">0</span>; &#125;<span class="comment">//</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">legendgoddes</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hater.ml/2022/04/04/cf-solution-1477d/">https://hater.ml/2022/04/04/cf-solution-1477d/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hater.ml" target="_blank">Legendgod's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%9B%BE%E8%AE%BA/">图论</a></div><div class="post_share"><div class="social-share" data-image="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=796467393" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://npm.elemecdn.com/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://npm.elemecdn.com/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/04/04/cf-solution-1142e/"><img class="prev-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=25386397" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CF1142E Pink Floyd 题解</div></div></a></div><div class="next-post pull-right"><a href="/2022/04/03/cf-solution-1474f/"><img class="next-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=358077569" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CF1474F 1 2 3 4 ... 题解</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/11/08/ACAM/" title="AC 自动机"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=606904626" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-08</div><div class="title">AC 自动机</div></div></a></div><div><a href="/2021/11/08/Boruvka_algorithm/" title="Boruvka 算法"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=256266774" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-08</div><div class="title">Boruvka 算法</div></div></a></div><div><a href="/2021/10/21/Euler_path/" title="浅谈欧拉路径，欧拉回路，以及有向图欧拉回路的计数"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=727573703" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-21</div><div class="title">浅谈欧拉路径，欧拉回路，以及有向图欧拉回路的计数</div></div></a></div><div><a href="/2021/11/08/Three_roop_counting/" title="三元环计数"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=276315201" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-08</div><div class="title">三元环计数</div></div></a></div><div><a href="/2021/10/11/at-solution-2062/" title="AT2062 [AGC005D] ~K Perm Counting 题解"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=971195067" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-11</div><div class="title">AT2062 [AGC005D] ~K Perm Counting 题解</div></div></a></div><div><a href="/2022/03/25/bzoj4249/" title="#4249. Walls 防壁 题解"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=851841376" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-25</div><div class="title">#4249. Walls 防壁 题解</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">legendgoddes</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/legendgoddess"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/legendgoddess" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3456261198@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=239604752" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UOJ 269 [清华集训2016] 如何优雅地求和 题解"/></a><div class="content"><a class="title" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解">UOJ 269 [清华集训2016] 如何优雅地求和 题解</a><time datetime="2022-06-13T11:55:00.000Z" title="发表于 2022-06-13 19:55:00">2022-06-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=119753057" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="#593. 新年的军队 题解"/></a><div class="content"><a class="title" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解">#593. 新年的军队 题解</a><time datetime="2022-06-01T23:50:00.000Z" title="发表于 2022-06-02 07:50:00">2022-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=850658581" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P4548 [CTSC2006]歌唱王国"/></a><div class="content"><a class="title" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国">P4548 [CTSC2006]歌唱王国</a><time datetime="2022-05-29T12:17:00.000Z" title="发表于 2022-05-29 20:17:00">2022-05-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=415064773" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AT2369 [AGC013C] Ants on a Circle 多解法讨论"/></a><div class="content"><a class="title" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论">AT2369 [AGC013C] Ants on a Circle 多解法讨论</a><time datetime="2022-04-29T08:01:00.000Z" title="发表于 2022-04-29 16:01:00">2022-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=199018446" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P7987 [USACO21DEC] Paired Up G 题解"/></a><div class="content"><a class="title" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解">P7987 [USACO21DEC] Paired Up G 题解</a><time datetime="2022-04-28T12:27:00.000Z" title="发表于 2022-04-28 20:27:00">2022-04-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By legendgoddes</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://npm.elemecdn.com/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://npm.elemecdn.com/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadUtterances () {
+  let ele = document.createElement('script')
+  ele.setAttribute('id', 'utterances_comment')
+  ele.setAttribute('src', 'https://utteranc.es/client.js')
+  ele.setAttribute('repo', 'legendgoddess/Blog')
+  ele.setAttribute('issue-term', 'pathname')
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+  ele.setAttribute('theme', nowTheme)
+  ele.setAttribute('crossorigin', 'anonymous')
+  ele.setAttribute('async', 'true')
+  document.getElementById('utterances-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function utterancesTheme () {
+  if (document.querySelector('.utterances-frame')) {
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+    const message = {
+      type: 'set-theme',
+      theme: theme
+    };
+    const iframe = document.querySelector('.utterances-frame');
+    iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+}
+
+if ('Utterances' === 'Utterances' || !false) {
+  if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+  else loadUtterances()
+} else {
+  function loadOtherComment () {
+    loadUtterances()
+  }
+}</script></div><script src="https://npm.elemecdn.com/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

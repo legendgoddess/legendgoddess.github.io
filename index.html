@@ -1,0 +1,470 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Legendgod's Blog - 终幕</title><meta name="author" content="legendgoddes"><meta name="copyright" content="legendgoddes"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Legendgod&#39;s Blog">
+<meta property="og:url" content="https://hater.ml/index.html">
+<meta property="og:site_name" content="Legendgod&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hater.ml/image/avatar.jpg">
+<meta property="article:author" content="legendgoddes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hater.ml/image/avatar.jpg"><link rel="shortcut icon" href="/image/favicon.ico"><link rel="canonical" href="https://hater.ml/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://npm.elemecdn.com/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Legendgod\'s Blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: true,
+  isToc: false,
+  postUpdate: '2022-11-11 20:40:20'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Legendgod's Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Legendgod's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2022/03/21/data-record/" title="每日随记">     <img class="post_bg" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=866861397" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每日随记"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/03/21/data-record/" title="每日随记">每日随记</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-03-21T13:21:21.000Z" title="发表于 2022-03-21 21:21:21">2022-03-21</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a></span></div><div class="content">
+$\tt 2022-3-31$
+逃了一天模拟赛，自己写题。
+话说 $\tt Hater$ 的题好难呀，一天只搞了 $4$ 题。
+然后学了一个 bitset 关于字符串匹配的应用 | Legendgod’s Blog。
+感觉自己图论和数据结构都不是很行，就已经拖后腿了。
+之前写的 $\tt ds$ 浅谈都没有更新了。
+哦对了，还有一个 $\tt \large \text{分块}$ 我不会啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊。
+
+$\tt 2022-3-30$
+还是考试，别人都 $\tt AK$ 了，就我只会 $\tt T1$。
+$\tt T2$ 和正解一样，没有调出来，$\tt T3$ 本质上可以建图之后进行 $\tt Dp$。
+提一下 $\tt T3$：# 2727. 「JOI 2015 Final」舞会
+发现本质上就是将 $3$ 个数合并成一个数，而且对于最终答案我们显然可以二分变成 $0&#x2F;1$ 的情况。
+之后我们考虑合并的话直接重构树，然后从下到上进行 $\tt Dp$ 设 $f ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/09/21/Vp-plan/" title="Vp 记录">     <img class="post_bg" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=716244925" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vp 记录"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/09/21/Vp-plan/" title="Vp 记录">Vp 记录</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-09-21T23:43:49.000Z" title="发表于 2021-09-22 07:43:49">2021-09-22</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E5%88%92/">计划</a></span></div><div class="content">emmm 这里大概会记录一下 $vp$ 的场次和一些想法吧。
+
+
+Codeforces Round #691 (Div. 2)
+
+反正我是心态崩了，就是 $A, B$ 其中 $A$ 直接猜结论，然后 $B$ 是一个找规律的题目，因为画出来之后可以发现矩阵是规则的。对于 $C$ 题直接秒杀了不多说了。 $D$ 看起来是可撤销贪心实际上是 $\tt Dp$。
+E 题解
+F 题解
+总结一下就是说还是要从多方面进行思考，对于看起来比较复杂的题目是否有简化的方案。同时不要放过任何可能的突破点。
+
+Codeforces Round #769 (Div. 2)
+
+感觉还好前 $4$ 题写得有点慢，然后 $5, 6$ 来不及写了。
+感觉上第 $4$ 题可能我的做法比较奇怪。
+放一个最后两题的题解 CF1632E2 题解 | Legendgod’s Blog
+
+Educational Codeforces Round 123 (Rated for Div. 2) - Codeforces
+
+
+属于是口胡了。
+
+前面的题目比较简单，最后一题考的东西还是挺多的，需要多思考组合意义。
+CF1644F 题解 | ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2022/04/22/remind-math1/" title="数学回忆1">     <img class="post_bg" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=307348307" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数学回忆1"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/04/22/remind-math1/" title="数学回忆1">数学回忆1</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-22T13:29:00.000Z" title="发表于 2022-04-22 21:29:00">2022-04-22</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">加乘原理对于给定的集合 $S$ 对于其中满足某一性质 $P$ 的元素 $x$ 求和 $f(x)$ 即求出：
+$$\sum_{x \in S} f(x) [P(x)]$$
+ 将 $S$ 称为组合类，$x$ 称为组合对象，$f$ 称为权值函数。
+
+$\color{blue}\Delta$ 构造双射
+
+
+不同的两个组合类中的组合对象可以一一对应，这样对于两个组合类进行计数是等价的。
+另一种情况是同一组合类中的组合对象可以建立对应关系 ( 或多个为一组 )，我们只需要对于每组中的一个进行计数，再乘上组的大小。
+
+
+$\color{blue}\Delta$ 加法原理
+
+对 $S$ 中的所有元素求和 $f(x)$ 等价于将 $S$ 划分成若干个集合 $S_i$ 分别求和再相加：
+$$\sum_{x \in S} f(x) &#x3D; \sum_{i &#x3D; 1} ^ m (\sum_{x \in S_i} f(x))$$
+
+$\color{blue}\Delta$ 乘法原理
+
+将 $S$ 拆分成 $S_i$ 的笛卡尔积， $S$ 中元素的权值 $f(x)$ 等于其拆分出的各 $f_i(x_ ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2022/04/15/remind-graph1/" title="图论回忆1">     <img class="post_bg" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=799394581" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="图论回忆1"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/04/15/remind-graph1/" title="图论回忆1">图论回忆1</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-15T01:08:00.000Z" title="发表于 2022-04-15 09:08:00">2022-04-15</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">
+据说图论我会的东西相对少一点，我们先写图论。
+
+二分图概念和判定定义：对于无向图 $G &#x3D; (V, E)$ 存在将 $V$ 划分成两个不相交子集 $A, B$ 满足集合内部没有连边，则 $G$ 为二分图。
+定理：图 $G &#x3D; (V, E)$ 是二分图，当且仅当 $G$ 中没有奇环。
+推论：二分图 $G &#x3D; (V, E)$ 的任意子图为二分图。
+推论：二分图 $G &#x3D; (V, E)$ 是二分图，当且仅当其任意连通子图是二分图。
+
+封锁阳光大学 - 洛谷
+给定一张图，求是否存在点集 $V$ 满足任意一条边只有一个顶点在 $V$ 中。
+
+本质上就是分成两个集合，使得集合内部没有边，就是二分图。
+直接染色之后取点数小的即可。
+
+[NOIP2010 提高组] 关押罪犯 - 洛谷
+给定一张无向带权图，将图分成两个集合，使得集合内部边权的最大值最小。
+
+考虑权值大的肯定尽量是两个集合之间的边，考虑二分答案，之后找到不合法的边钦定一定要分为两个集合，设二分的答案为 $X$ 或者说建立图 $G &#x3D; (V, E), E &#x3D; { w &gt; X ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2022/04/09/remind-ds4/" title="数据结构回忆4">     <img class="post_bg" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=28153664" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据结构回忆4"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/04/09/remind-ds4/" title="数据结构回忆4">数据结构回忆4</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-09T13:09:00.000Z" title="发表于 2022-04-09 21:09:00">2022-04-09</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">还是接着分块，之前写太多了，$\tt marktext$ 炸了。
+Legendgod’s Blog
+
+$\color{blue}\Delta$ 带插入全序集维护
+
+题意：维护一个序列，支持（在指定元素后面）插入元素，询问两个元素的先后顺序。
+平衡树
+
+可以暴力维护，复杂度是 $O(\log n) - O(\log n)$  。
+或者说对于每个平衡树的每个节点钦定一个权值，每次插入的时候根据这样钦定的顺序每个点就有了一个权值，这样我们可以 $O(1)$ 比较。
+但是这样对于深度的要求很高，我们用替罪羊树就行了 $O(\log n) - O(1)$。
+
+块状链表
+
+考虑上面这个 $O(1)$ 很妙能不能加强，我们还是考虑钦定权值，进行分块每块在 $[\log n, 2\log n]$ 的大小之间。
+比较元素的时候优先比较块的位置，如果在同一块内在再比较块内的位置。
+块内外都用钦定权值维护，但是块的元素数量比较多，如果一直搞链就寄了，所以需要使用平衡树维护，总共有 $\frac{n}{\log n}$ 个块，每次插入复杂度是 $O(\log n)$ 的，所以是 $O(n)$ 的。
+考虑钦定块 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2022/04/05/remind-ds3/" title="数据结构回忆3">     <img class="post_bg" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=849594652" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据结构回忆3"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/04/05/remind-ds3/" title="数据结构回忆3">数据结构回忆3</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-05T13:09:00.000Z" title="发表于 2022-04-05 21:09:00">2022-04-05</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%B8%93%E9%A2%98/">专题</a></span></div><div class="content">Legendgod’s Blog
+
+分块
+一点都不会，从零开始学习。
+
+
+区间分块：对于整个序列分成 $ \frac{n} {B} $ 块，每块的大小为 $ B $。
+
+值域分块：同上，只是将值域分块了
+
+询问分块，有的时候修改很少考虑记录修改对于之后每次询问暴力操作。
+
+
+分块主要是维护信息不能高效合并的情况。
+之后参考：command_block 的博客 进行学习。
+题意：【模板】线段树 1 - 洛谷
+区间加，区间求和。
+
+考虑序列分块。
+
+询问：每块记录和，散块暴力询问。
+
+修改：整块打标记，散块暴力修改。
+
+
+
+可以暴力散块的时候清空整个散块的标记，或者直接标记永久化。
+
+题意：教主的魔法 - 洛谷区间加，查询区间 $\ge k$ 的数个数。
+首先对于每块内部进行排序。
+
+询问：二分位置，散块暴力。$O(\frac{n}{B}\log B + B)$。
+
+修改：整块打标记，散块暴力归并排序。 $O(\frac{n}{B} + B)$。
+
+
+取 $B &#x3D; \sqrt{n \log n}$ 最优。
+
+考虑上面的部分复杂度要大一点，所以考虑让上面部分平衡，可以根据均值不等式 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2022/03/21/remind-ds2/" title="数据结构回忆2">     <img class="post_bg" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=336320095" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据结构回忆2"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/03/21/remind-ds2/" title="数据结构回忆2">数据结构回忆2</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-03-21T13:05:20.000Z" title="发表于 2022-03-21 21:05:20">2022-03-21</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%B8%93%E9%A2%98/">专题</a></span></div><div class="content">Legendgod’s Blog
+
+树状数组一个函数 $\tt lowbit(x) &#x3D; x \text{&amp;} (-x)$ 表示 $x$ 的最低二进制位的位置。
+可以维护区间加区间和，常数比较小。
+
+$O(n)$ 建树，考虑对于节点 $x$ 向上更新 $x + \tt lowbit(x)$ 即可。
+
+查询第 $K$ 小，就是经典二进制上二分，假设元素 $i$ 出现了 $a_i$ 次。
+
+
+123456789int Kth(int k) &#123;    int cnt = 0, ret = 0;    for(int i = log2(n); ~ i; -- i) &#123;        ret += (1 &lt;&lt; i);        if(ret &gt;= n || cnt + t[ret] &gt;= K) ret -= (1 &lt;&lt; i);        else cnt += ret;    &#125;    return ret + 1;&#125;
+
+
+时间戳优化，听起来听高级的，其实就是打标记看当前时刻有没有经过，经过的时候 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2022/03/21/remind-ds1/" title="数据结构回忆1">     <img class="post_bg" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=15031468" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据结构回忆1"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/03/21/remind-ds1/" title="数据结构回忆1">数据结构回忆1</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-03-21T06:32:20.000Z" title="发表于 2022-03-21 14:32:20">2022-03-21</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%B8%93%E9%A2%98/">专题</a></span></div><div class="content">Legendgod’s Blog
+一下子没有什么精神，开一个博客来总结一下，我曾经会过什么东西，同时就当做复习了。
+预计会写稍微多一点东西，尽量按照 $\tt oi-wiki$ 的结构和自己的理解来。
+如果说当做课件的话可以用下面的部分：
+‘
+
+队列常常就是用 $\tt queue, priority_queue, deque$，分别是普通队列，优先队列，双端队列。
+
+优化 $\tt Dp$，比如说维护一个最大值，就是考虑如果说当前值比之后加入位置的小，显然当前的位置就不用了。每次我们取出队头的最大值即可。
+
+
+优化斜率 $\tt Dp$，常常说是否要取等的情况，明显这个队列是维护斜率单调的，至于取等的情况，我们考虑斜率相同但是截距不同的情况，所以是需要删除前面的斜率相同的位置。
+
+
+维护最短路，这个比较显然就不说了。
+
+记住这个东西是先进先出就可以了。
+
+
+栈就只有一个 $\tt stack$。
+
+维护最值，还是考虑维护最大值，我们对比一下队列的维护方式。队列可以加入当前不是最大值但是之后最大值删掉之后可能产生贡献的情况，但是栈如果发现不能加入之后就不会再加入了，所以说队列是可以维护 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/#content-inner">29</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">legendgoddes</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/legendgoddess"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/legendgoddess" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3456261198@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=239604752" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UOJ 269 [清华集训2016] 如何优雅地求和 题解"/></a><div class="content"><a class="title" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解">UOJ 269 [清华集训2016] 如何优雅地求和 题解</a><time datetime="2022-06-13T11:55:00.000Z" title="发表于 2022-06-13 19:55:00">2022-06-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=119753057" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="#593. 新年的军队 题解"/></a><div class="content"><a class="title" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解">#593. 新年的军队 题解</a><time datetime="2022-06-01T23:50:00.000Z" title="发表于 2022-06-02 07:50:00">2022-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=850658581" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P4548 [CTSC2006]歌唱王国"/></a><div class="content"><a class="title" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国">P4548 [CTSC2006]歌唱王国</a><time datetime="2022-05-29T12:17:00.000Z" title="发表于 2022-05-29 20:17:00">2022-05-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=415064773" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AT2369 [AGC013C] Ants on a Circle 多解法讨论"/></a><div class="content"><a class="title" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论">AT2369 [AGC013C] Ants on a Circle 多解法讨论</a><time datetime="2022-04-29T08:01:00.000Z" title="发表于 2022-04-29 16:01:00">2022-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=199018446" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P7987 [USACO21DEC] Paired Up G 题解"/></a><div class="content"><a class="title" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解">P7987 [USACO21DEC] Paired Up G 题解</a><time datetime="2022-04-28T12:27:00.000Z" title="发表于 2022-04-28 20:27:00">2022-04-28</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/51nod%E9%A2%98%E8%A7%A3/"><span class="card-category-list-name">51nod题解</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AT%E9%A2%98%E8%A7%A3/"><span class="card-category-list-name">AT题解</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/BZOJ%E9%A2%98%E8%A7%A3/"><span class="card-category-list-name">BZOJ题解</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CF%E9%A2%98%E8%A7%A3/"><span class="card-category-list-name">CF题解</span><span class="card-category-list-count">92</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CODECHEF%E9%A2%98%E8%A7%A3/"><span class="card-category-list-name">CODECHEF题解</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GCJ%E9%A2%98%E8%A7%A3/"><span class="card-category-list-name">GCJ题解</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/HDU%E9%A2%98%E8%A7%A3/"><span class="card-category-list-name">HDU题解</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/IOI%E9%A2%98%E8%A7%A3/"><span class="card-category-list-name">IOI题解</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/AC%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 1.1em; color: #999">AC自动机</a> <a href="/tags/Dilworth/" style="font-size: 1.1em; color: #999">Dilworth</a> <a href="/tags/Dp/" style="font-size: 1.5em; color: #99a9bf">Dp</a> <a href="/tags/FWT/" style="font-size: 1.1em; color: #999">FWT</a> <a href="/tags/Hash/" style="font-size: 1.1em; color: #999">Hash</a> <a href="/tags/LCT/" style="font-size: 1.1em; color: #999">LCT</a> <a href="/tags/ST-%E8%A1%A8/" style="font-size: 1.1em; color: #999">ST 表</a> <a href="/tags/STL/" style="font-size: 1.1em; color: #999">STL</a> <a href="/tags/Trie/" style="font-size: 1.14em; color: #999b9d">Trie</a> <a href="/tags/border/" style="font-size: 1.1em; color: #999">border</a> <a href="/tags/tarjan/" style="font-size: 1.1em; color: #999">tarjan</a> <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/" style="font-size: 1.14em; color: #999b9d">主席树</a> <a href="/tags/%E4%BA%8C%E5%88%86/" style="font-size: 1.1em; color: #999">二分</a> <a href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/" style="font-size: 1.23em; color: #999ea6">二分图</a> <a href="/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%88%86%E7%BB%84/" style="font-size: 1.1em; color: #999">二进制分组</a> <a href="/tags/%E4%BA%A4%E4%BA%92/" style="font-size: 1.1em; color: #999">交互</a> <a href="/tags/%E5%88%86%E5%9D%97/" style="font-size: 1.23em; color: #999ea6">分块</a> <a href="/tags/%E5%88%86%E6%B2%BB/" style="font-size: 1.28em; color: #99a0aa">分治</a> <a href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/" style="font-size: 1.1em; color: #999">单调栈</a> <a href="/tags/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/" style="font-size: 1.14em; color: #999b9d">单调队列</a> <a href="/tags/%E5%8D%B7%E7%A7%AF/" style="font-size: 1.19em; color: #999da1">卷积</a> <a href="/tags/%E5%8F%8D%E6%BC%94/" style="font-size: 1.32em; color: #99a2ae">反演</a> <a href="/tags/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.1em; color: #999">可持久化数据结构</a> <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/" style="font-size: 1.1em; color: #999">后缀数组</a> <a href="/tags/%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 1.23em; color: #999ea6">后缀自动机</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 1.46em; color: #99a7bb">图论</a> <a href="/tags/%E5%A0%86/" style="font-size: 1.1em; color: #999">堆</a> <a href="/tags/%E5%A4%9A%E9%A1%B9%E5%BC%8F/" style="font-size: 1.28em; color: #99a0aa">多项式</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 1.19em; color: #999da1">字符串</a> <a href="/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/" style="font-size: 1.1em; color: #999">差分约束</a> <a href="/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/" style="font-size: 1.28em; color: #99a0aa">平衡树</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 1.14em; color: #999b9d">并查集</a> <a href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" style="font-size: 1.1em; color: #999">归并排序</a> <a href="/tags/%E6%8B%93%E6%89%91/" style="font-size: 1.14em; color: #999b9d">拓扑</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 1.1em; color: #999">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.37em; color: #99a4b2">数据结构</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 1.41em; color: #99a5b7">数论</a> <a href="/tags/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/" style="font-size: 1.1em; color: #999">斯特林数</a> <a href="/tags/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" style="font-size: 1.1em; color: #999">时间复杂度</a> <a href="/tags/%E6%9C%80%E5%B0%8F%E5%89%B2/" style="font-size: 1.14em; color: #999b9d">最小割</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/06/"><span class="card-archive-list-date">六月 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">五月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">四月 2022</span><span class="card-archive-list-count">38</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/03/"><span class="card-archive-list-date">三月 2022</span><span class="card-archive-list-count">48</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/02/"><span class="card-archive-list-date">二月 2022</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/11/"><span class="card-archive-list-date">十一月 2021</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/10/"><span class="card-archive-list-date">十月 2021</span><span class="card-archive-list-count">22</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/09/"><span class="card-archive-list-date">九月 2021</span><span class="card-archive-list-count">51</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">230</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-11-11T12:40:18.839Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By legendgoddes</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://npm.elemecdn.com/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const findTrueUrl = (array) => {
+    Promise.all(array.map(item =>
+      fetch(item.url).then(resp => resp.json()).then(data => {
+        const urlArray = data.body.match(/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/ig)
+        if (data.user.login === 'utterances-bot') {
+          return urlArray.pop()
+        } else {
+          return urlArray.shift()
+        }
+      })
+    )).then(res => {
+        array = array.map((i,index)=> {
+          return {
+            ...i,
+            url: res[index]
+          }
+        })
+
+        saveToLocal.set('github-newest-comments', JSON.stringify(array), 10/(60*24))
+        generateHtml(array)
+    });
+  }
+
+  const getComment = () => {
+    fetch('https://api.github.com/repos/legendgoddess/Blog/issues/comments?sort=updated&direction=desc&per_page=6&page=1',{
+      "headers": {
+        Accept: 'application/vnd.github.v3.html+json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        const githubArray = data.map(item => {
+          return {
+            'avatar': item.user.avatar_url,
+            'content': changeContent(item.body_html),
+            'nick': item.user.login,
+            'url': item.issue_url,
+            'date': item.updated_at,
+            'githubUrl': item.html_url
+          }
+        })
+        findTrueUrl(githubArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      })
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('github-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script src="https://npm.elemecdn.com/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

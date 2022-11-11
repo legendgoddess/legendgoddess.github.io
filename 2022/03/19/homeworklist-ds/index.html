@@ -1,0 +1,291 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>3.19 下午作业 | Legendgod's Blog</title><meta name="keywords" content="数据结构"><meta name="author" content="legendgoddes"><meta name="copyright" content="legendgoddes"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这里有东西被加密了，需要输入密码查看哦。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3.19 下午作业">
+<meta property="og:url" content="https://hater.ml/2022/03/19/homeworklist-ds/index.html">
+<meta property="og:site_name" content="Legendgod&#39;s Blog">
+<meta property="og:description" content="这里有东西被加密了，需要输入密码查看哦。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=476005125">
+<meta property="article:published_time" content="2022-03-19T02:41:00.000Z">
+<meta property="article:modified_time" content="2022-11-11T12:39:51.618Z">
+<meta property="article:author" content="legendgoddes">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=476005125"><link rel="shortcut icon" href="/image/favicon.ico"><link rel="canonical" href="https://hater.ml/2022/03/19/homeworklist-ds/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://npm.elemecdn.com/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '3.19 下午作业',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-11-11 20:39:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Legendgod's Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Legendgod's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">3.19 下午作业<a class="post-edit-link" href="https://github.com/legendgoddess/Blog/edit/master/source/_posts/homeworklist-ds.md" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-03-19T02:41:00.000Z" title="发表于 2022-03-19 10:41:00">2022-03-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-11T12:39:51.618Z" title="更新于 2022-11-11 20:39:51">2022-11-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%B8%93%E9%A2%98%E8%AE%AD%E7%BB%83/">专题训练</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%B8%93%E9%A2%98%E8%AE%AD%E7%BB%83/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="3.19 下午作业"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="d581450ae575225db6e1ee93e4cabf4f2168273d1303810274b79f77e794f17d">fe45d12ef140a30fdc0b661d0183268497364965149bb64f701b0a9e7f041d60ec8c084ec5ac579309d23eb390b2804b8a0efebc658d7791914eb7f24782ab4a3926a8bea64f4c6a908835726bfbda5141540ca06db4da19435d8bbf5386905224847cd8eb9cee49701ffba963b3c291f7c32ac42c5a87515b437e08ab3c66a797a601e004d39e965f468768b9f3441e61e07f95c33bec822c352662400d30ea4f6c57d8d4ed64cca54fbc7a72ec762ce170e6c5968be88c07865e35eb5a452ceefc8f081eda12f12c33793d4932b3585372c43d74afbb7ffe1107bc2e36a58d26772f765e454c1da75c0b95b7523f8da826ded8ff579902da987835388858e5131a5211b83dc4eca5002da5c9ca4c66a35678f75ff8c91e4d8cc204a0d7394f1a6fcbb42da169560d8bd93454d9005af34125db40d85b2a64a60f148f2367dfe572e023db397101db9468ee00587039b9cc40e941a06e0a8f5bbf6eaaf0ac6976d872c0758e3965d4ef68e1f31473225f266c730597c62f2a1c8afc7c09a4b1a1b0523087134653eb17e3bf6053dbefdb36f2d23d8e1e58351c8965b1bf2f68fdb0060354da88e12523c85dfc2862d41c072a98fbd70229b86d1656ac3e8d936aeaeb0d67cb99f3fcdd2a7891974e6b359f9c0322c1a91c7ca9f3094760dbf0bd1425c05e3fda8a81c91368291915c2ebc360a3e917342d52b7a569069c36830779188a07386aa6188e9a5128cb4c7626a0c234d483e7d14172e67bfff4999baa0ca4378a7c5079cb8b7d224a3dcf1ffb826f6453cc9de411da51c741be56ec8e6d824d66ad7cc6ede0175c05e4ace8dec79de5861d944e171c9b0bf52ce2db4fc73103a73e7cb03eaf7d1e533e468397d26c4295c9dbd564af24ba1d0024dc2d99f2e4172988d6bd84a6067dae650be16625833630b00d2736f2e32389bf8c999c2151ac46ed0cc911e0930bbe50fa55d69dcb967543ba7b418f9d0b6e3adc8b170f89b2dfeda7b2e3b6b4fdfd108ff7ce86db0bcd4d3043d6a5ab213b2f78daa27de41ebaaf3a5509ad75b598b8e4eb4c384cf5f341f4c38ec264c99d8198898fcace66b4a01b84275bf3667c6811aa84e04852a48c4fc7cdd409d57ef9fecc4f9b41af56e6674b4f93903e955e98604c3e0e265ce84c39cb301163801fca5876b16bf9e3c0b206b43846f987b05a9bb9710c928d379bcbd6c3c7ed0caf04f95a813d4d47cee567ad39dd59b0be72dae48951307fc632c7010f6eb7f2cfd14ae8522cf2b3e6c73f104dd24756f35c53cf0757eeb28316ae299bb94261357abe8cc2fbd36e60e8d64d8aa45dc192679e6cea4a323bdd45f96cd7aa808d45d57072751f366de21a73614345649350a78b72a9bb009392219e0cc2a8055847527c92c5786d28ae3d69f0b861decdbdb652682491c42c9bf09368e696fee034fc3599755e9581897510353c3b05c71d1a1cb8eecb34b13cd890ba50923c272b956d775d155d304c86567f707864bab4ff3dc286d62cf981d9c9c929edba821abd0f7ef018970a4ac59bcb16b3008bc5ee74a1a65905c8e5b3fb615cb01d5b9f7f38e04890d2593b5845f8a20534410f2fa3edf16fd7d28c8216b0eb51efbe6d9745561ec3ac8628ffc71ea3aac01ed07ec5e702b8d9ad558420f60ff768893c17a4b0b86866c6aa40bd9165727be0cd1e49f092b5a2699426b73f17086a6bc5deb2854255eafdef9be99367c8190f80c4ae3fc7200ea312d80ce78f56fc0d21738fb274cdb43aeb6dd4409aec75c203d89ac1dff967625b6849a2cc5ac1070b6a5a44102fe75052096692b4eca35ce7b50551af0336d100f281754be2659de00f922b8dd0f1c1a1dc2493120651f0a78832621245101ad40002444c3ff801e5f9cc1a550cb20aaa42e664f041be264dfbc685f653bf06684998864af3734420de3cb9b49d94451d6f653e9eab5b3787299599d1a08b6ff66720e898c8d17b959799ee66c8bc3f2436e922b6d5bb8dd4d741b9a12ae2d2c82ff24027f3e3fdce1f529399a16e687f5af67aa8d5399ecbb2fbee7a4375f37147e5c51d4a5412cfaea44e0dde071871a2978e828a8a1a3400478265362d04ae53d901343874604831f3049ea4d9d5763d3b608c9a02387a75f388843b8aba0c3b54d3996938fba4cf20bdb794a02368875041902d7b6656c507bb57973fc6f00982f2d58dfdb062660f5d43b6126b282b32f9de8a02d39777a39a90d4ab062c58bf53d8c11266bacb637c6d531bc81a06450fa424eee9b8d5ad2eb563a9231bf45a7fbd0e89f92c8795258552d37ffd210fd28cee3ba40a068866d238d4e49b6ba18226ab89696d6ea782efe8fee161ff84cfc60bc30a8292a363255388b8d2925ac98b3e987318e2b58b241aeb055672356d8f1fd2509c65d502b65732dfb95e5ea3623893193741a024d14eed5e22ababc9d3fa613149aae12f16fc7f4b98e5b380ed05342bbbe5aed1e884058c8e2e34c7be1846dd2037b59d233162c152a46d6800bf64c66f30e321e0f23b207b363cd5fe122ce2ca6b46ddf0f5bbbf037709c15a1561b89f013eff1123fcc419744438f8ab35b1788ed52ed85f09022f13a568f76895e1701e3554c7c21713f91de12bb471ce6d78bc06f6eaa4a8e0ba5e04c2cddfc379230aab8bbaa9edd34b1d514bc26ff214859af5cb862ffe1bea49e4402a3ca42557dfe632577272c96db6439dc6de65b81fe76250c0a14645ca914dd44d3cacc94d876ea21ab7d5dd936eab3f40c44caff1ff7a089321232151ff9276185b50810c13c06dcd71b6964f554358bbbba081790dfc50166d6d073aed727e3b3253e587dbbfc403878056467e7b7389ba00bcbdacfe3915bb4f0468f09795027c307ccf4961bb98fccdd29dc6f625828ef9577de0d5378771b88dd8c8db911faadc939c21ca17fe32ff89028b587920c9a79ef106ec5a2200115434293684cfb6f15d52b0f4f88a374b619cc72d69c4265a1ab4e94447e6033d863fd76658ed797344ab93cb3baa7971202a1bc8a92bfbc039c17fc24300913395b75c57652a08ebf75cf633adfc3373fa21023993465408485b64d8d39da81206c0aacf56072db8d3d33db2ba755694a73a96026fe3519a5231add7afc0ab58c3d73865565e598d35b25f8f8146ecc24867bb0a8cbf90b9196d2ffb6f11ab552cfafa1ff6e3a16c47851d252d2f8b64434148051ee0e93161dd5c490d8396688f4095599a94d9faad6bfe80ceeaa6af3abc9a5411e20cb7877f7a3dc6640a483fa25eec459865169b578114fe4d49692affb55f9e3752778f02f64248b837eb4dd9394f9c01058f731aac27fefda4871eef8c2f0bf9cbe00b8f471e796d920cb39d431a0bfed5945aa09eff5647e56cbe1f21218fbf51058e3dcb4520d99fe5232eaed480fcbda817dc94875e5b2b3137d8295a5d5363c1dde5c8bae51b0b8d20e90c375367894b3beb0c6992b7b2ae9c11aa1f07ff6a967f07b84d2b8014386ae01ee41b5038ee82475c44dc35d22349612796024ce08accc0f0b7fb1e2957b8b2d7523a4336a7910d7a95ca524bf5113353a7251ea672da6f8cf3f694dd48d164e18cc1327c0c4387112ebb6d7fa689ae1f2396916b32eef0dc5894cba4d130dc73f1eaa96710316066a921700e40eb3c872323d3fd98a4405b9237833ebe649047ce0642b648f2272d6f9e551b3b6265d8026e9310dff54becf07bf70f180aa5ce3f5c865098b8b4da84d529f8dcc9d5d04ac3e7b4c0fc4b77f01a7b532a0991342fd9d0c9b028c31c5fe62d86c634bc89092745103ad04961f0af8017ff7d7834b7ca9cd4f074deb7cc6c754b14f7cc554c96c6e8a498a56d65f31d05bd9b6bc926366e3af02f7afcb4715b36c1eea26d8dc4da7aa1ae488e8145ecd18bda5666bcbe256ee84f96b8ee81bade514c5a081159daa4c25437f3fce2efea7ecb7e824522170e532051560d5fee2cfa450030bb5b5880b55cb465a56b295feef153db4a8333d778af84cf682a2c3c1485acebebfa77931d41b63a81aa31edd47614ef9e165c6495924bbf119e6ab394908a5ace180dc7af34acd011db38a7379618e2cea3cba21a09c0be4bd926d63ec0c82cdedf1f70bb83a06884e1f77956ad3ad1d3761cb4fd4543f25805f28a218b5b12d513155887ec6457c14a8fe7752208db5dce82d9c37f1de4cc6d40350a9276cefb44e6f364e9fa607eb0ca41f7127b4d8062ac948b4858c307ed5be5cf1eac8c3452d419c89e80f062aab30b0b16872ab83f5f912c9a289c14d220a6f0f44a4d12cdb127570f7a0143ba74f3672babdd64050268730426c18ab5d9ee76e877ba9fbf4c89555a0fe8c02e0d6b1dcdbb29ce8b9b4188b547a3635cd5fef991cbc11a4997b74e54edb6ad76a47dace4ede8cf8da02379600d2629eee141563b2ac6bf3385fc70064afdb70fabdfb3261be8467a4c0dadb1ba8a57f89e11d906b575023f2748a1426c22523b67c9995959cf3a3fff1c89f02cb0f0fcbd6c159769f9d109335a469bb9be7ab1853e38937058454a9aa284bb10bdedaf27e78a8d7cde25cc2128f5072c47b8c978214262cd907095e608cc7ca2583e4c897cadb550c2e150068e5db63d2ea2a48a8c9420c42bb33e024f65df56a37ca08b762fc1f8025b48aaa1fc6b533b20740277960e5dee37b2ddfacdb4864bf82751c9f766b1df1c1559ad3ef42ad6c9bb2eac1b54d2db6857fea7cb2ffbc0f13ec823a82017cf709e3479942174d105753f762aa45f7ad0b112453aab61dfa56603ef5c059beb38fae40fde662bd5360ad757535d19f71f9aaff9306a22fd0a1ea75b330c94eefe56513db7fdcf23e7501051aeb7e1a134836b4fc1ed8498938c6576a4a8df034a13d500dd952fa4312a8c6252c55e3dade67c3246058288eb3c695b21510788cfc9b68066706c908afba347f7be729f6aade34330460fb1fa0ae95b9d871f185b7e13862d949ab5141f1f5aeeb53eb9443b3274c882e9bc2a012bb4e4f611bde1bd68cdbb51c64143fc1c440fcbdc0e4b8248d63e8931a526eda4efc7170ead4d297dd19419178a97fbd674763001d2a86b4e3739171ec497577cc35f001bbea09782c4a056cef3b5b80f30b02ab79b75427194206d550c416d8a9ef18fc93d2f435fc14dfcbc7eafd7104babbe038c684a1cd9d4bf52fce5c037056981b7cb2322af03a91d2783ec059c578a6540c07ee73644a12c09a65fe336ce79405cfdd10f299b66782decd3d5f6bd6d8173be12be6c4f9bd86dcae3db87a591d3248c0437a099b95f676198180e104d1bc14e24df71c0fdb079ca671fd9f3a5e6df30fcc9d1d4b70e61402aa54efdf97767efedc3fc38e442e0015bd8652950eb4b20969052992adf7f44bcd284c82740764cd2aeb0353b2f59dff848cf60a0c40f8f54c6da8cfbfacea904460acd4bde5145a2b221187398117f573561b3d50dbc20c845cc121a49f23887430ced2d554e5c830bf53a2984f361ca632b38a2bb666512ca1f2a8ec3417bf013ca9f34db281cd7f4acdb7e4505152f587f667e5f36cb40b2e2f1d0fae9812e010c0c3d72a326a407bdb725d6329357694b082f59c49d66a33f0318f40f0b3b2cf1ef04489c454404fddfe2a13e1234e632edaa7fb3e8c2765871aff833930615529689ef1c1fdc8960abf03ba11c19a2a28d484c62e31d7c9a8950039403cd72e332f17ec2fe9cae08747128f18e6ef3711fe15e512909803c9d236ab56852f25242ea3a61b66753a254c06c5f8ad4da12243be346ac64eddd7cd640c1289d6610d1f0bdbc2fc8550cf4139331f76781ba508687b5f09882f27324eb20bd84d52bd3d0c03e0f772135c0e737d2ef10f5aa4b9e0b403434803099a2b6ca9974ad4f7d944dd63d397edfa370fd425f66bfc4f5a91613470fd9729e2592b2bd388b4038062ab7278f22bc8e5e01eb0551d62020db346c3f418e1e3af3609116496a23f797df65584d3c1a4f99c8ea17297fc2fe4b40edbcab34d6d344db7043fdb43e03761c3c0901997d5fbef32a45be81063519be6d2858cea799b79d03c6f643bce305f99ae765ff3ed95116914956db6507ade16471128082dc29c323638274ab5f4074758d8b16a0c16c627b38e74160f86eae7245d6a32437738ef6c035528631e8daa3b46f3b019958aedfbb56fe0daf08277ca0ae83e724bab5c1d1eee63f46293356d0d726d75a5feb36862e4db29cd43e9f5006639f2de5c736f59b160d450ecfad1a991eefffb220a970da69c783c5cd4359980936c132ca4f2299355b6ad1add33c50f649eb97ac78691b4a0b084eb7a9c8d0197bc7a1b888164d0002fb043d47840d858b7b94c0d41e48b4e7829109932c90372045437c120ad416009e8cdfa4e9d333017c1a14bdf01a82bcb9b81307e52edb58facc17af6b709662634904f3c0c9fde1006ba8b4ac1065fc453ac8f3740a2038348c8715579d141623ea69c5a180ea95bec85b2f234157cd350f6507bd67c3566993afc4d3790e59a24294a3de1fc6528da066c7815b6b4dc213d749b54ddeabf810e6ae7790b46424abac53f1a549cb39e4a0451506488146849bc0e8a949e87af757a5332035d3caac68e1958e21765ce7a648567eb91a5b5f79e161c1d54a9ddfd80d53ae470582fc54719d541d5416b5579815a2d997544d7e57b3fdd92fcd2cb1778f95641de898a30dccf7e9f057679d3fc7301e54390c0e99507218e4645446585b481da91533ec29898d7134e70f812c16edf7da5214b6f9deeaec118eaa18f2a580f6ff2ff14021a897ebd49893147349bb6d1af74a830e356b447e1132109ee7a4b1c8d98542e7ec970ef2f7c39b145db70280510d588c42c89931834585acb517bd9db2d6ee073d8406b69116bb9be752d15b29bbe2a57dbd89411c4177a5f90303d31bd10184989dd29f35aacc42bf15485a11c244441c32399ee21f1f245e8719d78825381b523749a81972089ca27e778cd89499c20c446887e7e2b5560bbb22fb9db3e3ccc5cff941d6389b0e56e04d9ca0e93dfae92d96079c040cc643f8acac47ecf12fa052bb1e6ec7203ccd6114d63fe07da671f4a335f590f0621acd0a9e4496e0b96ee2f159e0e9f7f0b5b2f71e138d4f23c37a3280a5806196af74ec88ed9bdc49b2964beba718d64fa1358d7abeed30fd9852dde36ee8f29392529f23b37cade8665385c5a888f0ab5746f99e24e413163d882cd034ebd8c00c1ce790df27a0967338502bfb6b6b23938fe9a6f8acd65ee305847396c1b068cd3dcd77bc857a61a5f6abbfb7353c67f013dfa7afceb64fd69e26357c3c5c444e34149cbbc5f0897e92f32d03de6291e99c1141227ec8f298a067c2eefa1a1165d8c03ec695ebbf827044bebf34a65334dc76c016995a94f97c85d383c44c56ba828a5de81e931d690bfae094fe635205</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css"></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">legendgoddes</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hater.ml/2022/03/19/homeworklist-ds/">https://hater.ml/2022/03/19/homeworklist-ds/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hater.ml" target="_blank">Legendgod's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div><div class="post_share"><div class="social-share" data-image="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=476005125" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://npm.elemecdn.com/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://npm.elemecdn.com/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/03/21/remind-ds1/"><img class="prev-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=15031468" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">数据结构回忆1</div></div></a></div><div class="next-post pull-right"><a href="/2022/03/18/uoj-solution-46/"><img class="next-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=727635746" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">#46. [清华集训2014]玄学 题解</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/11/08/ACAM/" title="AC 自动机"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=606904626" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-08</div><div class="title">AC 自动机</div></div></a></div><div><a href="/2021/11/19/Virtual_tree%20/" title="虚树浅谈"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=461183302" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-19</div><div class="title">虚树浅谈</div></div></a></div><div><a href="/2021/11/16/cf-solution-1404c/" title="CF1404C Fixed Point Removal"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=131865876" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-16</div><div class="title">CF1404C Fixed Point Removal</div></div></a></div><div><a href="/2022/03/11/cf-solution-1641c/" title="CF1641C Anonymity Is Important 题解"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=725854719" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-11</div><div class="title">CF1641C Anonymity Is Important 题解</div></div></a></div><div><a href="/2022/03/11/cf-solution-1641d/" title="CF1641D Two Arrays 题解"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=338918523" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-11</div><div class="title">CF1641D Two Arrays 题解</div></div></a></div><div><a href="/2021/08/24/cf-solution-375d/" title="CF375D Tree and Querie"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=2890128" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-24</div><div class="title">CF375D Tree and Querie</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">legendgoddes</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/legendgoddess"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/legendgoddess" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3456261198@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content toc-div-class" style="display:none"></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=239604752" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UOJ 269 [清华集训2016] 如何优雅地求和 题解"/></a><div class="content"><a class="title" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解">UOJ 269 [清华集训2016] 如何优雅地求和 题解</a><time datetime="2022-06-13T11:55:00.000Z" title="发表于 2022-06-13 19:55:00">2022-06-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=119753057" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="#593. 新年的军队 题解"/></a><div class="content"><a class="title" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解">#593. 新年的军队 题解</a><time datetime="2022-06-01T23:50:00.000Z" title="发表于 2022-06-02 07:50:00">2022-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=850658581" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P4548 [CTSC2006]歌唱王国"/></a><div class="content"><a class="title" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国">P4548 [CTSC2006]歌唱王国</a><time datetime="2022-05-29T12:17:00.000Z" title="发表于 2022-05-29 20:17:00">2022-05-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=415064773" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AT2369 [AGC013C] Ants on a Circle 多解法讨论"/></a><div class="content"><a class="title" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论">AT2369 [AGC013C] Ants on a Circle 多解法讨论</a><time datetime="2022-04-29T08:01:00.000Z" title="发表于 2022-04-29 16:01:00">2022-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=199018446" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P7987 [USACO21DEC] Paired Up G 题解"/></a><div class="content"><a class="title" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解">P7987 [USACO21DEC] Paired Up G 题解</a><time datetime="2022-04-28T12:27:00.000Z" title="发表于 2022-04-28 20:27:00">2022-04-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By legendgoddes</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://npm.elemecdn.com/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://npm.elemecdn.com/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadUtterances () {
+  let ele = document.createElement('script')
+  ele.setAttribute('id', 'utterances_comment')
+  ele.setAttribute('src', 'https://utteranc.es/client.js')
+  ele.setAttribute('repo', 'legendgoddess/Blog')
+  ele.setAttribute('issue-term', 'pathname')
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+  ele.setAttribute('theme', nowTheme)
+  ele.setAttribute('crossorigin', 'anonymous')
+  ele.setAttribute('async', 'true')
+  document.getElementById('utterances-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function utterancesTheme () {
+  if (document.querySelector('.utterances-frame')) {
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+    const message = {
+      type: 'set-theme',
+      theme: theme
+    };
+    const iframe = document.querySelector('.utterances-frame');
+    iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+}
+
+if ('Utterances' === 'Utterances' || !false) {
+  if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+  else loadUtterances()
+} else {
+  function loadOtherComment () {
+    loadUtterances()
+  }
+}</script></div><script src="https://npm.elemecdn.com/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

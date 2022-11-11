@@ -1,0 +1,562 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>生成函数浅谈 | Legendgod's Blog</title><meta name="keywords" content="生成函数,数论,卷积"><meta name="author" content="legendgoddes"><meta name="copyright" content="legendgoddes"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="多项式计数杂谈 - command_block 的博客 学习总结  二项式 $\color{red}(1)$ 拆开组合数  $$\binom{n}{m} &#x3D; \frac{n!} {m!(n - m)!}$$ 组合意义就是总共有 $n$ 个物品，我们选择 $m$ 个出来的方案数。 根据组合意义，我们需要有 $0 \le m \le n$ 才能保证成立。 一些推论：  对称性 $\bino">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成函数浅谈">
+<meta property="og:url" content="https://hater.ml/2022/02/28/generating-function/index.html">
+<meta property="og:site_name" content="Legendgod&#39;s Blog">
+<meta property="og:description" content="多项式计数杂谈 - command_block 的博客 学习总结  二项式 $\color{red}(1)$ 拆开组合数  $$\binom{n}{m} &#x3D; \frac{n!} {m!(n - m)!}$$ 组合意义就是总共有 $n$ 个物品，我们选择 $m$ 个出来的方案数。 根据组合意义，我们需要有 $0 \le m \le n$ 才能保证成立。 一些推论：  对称性 $\bino">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=890068763">
+<meta property="article:published_time" content="2022-02-28T06:34:00.000Z">
+<meta property="article:modified_time" content="2022-11-11T12:39:51.618Z">
+<meta property="article:author" content="legendgoddes">
+<meta property="article:tag" content="生成函数">
+<meta property="article:tag" content="数论">
+<meta property="article:tag" content="卷积">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=890068763"><link rel="shortcut icon" href="/image/favicon.ico"><link rel="canonical" href="https://hater.ml/2022/02/28/generating-function/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://npm.elemecdn.com/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '生成函数浅谈',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-11-11 20:39:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Legendgod's Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Legendgod's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">生成函数浅谈<a class="post-edit-link" href="https://github.com/legendgoddess/Blog/edit/master/source/_posts/generating-function.md" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-02-28T06:34:00.000Z" title="发表于 2022-02-28 14:34:00">2022-02-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-11T12:39:51.618Z" title="更新于 2022-11-11 20:39:51">2022-11-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="生成函数浅谈"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/command-block/sheng-cheng-han-shuo-za-tan">多项式计数杂谈 - command_block 的博客</a> 学习总结</p>
+</blockquote>
+<h2 id="二项式"><a href="#二项式" class="headerlink" title="二项式"></a>二项式</h2><ul>
+<li>$\color{red}(1)$ <strong>拆开组合数</strong></li>
+</ul>
+<p>$$<br>\binom{n}{m} &#x3D; \frac{n!} {m!(n - m)!}<br>$$</p>
+<p>组合意义就是总共有 $n$ 个物品，我们选择 $m$ 个出来的方案数。</p>
+<p>根据组合意义，我们需要有 $0 \le m \le n$ 才能保证成立。</p>
+<p>一些<strong>推论</strong>：</p>
+<ol>
+<li><p>对称性 $\binom{n} {m} &#x3D; \binom{n} {n - m}$</p>
+</li>
+<li><p>吸收恒等式 $\binom{n} {m} &#x3D; \frac{n} {m}\binom{n - 1} {m - 1}$</p>
+</li>
+</ol>
+<ul>
+<li>$\color{red}(2)$ <strong>经典二项式定理</strong></li>
+</ul>
+<p>$$<br>(x + y)^k &#x3D; \sum_{i &#x3D; 0} ^ k \binom{k}{i}x^iy^{k - i}<br>$$</p>
+<p><strong>注意</strong> $1$ 的幂可能隐藏在求和中。</p>
+<ul>
+<li>$\color{red}(3)$ <strong>递推公式</strong></li>
+</ul>
+<p>$$<br>\binom{n}{m}&#x3D; \binom{n - 1}{m} + \binom{n - 1}{m - 1 }<br>$$</p>
+<blockquote>
+<p>证明的话就是考虑新加入一个数到底是放不放的情况。</p>
+</blockquote>
+<p>对于更加复杂的二项式的形式，我们可以考虑通过拆开进行递推得到答案。</p>
+<p>一些<strong>推论</strong>：</p>
+<ul>
+<li><strong>平行求和</strong></li>
+</ul>
+<blockquote>
+<p>$$<br>\sum_{i &#x3D; 0} ^ n \binom{r + i}{i} &#x3D; \binom{r + n + 1}{n}<br>$$</p>
+</blockquote>
+<ul>
+<li><strong>上指标求和</strong></li>
+</ul>
+<blockquote>
+<p>$$<br>\sum_{i &#x3D; 0} ^ n \binom{i}{m} &#x3D; \binom{n + 1}{m + 1}<br>$$</p>
+</blockquote>
+<ul>
+<li><strong>下指标求和</strong></li>
+</ul>
+<blockquote>
+<p>$$<br>\sum_{i &#x3D; 0} ^ n \binom{n}{i} &#x3D; 2^n<br>$$</p>
+</blockquote>
+<ul>
+<li><strong>对称性</strong></li>
+</ul>
+<blockquote>
+<p>奇数项和偶数项分别等于 $2^{n - 1}$。</p>
+<p>$2^{n - 1} &#x3D; \sum_{i &#x3D; 0} ^ {\lfloor\frac{n}{2}\rfloor} \binom{n}{i} + \frac{1}{2} \times \binom{n}{\frac{n}{2}}[n\ is\ even]$</p>
+</blockquote>
+<ul>
+<li>$\color{red}(4)$ <strong>范德蒙德卷积</strong></li>
+</ul>
+<p>$$<br>\sum_{i &#x3D; 0} ^ k \binom{n}{i} \binom{m}{k - i} &#x3D; \binom{n + m}{k}<br>$$</p>
+<p>本质上就是 $(1 + x)^n \times (1 + x)^m &#x3D; (1 + x)^{n + m}$。</p>
+<p>或者从组合意义上理解也是一样的，就是在两个集合选 $k$ 个数的方案。</p>
+<ul>
+<li>$\color{red}(5)$ <strong>广义二项式系数 + 广义二项式定理</strong></li>
+</ul>
+<p>定义<strong>广义二项式系数</strong>：$\binom{n}{m} &#x3D; \frac{n^{\underline {m}}}{m!}$。</p>
+<p>这样我们就有：</p>
+<p>$$<br>(x + y)^a &#x3D; \sum_{i \ge 0} \binom{a}{i} x^i y^{a - i}<br>$$</p>
+<p>广义二项式定理<strong>衍生技巧</strong>：</p>
+<ul>
+<li><strong>上指标反转</strong>：</li>
+</ul>
+<p>$$<br>\binom{n}{m} &#x3D; \binom{m - n - 1}{m} (-1)^m<br>$$</p>
+<ul>
+<li><strong>取一半</strong>：处理 $\binom{2n}{n}$ 形组合数。</li>
+</ul>
+<p>我们考虑两个下降幂的乘积：</p>
+<p>$$<br>x^{\underline {k}}(x - \frac{1}{2})^{\underline{k}} &#x3D; x(x - \frac{1}{2})(x - 1) \cdots (x - k + 1)(x - k + \frac{1}{2})<br>$$</p>
+<p>考虑加倍操作得到：</p>
+<p>$$<br>x^{\underline {k}}(x - \frac{1}{2})^{\underline{k}} \times \frac{1}{2^{2k}} &#x3D; \frac{(2x)^{\underline{2k}}}{2^{2k}}<br>$$</p>
+<p>我们两边同时除以 $(k!)^2$ 得到：</p>
+<p>$$<br>\binom{x}{k} \binom{x - \frac{1}{2}}{k} &#x3D; \binom{2x}{2k} \binom{2k}{k} \times \frac{1}{2^{2k}}<br>$$</p>
+<blockquote>
+<p>说句实话这里 $\tt command-block$ 写错了。</p>
+</blockquote>
+<p>考虑带入 $x &#x3D; n, k &#x3D; x$ 可以得到等式：</p>
+<p>$$<br>\binom{n - \frac{1}{2}}{n} &#x3D; \binom{2n}{n} \times \frac{1}{2^{2n}}<br>$$</p>
+<p>也就是：</p>
+<p>$$<br>\binom{- \frac{1}{2}}{n} \times 2^{2n} \times (-1)^n &#x3D; \binom{2n}{n}<br>$$</p>
+<p>最终得到：</p>
+<p>$$<br>\binom{-\frac{1}{2}}{n} \times (-4)^n &#x3D; \binom{2n}{n}<br>$$</p>
+<p>可以求出 $\sum_{i &#x3D; 0} \binom{2i}{i} z^i$ 的封闭形式：</p>
+<p>$$<br>\sum_{i &#x3D; 0} ^ {\infty} \binom{-\frac{1}{2}}{i} \times (-4z)^i &#x3D; (1 - 4z) ^ {-\frac{1}{2}}<br>$$</p>
+<ul>
+<li>$\color{red}(6)$ <strong>下降幂和上升幂的二项式定理</strong></li>
+</ul>
+<p>$$<br>(x + y) ^{\underline{a}} &#x3D; \sum_{i &#x3D; 0} ^ n \binom{n}{i} x^{\underline i}y^{\underline{a - i}}\\<br>(x + y) ^{\overline{a}} &#x3D; \sum_{i &#x3D; 0} ^ n \binom{n}{i} x^{\overline i}y^{\overline{a - i}}<br>$$</p>
+<ul>
+<li>$\color{red}(7)$ <strong>二项式反演</strong></li>
+</ul>
+<p>见 <a target="_blank" rel="noopener" href="https://legendgod.ml/2021/09/01/binomial-inversion/">二项式反演</a>。</p>
+<ul>
+<li>$\color{red}(8)$ <strong>差分和前缀和</strong></li>
+</ul>
+<p><strong>前缀和</strong>：乘以一个全是 $1$ 的多项式，也就是 $\frac{1}{1 - z}$。</p>
+<p><strong>差分</strong>：乘以 $1 - z$。</p>
+<ul>
+<li>$\color{red}(9)$ <strong>牛顿级数</strong></li>
+</ul>
+<blockquote>
+<p>暂时不是很会，等会了再说，感觉不是很难。</p>
+</blockquote>
+<ul>
+<li>$\color{red}(10)$ <strong>生成函数和杨辉三角</strong></li>
+</ul>
+<p>考虑二元生成函数的形式：</p>
+<p>$$<br>\begin{aligned}<br>G[n, m] &amp;&#x3D; \binom{n}{m} \\<br>G(x, y) &amp;&#x3D; \sum_{i &#x3D; 0} \sum_{j &#x3D; 0} \binom{i}{j} x^i y^j \\<br>G(x, y) &amp;&#x3D; \sum_{i &#x3D; 0} x^i (y + 1) ^ i \\<br>G(x, y) &amp;&#x3D; \sum_{i &#x3D; 0} (xy + x)^i \\<br>G(x, y) &amp;&#x3D; \frac{1}{1 - x - xy}<br>\end{aligned}<br>$$</p>
+<p>令 $y &#x3D; x^k$ 则 </p>
+<p>$$<br>\begin{aligned}<br>[x^n]G(x, y) &amp;&#x3D; [x^n]\sum_{i &#x3D; 0}\sum_{j &#x3D; 0} \binom{i}{j} x^i y^j\\<br>&amp;&#x3D; [x^n]\sum_{i &#x3D; 0}\sum_{j &#x3D; 0} \binom{i}{j} x^i x^{jk}\\<br>&amp;&#x3D; \sum_{i + jk &#x3D; n} \binom{i}{j}<br>\end{aligned}<br>$$</p>
+<p>同理如果 $x &#x3D; y^k$ 同样可以得到 $[x^n]G(x, y) &#x3D; \sum_{ki + j &#x3D; n} \binom{i}{j}$。</p>
+<hr>
+<h2 id="生成函数技巧"><a href="#生成函数技巧" class="headerlink" title="生成函数技巧"></a>生成函数技巧</h2><ul>
+<li>$\color{red}(1)$ <strong>特征方程</strong></li>
+</ul>
+<p>如果有递推方程 $f(n) &#x3D; af(n - 1) + bf(n - 2)$。</p>
+<p>设 $x^2 &#x3D; ax + b$ 解得两个根 $x_0, x_1$。</p>
+<p>我们断言 $f(n) &#x3D; Ax_0^n + Bx_1^n$。</p>
+<p>我们带入初始给定的值即可解得方程。</p>
+<ul>
+<li>$\color{red}(2)$ <strong>构造系数的技巧</strong></li>
+</ul>
+<ol>
+<li><p><strong>平移</strong> $[x^n]F(x)x^t &#x3D; F[n - t]$。</p>
+</li>
+<li><p><strong>伸缩</strong> $F(x^k) \leftarrow &lt;F[0], \overbrace{0, 0, \cdots, 0, 0}^{k - 1 \text{个 0}}, F[1],\overbrace{0, 0, \cdots, 0, 0}^{k - 1 \text{个 0}} &gt;$。</p>
+</li>
+</ol>
+<ul>
+<li>$\color{red}(3)$ <strong>生成函数系数的获取</strong></li>
+</ul>
+<p>考虑通过求导和平移用 $F(x)$ 表示 $F’(x)x$，然后得到与 $F(x), F’(x)$ 的递推式。</p>
+<p>考虑将其表示成系数的形式显然有 $F’[n] &#x3D; (n + 1)F[n + 1]$。</p>
+<p>带入即可得到递推式。</p>
+<p>可以考虑例题 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4931">[MtOI2018]情侣？给我烧了！（加强版）</a></p>
+<p>其中求 $D(x)$ 的时候可以使用该方法。</p>
+<blockquote>
+<p>所以我才能切了这题。</p>
+</blockquote>
+<p>当然如果你得到通向了之后可以暴力展开。</p>
+<hr>
+<p>或者考虑对于比较复杂的部分 $\frac{C + \sqrt{x}}{x}$ 这样的情况，我们可以考虑分步进行计算。</p>
+<p>考虑设 $G(x) &#x3D; \sqrt{x}$ 我们先求出 $G$ 的递推式，之后可以得到 $F$ 关于 $G$ 的式子，之后就可以直接得出答案了。</p>
+<p><strong>例题1</strong>：</p>
+<p>$$<br>F(x) &#x3D; \frac{1 - x - \sqrt{1 - 6x + x^2}}{2x}<br>$$</p>
+<p>求其递推式。</p>
+<p>设 $G(x) &#x3D; \sqrt{1 - 6x + x^2}$</p>
+<p>可以知道 $G’(x) &#x3D; \frac{1}{2}(1 - 6x + x^2) ^ {-\frac{1}{2}}\times (-6 + 2x)$</p>
+<p>我们两边同时乘以 $1 - 6x + x^2$。</p>
+<p>可以得到 $G’(x)(1 - 6x + x^2) &#x3D; G(x)\times(x - 3)$。</p>
+<p>也就是 $g’[n]-6g’[n-1]+g’[n-2]&#x3D;g[n-1]-3g[n]$。</p>
+<p>根据我们之前的式子 $g’[n]&#x3D;g[n + 1] (n + 1)$。</p>
+<p>可以知道 $g[n + 1](n + 1) - 6ng[n]+(n-1)g[n-1]&#x3D;g[n-1]-3g[n]$。</p>
+<p>整理之后得到：</p>
+<p>$$<br>\begin{aligned}<br>g[n+1]&amp;(n+1)-(6n-3)g[n]+(n-2)g[n-1]&#x3D;0\\<br>g[n+1]&amp;&#x3D;\frac{1}{n+1} (6n-3)g[n]-(n-2)g[n-1]<br>\end{aligned}<br>$$</p>
+<blockquote>
+<p>初值什么的就自己看了。</p>
+</blockquote>
+<p>之后考虑 $F(x) &#x3D; \frac{1-x-G(x)}{2x}$。</p>
+<p>可以得到 $2xF(x)&#x3D;1-x-G(x)$。</p>
+<p>发现前面的 $1-x$ 本质上只和 $f(1)$ 有关。</p>
+<p>所以得到 $2f(n)&#x3D;g(n + 1)$。</p>
+<ul>
+<li>$\color{red}(4)$ <strong>生成函数的组合意义</strong></li>
+</ul>
+<ol>
+<li><p>$\tt exp$ 表示有标号无交集合 $(EGF)$ 的拼接，注意我们可以通过钦定根的情况直接使用 $\tt exp$ 来得到一些有根的图或者树。</p>
+</li>
+<li><p>$\tt ln$ 这个就是 $\tt exp$ 的逆操作同样也是 $(EGF)$，也就是将一个集合分成若干个不相交的集合，常见的应用就是将无向图变成连通的。</p>
+</li>
+</ol>
+<blockquote>
+<p>这个操作应该是由连通图推到无向图，之后再取对数得到的。</p>
+<p>而不是本来 $\tt ln$ 的意义！！</p>
+</blockquote>
+<ol start="3">
+<li>对于 $OGF$ <strong>加法和乘法的意义</strong>：</li>
+</ol>
+<ul>
+<li><p><strong>加法</strong>：本质就是两个不相交集合的并。</p>
+</li>
+<li><p><strong>乘法</strong>：本质就是两个不相交集合的笛卡尔积。</p>
+</li>
+<li><p>$\color{red}(5)$ <strong>多项式复合</strong>：</p>
+</li>
+</ul>
+<p>直接举一个例子，设 $F(z) &#x3D; \sum_{i \ge 0} \frac{z^i}{i!}$。</p>
+<p>那么显然有 $F(G(z)) &#x3D; \sum_{i \ge 0} \frac{G^i(z)}{i!}$，也就是将原来的 $z$ 替换成了 $G(x)$。</p>
+<p>例题：<a target="_blank" rel="noopener" href="https://hydro.ac/d/bzoj/p/3684">大朋友和多叉树</a></p>
+<p>我们考虑使用生成函数 $[z^n]F(z)$ 表示权值为 $n$ 的答案。</p>
+<p>我们考虑转移的时候要么是可以直接增加一个叶子节点贡献是 $1$，要么是按照题目要求枚举一下度数进行乘积。</p>
+<p>可以得到方程 $F(z) &#x3D; z + \sum_{d \in Deg} F^d(z)$。</p>
+<p>我们移项得到 $F(z) - \sum_{d \in Deg} F^d(z) &#x3D; z$</p>
+<p>我们设 $G(z) &#x3D; z - \sum_{i \ge 0} [d \in Deg] z^i$。</p>
+<p>直接带入得到 $G(F(z)) &#x3D; x$。根据下文的拉格朗日反演可以得到答案。</p>
+<ul>
+<li>$\color{red}(6)$ <strong>解决复合的方法</strong> $-$ <strong>拉格朗日反演</strong></li>
+</ul>
+<p>网上证明还是比较多的，就不证明了。</p>
+<blockquote>
+<p>留作练习。</p>
+</blockquote>
+<p>如果有 $F(G(z)) &#x3D; G(F(z)) &#x3D; x$。不妨拿 $F(G(z))$ 当做例子，我们可以得到：</p>
+<p>$$<br>\begin{aligned}<br>[z^n]G(z) &#x3D; \frac{1}{n} [z^{n - 1}] (\frac{z}{F(z)})^n<br>\end{aligned}<br>$$</p>
+<p>$\color{red}\text{注意}$ 我们不能只拘泥于这种形式，其本质是：</p>
+<p>$$<br>\begin{aligned}<br>[z^n]G(z) &#x3D; \frac{1}{n}[z^{- 1}] \frac{1}{F^n(z)}<br>\end{aligned}<br>$$</p>
+<p>我们上面进行平移是为了保证其能用整数来表示出来，注意我们对于 $F$ 需要进行平移直到第一项非零为止，所以这个 $-1$ 本质上就是减去向左平移的位置，之后 $n$ 就是单纯来平衡的。</p>
+<p>证明的话考虑我们之前说的，对于复合之后的函数进行求导和平移即可。</p>
+<ul>
+<li>$\color{red}(7)$ <strong>解决复合的方法</strong> $-$ <strong>扩展拉格朗日反演</strong></li>
+</ul>
+<blockquote>
+<p>主要是感觉写到一起不是很明显，但是事实上这个东西的用处更大一些。</p>
+</blockquote>
+<p>$$<br>\begin{aligned}<br>[z^n] H(F(z)) &#x3D; \frac{1}{n} [z^{n - 1}] (\frac{z}{G(z)})^n H’(z)<br>\end{aligned}<br>$$</p>
+<ul>
+<li>$\color{red}(8)$ <strong>常用的多项式形式</strong></li>
+</ul>
+<p>$$<br>\begin{aligned}<br>\frac{1}{1 - z} &amp;&#x3D; \sum_{i \ge 0} z^i \\<br>e^z &amp;&#x3D; \sum_{i \ge 0} \frac{z^i}{i!} \\<br>\frac{1}{(1 - z)^m} &amp;&#x3D; \sum_{i \ge 0} \binom{i+m-1}{i} z^i \\<br>\frac{e^z + e^{-z}}{2} &amp;&#x3D; \sum_{i \ge 0} \frac{z^{2i}}{(2i)!} \\<br>\frac{e^z - e^{-z}}{2} &amp;&#x3D; \sum_{i \ge 0} \frac{z^{2i + 1}}{(2i + 1)!} \\<br>\int{\frac{1}{1 - z}} &#x3D; \ln{\frac{1}{1 - z}} &amp;&#x3D; \sum_{i \ge 1}\frac{z^i}{i}\\<br>\int{\frac{1}{1 + z}} &#x3D; \ln{(1 + z)} &amp;&#x3D; \sum_{i \ge 1} \frac{(-1)^{i-1}z^i}{i}<br>\end{aligned}<br>$$</p>
+<p>其实我们还可以将 $z$ 替换成 $az$ 这样就变成了 $a^iz^i$ 了。</p>
+<ul>
+<li>$\color{red}(9)$ <strong>生成函数求通向</strong></li>
+</ul>
+<p>根据上文的一些套路，您肯定可以将一些简单的递推式子得到通向了。</p>
+<p>但是如果比较复杂怎么办，比如说斐波那契数列就是我们不能直接看出来的数列。</p>
+<blockquote>
+<p>当然您可以通过我们最早提起的特征方程来解决这个问题。</p>
+</blockquote>
+<p>我们知道 $Fib(z) &#x3D; \frac{z}{1-z-z^2}$。</p>
+<ul>
+<li>$\color{blue}(1)$ <strong>直接拆分成和</strong> $z$ <strong>一次项有关的式子</strong></li>
+</ul>
+<p>$$<br>\begin{aligned}<br>Fib(z) &amp;&#x3D; \frac{z}{1 - z - z^2} \\<br>&amp;&#x3D;\frac{1}{\sqrt{5}}\left(-\frac{1}{1-\frac{1-\sqrt{5}}{2}z}+\frac{1}{1-\frac{\sqrt{5}+1}{2}z}\right)<br>\end{aligned}<br>$$</p>
+<p>发现里面的式子本质上和 $\frac{1}{1-az}$ 是一样的，根据加法原理我们直接可以得到：</p>
+<p>$$<br>\begin{aligned}<br>[z^n]Fib(z) &#x3D; \frac{1}{\sqrt 5}\left(- \left(\frac{1 - \sqrt 5}{2}\right)^n + \left(\frac{1 + \sqrt 5}{2}\right)^n\right)<br>\end{aligned}<br>$$</p>
+<ul>
+<li>$\color{blue}(2)$ <strong>使用牛顿二项式定理</strong></li>
+</ul>
+<p>我们考虑一个常见的卡特兰数的生成函数 $C(z)&#x3D;\frac{1-\sqrt{1-4z}}{2z}$。</p>
+<p>我们不用考虑左边的部分直接使用<strong>牛顿二项式定理</strong>展开 $\sqrt{1 - 4z}$。</p>
+<p>$$<br>\begin{aligned}<br>\sqrt{1 - 4z} &amp;&#x3D; \sum_{i \ge 0} \binom{\frac{1}{2}}{i} (-4z^ i) \\<br>&amp;&#x3D; - \sum_{i \ge 0} \frac{(2i-2)!}{(i-1)!2^{2i-1}i!} 4^iz^i \\<br>&amp;&#x3D; - 2 \sum_{i \ge 0} \frac{(2i-2)!}{(i-1)!i!} z^i\\<br>C(z) &amp;&#x3D; \sum_{i \ge 0} \frac{\binom{2i}{i}}{i + 1} z^ i<br>\end{aligned}<br>$$</p>
+<p>我们注意一下，我们对于 $\sqrt{1 - 4z}$ 可以拆出来第一项与 $1$ 相消除。</p>
+<ul>
+<li>$\color{blue}(3)$ <strong>构造拉格朗日反演的形式</strong></li>
+</ul>
+<blockquote>
+<p> 上面的那种太麻烦了，我们能不能有快一点的做法。</p>
+</blockquote>
+<p>对于卡特兰数有 $C(z) &#x3D; 1 + zC^2(z)$ 成立，我们考虑直接进行构造。</p>
+<p>首先进行移项得到 $\frac{C(z) - 1}{C^2(z)} &#x3D; z$ 已经符合了反演的一个条件，很简单我们构造 $F(z) &#x3D; \frac{z - 1}{z^2}$ 即可，那么 $F(C(z)) &#x3D; z$ 进行反演得到。</p>
+<p>$$<br>\begin{aligned}<br>[z^n] C(z) &amp;&#x3D; \frac{1}{n} [z^{n - 1}] (\frac{z}{F(z)})^n \\<br>&amp;&#x3D; \frac{1}{n} [z^{n - 1}] (\frac{z^3}{z-1})^n<br>\end{aligned}<br>$$</p>
+<p>右边进行展开可以得到：</p>
+<p>$$<br>\begin{aligned}<br>(\frac{z^3}{z - 1}) ^ n &amp;&#x3D; z^{3n} \sum_{i \ge 0} \binom{i+n-1}{i}(-1)^iz^i \\<br>[z^{n - 1}] (\frac{z^3}{z - 1}) &amp;&#x3D; \binom{-n-2}{-2n-1} \times (-1)^{-2n-1}\\<br>\end{aligned}<br>$$</p>
+<p>但是你会发现二项式系数下面是 $-2n-1$ 是不行的，我们考虑对于原来的 $F$ 稍作改动。</p>
+<p>也就是需要将 $z - 1$ 消掉即可，很简单我们让 $z - 1 \to z$ 也就是让 $z$ 加 $1$。</p>
+<p>设 $F(z) &#x3D; \frac{z}{(1+z)^2}$ 那么我们有 $F(C(z) - 1) &#x3D; z$。</p>
+<p>$$<br>\begin{aligned}<br>[z^n] (C(z)-1)&amp;&#x3D;\frac{1}{n} [z^{n-1}] (\frac{z}{F(z)})^n\\<br>&amp;&#x3D;\frac{1}{n} [z^{n-1}] (z+1)^{2n}\\<br>&amp;&#x3D;\frac{\binom{2n}{n-1}}{n}\\<br>&amp;&#x3D;\frac{\binom{2n}{n}}{n+1}<br>\end{aligned}<br>$$</p>
+<blockquote>
+<p>其实常数项 $1$ 并不可怕，可怕的是 $2$。</p>
+</blockquote>
+<ul>
+<li>$\color{blue}(4)$ <strong>利用卷积和组合意义</strong></li>
+</ul>
+<p><strong>例题：</strong> 求 $n$ 个点的有根树的数量。</p>
+<p>设答案的生成函数为 $T(z)$。</p>
+<p>显然我们可以考虑对于树进行拼接。</p>
+<p>$$<br>T(z) &#x3D; ze^{T(z)}<br>$$</p>
+<p>显然可以得到 $\frac{T(z)}{e^{T(z)}} &#x3D; z$ 设 $F(z) &#x3D; \frac{z}{e^z}$ 那么有 $F(T(z)) &#x3D; z$。</p>
+<p>根据拉格朗日反演可以得到 $[z^n]F(z) &#x3D; \frac{1}{n}[z^{n - 1}]e^{zn}$。</p>
+<p>$$<br>\begin{aligned}<br>[z^n] F(z) &#x3D; \frac{1}{n} [z^{n - 1}] e^{zn} \\<br>&#x3D; \frac{1}{n}\times \frac{n^{n - 1}}{(n - 1)!}<br>\end{aligned}<br>$$</p>
+<p>但是我们是 $\tt EGF$ 需要再额外乘以一个 $n!$。</p>
+<p>所以答案就是 $n! \times \frac{n^{n - 1}}{n!} &#x3D; n^{n - 1}$。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">legendgoddes</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hater.ml/2022/02/28/generating-function/">https://hater.ml/2022/02/28/generating-function/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hater.ml" target="_blank">Legendgod's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/">生成函数</a><a class="post-meta__tags" href="/tags/%E6%95%B0%E8%AE%BA/">数论</a><a class="post-meta__tags" href="/tags/%E5%8D%B7%E7%A7%AF/">卷积</a></div><div class="post_share"><div class="social-share" data-image="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=890068763" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://npm.elemecdn.com/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://npm.elemecdn.com/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/03/07/cf-solution-1632e2/"><img class="prev-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=644880519" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CF1632E2 题解</div></div></a></div><div class="next-post pull-right"><a href="/2022/02/28/group-theory-brief/"><img class="next-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=697556647" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Burnside 定理浅谈</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/02/22/bzoj3684/" title="BZOJ3684 大朋友和多叉树"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=430442425" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-22</div><div class="title">BZOJ3684 大朋友和多叉树</div></div></a></div><div><a href="/2021/08/27/cf-solution-1548c/" title="CF1548C The Three Little Pigs"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=226507652" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-27</div><div class="title">CF1548C The Three Little Pigs</div></div></a></div><div><a href="/2022/02/22/tjoi2015percent/" title="[TJOI2015] 概率论"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=236509697" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-22</div><div class="title">[TJOI2015] 概率论</div></div></a></div><div><a href="/2021/11/16/uoj-solution-514/" title="[UR #19]通用测评号"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=198993971" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-16</div><div class="title">[UR #19]通用测评号</div></div></a></div><div><a href="/2022/02/26/51nod-1236/" title="51 nod 1236 序列求和 V3"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=827738459" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-26</div><div class="title">51 nod 1236 序列求和 V3</div></div></a></div><div><a href="/2022/03/13/cf-solution-1603f/" title="CF1603F October 18, 2017 题解"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=606904626" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-13</div><div class="title">CF1603F October 18, 2017 题解</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">legendgoddes</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/legendgoddess"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/legendgoddess" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3456261198@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E9%A1%B9%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">二项式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0%E6%8A%80%E5%B7%A7"><span class="toc-number">2.</span> <span class="toc-text">生成函数技巧</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=239604752" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UOJ 269 [清华集训2016] 如何优雅地求和 题解"/></a><div class="content"><a class="title" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解">UOJ 269 [清华集训2016] 如何优雅地求和 题解</a><time datetime="2022-06-13T11:55:00.000Z" title="发表于 2022-06-13 19:55:00">2022-06-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=119753057" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="#593. 新年的军队 题解"/></a><div class="content"><a class="title" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解">#593. 新年的军队 题解</a><time datetime="2022-06-01T23:50:00.000Z" title="发表于 2022-06-02 07:50:00">2022-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=850658581" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P4548 [CTSC2006]歌唱王国"/></a><div class="content"><a class="title" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国">P4548 [CTSC2006]歌唱王国</a><time datetime="2022-05-29T12:17:00.000Z" title="发表于 2022-05-29 20:17:00">2022-05-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=415064773" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AT2369 [AGC013C] Ants on a Circle 多解法讨论"/></a><div class="content"><a class="title" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论">AT2369 [AGC013C] Ants on a Circle 多解法讨论</a><time datetime="2022-04-29T08:01:00.000Z" title="发表于 2022-04-29 16:01:00">2022-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=199018446" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P7987 [USACO21DEC] Paired Up G 题解"/></a><div class="content"><a class="title" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解">P7987 [USACO21DEC] Paired Up G 题解</a><time datetime="2022-04-28T12:27:00.000Z" title="发表于 2022-04-28 20:27:00">2022-04-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By legendgoddes</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://npm.elemecdn.com/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://npm.elemecdn.com/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadUtterances () {
+  let ele = document.createElement('script')
+  ele.setAttribute('id', 'utterances_comment')
+  ele.setAttribute('src', 'https://utteranc.es/client.js')
+  ele.setAttribute('repo', 'legendgoddess/Blog')
+  ele.setAttribute('issue-term', 'pathname')
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+  ele.setAttribute('theme', nowTheme)
+  ele.setAttribute('crossorigin', 'anonymous')
+  ele.setAttribute('async', 'true')
+  document.getElementById('utterances-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function utterancesTheme () {
+  if (document.querySelector('.utterances-frame')) {
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+    const message = {
+      type: 'set-theme',
+      theme: theme
+    };
+    const iframe = document.querySelector('.utterances-frame');
+    iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+}
+
+if ('Utterances' === 'Utterances' || !false) {
+  if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+  else loadUtterances()
+} else {
+  function loadOtherComment () {
+    loadUtterances()
+  }
+}</script></div><script src="https://npm.elemecdn.com/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

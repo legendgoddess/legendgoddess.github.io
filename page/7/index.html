@@ -1,0 +1,468 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Legendgod's Blog - 终幕</title><meta name="author" content="legendgoddes"><meta name="copyright" content="legendgoddes"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Legendgod&#39;s Blog">
+<meta property="og:url" content="https://hater.ml/page/7/index.html">
+<meta property="og:site_name" content="Legendgod&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hater.ml/image/avatar.jpg">
+<meta property="article:author" content="legendgoddes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hater.ml/image/avatar.jpg"><link rel="shortcut icon" href="/image/favicon.ico"><link rel="canonical" href="https://hater.ml/page/7/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://npm.elemecdn.com/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Legendgod\'s Blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: true,
+  isToc: false,
+  postUpdate: '2022-11-11 20:40:20'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Legendgod's Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Legendgod's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2022/03/31/cf-solution-1635f/" title="CF1635F Closest Pair 题解">     <img class="post_bg" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=45834659" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CF1635F Closest Pair 题解"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/03/31/cf-solution-1635f/" title="CF1635F Closest Pair 题解">CF1635F Closest Pair 题解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-03-31T01:27:00.000Z" title="发表于 2022-03-31 09:27:00">2022-03-31</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CF%E9%A2%98%E8%A7%A3/">CF题解</a></span></div><div class="content">Problem - 1635F - Codeforces
+首先考虑一下如果已知一个位置 $i$ 怎么样选择 $j$ 最优，发现这个东西不是很好维护。
+但是我们发现不知道怎样选择我们可以考虑有哪些 $j$ 可能成为最优解。
+如果说 $x_{j1} &lt; x_{j2} \ \cap\ w_{j1} \le w_{j2} $，那么 $j2$ 是没有必要的。
+同理如果考虑已知 $j$，对于 $x_{i1} &lt; x_{i2} \ \cap \ w_{i1} \ge w_{i2}$ 那么 $i1$ 是没有必要的。
+显然这个东西是有单调性的，我们考虑维护一个单调栈。
+不妨考虑从左向右扫，之后考虑加入一个元素肯定是要计算这个元素与之前元素的贡献。
+考虑加入一个元素的时候一直进行更新直到找到一个没有必要更新的位置。
+使用单调栈维护不合法的递增二元组即可。
+这样我们加入的时候可以直接使用和当前位置不能有单调性的元素。
+询问离线即可。
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2022/03/31/cf-solution-1453f/" title="CF1453F Even Harder 题解">     <img class="post_bg" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=629018587" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CF1453F Even Harder 题解"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/03/31/cf-solution-1453f/" title="CF1453F Even Harder 题解">CF1453F Even Harder 题解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-03-31T00:52:00.000Z" title="发表于 2022-03-31 08:52:00">2022-03-31</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CF%E9%A2%98%E8%A7%A3/">CF题解</a></span></div><div class="content">Problem - 1453F - Codeforces
+感觉按照图是不好做的，我们考虑这个序列是有特殊性质的，所以我们考虑按照序列做。
+最终序列是固定的，考虑对于最终序列进行 $\tt Dp$，我们会需要记录最终序列，我们发现如果加入一个点的时候我们只需要知道当前序列的最近两个位置即可，不妨假设其为 $(u, v)$。
+对于加入的点 $x$，我们肯定有 $u \le a_x + x &lt; v$。
+其次对于 $y \in [x + 1, u - 1]$，我们需要保证这些点是不能到达 $u$ 的所以需要删除贡献。
+那么设 $f(u, v)$ 表示最后两个元素为 $u, v$，考虑转移到新的点 $v’$ 方程：
+$$f(u, v) &#x3D; \min_{k &#x3D; 1} ^ {u - 1} (f(k, u) + \sum_{p &#x3D; k + 1} ^ {u - 1} [a_p + p\ge u])$$
+这个东西是 $O(n^3)$ 的。
+我们考虑枚举 $u$ 之后，需要考虑剩下的条件也就是 $u \le a_k + k &lt; v$，我们可以离线存下来，之后开桶按照 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2022/03/30/examination-20220330/" title="给学弟的模拟赛1">     <img class="post_bg" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=522332677" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="给学弟的模拟赛1"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/03/30/examination-20220330/" title="给学弟的模拟赛1">给学弟的模拟赛1</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-03-30T07:31:00.000Z" title="发表于 2022-03-30 15:31:00">2022-03-30</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%B8%93%E9%A2%98/">专题</a></span></div><div class="content">
+
+模拟赛——lengendgod专场
+
+
+题目名称
+联合权值
+乘积最大
+点
+马
+
+
+
+题目类型
+传统题
+传统题
+传统题
+传统题
+
+
+可执行文件名
+link
+cjzd
+point
+horses
+
+
+输入文件名
+link.in
+cjzd.in
+point.in
+horses.in
+
+
+输出文件名
+link.out
+cjzd.out
+point.out
+horses.out
+
+
+每个测试点时限
+1s
+1s
+1s
+1s
+
+
+运行内存上限
+512MB
+512MB
+512MB
+512MB
+
+
+编译命令：
+
+
+
+C++
+-Wl,–stack&#x3D;1073741824 -O2 -std&#x3D;c++14
+
+
+
+其它语言
+rm -r -f
+
+
+注意事项：
+
+考试时间4个小时。
+文件名（程序名和输入输出文件名）必须使用英文小写。
+C++ 中函数 main() 的返回值类型必须是 int，程序正常结束时的返回值必须是 0。 
+若无特殊说明，结果比较方式为忽略行末空格、文末回车后的全文比较。
+选手应将各题的源程序放在选手文件夹内，不要建立子文件夹。
+隆重感谢 $\tt legendgod$ 对本场 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2022/03/30/cf-solution-1437f/" title="CF1437F Emotional Fishermen 题解">     <img class="post_bg" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=37476377" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CF1437F Emotional Fishermen 题解"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/03/30/cf-solution-1437f/" title="CF1437F Emotional Fishermen 题解">CF1437F Emotional Fishermen 题解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-03-30T06:23:00.000Z" title="发表于 2022-03-30 14:23:00">2022-03-30</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CF%E9%A2%98%E8%A7%A3/">CF题解</a></span></div><div class="content">Problem - 1437F - Codeforces
+
+题目比较弱智，但是我更加弱智。
+
+首先考虑排序之后肯定是没有关系的，从小到大进行插入。
+考虑插入了 $i$ 位置之后的结果 $f_i$，我们发现如果需要插入必须找到一个位置 $j$ 使得 $2a_j \le a_i$，当然对于 $\forall k \le j$ 都是可以进行转移的。
+我们考虑位置 $j$ 前面满足 $2a_k \le a_j$ 的最大位置 $x_j$，那么经过 $j$ 的插入之后总共有 $x_j + 1$ 个元素。同理对于 $i$ 来说序列的长度是固定的就是 $x_i +1$。
+考虑插入到了位置 $j$，也就是通过 $f_j$ 进行转移，对于只受 $i$ 影响的数我们肯定可以在 $i$ 之后任意排列，数的个数总共有 $x_i - x_j - 1$。
+
+$j$ 也是需要算进去的。
+
+对于位置 $i$ 可以考虑还有几个位置可以放置，显然有 $n - 1 - 1 - x_j$。
+
+减去 $i, j, x_j$。
+
+所以方案数就是 $A_{n - 2 - x_j}^{x_i - x_j - 1} &#x3D; \df ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2022/03/29/division-blocking/" title="整除分块">     <img class="post_bg" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=147543753" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="整除分块"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/03/29/division-blocking/" title="整除分块">整除分块</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-03-29T23:31:00.000Z" title="发表于 2022-03-30 07:31:00">2022-03-30</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">整除分块就是一种可以将相同值一起计算，使得带有取上整或者取下整的式子可以在 $O(\sqrt n)$ 内计算。
+
+我们考虑一种比较简单的式子：
+$$\sum_{i &#x3D; 1}^ n \lfloor \frac{n}{i}\rfloor$$
+
+直接进行打表可以发现有一些部分是相同的，我们考虑一起计算。
+
+不妨考虑 $\left \lfloor\dfrac{n}{i} \right\rfloor &#x3D; k, n &#x3D; ki + r$。
+考虑会带得到 $\dfrac{n - r}{k} &#x3D; i$，考虑 $r \in (0, i)$，而且我们有 $\left \lfloor\dfrac{n}{i} \right\rfloor &#x3D; k$。
+所以我考虑如果想要让 $i$ 最大，我们必须满足 $r &#x3D; 0$，所以我们有 $max(i) &#x3D; \left \lfloor \dfrac{n}{\dfrac{n}{i}} \right\rfloor$。
+我们仔细思考复杂度，每次让 $\lfloor\dfrac{n}{i}\rfloor$ 不同的 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2022/03/29/cf-solution-830d/" title="CF830D Singer House 题解">     <img class="post_bg" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=386739258" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CF830D Singer House 题解"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/03/29/cf-solution-830d/" title="CF830D Singer House 题解">CF830D Singer House 题解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-03-29T11:49:00.000Z" title="发表于 2022-03-29 19:49:00">2022-03-29</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CF%E9%A2%98%E8%A7%A3/">CF题解</a></span></div><div class="content">Codeforces - 830D
+考虑这个东西可以做到 $O(k^3)$，要么是一个矩阵的形式，要么是二维状态的 $\tt Dp$。
+感觉矩阵一下子想不出来有什么前途，考虑对于每个点，其儿子本质上就是子问题，我们考虑设答案为 $f_n$。
+考虑转移的时候要么是直接从儿子中转移，要么是考虑儿子的一条路径经过自己得到的，注意两条路径如果要合并的时候是不能有重复节点的。
+如果一个节点的祖先是自己，那么就存在连边，所以任意一条路径总是可以通过根节点的，我们考虑转移的时候需要通过若干条不相交的路径进行计算，所以设状态为 $f(n, k)$ 表示根节点为 $n$ 选择了 $k$ 条不相交路径的方案。
+
+转移的时候考虑根节点自己作为一条路径。
+
+两条路径不算根节点。
+
+根节点和某条链相连接，可以连接头或者，也就是是否通过返租边。
+
+根节点合并两条链，总共有 $K + 1$ 条链，选择两条即可，也就是钦定一条头和尾。
+
+
+$$\begin{aligned}f(n, K) &amp;&#x3D; \sum_{i + j &#x3D; K - 1} f(n - 1, i) \times f(n - 1, ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2022/03/28/bitset_function/" title="bitset 和 __builtin 函数">     <img class="post_bg" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=293570778" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="bitset 和 __builtin 函数"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/03/28/bitset_function/" title="bitset 和 __builtin 函数">bitset 和 __builtin 函数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-03-28T23:34:00.000Z" title="发表于 2022-03-29 07:34:00">2022-03-29</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">$\tt bitset$ 是一个比较神奇的东西，我感觉经常用来卡常数，毕竟这个东西有 $\frac{1}{w}$ 的常数。
+
+事实证明，如果写埃氏筛用 $\tt bitset$ 比欧拉筛要快。
+
+定义：就是一个存了 $0&#x2F;1$ 串的东西，每个位占用一个 $B$。
+可以使用 unsigned long long 或者 string 进行初始化，默认值为全 $0$。
+
+$\color{red}\text{pay attention ! }$string 最右边的那一位是被放在 bitset 的位置 $0$ 的，数字同理。
+
+123bitset&lt;maxn&gt; vis;//000...000bitset&lt;maxn&gt; vis1(5);// 000...00101bitset&lt;maxn&gt; vis2(&quot;100101&quot;); // 000...100101
+
+$\tt Bitset$ 函数
+flip() 全部取反。 
+
+filp(x) 取反下标为 $x$ 的位置。
+
+size() 返回位数（大小）。
+
+count() 返回 $1$ 的个数。 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2022/03/28/bzoj4369/" title="#4369. [IOI2015]teams分组 题解">     <img class="post_bg" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=664361690" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="#4369. [IOI2015]teams分组 题解"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/03/28/bzoj4369/" title="#4369. [IOI2015]teams分组 题解">#4369. [IOI2015]teams分组 题解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-03-28T07:52:00.000Z" title="发表于 2022-03-28 15:52:00">2022-03-28</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/BZOJ%E9%A2%98%E8%A7%A3/">BZOJ题解</a></span></div><div class="content">[IOI2015]teams分组 - 题目 - 黑暗爆炸OJ
+考虑对于一个点 $i$ 的区间 $[l_i, r_i]$ 不妨假设按照 $l_i$ 从小到大排列，如果一个点 $i$ 是可以取到的情况，我们可以发现对于所有可以取到的肯定是选 $r_i$ 最小的进行取走。
+我们考虑对于每个询问从小到大来做，考虑将每个 $[l_i, r_i]$ 对应到二维平面的 $(x, y)$ 上，对于每个询问记录在这次询问之后没有被取走的 $y$ 的最小值，设其为 $h_i$。
+那么对于一个 $k_x$ 如果 $h_i &lt; k_x$ 显然是可以直接取的，如果出现 $h_i &gt; k_x$ 我们需要考虑其剩下没有取的元素，这个东西可以通过单调栈来维护。
+之后对于平面上二维数点，直接使用可持久化线段树即可。
+考虑加入一个元素的情况，直接在线段树二分位置即可。
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/6/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#content-inner">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/#content-inner">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/#content-inner">29</a><a class="extend next" rel="next" href="/page/8/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">legendgoddes</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/legendgoddess"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/legendgoddess" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3456261198@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=239604752" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UOJ 269 [清华集训2016] 如何优雅地求和 题解"/></a><div class="content"><a class="title" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解">UOJ 269 [清华集训2016] 如何优雅地求和 题解</a><time datetime="2022-06-13T11:55:00.000Z" title="发表于 2022-06-13 19:55:00">2022-06-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=119753057" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="#593. 新年的军队 题解"/></a><div class="content"><a class="title" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解">#593. 新年的军队 题解</a><time datetime="2022-06-01T23:50:00.000Z" title="发表于 2022-06-02 07:50:00">2022-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=850658581" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P4548 [CTSC2006]歌唱王国"/></a><div class="content"><a class="title" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国">P4548 [CTSC2006]歌唱王国</a><time datetime="2022-05-29T12:17:00.000Z" title="发表于 2022-05-29 20:17:00">2022-05-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=415064773" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AT2369 [AGC013C] Ants on a Circle 多解法讨论"/></a><div class="content"><a class="title" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论">AT2369 [AGC013C] Ants on a Circle 多解法讨论</a><time datetime="2022-04-29T08:01:00.000Z" title="发表于 2022-04-29 16:01:00">2022-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=199018446" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P7987 [USACO21DEC] Paired Up G 题解"/></a><div class="content"><a class="title" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解">P7987 [USACO21DEC] Paired Up G 题解</a><time datetime="2022-04-28T12:27:00.000Z" title="发表于 2022-04-28 20:27:00">2022-04-28</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/51nod%E9%A2%98%E8%A7%A3/"><span class="card-category-list-name">51nod题解</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AT%E9%A2%98%E8%A7%A3/"><span class="card-category-list-name">AT题解</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/BZOJ%E9%A2%98%E8%A7%A3/"><span class="card-category-list-name">BZOJ题解</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CF%E9%A2%98%E8%A7%A3/"><span class="card-category-list-name">CF题解</span><span class="card-category-list-count">92</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CODECHEF%E9%A2%98%E8%A7%A3/"><span class="card-category-list-name">CODECHEF题解</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GCJ%E9%A2%98%E8%A7%A3/"><span class="card-category-list-name">GCJ题解</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/HDU%E9%A2%98%E8%A7%A3/"><span class="card-category-list-name">HDU题解</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/IOI%E9%A2%98%E8%A7%A3/"><span class="card-category-list-name">IOI题解</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/AC%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 1.1em; color: #999">AC自动机</a> <a href="/tags/Dilworth/" style="font-size: 1.1em; color: #999">Dilworth</a> <a href="/tags/Dp/" style="font-size: 1.5em; color: #99a9bf">Dp</a> <a href="/tags/FWT/" style="font-size: 1.1em; color: #999">FWT</a> <a href="/tags/Hash/" style="font-size: 1.1em; color: #999">Hash</a> <a href="/tags/LCT/" style="font-size: 1.1em; color: #999">LCT</a> <a href="/tags/ST-%E8%A1%A8/" style="font-size: 1.1em; color: #999">ST 表</a> <a href="/tags/STL/" style="font-size: 1.1em; color: #999">STL</a> <a href="/tags/Trie/" style="font-size: 1.14em; color: #999b9d">Trie</a> <a href="/tags/border/" style="font-size: 1.1em; color: #999">border</a> <a href="/tags/tarjan/" style="font-size: 1.1em; color: #999">tarjan</a> <a href="/tags/%E4%B8%BB%E5%B8%AD%E6%A0%91/" style="font-size: 1.14em; color: #999b9d">主席树</a> <a href="/tags/%E4%BA%8C%E5%88%86/" style="font-size: 1.1em; color: #999">二分</a> <a href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/" style="font-size: 1.23em; color: #999ea6">二分图</a> <a href="/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%88%86%E7%BB%84/" style="font-size: 1.1em; color: #999">二进制分组</a> <a href="/tags/%E4%BA%A4%E4%BA%92/" style="font-size: 1.1em; color: #999">交互</a> <a href="/tags/%E5%88%86%E5%9D%97/" style="font-size: 1.23em; color: #999ea6">分块</a> <a href="/tags/%E5%88%86%E6%B2%BB/" style="font-size: 1.28em; color: #99a0aa">分治</a> <a href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/" style="font-size: 1.1em; color: #999">单调栈</a> <a href="/tags/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/" style="font-size: 1.14em; color: #999b9d">单调队列</a> <a href="/tags/%E5%8D%B7%E7%A7%AF/" style="font-size: 1.19em; color: #999da1">卷积</a> <a href="/tags/%E5%8F%8D%E6%BC%94/" style="font-size: 1.32em; color: #99a2ae">反演</a> <a href="/tags/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.1em; color: #999">可持久化数据结构</a> <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/" style="font-size: 1.1em; color: #999">后缀数组</a> <a href="/tags/%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA/" style="font-size: 1.23em; color: #999ea6">后缀自动机</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 1.46em; color: #99a7bb">图论</a> <a href="/tags/%E5%A0%86/" style="font-size: 1.1em; color: #999">堆</a> <a href="/tags/%E5%A4%9A%E9%A1%B9%E5%BC%8F/" style="font-size: 1.28em; color: #99a0aa">多项式</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 1.19em; color: #999da1">字符串</a> <a href="/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/" style="font-size: 1.1em; color: #999">差分约束</a> <a href="/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/" style="font-size: 1.28em; color: #99a0aa">平衡树</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 1.14em; color: #999b9d">并查集</a> <a href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" style="font-size: 1.1em; color: #999">归并排序</a> <a href="/tags/%E6%8B%93%E6%89%91/" style="font-size: 1.14em; color: #999b9d">拓扑</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 1.1em; color: #999">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.37em; color: #99a4b2">数据结构</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 1.41em; color: #99a5b7">数论</a> <a href="/tags/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/" style="font-size: 1.1em; color: #999">斯特林数</a> <a href="/tags/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" style="font-size: 1.1em; color: #999">时间复杂度</a> <a href="/tags/%E6%9C%80%E5%B0%8F%E5%89%B2/" style="font-size: 1.14em; color: #999b9d">最小割</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/06/"><span class="card-archive-list-date">六月 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">五月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">四月 2022</span><span class="card-archive-list-count">38</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/03/"><span class="card-archive-list-date">三月 2022</span><span class="card-archive-list-count">48</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/02/"><span class="card-archive-list-date">二月 2022</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/11/"><span class="card-archive-list-date">十一月 2021</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/10/"><span class="card-archive-list-date">十月 2021</span><span class="card-archive-list-count">22</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/09/"><span class="card-archive-list-date">九月 2021</span><span class="card-archive-list-count">51</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">230</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-11-11T12:40:18.839Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By legendgoddes</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://npm.elemecdn.com/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const findTrueUrl = (array) => {
+    Promise.all(array.map(item =>
+      fetch(item.url).then(resp => resp.json()).then(data => {
+        const urlArray = data.body.match(/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/ig)
+        if (data.user.login === 'utterances-bot') {
+          return urlArray.pop()
+        } else {
+          return urlArray.shift()
+        }
+      })
+    )).then(res => {
+        array = array.map((i,index)=> {
+          return {
+            ...i,
+            url: res[index]
+          }
+        })
+
+        saveToLocal.set('github-newest-comments', JSON.stringify(array), 10/(60*24))
+        generateHtml(array)
+    });
+  }
+
+  const getComment = () => {
+    fetch('https://api.github.com/repos/legendgoddess/Blog/issues/comments?sort=updated&direction=desc&per_page=6&page=1',{
+      "headers": {
+        Accept: 'application/vnd.github.v3.html+json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        const githubArray = data.map(item => {
+          return {
+            'avatar': item.user.avatar_url,
+            'content': changeContent(item.body_html),
+            'nick': item.user.login,
+            'url': item.issue_url,
+            'date': item.updated_at,
+            'githubUrl': item.html_url
+          }
+        })
+        findTrueUrl(githubArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      })
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('github-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script src="https://npm.elemecdn.com/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

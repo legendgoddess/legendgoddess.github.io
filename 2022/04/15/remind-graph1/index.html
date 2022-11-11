@@ -1,0 +1,1128 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>图论回忆1 | Legendgod's Blog</title><meta name="keywords" content="分块"><meta name="author" content="legendgoddes"><meta name="copyright" content="legendgoddes"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="据说图论我会的东西相对少一点，我们先写图论。  二分图概念和判定定义：对于无向图 $G &#x3D; (V, E)$ 存在将 $V$ 划分成两个不相交子集 $A, B$ 满足集合内部没有连边，则 $G$ 为二分图。 定理：图 $G &#x3D; (V, E)$ 是二分图，当且仅当 $G$ 中没有奇环。 推论：二分图 $G &#x3D; (V, E)$ 的任意子图为二分图。 推论：二分图 $G &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图论回忆1">
+<meta property="og:url" content="https://hater.ml/2022/04/15/remind-graph1/index.html">
+<meta property="og:site_name" content="Legendgod&#39;s Blog">
+<meta property="og:description" content="据说图论我会的东西相对少一点，我们先写图论。  二分图概念和判定定义：对于无向图 $G &#x3D; (V, E)$ 存在将 $V$ 划分成两个不相交子集 $A, B$ 满足集合内部没有连边，则 $G$ 为二分图。 定理：图 $G &#x3D; (V, E)$ 是二分图，当且仅当 $G$ 中没有奇环。 推论：二分图 $G &#x3D; (V, E)$ 的任意子图为二分图。 推论：二分图 $G &amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=799394581">
+<meta property="article:published_time" content="2022-04-15T01:08:00.000Z">
+<meta property="article:modified_time" content="2022-11-11T12:39:51.622Z">
+<meta property="article:author" content="legendgoddes">
+<meta property="article:tag" content="分块">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=799394581"><link rel="shortcut icon" href="/image/favicon.ico"><link rel="canonical" href="https://hater.ml/2022/04/15/remind-graph1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://npm.elemecdn.com/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '图论回忆1',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-11-11 20:39:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Legendgod's Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Legendgod's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">图论回忆1<a class="post-edit-link" href="https://github.com/legendgoddess/Blog/edit/master/source/_posts/remind-graph1.md" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-15T01:08:00.000Z" title="发表于 2022-04-15 09:08:00">2022-04-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-11T12:39:51.622Z" title="更新于 2022-11-11 20:39:51">2022-11-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="图论回忆1"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>据说图论我会的东西相对少一点，我们先写图论。</p>
+</blockquote>
+<h2 id="二分图概念和判定"><a href="#二分图概念和判定" class="headerlink" title="二分图概念和判定"></a>二分图概念和判定</h2><p><strong>定义</strong>：对于无向图 $G &#x3D; (V, E)$ 存在将 $V$ 划分成两个不相交子集 $A, B$ 满足集合内部没有连边，则 $G$ 为二分图。</p>
+<p><strong>定理</strong>：图 $G &#x3D; (V, E)$ 是二分图，当且仅当 $G$ 中没有奇环。</p>
+<p><strong>推论</strong>：二分图 $G &#x3D; (V, E)$ 的任意子图为二分图。</p>
+<p><strong>推论</strong>：二分图 $G &#x3D; (V, E)$ 是二分图，当且仅当其任意连通子图是二分图。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1330">封锁阳光大学 - 洛谷</a></p>
+<p>给定一张图，求是否存在点集 $V$ 满足任意一条边只有一个顶点在 $V$ 中。</p>
+</blockquote>
+<p>本质上就是分成两个集合，使得集合内部没有边，就是二分图。</p>
+<p>直接染色之后取点数小的即可。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1525">[NOIP2010 提高组] 关押罪犯 - 洛谷</a></p>
+<p>给定一张无向带权图，将图分成两个集合，使得集合内部边权的最大值最小。</p>
+</blockquote>
+<p>考虑权值大的肯定尽量是两个集合之间的边，考虑二分答案，之后找到不合法的边钦定一定要分为两个集合，设二分的答案为 $X$ 或者说建立图 $G &#x3D; (V, E), E &#x3D; { w &gt; X | (u, v, w) }$，是一个二分图。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5292">[HNOI2019]校园旅行 - 洛谷</a></p>
+<p>给定以一张无向图，每个点有点权 $0, 1$，对于 $q$ 个询问 $s, t$ 求是否存在 $s \to t$ 的一条路径使得路径上的点权是回文串。</p>
+<p>$O(V^2 + q)$。</p>
+</blockquote>
+<p>能否直接预处理出来两个点之间的答案，考虑一个点到另外一个点点数的奇偶性是固定的。</p>
+<p>对于标记全部是相同的大小 $\ge 2$ 的连通分量，只需要考虑其增加这一段的奇偶性，如果该连通分量是二分图那么改变的奇偶性是固定的。</p>
+<ul>
+<li>二分图只要保留一个生成树就行了。</li>
+</ul>
+<blockquote>
+<p>因为树也是二分图。</p>
+</blockquote>
+<ul>
+<li>如果不是二分图，直接考虑生成树之后在根节点加一个自环就行了。</li>
+</ul>
+<p>对于连接不同颜色的边我们肯定是一个二分图，所以保留生成树就行了，所以边数是 $O(n)$ 的。</p>
+<p>考虑暴力枚举转移的边，之后进行 $\tt bfs&#x2F;SPFA$ 转移即可。</p>
+<h2 id="二分图最大匹配"><a href="#二分图最大匹配" class="headerlink" title="二分图最大匹配"></a>二分图最大匹配</h2><p>对于给定 $G &#x3D; (V, E)$，求出最大的边集 $A \subseteq E$ 使得没有两条有共同端点的边。</p>
+<p><strong>增广路定义：</strong> 对于一个没匹配端点节点 $p$ 出发，交题经过在 $A$ 中和不在 $A$ 中的边，到达一个没匹配节点。那么这条路径被称为一条增广路。</p>
+<p><strong>匈牙利算法：</strong></p>
+<p>如果 $P$ 是二分图最大匹配，当且仅当图中不存在增广路。首先必要性显然，考虑充分性。</p>
+<ol>
+<li>不会出现可以直接加入匹配的边。</li>
+<li>如果修改边的匹配那么一定存在一条路径上面的边进行翻转，但是已经没有增广路了，所以不存在。</li>
+</ol>
+<p>综上充分性成立。</p>
+<p><strong>实现过程：</strong></p>
+<p>维护 $1 \sim i - 1$ 点的最大匹配，每次寻找增广路。</p>
+<p>如果设左边点的标号为 $1$，右边为 $0$ 那么最大匹配就是最大字典序的。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1963">[NOI2009] 变换序列 - 洛谷</a></p>
+<p>给定数列 $A_{1 \sim n}$ 求字典序最小的排列 $P$ 使得 $|P_i - i| &#x3D; A_i$。</p>
+</blockquote>
+<p>考虑对于每个 $i$ 其确定了连接的两条或者一条边，直接进行连边。</p>
+<p>那么左边是 $P_i$ 右边是 $i$，找到最大匹配就是答案。</p>
+<p>考虑从后向前跑就是字典序最小的了。</p>
+<h3 id="二分图最小点覆盖"><a href="#二分图最小点覆盖" class="headerlink" title="二分图最小点覆盖"></a>二分图最小点覆盖</h3><p><strong>定理</strong>：二分图最小点覆盖大小等于最大匹配大小。</p>
+<p><strong>推论</strong>：任何一组点覆盖大小 $\ge$ 任何一组匹配大小。</p>
+<p>二分图最大匹配的线性规划形式：</p>
+<p>$$<br>\begin{aligned}<br>&amp;\max\sum_{i &#x3D; 1} ^ m x_i \\<br>&amp;s.t.<br>\begin{cases}<br>\sum_{i &#x3D; 1} ^ n w(j, i) x_i \le 1\\<br>x_i \ge 0<br>\end{cases}<br>\end{aligned}<br>$$</p>
+<p>其中 $x_i$ 表示该边是否选择，$w(j, i)$ 表示点 $i$ 是否被边 $j$ 选择。</p>
+<p>其对偶问题是：</p>
+<p>$$<br>\begin{aligned}<br>&amp;\min\sum_{j &#x3D; 1} ^ m y_j \\<br>&amp;s.t.<br>\begin{cases}<br>\sum_{j &#x3D; 1} ^ m w(j, i) y_j \ge 1\\<br>y_j \ge 0<br>\end{cases}<br>\end{aligned}<br>$$</p>
+<p>其中 $y_j$ 表示点 $j$ 是否被选择。</p>
+<blockquote>
+<p>$\tt ix35:$ 我们可以证明：上面问题中的代价矩阵是一个<strong>全幺模矩阵</strong>，因此其最优解等于整数规划解，即 $x_i \in {0, 1}$，这说明了我们用线性规划描述二分图匹配的合理性。</p>
+</blockquote>
+<h3 id="二分图最大独立集"><a href="#二分图最大独立集" class="headerlink" title="二分图最大独立集"></a>二分图最大独立集</h3><p><strong>定理</strong>：最大独立集和最小点覆盖之和等于点数。</p>
+<p><strong>推论</strong>：二分图最大独立集大小与最大匹配大小之和等于点数。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3355">骑士共存问题 - 洛谷</a></p>
+<p>在 $n \times m$ 的棋盘上最多放置多少不会相互攻击的骑士。</p>
+</blockquote>
+<p>考虑让 $2|i + j$ 成为左部点，剩下成为右部点。对于点的限制两两连边，本质上就是求最大独立集。</p>
+<h3 id="二分图最小边覆盖"><a href="#二分图最小边覆盖" class="headerlink" title="二分图最小边覆盖"></a>二分图最小边覆盖</h3><p><strong>定义</strong>：用最少的边覆盖所有点。</p>
+<p>如果不存在孤立点，答案就等于最大独立集大小。</p>
+<h3 id="有向无环图最小路径覆盖"><a href="#有向无环图最小路径覆盖" class="headerlink" title="有向无环图最小路径覆盖"></a>有向无环图最小路径覆盖</h3><p>求 $\tt DAG$ 的最小路径覆盖。</p>
+<p>构造拆点二分图，有如下定理：</p>
+<p><strong>定理</strong>：最小路径覆盖 $&#x3D;|V| - $ 拆点二分图最大匹配。</p>
+<blockquote>
+<p>根据 $\tt Dilworth$ 定理，考虑路径是一个偏序集，那么最小链覆盖等于最大反链长度。</p>
+</blockquote>
+<blockquote>
+<p><strong>链定义：</strong> $\forall (x, y) \in V, x \to y \ \cup\  y \to x$。</p>
+</blockquote>
+<blockquote>
+<p><strong>反链定义：</strong> $\forall(x, y) \in V, x \not\to y \ \cap \ y \not \to x$。</p>
+</blockquote>
+<blockquote>
+<p>所以反链本质就是一个独立集，这样的独立集 $&#x3D;|V| - $ 最大匹配。</p>
+</blockquote>
+<blockquote>
+<p>如何求 $\tt DAG$ 的最大匹配呢？直接拆点二分图。</p>
+</blockquote>
+<p>考虑拆点二分图 $G_0$。</p>
+<ul>
+<li>对于路径 $v_1 \to v_2 \to \cdots \to v_n$ 可以表示成 $v_i \to v_{i + 1}$ 因为路径不相交，所以肯定是可以表示成匹配的形式。</li>
+<li>$G_0$ 的一组匹配同上可以构造成 $G$，对于没有边经过的点都视为被空路经过。</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4298">[CTSC2008]祭祀 - 洛谷</a></p>
+<p>貌似是我多年前以为找不到的原题。</p>
+<p>给定的 $\tt DAG, G &#x3D; (V, E)$，求最大的 $A \subseteq V$ 使得 $\forall x, y \in A,$ 不存在 $x$ 到 $y$ 的路径。</p>
+</blockquote>
+<p>本质上就是最大独立集，先一手传递闭包。最大反链就是最小链覆盖。</p>
+<h3 id="二分图最大权匹配"><a href="#二分图最大权匹配" class="headerlink" title="二分图最大权匹配"></a>二分图最大权匹配</h3><p><strong>定义</strong>：给定二分图 $G &#x3D; (V, E)$，每条边有权值 $w_i$ 我们需要找到一组匹配使得边权最大。</p>
+<blockquote>
+<p>不一定是最大匹配。</p>
+</blockquote>
+<p>还是使用线性规划，$x_i$ 表示 边 $i$ 是否选择。</p>
+<p>$$<br>\begin{aligned}<br>&amp;\max\sum_{i &#x3D; 1} ^ m w_i x_i \\<br>&amp;s.t.<br>\begin{cases}<br>\sum_{i &#x3D; 1} ^ n w(j, i) x_i \le 1\\<br>x_i \ge 0<br>\end{cases}<br>\end{aligned}<br>$$</p>
+<p>依旧对偶：</p>
+<p>$$<br>\begin{aligned}<br>&amp;\min\sum_{j &#x3D; 1} ^ m y_j \\<br>&amp;s.t.<br>\begin{cases}<br>\sum_{j &#x3D; 1} ^ m w(j, i) y_j \ge w_i\\<br>y_j \ge 0<br>\end{cases}<br>\end{aligned}<br>$$</p>
+<p>我们设 $y_i$ 表示点 $i$ 的顶标，那么本质上就是如下问题：</p>
+<p><strong>最小顶标和问题</strong>：给定二分图，给每个点一个顶标，使得每条边两端点的顶标和不小于边权，且所有点顶标和最小。</p>
+<blockquote>
+<p>$w_i \ge 0$，如果 $ \exists w_i &lt; 0$ 那么就不能使用这种做法，不满足线性规划的条件。</p>
+<p>如果对于每个点加入一个极大权值，需要满足最大匹配是完美匹配。</p>
+</blockquote>
+<p>先讲述如何将最大权匹配转化成最大权完美匹配、</p>
+<ul>
+<li>如果要求 $w_i \ge 0$ 的<strong>最大权匹配</strong>，那么我们只需要将所有不存在的边视作边权为 $0$ 的边，如果左右两部点数不相等就补位相等。</li>
+<li>如果要求<strong>存在</strong> $w_i &lt; 0$ 的最大权<strong>完美</strong>匹配，就将不存在的边权值设为 $- \infty$。</li>
+<li>如果要求<strong>存在</strong> $w_i &lt; 0$ 的最大权匹配，那么当然是把所有负权边删掉，变成非负的情况。</li>
+</ul>
+<p>我们将左边点顶标称为 $A_i$ 右部点 $j$ 的顶标称为 $B_j$，我们要求 $A_i + B_j \ge d(i, j)$，其中 $d(i, j)$ 为 $i, j$ 之间的边权。</p>
+<p><strong>相等子图：</strong>所有满足 $A_i + B_j &#x3D; d(i, j)$ 的边构成的子图。</p>
+<p><strong>命题</strong>：相等子图中若存在完美匹配，那么这组完美匹配是原图的一个最大权完美匹配。</p>
+<p>证明：对于边权和显然是 $\sum A_i + \sum B_j$，那么对于原图中任意的一组完美匹配有 $d(i, j) \le A_i + B_j$ 所以取到最大边权和。</p>
+<p>如果相等子图中没有完美匹配，考虑调整法。</p>
+<p>假设左侧有点 $x$ 在相等子图的最大匹配中是非匹配点，让 $x$ 尝试找增广路（虽然是没有的）考虑对于左边的顶标减少 $\Delta$ 右边增加 $\Delta$。</p>
+<ul>
+<li>匹配边，两边要么都能访问到，要么都不能访问到，还是属于相等子图。</li>
+<li>对于某个以访问到的左端点为一端的非匹配边，由于 $A_i$ 减小，有可能加入相等子图中。</li>
+</ul>
+<p>我们取 $\Delta &#x3D; \min(A_i + B_j - d(i, j))$ 即可，这样至少加了一条	边。</p>
+<p><strong>优化</strong>：$\tt Slack$ 优化的基于 $\tt Bfs$ 的 $\tt KM$ 算法。</p>
+<ul>
+<li>每次尝试增广的时候模拟匈牙利算法求增广路的过程，对于右边的每个点 $y$，记录 $\tt Slack_y$ 表示这一轮已经访问的左侧点 $x$ 中，$\min(A_x+B_y-d(x, y))$。</li>
+<li>当我们访问一个左部点的时候，先用其更新右部点的 $\tt Slack$ 值，接下来取出右部 $\tt Slack$ 最小的点，将其值设为 $\Delta$，之后修改左右部分的所有点，并且更新 $\tt Slack$ 数组。</li>
+</ul>
+<blockquote>
+<p>也就是 $\tt Slack$ 数组减去 $\Delta$。</p>
+</blockquote>
+<ul>
+<li>将下一个访问的左部点设为取出的右部点的匹配点，如果没有被匹配那就找到了一条增广路。</li>
+<li>重复上述过程，得到最大权完美匹配。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/extc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> __gnu_cxx;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> __gnu_pbds;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> Legendgod &#123;</span><br><span class="line">	<span class="keyword">namespace</span> Read &#123;</span><br><span class="line"><span class="comment">//		#define Fread</span></span><br><span class="line">		<span class="meta">#<span class="keyword">ifdef</span> Fread</span></span><br><span class="line">		<span class="type">const</span> <span class="type">int</span> Siz = (<span class="number">1</span> &lt;&lt; <span class="number">21</span>) + <span class="number">5</span>;</span><br><span class="line">		<span class="type">char</span> *iS, *iT, buf[Siz];</span><br><span class="line">		<span class="meta">#<span class="keyword">define</span> gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )</span></span><br><span class="line">		<span class="meta">#<span class="keyword">define</span> getchar gc</span></span><br><span class="line">		<span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">		<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">		<span class="function"><span class="type">void</span> <span class="title">r1</span><span class="params">(T &amp;x)</span> </span>&#123;</span><br><span class="line">		    x = <span class="number">0</span>;</span><br><span class="line">			<span class="function"><span class="type">char</span> <span class="title">c</span><span class="params">(getchar())</span></span>;</span><br><span class="line">			<span class="function"><span class="type">int</span> <span class="title">f</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">			<span class="keyword">for</span>(; !<span class="built_in">isdigit</span>(c); c = <span class="built_in">getchar</span>()) <span class="keyword">if</span>(c == <span class="string">&#x27;-&#x27;</span>) f = <span class="number">-1</span>;</span><br><span class="line">			<span class="keyword">for</span>(; <span class="built_in">isdigit</span>(c); c = <span class="built_in">getchar</span>()) x = (x &lt;&lt; <span class="number">1</span>) + (x &lt;&lt; <span class="number">3</span>) + (c ^ <span class="number">48</span>);</span><br><span class="line">			x *= f;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>...Args&gt;</span><br><span class="line">		<span class="function"><span class="type">void</span> <span class="title">r1</span><span class="params">(T &amp;x, Args&amp;...arg)</span> </span>&#123;</span><br><span class="line">			<span class="built_in">r1</span>(x), <span class="built_in">r1</span>(arg...);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="meta">#<span class="keyword">undef</span> getchar</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Read;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">500</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> int64;</span><br><span class="line"><span class="type">const</span> int64 inf = <span class="number">1e15</span>;</span><br><span class="line"><span class="type">int</span> n, m, mt[maxn], pre[maxn];</span><br><span class="line">int64 ex[maxn], ey[maxn], sl[maxn], vc[maxn][maxn];</span><br><span class="line"><span class="type">bool</span> vis[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">bfs</span><span class="params">(<span class="type">int</span> u)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> x, <span class="built_in">y</span>(<span class="number">0</span>), <span class="built_in">yy</span>(<span class="number">0</span>), i; int64 tmp;</span><br><span class="line">    <span class="built_in">memset</span>(pre, <span class="number">0</span>, <span class="built_in">sizeof</span>(pre));</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) sl[i] = inf;</span><br><span class="line">    mt[y] = u;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>) &#123;</span><br><span class="line">        x = mt[y], tmp = inf, vis[y] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) <span class="keyword">if</span>(!vis[i]) &#123;</span><br><span class="line">            <span class="keyword">if</span>(sl[i] &gt; ex[x] + ey[i] - vc[x][i]) &#123;</span><br><span class="line">                sl[i] = ex[x] + ey[i] - vc[x][i];</span><br><span class="line">                pre[i] = y;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(sl[i] &lt; tmp) tmp = sl[i], yy = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt;= n; ++ i) &#123;</span><br><span class="line">            <span class="keyword">if</span>(vis[i]) ex[mt[i]] -= tmp, ey[i] += tmp;</span><br><span class="line">            <span class="keyword">else</span> sl[i] -= tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        y = yy;</span><br><span class="line">        <span class="keyword">if</span>(mt[y] == <span class="number">-1</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(y) mt[y] = mt[pre[y]], y = pre[y];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">int64 <span class="title">KM</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(ex, <span class="number">0</span>, <span class="built_in">sizeof</span>(ex));</span><br><span class="line">    <span class="built_in">memset</span>(ey, <span class="number">0</span>, <span class="built_in">sizeof</span>(ey));</span><br><span class="line">    <span class="built_in">memset</span>(mt, <span class="number">-1</span>, <span class="built_in">sizeof</span>(mt));</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++ i) &#123;</span><br><span class="line">        <span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="built_in">sizeof</span>(vis));</span><br><span class="line">        <span class="built_in">bfs</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">int64 <span class="title">res</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++ i) <span class="keyword">if</span>(mt[i] != <span class="number">-1</span>)</span><br><span class="line">        res += vc[mt[i]][i];</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i, j;</span><br><span class="line">    <span class="built_in">r1</span>(n, m);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= n; ++ j) vc[i][j] = - inf;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= m; ++ i) &#123;</span><br><span class="line">        <span class="type">int</span> u, v; int64 w;</span><br><span class="line">        <span class="built_in">r1</span>(u, v, w), vc[u][v] = w;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, <span class="built_in">KM</span>());</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) <span class="built_in">printf</span>(<span class="string">&quot;%d%c&quot;</span>, mt[i], <span class="string">&quot; \n&quot;</span>[i == n]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> Legendgod::<span class="built_in">main</span>(), <span class="number">0</span>; &#125;<span class="comment">//</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>例题 $7$：$\text{[UVA 1411] Ants}$</p>
+<p>给定平面上 $n$ 个黑点和 $n$ 个白点，请选 $n$ 条线段，每条线段连接一个白点和黑点，每个点只作为一条线段的端点，且这些线段两两不交。</p>
+<p>一定存在解。</p>
+</blockquote>
+<p>考虑线段两两不交的限制，也就是考虑若 $AB \cap CD \neq \emptyset$，那么有 $AB+ CD &gt; AD + BC$，因为一定存在解，所以考虑不相交的线段肯定是边权和最小的。</p>
+<p>也就是求连接黑点和白点的长度和最小的 $n$ 条线段对应的匹配，直接执行 $\tt KM$ 算法。</p>
+<h3 id="tt-Hall-定理"><a href="#tt-Hall-定理" class="headerlink" title="$\tt Hall$ 定理"></a>$\tt Hall$ 定理</h3><p>对于二分图 $G &#x3D; (V, E)$ 另 $N(v)$ 表示与 $v$ 相邻的点集，则关于最大匹配，我们有如下结论：</p>
+<p><strong>定理</strong>：设二分图的两部分为 $X, Y$ 且 $|X| \le |Y|$，则其存在一个大小为 $|X|$ 的匹配，当且仅当 $\forall S \subseteq X$，有 $|S| \le |\bigcup_{v \in S} N(v)|$。</p>
+<blockquote>
+<p>就是说其能到达的点集 $V \subseteq Y, |S| \le |V|$。</p>
+</blockquote>
+<p>证明：</p>
+<p>必要性：若存在 $S$ 使得条件不成立，所有点的匹配点形成了一个大小不小于 $|S|$ 的点集，其中肯定存在一个子集的大小大于超集。</p>
+<p>充分性：若条件成立但是不存在大小为 $|X|$ 的匹配，考虑从左部点开始尝试增广，因为匹配不成功所以递归终止点必然是<strong>左部点</strong>，考虑遍历到的所有左部点有 $|L|&#x3D; |R| + 1$ 与条件矛盾。</p>
+<p><strong>推论1：</strong>若一个无向图的每个点度数都为 $k$，则成其为 $k$ 正则图，那么左右点数相等的 $k$ 正则二分图必有完美匹配 （$k \ge 1$）。</p>
+<blockquote>
+<p>证明：反证法，设存在左部点集 $L$ 设其邻居并为 $R$ 有 $|L| &gt; |R|$，那么 $R$ 中所有点的度数和不小于 $k \times |L|$。但是 $R$ 的大小 $&lt; L$ 是不可能的。</p>
+</blockquote>
+<p><strong>推论2：</strong> 如果点带权，左部点 $i$ 需要匹配 $a_i$ 个右部点（可重复），而右部点 $i$ 可匹配 $b_i$ 个左部点（可重复），我们将定理中的 $|S|$ 和 $|\bigcup_{v \in S} N(v)|$ 改成其元素和即可。</p>
+<h3 id="tt-Hall-定理推广"><a href="#tt-Hall-定理推广" class="headerlink" title="$\tt Hall$ 定理推广"></a>$\tt Hall$ 定理推广</h3><p><strong>定理：</strong>设二分图 $G$ 的两部分是 $X,Y$，则其最大匹配为 $|X| - \max(|S| - |\bigcup_{v \in S} N(v)|)$，其中 $S \in X$。</p>
+<p>证明：</p>
+<p>令 $f(S) &#x3D; |S| - |\bigcup_{v \in S}N(v)|$。</p>
+<p>首先最大匹配不会超过 $|X| - f(S)$，考虑 $f(S)$ 取到最大值的 $S$，其点的总匹配数不会超过 $|\bigcup_{v \in S} N(v)|$。</p>
+<p>所以整张图的最大匹配数不会超过 $|X| - \max(f(S))$。</p>
+<blockquote>
+<p>我们感性理解一下， 就是考虑一个集合其最大的不能匹配的点数是 $\max(f(S))$，就算剩下的点都能进行匹配，那么就是 $|X| - f(S)$。</p>
+</blockquote>
+<p>考虑如果最大匹配小于这个数，从左部的非匹配点进行增广，对于所有递归过程构成了以左部点<strong>非匹配点</strong>为根，所有叶子为左部点的森林，设左部非匹配点有 $s$ 个，不妨设左右点数分别为 $l, r$，满足 $l &#x3D; r + s$，因为 $s$ 是一个 $f(S)$，所以左部非匹配点不超过 $\max(f(S))$ 个。</p>
+<blockquote>
+<p>例题 $8$：</p>
+<p>给定左部 $n$ 个点，右部 $m$ 个点的二分图，左部点 $i$ 向右部 $[l_i, r_i]$ 内的所有点连边，求是否存在大小为 $n$ 的匹配。</p>
+</blockquote>
+<blockquote>
+<p>$\tt Hall$ 定理就是求匹配的存在性。</p>
+</blockquote>
+<p>也就是判断条件：$\forall S \subseteq X, |S| \le \bigcup_{v \in S} N(v)$ 是否成立。</p>
+<p>首先考虑一手按照区间进行排序，那么我们最终选择的肯定是连续的排序之后连续的左部点。</p>
+<blockquote>
+<p>如果区间重合很好处理，如果不重合呢？</p>
+</blockquote>
+<p>如果区间有重合可以考虑式子能直接使用线段树查询，如果区间不重合，考虑先求出每个重合区间的答案。</p>
+<p>发现如果每个子区间合法那么合并这个两个区间肯定合法。</p>
+<blockquote>
+<p>对啦！！！</p>
+</blockquote>
+<p>考虑当不存在大小为 $n$ 的匹配是，一定存在一个区间作为 $R$ 使得 $\tt Hall$ 定理的条件不成立，不妨设区间为 $[l, r]$ 要算出左部点满足 $[l_i, r_i] \subseteq [l, r]$ 的 $i$ 个数，减去 $r - l + 1$ 之后取 $\tt max$。</p>
+<p>使用数据结构维护这一过程，升序扫描 $r$，对于每个 $l$ 维护当前 $[l, r]$ 对应的 $|L| - |R|$，当 $r$ 增大时如果有 $r_i &#x3D; r$ 的左部点 $i$，则需要将 $l \le l_i$ 的所有 $l$ 对应的 $|L|-|R|$ 增大 $1$，然后每次询问全局最大值如果存在正值就不存在大小为 $n$ 的匹配。</p>
+<blockquote>
+<p>首先升序枚举 $r$ 肯定是所有点都加入进去的，然后我们只需要考虑线段树维护重复的贡献，我们不需要考虑线段树的 $l$ 是否真的存在，因为对于真实存在的点 $l$ 取到的肯定是最值。</p>
+<p>所以直接一起维护即可。</p>
+</blockquote>
+<p>我们接下来继续分析这张图匹配的特性。</p>
+<p>将所有左部点按照 $r_i$ 从小到大排序，考虑第一个左部点 $x$ 应该匹配哪个右部点。</p>
+<p>根据 $\tt hall$ 定理，设左部点集为 $V_L$，对于 $A \subseteq V_L$ 且 $x \not \in A$，我们希望删除 $x$ 及其匹配点之后对 $\bigcup_{v \in S} N(v)$ 影响最小，也就是尽量使其不变。</p>
+<p>也就是尽量使其不变，因为第一个点的限制我们有 $r_x \le r_i$，所以选择取 $l_x$，如果只有单个点对于 $A \cup x$ 来说是会更优的，不然是不变的。</p>
+<p>我们贪心撇皮每次选择当前可以匹配点中最靠前的一个没有被匹配过的点，若每个点都被匹配，那么就找到了一个大小为 $n$ 的匹配。</p>
+<p>这启发我们：<strong>Hall 定理可以作为一些显式或隐式匹配问题的贪心策略依据。</strong></p>
+<blockquote>
+<p>例题 $9$：</p>
+<p>给定左部 $n$ 个点，右部 $m$ 个点的二分图，左部点 $i$ 向右部 $[1, l_i] \cup [r_i, m]$ 内的所有点进行连边，求最大匹配。</p>
+</blockquote>
+<p>也就是求 $n - \max(|S| - \bigcup_{v \in S} N(v))$。</p>
+<p>如果前缀是递增的，我们考虑选择 $i$ 那么前缀的部分肯定没有用了，对于后缀我们可以维护 $i - 1$ 的区间答案每次加入一个区间的时候使用区间加。</p>
+<p>之后分类讨论如果点 $i$ 的后缀是最大的，那么就是查询 $r$ 小于当前值的贡献，不然考虑加入当前值求最优贡献。</p>
+<p>复杂度是 $O((n + m)\log m)$  的。</p>
+<p>枚举左部点集 $L$ 其右部点邻居集 $R$ 必然是一段前缀并后缀。</p>
+<p>考虑枚举 $R &#x3D; [1, l] \cup [r, n]$，同上题可以得到关于 $L$ 中的点的 $l_i, r_i$ 的限制，使用数据结构升序扫描 $l$，对于每个 $r$ 维护 $|L| - |R|$，当 $l$ 增加是若遇到 $l_i &#x3D; l$ 的 $i$，则对于 $r \le r_i$ 的 $r$，其 $|L| - |R|$ 将增大 $1$。</p>
+<blockquote>
+<p>例题 $10$：</p>
+<p>给定左部 $n$ 个点，右部 $m$ 个点的二分图，左部有点权 $a_i, b_i$，右部点有点权 $c_j, d_j$，且 $(i, j)$ 之间有边当且仅当 $a_i \ge d_j$ 或者 $c_j \ge b_i$ 求最大匹配。</p>
+</blockquote>
+<p>首先右部点按照 $d$ 从小到大排序，左部点按照 $a$ 从小到大排序，可以发现左部点 $i$ 连接的肯定是一段前缀，之后考虑右部点。</p>
+<p>考虑从 $0$ 开始枚举 $d$ 使用线段树维护 $c &#x3D; x$ 的答案。</p>
+<p>当增加 $d$ 使得位置 $i$ 被加入之后，对于同时满足 $c, d$ 限制的贡献被计算了两遍，所以需要减去贡献。</p>
+<p>复杂度是 $O((n + m) \log n)$ 。</p>
+<h3 id="网络最大流"><a href="#网络最大流" class="headerlink" title="网络最大流"></a>网络最大流</h3><p>给定有向图 $G &#x3D; (V, E)$，每条边有非负容量 $c_i$，同时给定两个不同点 $s, t \in V$ 分别表示源点，汇点，则称这是一张网络图。</p>
+<p>令 $c(u, v)$ 表示当 $u, v$ 之间有有边是等于这些边的容量和，否则等于 $0$。</p>
+<p>定义一个合法流函数 $f:V\times V \to R$ 是满足如下性质的函数：</p>
+<ul>
+<li>$f(u, v) \le c(u, v)$。</li>
+<li>$f(u, v) &#x3D; -f(v, u)$。</li>
+<li>令 $fl_i &#x3D; \sum_{j &#x3D; 1} ^ n f(i, j)$ 有 $fl_s \ge 0, fl_t \le 0$ 对于其他点都有 $fl_i &#x3D; 0$。</li>
+</ul>
+<blockquote>
+<ol>
+<li>流量上限。</li>
+<li>流量方向。</li>
+<li>除了 $s, t$ 外每个点都不存储流，所有流入的流量都会流出。</li>
+</ol>
+</blockquote>
+<p>最大流问题就是对于给定网络图找出了一个合法的流函数，使得 $fl_s$ （称为流量）最大。</p>
+<p><strong>基本性质：</strong></p>
+<ul>
+<li>$fl_s &#x3D; - fl_t$。</li>
+<li>若不存在 $i \to j$ 和 $j \to i$ 的边，则必有 $f(i, j) &#x3D; f(j, i) &#x3D; 0$，这是因为 $c(i, j) &#x3D; c(j, i) &#x3D; 0$。</li>
+</ul>
+<p>根据性质 $2$ 我们只需要记录边的点对之间的流，或者说只需要记录每条边上运载的流的大小。</p>
+<p>$\tt Dinic$ 算法：</p>
+<p>先确定一个任意的初始流函数，比如所有 $f(i, j) &#x3D; 0$，随后不断尝试扩大最大流。</p>
+<p><strong>残量网络</strong>：设当前已有一个流函数 $f$，则取 $c’(i, j) &#x3D; c(i, j) - f(i, j)$ 为个条边容量得到的新的网络图。</p>
+<p><strong>增广路</strong>：我们任取一条 $s \to t$ 的路径 $v_1 \to \cdots \to v_n(v_1 &#x3D; 1, v_n &#x3D; t)$ 使得 $c’(v_i, v_{i + 1}) &gt; 0$。</p>
+<p>最大流算法都用到一个<strong>重要性质：当前函数是最大流，当且仅当参量网络不存在增广路</strong>。</p>
+<p>暴力思路就是暴力找增广路，因为流量有限所以算法肯定会在有限次增广后结束。</p>
+<p>$\tt Dinic$ 进行了优化，首先对于参量网络进行分层，然后增广的时候只保留出发点的层数比终点层数恰好小 $1$ 的边，显然是一个 $\tt DAG$。</p>
+<p><strong>优势：</strong>多路增广，增广使用 $\tt dfs$，分层使用 $\tt bfs$。</p>
+<blockquote>
+<p>当前弧优化可以保证每条边用完之后就不会再遍历到。</p>
+</blockquote>
+<p>最大流可以解决二分图最大匹配问题：建立源汇点 $s, t$ 从 $s$ 向所有左部点连接容量为 $1$ 的边，汇点对右部点连接容量为 $1$ 的边。</p>
+<blockquote>
+<p>比匈牙利算法要快。</p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3305">[SDOI2013]费用流</a></p>
+<p>给定网络图，$\tt Alice$ 需要给出一个最大流对应的流函数，随后$\tt Bob$ 可以给每条边赋予非负费用 $c_i$，要求所有边费用总和为 $P$，使得 $\tt Alice$ 的最大流中所有边的流量乘费用求和最大，$\tt Alice$ 希望这个最大值最小，求这个最大值的最小值。</p>
+</blockquote>
+<p>考虑 $\tt B$ 的策略是啥，就是选择流量最大的边，让其费用为 $P$。</p>
+<p>可以发现这样肯定是最优的。</p>
+<blockquote>
+<p>反证法：如果有两条边流量分别为 $a, b, a &gt; b$，然后费用为 $c, P - c$，贡献是 $ac + bP - bc$。和 $aP$ 相比会小很多，所以不合法。</p>
+</blockquote>
+<p>那么考虑如何通过一些方法让最大边权最小，直接二分答案之后求最大流即可。</p>
+<blockquote>
+<p>二分答案我们每条边边权对其取 $\tt min$。</p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2891"> [USACO07OPEN]Dining G</a></p>
+<p>有 $n$ 头牛，$f$ 种食物和 $d$ 种饮料，每种食物和饮料只有一份，每头牛有一些喜欢的食物和饮料，求最多有多少头牛可以得到自己喜欢的食物和饮料。</p>
+</blockquote>
+<p>考虑左边放食物右边放饮料，每头牛拆点连边。</p>
+<p>最大流问题还可以用于解决一些其他模型。</p>
+<h4 id="最小割"><a href="#最小割" class="headerlink" title="最小割"></a>最小割</h4><p>对于有向图 $G$，每条边有非负代价 $c_i$，求删除代价最小的边集使得 $s$ 到 $t$ 不连通。</p>
+<p><strong>定理：</strong>最小割等于将每条边的代价转化成其容量后 $s$ 至 $t$ 的最大流。</p>
+<p>证明：</p>
+<p>首先我们只需要考虑 $s$ 能到达或者能到达 $t$ 的点。</p>
+<p>我们定义一组割为将 $V$ 拆成两个不相交的子集 $L, R$ 其中 $s \in L, t \in R$，我们删除所有 $L, R$ 之间的边。显然这是一组割，将这样的割称为 $C(L, R)$。</p>
+<ol>
+<li>对于 $G$ 中任意的合法流函数，其中 $fl_s$ 不超过 $G$ 的最小割。</li>
+</ol>
+<p>考虑 $L$ 中所有点的 $fl$ 之和，首先是等于 $fl_s$ 同时也是所有 $L \to R$ 的边的容量和。</p>
+<ol start="2">
+<li>最大流对应的参量网络中无增广路。</li>
+<li>若有一个流对应了无增广路的参量网络，则他也对应了一个不超过其 $fl_s$ 的割。</li>
+</ol>
+<p>考虑将 $L$ 设为残量网络中 $s$ 可以到达的点集，剩下点放到 $R$ 中，显然中间的边都是满流的，所以 $fl_s$ 不小于这组割。</p>
+<p>所以这个流的流量恰好等于割的大小。</p>
+<p>由此我们证明下面三个命题等价：</p>
+<ul>
+<li>$G$ 中存在一组割 $C(L, R)$ 等于 $G$ 中合法流函数 $f$ 的流量。</li>
+<li>$G$ 中的流函数 $f$ 是最大流。</li>
+<li>$G$ 中关于 $f$ 的残量网络是无增广路的。</li>
+</ul>
+<p>同时我们还可以得到刚才的一个结论：无增广路的残量网络必然对应最大流。</p>
+<blockquote>
+<p>首先必要性显然，根据我们之前证明的最大流等于最小割，而最小割的残量网络是无增广路的。</p>
+</blockquote>
+<p>我们刚刚解决的是有源汇的最小割，对于无源汇的最小割有算法 $\tt Stoer-Wagner$ 可以在 $O(VE + V^2 \log V)$ 解决该问题。</p>
+<h4 id="无源汇的最小割"><a href="#无源汇的最小割" class="headerlink" title="无源汇的最小割"></a>无源汇的最小割</h4><p>考虑暴力就是枚举所有的源点和汇点，进行最小割。</p>
+<p>显然对于图中 $a, b$ 两点其要么在同一个连通块要么处于不同连通块。</p>
+<ul>
+<li>$a, b$ 在同一连通块。</li>
+</ul>
+<p>显然如果 $a$ 与 $j$ 是不连通的，可以推出 $b$ 与 $j$ 是不连通的，我们可以将 $a, b$ 看成同一个点进行处理。</p>
+<ul>
+<li>$a, b$ 在不同连通块、</li>
+</ul>
+<p>构造过程开始于一个集合 $A$，初始是 $A &#x3D; \emptyset$。我们将所有点按照一个权值 $w(i)$ 从大到小加入。</p>
+<p>令 $w(i) &#x3D; \sum_{j \in A} d(j, i)$ 其中 $d(j, i)$ 表示 $i, j$ 之间的边权。</p>
+<p>设 $ord(i)$ 表示点 $i$ 加入集合的顺序，我们可以得到对于任意点 $s$，$s$ 到 $t$ 的最小割即为 $w(t)$。</p>
+<p>证明：</p>
+<p>若点 $v$ 满足在割去 $C$ 的图中，存在一个点 $u$，在 $v$ 之前加入 $A$，且 $u$ 和 $v$ 是不在一个连通块的，则称 $v$ 是 $\tt active$ 的。</p>
+<p>考虑我们取最后一个节点 $t$ 的权值 $w(t)$ 作为最小割。因为割掉这些边之后图是不连通的，而且我们之前贪心得到的答案是最小的。换句话说 $w(t)$ 就是 $t$ 到之前所有节点的最小割。</p>
+<p>对于第一个 $\tt active$ 节点 $v$，结论成立：因为 $v$ 前节点都不是 $\tt active$ 节点，所以都处于一个连通块内，所以 $v$ 与它们都不处在一连通块内，所以想要割掉 $v$ 需要断开它和之前所有点，花费是 $w(v)$。</p>
+<p>对于 $v$ 之后的第一个 $\tt active$ 节点 $u$，有 $w(u)$ 是从 $v$ 前节点和 $v$ 到 $u$ 之间节点与 $u$ 的边构成的，对于 $v$ 前面的点有 $w(u)$ 对于这部分的贡献不超过 $w(v)$。同样道理对于 $v$ 到 $u$ 之间的节点与 $u$ 边权相加一定要出现在 $C$ 中，所以结论成立。</p>
+<p>根据归纳法结论成立。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5632">Stoer - Wagner 算法</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/extc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> __gnu_cxx;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> __gnu_pbds;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> Legendgod &#123;</span><br><span class="line">	<span class="keyword">namespace</span> Read &#123;</span><br><span class="line"><span class="comment">//		#define Fread</span></span><br><span class="line">		<span class="meta">#<span class="keyword">ifdef</span> Fread</span></span><br><span class="line">		<span class="type">const</span> <span class="type">int</span> Siz = (<span class="number">1</span> &lt;&lt; <span class="number">21</span>) + <span class="number">5</span>;</span><br><span class="line">		<span class="type">char</span> *iS, *iT, buf[Siz];</span><br><span class="line">		<span class="meta">#<span class="keyword">define</span> gc() ( iS == iT ? (iT = (iS = buf) + fread(buf, 1, Siz, stdin), iS == iT ? EOF : *iS ++) : *iS ++ )</span></span><br><span class="line">		<span class="meta">#<span class="keyword">define</span> getchar gc</span></span><br><span class="line">		<span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">		<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">		<span class="function"><span class="type">void</span> <span class="title">r1</span><span class="params">(T &amp;x)</span> </span>&#123;</span><br><span class="line">		    x = <span class="number">0</span>;</span><br><span class="line">			<span class="function"><span class="type">char</span> <span class="title">c</span><span class="params">(getchar())</span></span>;</span><br><span class="line">			<span class="function"><span class="type">int</span> <span class="title">f</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">			<span class="keyword">for</span>(; !<span class="built_in">isdigit</span>(c); c = <span class="built_in">getchar</span>()) <span class="keyword">if</span>(c == <span class="string">&#x27;-&#x27;</span>) f = <span class="number">-1</span>;</span><br><span class="line">			<span class="keyword">for</span>(; <span class="built_in">isdigit</span>(c); c = <span class="built_in">getchar</span>()) x = (x &lt;&lt; <span class="number">1</span>) + (x &lt;&lt; <span class="number">3</span>) + (c ^ <span class="number">48</span>);</span><br><span class="line">			x *= f;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>...Args&gt;</span><br><span class="line">		<span class="function"><span class="type">void</span> <span class="title">r1</span><span class="params">(T &amp;x, Args&amp;...arg)</span> </span>&#123;</span><br><span class="line">			<span class="built_in">r1</span>(x), <span class="built_in">r1</span>(arg...);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="meta">#<span class="keyword">undef</span> getchar</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Read;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">600</span> + <span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="type">bool</span> vis[maxn], us[maxn];</span><br><span class="line"><span class="type">int</span> d[maxn][maxn], S, T, w[maxn], ord[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Solve1</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(us, <span class="number">0</span>, <span class="built_in">sizeof</span>(us));</span><br><span class="line">    <span class="built_in">memset</span>(w, <span class="number">0</span>, <span class="built_in">sizeof</span>(w));</span><br><span class="line">    w[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n - x + <span class="number">1</span>; ++ i) &#123;</span><br><span class="line">        <span class="function"><span class="type">int</span> <span class="title">ps</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; ++ j) <span class="keyword">if</span>(!vis[j] &amp;&amp; !us[j] &amp;&amp; w[j] &gt; w[ps]) ps = j;</span><br><span class="line">        us[ps] = <span class="number">1</span>, ord[i] = ps;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; ++ j) <span class="keyword">if</span>(!vis[j] &amp;&amp; !us[j])</span><br><span class="line">            w[j] += d[j][ps];</span><br><span class="line">    &#125;</span><br><span class="line">    S = ord[n - x], T = ord[n - x + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">return</span> w[T];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> i, j, <span class="built_in">res</span>(<span class="number">1e9</span>);</span><br><span class="line">    <span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="built_in">sizeof</span>(vis));</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt; n; ++ i) &#123;</span><br><span class="line">        res = <span class="built_in">min</span>(res, <span class="built_in">Solve1</span>(i));</span><br><span class="line">        vis[T] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= n; ++ j) &#123;</span><br><span class="line">            d[S][j] += d[T][j];</span><br><span class="line">            d[j][S] += d[j][T];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i, j;</span><br><span class="line">    <span class="built_in">r1</span>(n, m);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= m; ++ i) &#123;</span><br><span class="line">        <span class="type">int</span> a, b, w;</span><br><span class="line">        <span class="built_in">r1</span>(a, b, w);</span><br><span class="line">        d[a][b] += w, d[b][a] += w;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="built_in">Solve</span>());</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> Legendgod::<span class="built_in">main</span>(), <span class="number">0</span>; &#125;<span class="comment">//</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1345">[USACO 5.4] Telecowmunication</a></p>
+<p>给定无向图 $G$ 和点 $s, t$，求最少删除多少个非 $s, t$ 的点可以使得 $s$ 到 $t$ 不连通。</p>
+</blockquote>
+<p>拆点最小割。</p>
+<blockquote>
+<p>如果一条边不能被割的话，就将代价设为 $+\infty$。</p>
+</blockquote>
+<h4 id="最大权闭合子图问题"><a href="#最大权闭合子图问题" class="headerlink" title="最大权闭合子图问题"></a>最大权闭合子图问题</h4><p>给定有向图 $G$，每个点有可负点权 $a_i$，选出点集的子集 $A$，满足若 $u \in A,(u, v) \in E$ 则 $v \in A$。求 $\sum_{u \in A} a_u$ 的最大值。</p>
+<p>考虑求的是最大值，那么如果一个点连边了一个正值点，那么这两个点肯定都入选，所以我们对于一个点需要考虑的就是能够到达的负权点。</p>
+<p>选择一个点权为负的点相当于吧答案减掉它的权值，可以理解成我们需要舍弃这个点的权值。</p>
+<p>因此我们将问题转化成了类似二分图的问题：将点权非负的点向它能到达的所有点权为负的点连边，再从 $s$ 向点权非负的点分别连边，点前为负的点向 $t$ 连边。</p>
+<blockquote>
+<p>$S$ 连接的是边权和 $T$ 连接的是边权的绝对值。</p>
+<p>答案就是正权点 $-$ 最小割。</p>
+</blockquote>
+<p>就是我们考虑构建的时候权值为负的点是需要减去的，权值为正的点不选也是需要减去的。考虑我们选择一个正权点，肯定会带来其周围的负权点的贡献，显然我们不会考虑直接选择一个负权点。</p>
+<p>所以我们只需要考虑选择正权点的贡献，使用最小割求出选择最小的权值减去。</p>
+<p>也就是如果该限制被选择了那么其限制的点应该全部被选择。</p>
+<h4 id="最大流方案"><a href="#最大流方案" class="headerlink" title="最大流方案"></a>最大流方案</h4><p>可以直接算出每条边的流量。</p>
+<h4 id="最小割方案与可行边必经边"><a href="#最小割方案与可行边必经边" class="headerlink" title="最小割方案与可行边必经边"></a>最小割方案与可行边必经边</h4><p>对于最小割的方案，我们再跑完最大流之后求出 $s$ 能到达的所有点集合 $L$ 和其他点构成的集合 $R$，对于边 $(u, v)$ 如果 $u \in L$ 而且 $v \in R$ 那么边 $(u, v)$ 就在最小割中。</p>
+<p><strong>可行边：</strong>存在一种最小割使得这条边被割断。</p>
+<p><strong>必经边：</strong>每个最小割这条边都被割断。</p>
+<blockquote>
+<p>暴力：</p>
+<ul>
+<li>可行边：考虑删除这条边，图的最小割减少了 $w$。</li>
+<li>必经边：将这条边代价改为 $+ \infty$ 图的最小割变大。</li>
+</ul>
+<p>事实上只需要判断必经边就行了。</p>
+</blockquote>
+<p><strong>命题：</strong>一条边 $(u, v, w)$ 是最小割可行边，当且仅当这条边满流，并且 $G’$ 上不存在 $u \to v$ 的路径。</p>
+<p>证明：</p>
+<p>满流显然，如果存在 $u \to s \to t \to v$ 的路径那么删除掉之后最小割不会减少 $w$，不然最小割会恰好减少 $w$。</p>
+<p><strong>命题：</strong>一条边 $(u, v, w)$ 是最小割必经边，当且仅当这条边满流，并且 $G’$ 上存在 $s \to u$ 和 $v \to t$ 的路径。</p>
+<p>证明：</p>
+<p>满流显然，如果不存在 $s \to u$ 的路径，那么就算加大该边的容量最大流也不会变大，$v \to t$ 同理。</p>
+<p><strong>定理：</strong>将 $G’$ 进行 $scc$ 缩点，则边 $(u, v,w)$ 是<strong>可行边</strong>当且仅当满流且 $u, v$ 在不同的强连通分量。是<strong>必经边</strong>当且仅当 $s, u$ 在同一强连通分量，$v, t$ 在同一强连通分量。</p>
+<p>所以将 $G’$ 缩点得到的 $\tt DAG$ 连接不同的 $scc$ 的满流边是可行边，从 $s$ 所在 $scc$ 连接 $t$ 所在 $scc$ 的满流边是必经边，而从 $s$ 所在 $scc$ 连出去的边构成了最小割的一种方案。</p>
+<h4 id="二分图最大匹配方案与可行点和必经点"><a href="#二分图最大匹配方案与可行点和必经点" class="headerlink" title="二分图最大匹配方案与可行点和必经点"></a>二分图最大匹配方案与可行点和必经点</h4><p>因为是拆点所以我们就说成可行边和必经边了。</p>
+<p><strong>半增广路定义</strong>：一条路径依次通过非匹配边和匹配边，首尾分别是匹配边和非匹配边，并且终点是非匹配点。</p>
+<p><strong>增广环定义：</strong>一个环依次经过非匹配边和匹配边。</p>
+<p>显然对于半增广路和增广环的边取反可以得到一个新的最大匹配。</p>
+<p><strong>定理：</strong>对于任意两组最大匹配 $P_1, P_2$ 总存在一种方法使得进行若干次取反半增广路或取反增广环的操作，使 $P_1$ 变成 $P_2$。</p>
+<p>证明：显然不会出现两条单链不重复而且有交的情况，如果出现的话这个就不是最大匹配。那么对于单链是可以通过翻转解决的。</p>
+<p>考虑链连接一个环的情况，也是同理。</p>
+<p>对于这样两个匹配对于奇链肯定是相同的方案数的，所以只有偶链和环也就是半增广路和环。</p>
+<p><strong>命题：</strong>边 $(u, v)$ 是二分图最大匹配的<strong>可行边</strong>，当且仅当 $(u, v)$ 属于当前最大匹配或存在一条经过 $(u, v)$ 的半增广路或增广环。</p>
+<blockquote>
+<p>显然。</p>
+</blockquote>
+<p><strong>命题：</strong>边 $(u, v)$ 是二分图最大匹配的必经边，当且仅当 $(u, v)$ 属于当前最大匹配且不存在一条经过 $(u, v)$ 的半增广路或增广环。</p>
+<blockquote>
+<p>显然。</p>
+</blockquote>
+<p>考虑将<strong>半增广路</strong>也转换成<strong>增广环</strong>，建立网络图：</p>
+<ul>
+<li>建立源点 $s$ 和汇点 $t$，从 $s$ 向左部非匹配点连边，左部匹配点向 $s$ 连边。从 $t$ 向右匹配点连边，右部非匹配点向 $t$ 连边。</li>
+<li>对于原二分图中的边，如果属于当前最大匹配，就从右部点连向左部点，否则就从左部点连向右部点。</li>
+</ul>
+<p>本质上就是保留原来的增广环，对于半增广路我们需要用一种方法变成环，不妨考虑钦定原图上的匹配边是由右部点向左部点连接的，那么对于一条半增广路，如果其起点在右部点。其终点肯定也是在右部点，且起点是匹配点，终点是非匹配点。我们让右部的非匹配点向 $t$ 连边，$t$ 向匹配点连边。就转化成环了。</p>
+<blockquote>
+<p>另外一边同理。</p>
+</blockquote>
+<p>显然对于不经过 $s, t$ 的环就是增广环。</p>
+<p>对于新的有向图 $G’$，包含一条边的增广路或增广环等价于边的两点在同一 $\tt scc$ 中。</p>
+<p><strong>定理：</strong>边 $(u, v)$ 是二分图最大匹配的可行边，当且仅当它属于当前匹配或 $u, v$ 属于 $G’$ 中同一 $\tt scc$。而 $(u, v)$ 是二分图最大匹配的必经边，当且仅当它属于当前匹配，而且 $(u, v)$ 不属于 $G’$ 中同一 $\tt scc$。</p>
+<p>$\tt Bonus:$ 二分图匹配最大可行点？</p>
+<p>任何度数不为 $0$ 的点都是可行点，其出边能找到长度至少为 $2$ 的半增广路。</p>
+<p>$\tt Bonus:$ 二分图最大匹配必经点？</p>
+<p>不存在这个点为端点的半增广路，也就是其和 $s$ 不属于同一强连通分量。</p>
+<h3 id="最小费用最大流"><a href="#最小费用最大流" class="headerlink" title="最小费用最大流"></a>最小费用最大流</h3><p>给定一张网络图，每段点除容量 $c(u, v)$ 外还有价值函数 $w(u, v)$ 求一个就函数 $f(u, v)$ 使得源点流量最大的情况下，$\sum w(u, v ) \times f(u, v)$ 最小，这个问题被称为<strong>最小费用最大流</strong>，简称<strong>费用流</strong>。</p>
+<p>请注意，我们下面讨论的是<strong>价值函数不构成负圈</strong>的网络图上的费用流问题，而有负圈的情形将在介绍上下界网络流后说明。</p>
+<p><strong>残量网络的定义</strong>：残量网络每条反向边价值为正向边的相反数。</p>
+<blockquote>
+<p>反悔的定义。</p>
+</blockquote>
+<p>令 $F_i$ 表示流大小为 $i$ 的最小费用，我们考虑如下算法：</p>
+<ul>
+<li>$F_0 &#x3D; 0$。</li>
+<li>在第 $i$ 轮，以价值为边权，找出当前残量网络上 $s \to t$ 的最短路，将其附上 $1$ 的流，并让 $F_{i + 1} &#x3D; F_i + l$ 其中 $l$ 表示为路径上所有边的价值和。</li>
+</ul>
+<blockquote>
+<p>证明：如果存在更小的费用 $F_n’$，我们已知 $F_{n - 1}$ 增广了最优的增广路，但是有更小的价值肯定是存在负环，显然对于这个负环我们肯定是可以提前增广的。那么 $F_{n - 1}$ 就不是最优的，与假设矛盾。</p>
+</blockquote>
+<p><strong>命题</strong>：在 $F_i$ 的残量网络找到最短路，若路上所有边的最小容量大于 $1$，则 $F_{i + 1}$ 的残量网络上该路径也是最短路。</p>
+<p>证明：</p>
+<p>假设不是，那么 $F_{i + 1}$ 的残量网络最短路肯定经过了一条这条路径上边的反向边。</p>
+<p>设其中第一条这样的反向边为 $u \to v$，价值为 $w$，那么我们对于 $F_{i + 1}$ 最短路的 $s \to u$ 价值和为 $w_1$ 经过了 $-w$ 到达了 $v$，对于 $F_i$ 中的最短路 $s \to v$ 价值为 $w_2$ 我们有 $w_1 - w &lt; w_2$ 也就是 $w_1 &lt; w_2 + w$ 那么这个就不是最短路，与假设矛盾。</p>
+<p>所以我们可以直接通过最短路求解，通过 $\tt johnson$ 可以直接使用 $\tt Dijkstra$。</p>
+<blockquote>
+<p>复杂度是 $O(n(n+m)\log n)$ 当然如果使用配对堆的话可以做到 $O(n^2\log n + nm)$。</p>
+</blockquote>
+<p>上述的费用流算法成为 $\tt SSP(Successive\ Shortest \ Path)$ 算法，该算法不仅可以求出最大流时的最小，而且可以求出流量依次为 $0, 1,\cdots,f$ 的最小费用，但是前提是<strong>无负环</strong>。</p>
+<p>当要求最大费用的时候需要将边权取反来求最小费用，而存在负环的最小费用流可以利用上下界网络流解决。</p>
+<p>费用流可以解决二分图最大权最大匹配。</p>
+<blockquote>
+<p>但是比 $\tt KM$ 要慢，其可以求解大小为 $i$ 的匹配的最大权值。</p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2604">P2604 [ZJOI2010]网络扩容</a> 第二问。</p>
+<p>给定一个网络图，每条边有费用 $w(u, v)$，表示让 $u \to v$ 的容量加 $1$ 需要付出 $w(u, v)$ 的代价，使求得 $1 \to n$ 最大流增大 $k$ 的最小代价。</p>
+</blockquote>
+<p>我们先算出最大流的费用，之后建立新的源点向 $1$ 连边容量为 $f+ k$，之后每条边改为 $(u, v, +\infty, w)$。</p>
+<h4 id="模拟费用流"><a href="#模拟费用流" class="headerlink" title="模拟费用流"></a>模拟费用流</h4><p><strong>定义</strong>：有一类费用流问题由于图的特殊性，可以使用一类特殊贪心来解决。</p>
+<p>费用流这种每次选取一条最短路进行增广的想法让我们联想到贪心，但保证费用流正确性的是其反悔机制——反向边用于退掉之前更劣的流，因此我们考虑在贪心中也贯彻这一点。</p>
+<p>这个东西我们之后再讲，先学后面的。</p>
+<h4 id="上下界网络流"><a href="#上下界网络流" class="headerlink" title="上下界网络流"></a>上下界网络流</h4><p>现在将网络图的定义做一些调整，除了流量上线（容量）$c(u, v)$ 外，每对点还存在流量下限 $b(u, v)$，此时的流函数 $f(u, v)$ 还应该满足 $b(u, v) \le f(u, v) \le c(u, v)$，将这样的问题称为<strong>上下界网络流</strong>。</p>
+<blockquote>
+<ul>
+<li>有无源汇。</li>
+<li>可行流，最大流，最小流，费用流。</li>
+</ul>
+</blockquote>
+<h4 id="无源汇上下界可行流"><a href="#无源汇上下界可行流" class="headerlink" title="无源汇上下界可行流"></a>无源汇上下界可行流</h4><p>最基础的问题 ：给定一张上下界网络图，求一种合法的流量函数，使得每个点都满足流量守恒。</p>
+<p>考虑将问题转化成没有下界的网络流。</p>
+<p>首先强制每条边流到下界，也就是 $f’(u, v) &#x3D; b(u, v)$ 令 $c’(u, v) &#x3D; c(u, v) - b(u, v)$，这个时候一个点的流量差为 $f(u) &#x3D; \sum b(u, i) - \sum b(i, u)$，然而这可能是不满足流量守恒的。</p>
+<p>对于一个 $f(u) &gt; 0$ 的点 $u$ 其出流量太多了，所以需要大小为 $f(u)$ 的入流量来抵消他，就让 $u$ 向外界连一条流量恰好为 $f(u)$ 的边。</p>
+<p>同理对于 $f(u) &lt; 0$ 的点，同样要让外界向 $u$ 连接一条流量为 $-f(u)$ 的边。</p>
+<p>建立超级源点和超级汇点，剩下的边的容量设为 $c’(u, v) &#x3D; c(u, v) -b(u, v)$。</p>
+<p>根据 $\sum f(u) &#x3D; 0$ 可以知道 $S$ 的出容量等于 $T$ 的如容量，只有这些边全部满流才满足流量守恒，所以如果最大流恰好等于 $F$ 说明可行流存在，且残量网络的容量就是 $c(u, v) - f(u, v)$ 的值。不然可行流就不存在。</p>
+<h4 id="有源汇上下界可行流"><a href="#有源汇上下界可行流" class="headerlink" title="有源汇上下界可行流"></a>有源汇上下界可行流</h4><p>考虑转化成上一个问题，有源汇本质上就是可以满足 $f(s) &gt; 0, f(t) &lt; 0$ 显然对于合法的流我们有 $f(s) &#x3D; -f(t)$。</p>
+<p>那么我们让 $t$ 向 $s$ 连接一条流量为 $+\infty$ 即可。</p>
+<blockquote>
+<p>本质上就是源汇之间有流交换，可以保证流量平衡。</p>
+</blockquote>
+<h4 id="有源汇上下界最大流"><a href="#有源汇上下界最大流" class="headerlink" title="有源汇上下界最大流"></a>有源汇上下界最大流</h4><p>先保证可行流。</p>
+<p>记录 $t \to s$ 边的流量，这个就是当前 $s \to t$ 的流量。</p>
+<p>因为已经满流了，所以我们只需要在参量网络上做一次普通的 $s \to t$ 的最大流即可。</p>
+<blockquote>
+<p>实现的时候可以不删掉 $t \to s$ 的边。</p>
+</blockquote>
+<p>或者二分答案，将 $t \to s$ 边的下界设为 $m$ 看是否存在可行流。</p>
+<h4 id="有源汇上下界最小流"><a href="#有源汇上下界最小流" class="headerlink" title="有源汇上下界最小流"></a>有源汇上下界最小流</h4><p>保证可行流，记录 $s \to t$ 的流量。</p>
+<p>考虑我们原来求最大流就是不断从 $s$ 到 $t$ 找增广路，选择只是反过来不断退增广路。</p>
+<p>所以本质上就是用当前流量减去参量网络上 $t \to s$ 的最大流。</p>
+<h4 id="无源汇上下界最小费用可行流"><a href="#无源汇上下界最小费用可行流" class="headerlink" title="无源汇上下界最小费用可行流"></a>无源汇上下界最小费用可行流</h4><p>同样建图，新增的边价值为 $0$。</p>
+<p>将初始费用设为 $\sum b(u, v) \times w(u, v)$，然后跑 $s \to t$ 的费用流。</p>
+<blockquote>
+<p>流的可行性同理。</p>
+</blockquote>
+<h4 id="有源汇上下界最小费用流"><a href="#有源汇上下界最小费用流" class="headerlink" title="有源汇上下界最小费用流"></a>有源汇上下界最小费用流</h4><p>可行流时直接连边 $t \to s$ 变成无源汇情况。</p>
+<p>如果是最小费用最大流本质一样，跑完 $S \to T$ 的最小费用最大流之后再跑 $s \to t$ 的。</p>
+<p>如果是最小流就是从 $t \to s$ 跑流，退流。</p>
+<blockquote>
+<p>费用改成最大费用就直接取反就行了。</p>
+</blockquote>
+<h4 id="有负环的费用流"><a href="#有负环的费用流" class="headerlink" title="有负环的费用流"></a>有负环的费用流</h4><p>对于一条价值为负数的边 $(u, v, c, w)$ 我们假设这条边流满，即答案费用加上 $w \times c$，然后建反边 $(v, u, c, -w)$ 用于退流，此时就全是正权边了！</p>
+<p>但是这有一个问题，现在的 $u, v$ 可能不满足流量守恒，但是前面所说的上下界的基本思路和这里是一样的，还是建立超级源点汇点。</p>
+<p>如果是无源汇就是 $S \to T$ 的正权费用流，如果有源汇那么就跑完 $S \to T$ 之后跑 $s \to t$。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4843">P4843 清理雪道</a></p>
+<p>给定 $DAG$ 求最少需要几条路径能覆盖所有<strong>边</strong>至少一次。</p>
+</blockquote>
+<p>$\tt Dilworth$ 定理是不行了，考虑转换成上下界网络流。</p>
+<p>考虑边覆盖那么流至少为 $1$，之后让 $s$ 向所有点连边 $[0, +\infty]$，所有点向 $t$ 连边 $[0, +\infty]$。</p>
+<p><strong>重点：</strong>将覆盖转化成流量下界。</p>
+<h3 id="网络流扩展与建模举例"><a href="#网络流扩展与建模举例" class="headerlink" title="网络流扩展与建模举例"></a>网络流扩展与建模举例</h3><p>常见想法与转化：</p>
+<ul>
+<li><p>多源问题：</p>
+<p>  如果一道题中有多个可行的原点$s_1, \cdots, s_a$ 和多个可行的汇点 $t_1, \cdots, t_b$，那么我们可以建立超级源汇 $S, T$，从 $S$ 向 $s_i$ 连容量无穷的边，$t_i$ 向 $T$ 连容量无穷的边， 转化成单源汇问题。</p>
+</li>
+<li><p>点转边：</p>
+<p>  如果有<code>一个点只能有不超过 f 的流经过</code> 之类关于点的限制，可以拆点连入边到入点，出边到出点，入点和出点之间连接容量为 $f$ 的边。</p>
+</li>
+<li><p>边转点：</p>
+<p>  有些问题中（不一定是网络流），需要将边转化成点，可以考虑为每个边新建一个点，向两端连边。</p>
+</li>
+<li><p>出入流量差限制：</p>
+<p>  如果网络图中对于某些点$i$ 有其出流量减去如流量恰好等于 $f_i$，就按照上下界网络流一样的建图方法。对于 $f_i &gt; 0$ 的点让 $S$ 向它连边，不然就让它向 $T$ 连边，容量为 $- f_i$，随后要加上 $S$ 或 $T$ 相关边的满流的限制。</p>
+</li>
+<li><p>双选问题：</p>
+<p>  如果一道题中某个元素有两种（或多种）可能的取值，可以先假设取其中一个代表，比如说最小值，再用流标记调整成较大的。</p>
+</li>
+</ul>
+<h4 id="最大流建模"><a href="#最大流建模" class="headerlink" title="最大流建模"></a>最大流建模</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2766">P2766 最长不下降子序列问题</a> 第二问</p>
+<p>给出一个长度为 $n$ 的序列 $a_{1 \cdots n}$，求最多能选出几个不相交的最长不下降子序列。</p>
+</blockquote>
+<p>考虑分层图。</p>
+<p>设 $f(i)$ 表示最后一个元素为 $a_i$ 的最长不下降子序列长度。</p>
+<p>考虑怎样的子序列 $b_1,\cdots,b_m$ 是合法的：</p>
+<ul>
+<li>满足 $f(b_{i + 1}) &#x3D; f(b_i) + 1$ 且 $f(b_1) &#x3D; 1, m$ 恰好是最长不下降子序列长度。</li>
+</ul>
+<p>不妨设最长不下降子序列长度为 $s$，将所有点按照 $f(i)$分成 $s$ 类形成分层图，对于 $f(j) &#x3D; f(i) + 1$ 让 $i \to j$ 进行连边，之后拆点保证每个点的流量限制。</p>
+<p>之后将 $S$ 向第一层点连边，最后一层点向 $T$ 连边。</p>
+<p><strong>重点：</strong>分层图和方案数的关系。</p>
+<blockquote>
+<p>所以我们可以对于给定图计算起点到终点的 点 &#x2F; 边 不相交最短路的最大数量，考虑最短路 $\tt DAG$。</p>
+<p>边的话就将边的容量设置为 $1$，连边还是类似的。</p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3163">P3163 [CQOI2014]危桥</a></p>
+<p>给定无向图，两个人分别要走 $2 \times a_n$ 次 $a_1 \to a_2$ 的任意路径和 $2 \times b_n$ 次 $b_1 \to b_2$ 的任意路径，某些边可以任意多次经过，某些边只能经过两次，求是否存在合法方案。</p>
+</blockquote>
+<p>首先很直接的想法就是两个源点汇点，这样边的限制就满足了，但是如果存在一条路径中途改变的情况。</p>
+<p>如果两条路径有交那么我们是可以直接使其合法的。</p>
+<p>因为第一次跑是不一定合法的，所以我们考虑能不能通过另外的方式来验证合法性，也就是判断路径的可行性。</p>
+<p>显然我们的最大流肯定是 $2\times (a_n + b_n)$。</p>
+<p>考虑直接建立流可能会出现 $a_1 \to b_2$ 的情况，如果说有另外的一条路径满足 $b_2 \to a_2$，那么肯定是可行的。</p>
+<p>当然对于 $b_1 \to a_2$ 也是同理。</p>
+<p>考虑进行跑两次流，第一次是源点为 ${a_1,b_1},$ 汇点为 ${a_2, b_2}$ ，第二次是源汇分别是 ${a_1, b_2}, {a_2, b_1}$ 。</p>
+<p>如果两次流都是满的说明是可行的。</p>
+<p>证明：</p>
+<p>首先如果第一次流没有流满，直接说明连路径的个数都不满足了显然不合法。</p>
+<p>考虑如果第二次没有流满的情况同上。</p>
+<p>我们考虑对于满足条件是否一定能构造出来方案。</p>
+<p>假设第一次流真实情况下 $a_1 \to a_2$ 偏少，那么我们需要 $a_1 \to b_2 \to a_2$ 来弥补。</p>
+<p>因为第二次和第一次本质上图是没有什么变化的，所以 $b_2 \to a_2$ 的方案数恰好是缺少的部分。</p>
+<p>对于第一次因为流总量是不变的 $a_1 \to b_2$ 肯定相对多了一些，多的部分也就是 $a_1 \to a_2$ 少的部分。</p>
+<p>所以通过拼接是可以得出合法方案的。</p>
+<h4 id="最小割建模"><a href="#最小割建模" class="headerlink" title="最小割建模"></a>最小割建模</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2598">P2598 [ZJOI2009]狼和羊的故事</a></p>
+<p>给定 $n \times m$ 网格中每个给子有狼，有羊，或者都没有的状态，求周长总和最小的一些边线，使得一头狼不经过这些变现的情况下走到任意一样处。</p>
+</blockquote>
+<p>羊设为源点，狼设为汇点，一条边线割断的代价为 $1$，多源汇最小割。</p>
+<p>除此之外，考虑最小割建图时会利用其二元性质：一个点与 $s, t$ 其中一个连通。</p>
+<h5 id="最小割模型-1-双选模型-："><a href="#最小割模型-1-双选模型-：" class="headerlink" title="最小割模型 $1$ (双选模型)："></a>最小割模型 $1$ (双选模型)：</h5><blockquote>
+<p>有 $n$ 个物品，需要将它们分成 $A, B$ 两个集合，第 $i$ 个唯品分入 $A$ 集合的代价是 $a_i$，分入 $B$ 集合的代价为 $b_i$，对于 $i, j$ 两个物品如果它们所属集合不同则需要额外付出 $c(i, j)$ 的代价求最小总代价。</p>
+</blockquote>
+<blockquote>
+<p>经典题。</p>
+</blockquote>
+<p>首先考虑其在 $S$ 不妨设为 $A$ 集合，如果在 $T$ 就是 $B$ 集合，单向边。</p>
+<p>之后我们只需要考虑所属集合不同的代价，也就是两点直接连边容量为 $c(i, j)$，如果 $c(i, j) &#x3D; c(j, i)$ 直接连双向边。</p>
+<p>点数为 $O(n)$ 边数为 $O(n +m)$ 其中 $m$ 是非零联合代价数量。</p>
+<p><strong>变形：</strong></p>
+<ul>
+<li>如果一个集合最初属于其中一个集合，换到另一个集合需要代价 $d_i$，那么分入原来集合的代价就是 $0$，到另一个集合的代价就是 $d_i$，不建对应的边即可。</li>
+<li>只有 $i$ 属于 $A$ 集合且 $j$ 属于 $B$ 集合才需要付出 $c(i, j)$ 的代价：双向边改成单向边。</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2057">P2057 [SHOI2007]善意的投票 &#x2F; [JLOI2010]冠军调查</a></p>
+<p>有 $n$ 个小朋友，每个小朋友有一个 $0&#x2F;1$ 值，要取反一个小朋友的值需要 $1$ 的代价，有 $m$ 对小朋友是好朋友，如果他们值不一样则需要付出 $1$ 代价，求最小总代价。</p>
+</blockquote>
+<p>值 $0&#x2F;1$ 本质上就是看其属于哪个集合，钦定 $S$ 表示集合 $0$。</p>
+<p>套用上述做法即可。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4076">P4076 [SDOI2016]墙上的句子</a></p>
+<p>题面太长了。</p>
+</blockquote>
+<blockquote>
+<p>题面很强。</p>
+</blockquote>
+<p>注意 <code>翻转过来也是一个单词</code> 说明单词肯定是成对出现的。</p>
+<p>首先对于行和列建点，钦定和 $S$ 连边的是正串。</p>
+<blockquote>
+<p>钦定正串的字典序比反串要小。</p>
+</blockquote>
+<p>那么首先回文串不管怎么样都是 $1$ 的贡献，所以特判掉。</p>
+<p>对于剩下确定正反的串让其直接跟 $S$ 或者 $T$ 连边 $+\infty$。</p>
+<p>对于正串和反串之间的贡献考虑连边 $2$ 表示同时出现。</p>
+<p>之后考虑行列需要满足对于同样的看的方式串是有限制的。</p>
+<p>考虑两个串的联合贡献就是一些单词的集合，我们让每行每列对于其包含的单词的起点，终点连边 $+\infty$。</p>
+<p>因为题目保证了对于确定读法是符合条件的，我们可以先算出是全正串还是全反串。</p>
+<p>对于全正串的部分我们将 $S$ 向其连接 $+\infty$ 否则就是其向 $T$ 连接 $+\infty$。然后对于每个行列连接单词的起点和终点。</p>
+<p>对于没有确定的行和列我们本质上不需要连 $S, T$ 的边。</p>
+<blockquote>
+<p>因为这个东西可以看情况而定的，所以本质上就是 $S, T$ 都连接上一个权值为 $x$ 的边，然后 $x$ 是不产生贡献的所以 $x &#x3D; 0$。</p>
+</blockquote>
+<p>注意上述模型的使用限制：</p>
+<ul>
+<li>每个元素的决策是二元的（也就是只有 $S, T$ 连通两个选择）</li>
+<li>联合贡献只能是<strong>两个元素</strong>之间的。</li>
+<li>联合贡献对答案是负影响（也就是这样的贡献越少越好）。</li>
+</ul>
+<p>如果第二个或者第三个条件不满足则需要用到最大权闭合子图的建图方法，通常情况下点数会增大成联合权值的个数。</p>
+<blockquote>
+<p>可以看下面<a href="#jump1">最大权闭合子图问题</a></p>
+</blockquote>
+<h5 id="最小割模型-2-（串联模型）："><a href="#最小割模型-2-（串联模型）：" class="headerlink" title="最小割模型 $2$（串联模型）："></a>最小割模型 $2$（串联模型）：</h5><blockquote>
+<p>有 $n$ 个 $[1, m]$ 中的数 $a_1, \cdots, a_n$（不是给定的），将 $a_i$ 赋值成 $j$ 需要付出 $v(i, j)$ 的代价，有 $q$ 个限制，每个限制形如 $a_x - a_y &lt; z$ （可改变不等号方向）。</p>
+</blockquote>
+<p>将每个点 $a_x$ 拆成 $m + 1$ 个点，第 $i$ 个点称为 $a_x(i)$，将这些点串联，其中第 $i$ 到第 $i + 1$ 个点的容量是 $v(x, i)$，并从 $s$ 向第一个点连边，最后一个点向 $t$ 连边，容量都是无穷。那么这条链上的最小割就是恰好割掉中间的一条边。</p>
+<p>考虑限制 $a_x - a_y &lt; z$ 我们从 $a_x(i)$向 $a_y(i - z)$ 连容量为 $+\infty$ 的边，表示如果 $a_x$ 选择了 $\ge i$ 的数，$a_y$ 就不能选择 $\le i - z$ 的数。</p>
+<p>但是可能存在一个点割掉了若干条边满足限制，所以先对约束求一遍<strong>最短路</strong>，对每一对点列建边。</p>
+<p>或者可以考虑建边 $a_x(i + 1) \to a_x(i)$ 容量无穷，表示每个位置都需要满足之前限制的条件。</p>
+<p>图中的点数为 $O(nm)$ 边数为 $O((n + q)m)$。</p>
+<p>简单变形：</p>
+<ul>
+<li>将 $a_i$ 赋值为 $j$ 可以获得收益：先加上最大收益，再讲每个数的收益与最大收益作差作为代价。最后就是相减了。</li>
+<li>不等号方向改变：$a_y - a_x &lt; - z$。</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3227">P3227 [HNOI2013]切糕</a></p>
+<p>给定所有 $v(x, y,z)(x \in [1, P], y \in [1, Q], z \in [1, R])$，求一组 $f(x, y)$ 使得相邻的 $(|x_1 - x_2| + |y_1 - y_2| &#x3D; 1)$ 二元组的 $f$ 值相差不超过 $D$，且所有 $v(x, y, f(x, y))$ 之和最大。</p>
+</blockquote>
+<p>不妨考虑重新标号我们有 $- D \le v_x - v_y \le D$ 就是上述的限制了。</p>
+<p>之后是最小割杂题。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5039">P5039 [SHOI2010]最小生成树</a></p>
+<p>给定无向图，每次操作可以将一条边权增大 $1$，问使得给定的边一定在此图最小生成树中至少需要先执行几次操作。</p>
+</blockquote>
+<p>一定存在说明考虑不大于这条边的其他边中两端点是不连通的。</p>
+<p>本质上就是考虑删除若干条边让两端点不连通，直接最小割即可。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5458">P5458 [BJOI2016]水晶</a></p>
+<p>题面较为复杂。</p>
+</blockquote>
+<p>首先坐标系有 $x + y + z &#x3D; 0$ 我们考虑如果让 $x’ + y’ &#x3D; 0$ 而且有 $-z’ &#x3D; x’ + y’$ 那么我们有 $x’ + y’ + z’ &#x3D; 0$ 同样也是一个合法的坐标系，可以发现这个是满射。</p>
+<p>考虑对于坐标系进行 $\mod 3$ 染色，我们只需要考虑 $\mod 3 &#x3D; 0$ 的点进行考虑，显然如果选了三个点有 $\mod 3 &#x3D; 0, 1, 2$ 那么肯定是不合法的。</p>
+<p>让能量源作为中间点，两种颜色作为两边点，相邻颜色进行连边，拆点最小割。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3756">P3756 [CQOI2017]老C的方块</a></p>
+<p>题面复杂。</p>
+</blockquote>
+<p>发现这样奇怪的限制是很难处理的，考虑网络流题可以先考虑染色，对于长度为 $4$ 的不同限制我们可以考虑染 $4$ 种颜色。</p>
+<p>发现都可以表示成 <code>黄蓝绿红</code> 的路径，那么我们考虑进行连边。</p>
+<ul>
+<li>$S \to $ 黄，边权为移除黄色的代价。</li>
+<li>黄 $\to$ 红，边权为 $\tt inf$。</li>
+<li>红 $\to$ 黑，边权为移除红色或黑色的最小值。</li>
+<li>黑 $\to$ 绿，边权为 $\tt inf$。</li>
+<li>绿 $\to T$，边权为移除绿色的代价。</li>
+</ul>
+<p>复杂度是 $O(C + n^2n)$ 的，但是 $\tt dinic$ 复杂度与图的深度有关所以因为图的深度很小复杂度也是对的。</p>
+<h4 id="最大权闭合子图建模"><a href="#最大权闭合子图建模" class="headerlink" title="最大权闭合子图建模"></a>最大权闭合子图建模</h4><div id = "jump1"><div>
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4174">P4174 [NOI2006] 最大获利</a></p>
+<p>有 $n$ 座基站，第 $i$ 座建造代价为 $p$，还有 $m$ 个用户群，每个用户群只要基站 $a_i, b_i$ 都建了就会带来 $c_i$ 的收益，问最大净利润。</p>
+</blockquote>
+<p>我们只需要考虑用户群是否生效，如果该用户群生效就意味着 $(u, v)$ 一定都被选择。</p>
+<p>考虑使用最小割解决最大权闭合子图，对于用户群和基站建点，分别是左边，右边的点。考虑左边连接的是贡献，右边连接的是代价即可。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://darkbzoj.tk/problem/1565">[NOI2009]植物大战僵尸</a></p>
+<p>给定一个 $n \times m$ 的矩阵，僵尸只能从右向左沿着一条直线走。</p>
+<p>击杀某个植物会获得收益 $p_i$，$p_i$ 不一定是正数。</p>
+<p>每个植物有攻击集合，僵尸不能走到攻击集合上，当然你可以吃掉某个植物再走。</p>
+<p>求僵尸的最大收益。</p>
+</blockquote>
+<p>如果吃掉这个某个植物首先要吃掉该行之后的所有植物，还要吃掉该路径上攻击范围的所有植物才能获得贡献。</p>
+<p>也就是意味着如果选择了该植物就必须选择其他的某些植物。</p>
+<p>考虑如果 $x$ 守护了 $y$ 就建立边 $y \to x$ 如果 $x$ 在 $y$ 的右边也同理。</p>
+<p>但是对于大小 $&gt; 1$ 中的强联通分量是不能选择的，我们去掉这些点，之后再跑最大权二分图匹配即可。</p>
+<h5 id="集合联合贡献："><a href="#集合联合贡献：" class="headerlink" title="集合联合贡献："></a>集合联合贡献：</h5><blockquote>
+<p>从 $n$ 个元素中选出一些，每个元素选择有代价，有 $m$ 个元素集合，如果某个集合中的元素全都选了就会有一个对应的收益求最大净收益。</p>
+</blockquote>
+<p>左部点为集合，右部点为元素。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3410">P3410 拍照</a></p>
+<p>模板。</p>
+</blockquote>
+<p>有时一些贡献会比较抽象，且贡献之间可能还互相影响，需要更多边来描述：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3749">P3749 [六省联考 2017] 寿司餐厅</a></p>
+<p>题面复杂。</p>
+</blockquote>
+<p>考虑如果选择了 $[i, j]$ 那么就意味着一定需要选择 $d(l, r), i \le l \le r \le j$。</p>
+<p>为了缩减边数我们考虑二维前缀和一样连边，只需要限制 $d(i - 1, j), d(i, j - 1)$。</p>
+<p>对于贡献 $cx$ 可以考虑加在 $d(i, i)$ 对于 $mx^2$ 的考虑让所有 $x$ 连接他，之后连接到 $T$ 贡献是固定的。</p>
+<p>还是最大权闭合子图。</p>
+<hr>
+<p>注意最小割一定是比最大权闭合子图更强的模型：例如如果在最大权闭合子图的基础上将“选一个点而不选其后继”的代价从 $+ \infty$（做不到）变为常数 $x$，只需要在构图上改变中间边的边权即可，可以用最小割模型解释。</p>
+<p>或者说可以先尝试使用最大权闭合子图建立模型，之后通过最小割来调整。</p>
+<h4 id="费用流与上下界网络流建模"><a href="#费用流与上下界网络流建模" class="headerlink" title="费用流与上下界网络流建模"></a>费用流与上下界网络流建模</h4><h4 id="区间选择模型："><a href="#区间选择模型：" class="headerlink" title="区间选择模型："></a>区间选择模型：</h4><p>给定 $[1, m]$ 中的 $n$ 个区间 $[l_i, r_i]$，每个区间选择一次的代价为 $w_i$，最多可以选 $c_i$ 次，要求使得任意点 $j$ 被覆盖次数在 $[a_j, b_j]$ 之间，求最小 &#x2F; 最大代价。</p>
+<p>将 $1$ 到 $m + 1$ 连成一条链，尝试用 $i \to i + 1$ 边的流量刻画 $i$ 被覆盖的次数。</p>
+<p>建立 $l_i$ 到 $r_i + 1$ 的一条边称为区间边，如果区间边上流过一条流，就表示选择一次这个区间。</p>
+<p>源流向 $1$，$m + 1$ 流向汇，如果我们确定总流量 $X$ 那么没有流经 $i \to i + 1$ 这条边就是选择了区间，那么如果 $i \to i+ 1$ 的流量为 $X - f_i$ 就表示 $i$ 被覆盖了 $f_i$ 次。</p>
+<p>那么我们有一种比较显然的做法，就是考虑对于每个 $i \to i + 1$ 的边流量设置为 $[X - b_i, X - a_i]$，之后将区间费用设为区间代价，容量设为可选次数，对于 $i \to i + 1$ 的边费用为 $0$。</p>
+<p>使用最小 &#x2F; 最大费用上下界最大流即为答案。</p>
+<p>这里 $X$ 可以选择一个充分大的数 $&gt; \max b_i$。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3358">P3358 最长 $k$ 可重区间集问题</a></p>
+<p>从给定的 $m$ 个开区间中选择尽量多的区间，使得每个位置被不超过 $k$ 个区间覆盖，且区间长度和最大。</p>
+</blockquote>
+<p>$w &#x3D; 1, c &#x3D; 1, a &#x3D; 0, b &#x3D; k$。</p>
+<p>由于所有 $b_j$ 相等，所以可以没有下界，能直接普通费用流。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6967">P6967 [NEERC2016]Delight for a Cat</a></p>
+<p>在 $n$ 个小时中的每个小时，猫可以选择吃饭或睡觉，每个小时吃饭或睡觉有一个愉悦毒，但要求任意连续 $k$ 小时中至少有 $m_e$ 小时吃饭，至少 $m_s$ 小时睡觉，问最大总愉悦度。</p>
+</blockquote>
+<p>可以考虑每个小时都睡觉之后进行决策哪些时间吃饭。</p>
+<p>所以连续 $k$ 小时吃饭的时间在 $[m_e, k - m_s]$ 之间。</p>
+<p>考虑将第 $i$ 小时吃饭的贡献，其可以对于区间右端点在 $[i, i + k - 1]$ 的区间造成贡献，那么对于每个点就有一个覆盖限制。</p>
+<p>$c &#x3D; s_i, w &#x3D;0, a &#x3D; m_e, b &#x3D; k - m_s$，同上题可以跑费用流。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3980">P3980 [NOI2008] 志愿者招募</a></p>
+<p>有 $m$ 个可选操作，每个操作为将 $s_i$ 到 $t_i$ 中每个位置 $+ 1$，代价为 $c_i$，每个操作可以做无限次，要求最后位置 $i$ 上的数不小于 $a_i$，求最小代价。</p>
+</blockquote>
+<p>也就是对于位置 $i$ 的数要 $\ge a_i$。</p>
+<p>模型中的 $w &#x3D; c_i, c &#x3D; +\infty, b &#x3D; +\infty$ 让 $X &#x3D; b$ 就没有下界了。</p>
+<blockquote>
+<p>不要担心设 $\tt inf$。</p>
+</blockquote>
+<h4 id="费用流的凸性"><a href="#费用流的凸性" class="headerlink" title="费用流的凸性"></a>费用流的凸性</h4><p>对于一条边，设其第 $i$ 次流过的代价是 $a_i$，当 $a_i$ 不降时才适合用费用流描述该问题。</p>
+<blockquote>
+<p>每次都是最短路显然。</p>
+</blockquote>
+<p><strong>这一点在模拟费用流时也可以利用，一般来说决策的权值满足凸性的问题可以化为费用流问题，否则一般不行。</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF436E">CF436E Cardboard Box</a></p>
+<p>有 $n$ 个关卡， 对于第 $i$ 个关卡可以花费 $a_i$ 的代价获得 $1$ 颗星，也可以花费 $b_i$ 的代价获得 $2$ 颗星，求获得 $w$ 颗星的最小代价。</p>
+<p>$O(n \log n)$</p>
+</blockquote>
+<p>返回贪心。。。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4249">P4249 [WC2007]剪刀石头布</a></p>
+<p>给一张已经部分定向的竞赛图定向，使得三元环最多。</p>
+</blockquote>
+<p>考虑三元环不好计算考虑计算非三元环，也就是对于每个非三元环肯定有一个点的出度为 $2$，这可以唯一确定一个非三元环。</p>
+<p>所以非三元环的个数就是 $\sum_i \binom{deg_i}{2}$。</p>
+<p>考虑我们现在就是在钦定边的顺序，对于边 $(i, j)$ 就是决策哪边度数 $+1$。</p>
+<p>考虑 $\binom{a}{b}$ 是不好计算的，所以考虑差分。</p>
+<p>不妨考虑点 $j$ 已经定向了 $d_i$ 的出度，我们考虑新增的出度 $x$ 对于 $x \to x + 1$ 费用为 $\binom{d_i + x}{2} - \binom{d_i + x - 1}{2}$。</p>
+<p>每个点向 $T$ 点连接若干条边，这个表示反悔贪心，因为这个贡献是有凸性的所以是满足费用流的。</p>
+<h4 id="图覆盖模型"><a href="#图覆盖模型" class="headerlink" title="图覆盖模型"></a>图覆盖模型</h4><p>给出一些条件，要求用一些链或圈覆盖图的所有点。</p>
+<p>通常使用二分图模型来描述这类问题：</p>
+<ul>
+<li>$\tt DAG$ 不相交路径覆盖，差点建立二分图，如果右边 $x\to y$ 则从左部点 $x$ 向右部点 $y$ 连边，一个匹配就对应一个不相交路径覆盖，其中匹配边 $x \to y$ 表示 $x, y$ 是一条路径上的前驱后继关系。</li>
+</ul>
+<p>为什么只能做 $\tt DAG$？因为若不是 $\tt DAG$ 这里就会成环，就不是不相交路径覆盖了。</p>
+<ul>
+<li>最少路径的不相交路径覆盖：和最大匹配对应。</li>
+</ul>
+<blockquote>
+<p>或者可以使用 $\tt dilworth$ 定理理解。</p>
+</blockquote>
+<ul>
+<li>最大权不相交路径匹配：等价于最大权二分图匹配的权值。</li>
+<li>$\tt DAG$ 可相交路径覆盖：先传递闭包之后是等价的。</li>
+<li>不相交圈覆盖：给定一张任意有向图，一样建立二分图，每一组完美匹配就对应一个圈覆盖，左部点 $i$ 的匹配点就是其圈上的后继。</li>
+<li>最小 &#x2F; 大权不相交圈覆盖：拆点二分图求最小 &#x2F; 大权二分图匹配。</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6061">P6061 [加油武汉]疫情调查</a></p>
+<p>给定有向带权图，每次你可以选择一个非空回路，付出其权值和的代价以覆盖其中一个子集，也可以选择一个点 $u$ 付出 $a_u$ 的代价覆盖这个点，求覆盖所有点的最小总代价。</p>
+</blockquote>
+<p>考虑走环中的边 $(i, j)$ 的最小代价是 $d(i, j)$ 直接使用 $\tt floyd$ 即可，直接使用 $\tt KM$ 即可。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4542">P4542 [ZJOI2011]营救皮卡丘</a></p>
+<p>有 $n + 1$ 个点（$0$ 到 $n$ 编号）的有向带权图，$k$ 个人从 $0$ 出发，每个人每次只能走到编号不超过之前走到过的最大编号 $+ 1$ 的点，每个点要至少被一个人走过，问最小的所有人走过的边边权之和。</p>
+</blockquote>
+<p>首先根据这个限制可以得到如果当前走过的最大的是位置 $i$ 说明 $0 \sim i$ 都已经被遍历过一次了。</p>
+<p>可以考虑设 $d(i, j)$ 表示从 $i$ 经过不超过 $j$ 的点到达 $i$ 的最短路，这个东西本质就是传递闭包了。</p>
+<p>那么每个点至少被一个人走过可以直接跑费用流。</p>
+<h4 id="上下界网络流建图"><a href="#上下界网络流建图" class="headerlink" title="上下界网络流建图"></a>上下界网络流建图</h4><p>当一道题限定了一个点或一条边的流量时，使用上下界网络流解决问题。</p>
+<p>如果一个点不满足流量守恒，可以使用类似上下界网络流的处理手法，建立超级源汇解决问题。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4553">P4553 80人环游世界</a></p>
+<p>用 $m$ 条路径覆盖一个 $\tt DAG$，第 $i$ 个点恰好经过 $v_i$ 次，每条边都有边权，求总边权最小。</p>
+</blockquote>
+<p>每个点拆点限制流量，拆点二分图跑最小费用最大流。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF708D">CF708D Incorrect Flow</a></p>
+<p>给定一张网络图和其流函数，不一定满足 $f(u, v) \le c(u, v)$ 和流量守恒，每次操作可以增大或减少一个 $f(u, v)$ 或 $c(u, v)$，求最小操作次数，使得流函数合法。</p>
+</blockquote>
+<ul>
+<li>$f(u, v) \le c(u, v)$</li>
+</ul>
+<p>可以直接对于 $f$ 进行增大 $(u, v, c(u, v) - f(u, v), 1)$。</p>
+<p>可以考虑退流 $(v, u, f(u, v), 1)$。</p>
+<p>可以考虑满流之后增大 $(v, u, +\infty, 2)$。</p>
+<ul>
+<li>$f(u, v) &gt; c(u, v)$</li>
+</ul>
+<p>先需要计算修正代价，预先加上 $c(u, v) - f(u, v)$。</p>
+<p>增广正向边 $(u, v, +\infty, 2)$。</p>
+<p>退流不小于 $c(u, v)$，反向边 $(u, v, f(u, v) - c(u, v), 0)$。</p>
+<p>退流小于 $c(u, v)$，反向边，容量为 $c(u, v)$ 费用为 $1$。</p>
+<p>如何保证流量守恒，很显然总共的流在原来的地方是不变的，所以我们考虑计算出每个点流入和流出的差值，然后像上下界网络流一样建边即可。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4003">P4003 无限之环</a></p>
+<p>题面复杂。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://legendgod.ml/2022/04/14/lg-solution-p4003/">Legendgod’s Blog 题解</a></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3296">[SDOI 2013] 刺客信条</a></p>
+<p>给定一棵 $n$ 个点的无根数和一个长度为 $n$ 的 $01$ 串，以及一个长度为 $n$ 的目标 $01$串，每次操作可以翻转当前 $01$ 串的一位，最终要使得存在一种数的自同构排列，使得排列后当前 $01$ 串变成目标串。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://legendgod.ml/2022/04/14/lg-solution-p3296/">Legendgod’s Blog 题解</a></p>
+<p>下面就是比较通用的思路了。</p>
+<h4 id="优化建图"><a href="#优化建图" class="headerlink" title="优化建图"></a>优化建图</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2065">P2065 [TJOI2011]卡片</a></p>
+<p>有一个二分图，左右分别 $n, m$ 个点，一个左部点和一个右部点有边当且仅当点权不互质，求最大匹配。</p>
+<p>$n, m \le 500$</p>
+</blockquote>
+<p>考虑点权不互质就是至少有一个公因子，考虑中间放一个公因子之后来连接两边这样，这样边数就会变成 $O((n + m) \omega(V))$。</p>
+<p>之后跑网络流即可。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5331">P5331 [SNOI2019]通信</a></p>
+<p>给 $n$ 个点排成一列，对于权值为 $a_i$ 的 $i$ 点或者选择支付 $w$ 的代价，或者选择一个 $j &lt;i$ 然后支付 $|a_i - a_j|$ 的代价，对于每个 $j$ 只能被选择一次，求最小代价和。</p>
+</blockquote>
+<p>先考虑朴素的网络流，考虑当前是否被选择了。</p>
+<ul>
+<li>$s \to i \to t$ 表示直接连接。</li>
+<li>$s \to i \to j’ \to t$ 表示间接连接，限制 $j’ \to t$ 的流量。</li>
+</ul>
+<p>这样边数是 $O(n^2)$ 的。</p>
+<p>发现连接肯定是一个前缀考虑建立虚点来连接，考虑费用怎么计算。</p>
+<p>考虑将权值排序之后相互连接，之后将每个点连接到对应权值的点上。</p>
+<p>这样边数就是 $O(n \log n)$ 级别的了。</p>
+<h4 id="拆贡献"><a href="#拆贡献" class="headerlink" title="拆贡献"></a>拆贡献</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2050">P2050 [NOI2012] 美食节</a></p>
+<p>有 $n$ 种菜和 $m$ 个厨师，第 $i$ 个厨师做<strong>一道</strong>第 $j$ 种菜时间为 $t_{i, j}$，第 $i$ 种菜有 $p_i$ 个同学想要，每个厨师同时只能做一道菜，问所有同学的最小等待时间和。</p>
+</blockquote>
+<p>首先可以考虑每个厨师做第 $i$ 道菜的贡献，考虑让 $S$ 连接所有的菜，之后考虑厨师做第 $i$ 个菜的贡献，显然这个贡献是有凸性的，因为边数过多所以我们可以考虑对于每次做了菜的厨师再增加其做下一道菜的费用的边。这样点数就被控制在 $\sum p_i$ 中了。</p>
+<blockquote>
+<p>注意这样是不能使用 $\tt dijsktra$ 的。</p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2570">P2570 [ZJOI2010]贪吃的老鼠</a></p>
+<p>有 $n$ 个奶酪和 $m$ 个老鼠，第 $i$ 个奶酪大小 $p_i$，第 $i$ 个老鼠吃奶酪的速度是 $v_i$，同一时刻一个老鼠只能吃一个奶酪，一个奶酪只能被一个老鼠吃，每个奶酪有出现的时间区间 $[l_i, r_i]$，现在可以将所有 $r_i$ 都增加一个量，求最少要增加多少可以使得所有奶酪都被吃完。</p>
+</blockquote>
+<p>二分答案转成判定性问题。</p>
+<p>我们先思考最朴素的建图，源点向奶酪连边，容量为奶酪大小，之后将老鼠按照离散化后的时间段拆点，每个时间段向对应的可以吃的奶酪连边，容量为老鼠的 $v \times tim$。</p>
+<blockquote>
+<p>考虑还有什么条件是不满足的，可能会出现一块奶酪同一时刻被多只老鼠吃，显然可能存在奶酪大小为 $p_i$ 有 $\max v \times tim &lt; p_i$ 但是在该时段流满的情况。</p>
+</blockquote>
+<p>那么我们需要限制每个时段对于每个奶酪的流，按照老鼠的速度排序，不妨考虑当前时刻第一个吃当前奶酪的老鼠为 $i$ 显然我们需要限制 $\forall j, j &gt; i$ 的老鼠不吃，考虑每个时刻只能使用一个 $v$，但是我们不能表示该限制我们只能表示一段区间的 $v$ 同时被使用了，考虑将 $v$ 表示成前缀的形式也就是差分。</p>
+<p>考虑一种神奇的建图：</p>
+<ul>
+<li>首先将老鼠吃的速度排序之后差分，设第 $i$ 只老鼠的速度为 $\sum_{j &#x3D; 1} ^ iu_j$。</li>
+<li>在每个时间段对于每个 $u_i$ 建点，与每个奶酪连权值为 $u_i \times tim$ 容量的边（$tim$ 是时间长度），这样可以保证一个奶酪的出边不会超过老鼠的限制。</li>
+<li>每个 $u_i$ 对应的点向汇点连 $u_i\times (m-i+1)\times tim$ 容量的边，相当于限制了每个值域前缀的总消耗量。</li>
+</ul>
+<hr>
+<p>目前图论二分图和网络流部分就已经学完了，还少一块模拟费用流之后会补上的。</p>
+<p>正好 $20000$ 字。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">legendgoddes</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hater.ml/2022/04/15/remind-graph1/">https://hater.ml/2022/04/15/remind-graph1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hater.ml" target="_blank">Legendgod's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%88%86%E5%9D%97/">分块</a></div><div class="post_share"><div class="social-share" data-image="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=799394581" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://npm.elemecdn.com/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://npm.elemecdn.com/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/04/22/at-solution-agc023e/"><img class="prev-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=325339839" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">AT3956 [AGC023E] Inversions 题解</div></div></a></div><div class="next-post pull-right"><a href="/2022/04/14/lg-solution-p3296/"><img class="next-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=679164017" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">P3296 [SDOI2013]刺客信条 / assassin 题解</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/08/25/exbsgs/" title="Exbsgs 浅谈"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=137202281" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-25</div><div class="title">Exbsgs 浅谈</div></div></a></div><div><a href="/2022/04/05/remind-ds3/" title="数据结构回忆3"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=849594652" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-05</div><div class="title">数据结构回忆3</div></div></a></div><div><a href="/2022/04/09/remind-ds4/" title="数据结构回忆4"><img class="cover" src="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=28153664" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-09</div><div class="title">数据结构回忆4</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">legendgoddes</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/legendgoddess"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/legendgoddess" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3456261198@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E5%9B%BE%E6%A6%82%E5%BF%B5%E5%92%8C%E5%88%A4%E5%AE%9A"><span class="toc-number">1.</span> <span class="toc-text">二分图概念和判定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E5%9B%BE%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D"><span class="toc-number">2.</span> <span class="toc-text">二分图最大匹配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E5%9B%BE%E6%9C%80%E5%B0%8F%E7%82%B9%E8%A6%86%E7%9B%96"><span class="toc-number">2.1.</span> <span class="toc-text">二分图最小点覆盖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E5%9B%BE%E6%9C%80%E5%A4%A7%E7%8B%AC%E7%AB%8B%E9%9B%86"><span class="toc-number">2.2.</span> <span class="toc-text">二分图最大独立集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E5%9B%BE%E6%9C%80%E5%B0%8F%E8%BE%B9%E8%A6%86%E7%9B%96"><span class="toc-number">2.3.</span> <span class="toc-text">二分图最小边覆盖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E8%A6%86%E7%9B%96"><span class="toc-number">2.4.</span> <span class="toc-text">有向无环图最小路径覆盖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E5%9B%BE%E6%9C%80%E5%A4%A7%E6%9D%83%E5%8C%B9%E9%85%8D"><span class="toc-number">2.5.</span> <span class="toc-text">二分图最大权匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tt-Hall-%E5%AE%9A%E7%90%86"><span class="toc-number">2.6.</span> <span class="toc-text">$\tt Hall$ 定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tt-Hall-%E5%AE%9A%E7%90%86%E6%8E%A8%E5%B9%BF"><span class="toc-number">2.7.</span> <span class="toc-text">$\tt Hall$ 定理推广</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%9C%80%E5%A4%A7%E6%B5%81"><span class="toc-number">2.8.</span> <span class="toc-text">网络最大流</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E5%89%B2"><span class="toc-number">2.8.1.</span> <span class="toc-text">最小割</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E6%BA%90%E6%B1%87%E7%9A%84%E6%9C%80%E5%B0%8F%E5%89%B2"><span class="toc-number">2.8.2.</span> <span class="toc-text">无源汇的最小割</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E6%9D%83%E9%97%AD%E5%90%88%E5%AD%90%E5%9B%BE%E9%97%AE%E9%A2%98"><span class="toc-number">2.8.3.</span> <span class="toc-text">最大权闭合子图问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E6%B5%81%E6%96%B9%E6%A1%88"><span class="toc-number">2.8.4.</span> <span class="toc-text">最大流方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E5%89%B2%E6%96%B9%E6%A1%88%E4%B8%8E%E5%8F%AF%E8%A1%8C%E8%BE%B9%E5%BF%85%E7%BB%8F%E8%BE%B9"><span class="toc-number">2.8.5.</span> <span class="toc-text">最小割方案与可行边必经边</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E5%9B%BE%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D%E6%96%B9%E6%A1%88%E4%B8%8E%E5%8F%AF%E8%A1%8C%E7%82%B9%E5%92%8C%E5%BF%85%E7%BB%8F%E7%82%B9"><span class="toc-number">2.8.6.</span> <span class="toc-text">二分图最大匹配方案与可行点和必经点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E8%B4%B9%E7%94%A8%E6%9C%80%E5%A4%A7%E6%B5%81"><span class="toc-number">2.9.</span> <span class="toc-text">最小费用最大流</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F%E8%B4%B9%E7%94%A8%E6%B5%81"><span class="toc-number">2.9.1.</span> <span class="toc-text">模拟费用流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E7%95%8C%E7%BD%91%E7%BB%9C%E6%B5%81"><span class="toc-number">2.9.2.</span> <span class="toc-text">上下界网络流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E6%BA%90%E6%B1%87%E4%B8%8A%E4%B8%8B%E7%95%8C%E5%8F%AF%E8%A1%8C%E6%B5%81"><span class="toc-number">2.9.3.</span> <span class="toc-text">无源汇上下界可行流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E6%BA%90%E6%B1%87%E4%B8%8A%E4%B8%8B%E7%95%8C%E5%8F%AF%E8%A1%8C%E6%B5%81"><span class="toc-number">2.9.4.</span> <span class="toc-text">有源汇上下界可行流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E6%BA%90%E6%B1%87%E4%B8%8A%E4%B8%8B%E7%95%8C%E6%9C%80%E5%A4%A7%E6%B5%81"><span class="toc-number">2.9.5.</span> <span class="toc-text">有源汇上下界最大流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E6%BA%90%E6%B1%87%E4%B8%8A%E4%B8%8B%E7%95%8C%E6%9C%80%E5%B0%8F%E6%B5%81"><span class="toc-number">2.9.6.</span> <span class="toc-text">有源汇上下界最小流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E6%BA%90%E6%B1%87%E4%B8%8A%E4%B8%8B%E7%95%8C%E6%9C%80%E5%B0%8F%E8%B4%B9%E7%94%A8%E5%8F%AF%E8%A1%8C%E6%B5%81"><span class="toc-number">2.9.7.</span> <span class="toc-text">无源汇上下界最小费用可行流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E6%BA%90%E6%B1%87%E4%B8%8A%E4%B8%8B%E7%95%8C%E6%9C%80%E5%B0%8F%E8%B4%B9%E7%94%A8%E6%B5%81"><span class="toc-number">2.9.8.</span> <span class="toc-text">有源汇上下界最小费用流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E8%B4%9F%E7%8E%AF%E7%9A%84%E8%B4%B9%E7%94%A8%E6%B5%81"><span class="toc-number">2.9.9.</span> <span class="toc-text">有负环的费用流</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%B5%81%E6%89%A9%E5%B1%95%E4%B8%8E%E5%BB%BA%E6%A8%A1%E4%B8%BE%E4%BE%8B"><span class="toc-number">2.10.</span> <span class="toc-text">网络流扩展与建模举例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E6%B5%81%E5%BB%BA%E6%A8%A1"><span class="toc-number">2.10.1.</span> <span class="toc-text">最大流建模</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E5%89%B2%E5%BB%BA%E6%A8%A1"><span class="toc-number">2.10.2.</span> <span class="toc-text">最小割建模</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A8%A1%E5%9E%8B-1-%E5%8F%8C%E9%80%89%E6%A8%A1%E5%9E%8B-%EF%BC%9A"><span class="toc-number">2.10.2.1.</span> <span class="toc-text">最小割模型 $1$ (双选模型)：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A8%A1%E5%9E%8B-2-%EF%BC%88%E4%B8%B2%E8%81%94%E6%A8%A1%E5%9E%8B%EF%BC%89%EF%BC%9A"><span class="toc-number">2.10.2.2.</span> <span class="toc-text">最小割模型 $2$（串联模型）：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E6%9D%83%E9%97%AD%E5%90%88%E5%AD%90%E5%9B%BE%E5%BB%BA%E6%A8%A1"><span class="toc-number">2.10.3.</span> <span class="toc-text">最大权闭合子图建模</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E8%81%94%E5%90%88%E8%B4%A1%E7%8C%AE%EF%BC%9A"><span class="toc-number">2.10.3.1.</span> <span class="toc-text">集合联合贡献：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B4%B9%E7%94%A8%E6%B5%81%E4%B8%8E%E4%B8%8A%E4%B8%8B%E7%95%8C%E7%BD%91%E7%BB%9C%E6%B5%81%E5%BB%BA%E6%A8%A1"><span class="toc-number">2.10.4.</span> <span class="toc-text">费用流与上下界网络流建模</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%BA%E9%97%B4%E9%80%89%E6%8B%A9%E6%A8%A1%E5%9E%8B%EF%BC%9A"><span class="toc-number">2.10.5.</span> <span class="toc-text">区间选择模型：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B4%B9%E7%94%A8%E6%B5%81%E7%9A%84%E5%87%B8%E6%80%A7"><span class="toc-number">2.10.6.</span> <span class="toc-text">费用流的凸性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E8%A6%86%E7%9B%96%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.10.7.</span> <span class="toc-text">图覆盖模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E7%95%8C%E7%BD%91%E7%BB%9C%E6%B5%81%E5%BB%BA%E5%9B%BE"><span class="toc-number">2.10.8.</span> <span class="toc-text">上下界网络流建图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E5%BB%BA%E5%9B%BE"><span class="toc-number">2.10.9.</span> <span class="toc-text">优化建图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%86%E8%B4%A1%E7%8C%AE"><span class="toc-number">2.10.10.</span> <span class="toc-text">拆贡献</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=239604752" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UOJ 269 [清华集训2016] 如何优雅地求和 题解"/></a><div class="content"><a class="title" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解">UOJ 269 [清华集训2016] 如何优雅地求和 题解</a><time datetime="2022-06-13T11:55:00.000Z" title="发表于 2022-06-13 19:55:00">2022-06-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=119753057" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="#593. 新年的军队 题解"/></a><div class="content"><a class="title" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解">#593. 新年的军队 题解</a><time datetime="2022-06-01T23:50:00.000Z" title="发表于 2022-06-02 07:50:00">2022-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=850658581" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P4548 [CTSC2006]歌唱王国"/></a><div class="content"><a class="title" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国">P4548 [CTSC2006]歌唱王国</a><time datetime="2022-05-29T12:17:00.000Z" title="发表于 2022-05-29 20:17:00">2022-05-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=415064773" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AT2369 [AGC013C] Ants on a Circle 多解法讨论"/></a><div class="content"><a class="title" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论">AT2369 [AGC013C] Ants on a Circle 多解法讨论</a><time datetime="2022-04-29T08:01:00.000Z" title="发表于 2022-04-29 16:01:00">2022-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=199018446" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P7987 [USACO21DEC] Paired Up G 题解"/></a><div class="content"><a class="title" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解">P7987 [USACO21DEC] Paired Up G 题解</a><time datetime="2022-04-28T12:27:00.000Z" title="发表于 2022-04-28 20:27:00">2022-04-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By legendgoddes</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://npm.elemecdn.com/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://npm.elemecdn.com/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadUtterances () {
+  let ele = document.createElement('script')
+  ele.setAttribute('id', 'utterances_comment')
+  ele.setAttribute('src', 'https://utteranc.es/client.js')
+  ele.setAttribute('repo', 'legendgoddess/Blog')
+  ele.setAttribute('issue-term', 'pathname')
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+  ele.setAttribute('theme', nowTheme)
+  ele.setAttribute('crossorigin', 'anonymous')
+  ele.setAttribute('async', 'true')
+  document.getElementById('utterances-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function utterancesTheme () {
+  if (document.querySelector('.utterances-frame')) {
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+    const message = {
+      type: 'set-theme',
+      theme: theme
+    };
+    const iframe = document.querySelector('.utterances-frame');
+    iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+}
+
+if ('Utterances' === 'Utterances' || !false) {
+  if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+  else loadUtterances()
+} else {
+  function loadOtherComment () {
+    loadUtterances()
+  }
+}</script></div><script src="https://npm.elemecdn.com/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

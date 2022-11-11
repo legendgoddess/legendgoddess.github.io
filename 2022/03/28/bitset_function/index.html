@@ -1,0 +1,351 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>bitset 和 __builtin 函数 | Legendgod's Blog</title><meta name="author" content="legendgoddes"><meta name="copyright" content="legendgoddes"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="$\tt bitset$ 是一个比较神奇的东西，我感觉经常用来卡常数，毕竟这个东西有 $\frac{1}{w}$ 的常数。  事实证明，如果写埃氏筛用 $\tt bitset$ 比欧拉筛要快。  定义：就是一个存了 $0&#x2F;1$ 串的东西，每个位占用一个 $B$。 可以使用 unsigned long long 或者 string 进行初始化，默认值为全 $0$。  $\color{red">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bitset 和 __builtin 函数">
+<meta property="og:url" content="https://hater.ml/2022/03/28/bitset_function/index.html">
+<meta property="og:site_name" content="Legendgod&#39;s Blog">
+<meta property="og:description" content="$\tt bitset$ 是一个比较神奇的东西，我感觉经常用来卡常数，毕竟这个东西有 $\frac{1}{w}$ 的常数。  事实证明，如果写埃氏筛用 $\tt bitset$ 比欧拉筛要快。  定义：就是一个存了 $0&#x2F;1$ 串的东西，每个位占用一个 $B$。 可以使用 unsigned long long 或者 string 进行初始化，默认值为全 $0$。  $\color{red">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=293570778">
+<meta property="article:published_time" content="2022-03-28T23:34:00.000Z">
+<meta property="article:modified_time" content="2022-11-11T12:39:51.610Z">
+<meta property="article:author" content="legendgoddes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302&seed=293570778"><link rel="shortcut icon" href="/image/favicon.ico"><link rel="canonical" href="https://hater.ml/2022/03/28/bitset_function/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://npm.elemecdn.com/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://npm.elemecdn.com/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'bitset 和 __builtin 函数',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-11-11 20:39:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Legendgod's Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Legendgod's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">bitset 和 __builtin 函数<a class="post-edit-link" href="https://github.com/legendgoddess/Blog/edit/master/source/_posts/bitset_function.md" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-03-28T23:34:00.000Z" title="发表于 2022-03-29 07:34:00">2022-03-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-11T12:39:51.610Z" title="更新于 2022-11-11 20:39:51">2022-11-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="bitset 和 __builtin 函数"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><p>$\tt bitset$ 是一个比较神奇的东西，我感觉经常用来卡常数，毕竟这个东西有 $\frac{1}{w}$ 的常数。</p>
+<blockquote>
+<p>事实证明，如果写埃氏筛用 $\tt bitset$ 比欧拉筛要快。</p>
+</blockquote>
+<h3 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h3><p>就是一个存了 $0&#x2F;1$ 串的东西，每个位占用一个 $B$。</p>
+<p>可以使用 <code>unsigned long long</code> 或者 <code>string</code> 进行初始化，默认值为全 $0$。</p>
+<blockquote>
+<p>$\color{red}\text{pay attention ! }$<code>string</code> 最右边的那一位是被放在 <code>bitset</code> 的位置 $0$ 的，数字同理。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bitset&lt;maxn&gt; vis;<span class="comment">//000...000</span></span><br><span class="line"><span class="function">bitset&lt;maxn&gt; <span class="title">vis1</span><span class="params">(<span class="number">5</span>)</span></span>;<span class="comment">// 000...00101</span></span><br><span class="line"><span class="function">bitset&lt;maxn&gt; <span class="title">vis2</span><span class="params">(<span class="string">&quot;100101&quot;</span>)</span></span>; <span class="comment">// 000...100101</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="tt-Bitset-函数"><a href="#tt-Bitset-函数" class="headerlink" title="$\tt Bitset$ 函数"></a>$\tt Bitset$ 函数</h3><ul>
+<li><p><code>flip()</code> 全部取反。 </p>
+</li>
+<li><p><code>filp(x)</code> 取反下标为 $x$ 的位置。</p>
+</li>
+<li><p><code>size()</code> 返回位数（大小）。</p>
+</li>
+<li><p><code>count()</code> 返回 $1$ 的个数。</p>
+</li>
+<li><p><code>any()</code> 返回是否有 $1$，有 $1$ 则为 $\tt true$。</p>
+</li>
+<li><p><code>none()</code> 返回是否没有 $1$，如果没有 $1$ 为 $\tt true$。</p>
+</li>
+<li><p><code>set()</code> 全部设置为 $1$。</p>
+</li>
+<li><p><code>set(x)</code> 将下标为 $x$ 的位置设置为 $1$。</p>
+</li>
+<li><p><code>reset()</code> 全部设置为 $0$。</p>
+</li>
+<li><p><code>reset(x)</code> 将下标为 $x$ 的位置设置为 $0$。</p>
+</li>
+<li><p><code>to_ulong()</code> 返回它转换为 $\tt unsigned\ long$ 的结果，如果超出范围则报错。</p>
+</li>
+<li><p><code>foo.to_ullong()</code> 返回它转换为 $\tt unsigned\ long\ long$ 的结果，如果超出范围则报错</p>
+</li>
+<li><p><code>foo.to_string()</code> 返回它转换为 $\tt string$ 的结果。</p>
+</li>
+<li><p><code>_Find_first()</code> 找到第一个为 $1$ 的下标，如果不存在就返回 $\tt bitset$ 的大小。</p>
+</li>
+<li><p><code>_Find_next(x)</code> 找到在 $x$ 之后的第一个为 $1$ 的下标（不包含 $x$），如果不存在就返回 $\tt bitset$ 的大小。</p>
+</li>
+</ul>
+<h3 id="tt-text-builtin"><a href="#tt-text-builtin" class="headerlink" title="$\tt \text{__builtin}$"></a>$\tt \text{__builtin}$</h3><p>下面说的都有 $\tt unsigned\ int$ 和 $\tt unsigned\ long\ long$ 的版本，只要在函数名称末尾加 $\tt l$ 或者 $\tt ll$ 即可。</p>
+<ul>
+<li><code>__builtin_ffs(x)</code> 返回 $x$ 的<strong>最低位的</strong> $1$ 是从后向前第几位。</li>
+</ul>
+<p> </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n = <span class="number">10</span>, m = <span class="number">5</span>; <span class="comment">// 1010(2), 101(2)</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d %d\n&quot;</span>, __builtin_ffs(n), __builtin_ffs(m)); <span class="comment">// 2, 1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>__builtin_clz(x)</code> 返回 $x$ 左边前导零的个数。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n = <span class="number">5</span>;<span class="comment">//101</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, __builtin_clz(n));<span class="comment">//29 = 31 - 3 + 1</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">具体来说就是总共有 32 个位置，左边有 29 个位置是 0.</span></span><br><span class="line"><span class="comment">为什么只有 31 呢？符号位！！！</span></span><br><span class="line"><span class="comment">所以 __builtin_clz(-1) = 0</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>__builtin_ctz(x)</code> 返回 $x$ 右边 $0$ 的个数。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n = <span class="number">6</span>;<span class="comment">// 110(2)</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, __builtin_ctz(n));<span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>__builtin_popcount(x)</code> 返回 $x$ 二进制位上有几个 $1$。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n = <span class="number">7</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, __builtin_popcount(n )); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>__builtin_parity(x)</code> 返回 $x$ 二进制上 $1$ 的奇偶性。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n = <span class="number">7</span>, m = <span class="number">6</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d %d\n&quot;</span>, __builtin_parity(n), __builtin_parity(m)); <span class="comment">// 1 0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5355">[Ynoi2017] 由乃的玉米田 - 洛谷</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">//#define Fread</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> Fread</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> getchar() ((p1 == p2 &amp;&amp; p2 = (p1 = buf) + fread(buf, 1, 1 &lt;&lt; 21, stdin)) ? EOF : *p1 ++)</span></span><br><span class="line"><span class="type">char</span> buf[<span class="number">1</span> &lt;&lt; <span class="number">21</span>], *p1, *p2;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">// Fread</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">r1</span><span class="params">(T &amp;x)</span> </span>&#123;</span><br><span class="line">    x = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="type">char</span> <span class="title">c</span><span class="params">(getchar())</span></span>;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">f</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span>(; !<span class="built_in">isdigit</span>(c); c = <span class="built_in">getchar</span>()) <span class="keyword">if</span>(c == <span class="string">&#x27;-&#x27;</span>) f = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(; <span class="built_in">isdigit</span>(c);c = <span class="built_in">getchar</span>()) x = (x &lt;&lt; <span class="number">1</span>) + (x &lt;&lt; <span class="number">3</span>) + (c ^ <span class="number">48</span>);</span><br><span class="line">    x *= f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">1e5</span> + <span class="number">5</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxm = maxn &lt;&lt; <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> room[maxn];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="type">int</span> a[maxn], bel[maxn];</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> lim = <span class="number">316</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> Z = <span class="number">1e5</span>;</span><br><span class="line"></span><br><span class="line">bitset&lt;maxn * 2&gt; B0, S0;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">    <span class="type">int</span> opt, l, r, val, id;</span><br><span class="line">    <span class="type">int</span> <span class="keyword">operator</span> &lt; (<span class="type">const</span> Node &amp;z) <span class="type">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (bel[l] == bel[z.l]) ? r &lt; z.r : bel[l] &lt; bel[z.l];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;q[maxn];</span><br><span class="line"><span class="type">int</span> tot;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; ql[maxn], qr[maxn], qid[maxn];</span><br><span class="line"><span class="type">int</span> pre[maxn], maxl[maxn];</span><br><span class="line"><span class="type">int</span> cnt[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Add</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> w = a[x];</span><br><span class="line">    ++ cnt[w];</span><br><span class="line">    B0[Z + w + <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    S0[Z - w] = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Del</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> w = a[x];</span><br><span class="line">    -- cnt[w];</span><br><span class="line">    <span class="keyword">if</span>(cnt[w] == <span class="number">0</span>) B0[Z + w + <span class="number">1</span>] = <span class="number">0</span>, S0[Z - w] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> ans[maxn];</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> yes(_) ans[_] = 1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="comment">//    freopen(&quot;.in&quot;, &quot;r&quot;, stdin);</span></span><br><span class="line"><span class="comment">//    freopen(&quot;.out&quot;, &quot;w&quot;, stdout);</span></span><br><span class="line">    <span class="type">int</span> i, j, B;</span><br><span class="line">    <span class="built_in">r1</span>(n), <span class="built_in">r1</span>(m);</span><br><span class="line">    B = <span class="built_in">sqrt</span>(n);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) <span class="built_in">r1</span>(a[i]);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) bel[i] = (i - <span class="number">1</span>) / B + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= m; ++ i) &#123;</span><br><span class="line">        <span class="type">int</span> opt, l, r, x;</span><br><span class="line">        <span class="built_in">r1</span>(opt), <span class="built_in">r1</span>(l), <span class="built_in">r1</span>(r), <span class="built_in">r1</span>(x);</span><br><span class="line">        <span class="keyword">if</span>(opt != <span class="number">4</span> || (opt == <span class="number">4</span> &amp;&amp; x &gt; lim)) &#123;</span><br><span class="line">            q[++ tot] = (Node) &#123;opt, l, r, x, i&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            ql[x].<span class="built_in">push_back</span>(l), qr[x].<span class="built_in">push_back</span>(r), qid[x].<span class="built_in">push_back</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> m1 = m;</span><br><span class="line">    m = tot;</span><br><span class="line">    <span class="built_in">sort</span>(q + <span class="number">1</span>, q + m + <span class="number">1</span>);</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">L</span><span class="params">(<span class="number">1</span>)</span>, <span class="title">R</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= m; ++ i) &#123;</span><br><span class="line">        <span class="type">int</span> x = q[i].val, opt = q[i].opt;</span><br><span class="line">        <span class="keyword">while</span>(L &gt; q[i].l) <span class="built_in">Add</span>(-- L);</span><br><span class="line">        <span class="keyword">while</span>(R &lt; q[i].r) <span class="built_in">Add</span>(++ R);</span><br><span class="line">        <span class="keyword">while</span>(L &lt; q[i].l) <span class="built_in">Del</span>(L ++);</span><br><span class="line">        <span class="keyword">while</span>(R &gt; q[i].r) <span class="built_in">Del</span>(R --);</span><br><span class="line">        <span class="keyword">if</span>(opt == <span class="number">1</span>) &#123; <span class="keyword">if</span>((B0 &amp; (B0 &gt;&gt; x)) != <span class="number">0</span>) ans[q[i].id] = <span class="number">1</span>; &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(opt == <span class="number">2</span>) &#123; <span class="keyword">if</span>(((B0 &gt;&gt; (x + <span class="number">1</span>)) &amp; S0) != <span class="number">0</span>) ans[q[i].id] = <span class="number">1</span>; &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(opt == <span class="number">3</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j * j &lt;= x; ++ j) <span class="keyword">if</span>(x % j == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span>(j &lt;= Z &amp;&amp; (x / j) &lt;= Z &amp;&amp; B0[j + Z + <span class="number">1</span>] == <span class="number">1</span> &amp;&amp; B0[x / j + Z + <span class="number">1</span>] == <span class="number">1</span>) &#123;ans[q[i].id] = <span class="number">1</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j * x &lt;= Z; ++ j) <span class="keyword">if</span>(B0[j + Z + <span class="number">1</span>] &amp;&amp; B0[j * x + Z + <span class="number">1</span>]) &#123; ans[q[i].id] = <span class="number">1</span>; <span class="keyword">break</span>; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//    Solve();</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> x = <span class="number">1</span>; x &lt;= lim; ++ x) <span class="keyword">if</span>(!ql[x].<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        <span class="function"><span class="type">int</span> <span class="title">l</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) &#123;</span><br><span class="line">            <span class="comment">// pre[i] 表示 i 最晚出现的位置</span></span><br><span class="line">            <span class="comment">// maxl[r] 表示在二元组 (x, r) 中左端点出现的距离 r 最近的位置</span></span><br><span class="line">            <span class="comment">// 上面是在左边算</span></span><br><span class="line">            <span class="type">int</span> w = a[i];</span><br><span class="line">            pre[w] = i;</span><br><span class="line">            <span class="keyword">if</span>(w * x &lt;= Z) l = <span class="built_in">max</span>(l, pre[w * x]);</span><br><span class="line">            <span class="keyword">if</span>(w % x == <span class="number">0</span>) l = <span class="built_in">max</span>(l, pre[w / x]);</span><br><span class="line">            maxl[i] = l;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">unsigned</span> <span class="type">int</span> i = <span class="number">0</span>; i &lt; ql[x].<span class="built_in">size</span>(); ++ i) &#123;</span><br><span class="line">            ans[qid[x][i]] = (ql[x][i] &lt;= maxl[qr[x][i]]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">memset</span>(pre, <span class="number">0</span>, <span class="built_in">sizeof</span>(pre));</span><br><span class="line">        <span class="built_in">memset</span>(maxl, <span class="number">0</span>, <span class="built_in">sizeof</span>(maxl));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">#<span class="keyword">define</span> YNOI</span></span><br><span class="line">    <span class="meta">#<span class="keyword">ifdef</span> YNOI</span></span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= m1; ++ i) &#123;</span><br><span class="line">            <span class="keyword">if</span>(ans[i]) <span class="built_in">puts</span>(<span class="string">&quot;yuno&quot;</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">&quot;yumi&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="meta">#<span class="keyword">endif</span> <span class="comment">// YNOI</span></span></span><br><span class="line">    <span class="meta">#<span class="keyword">ifndef</span> YNOI</span></span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= m1; ++ i) &#123;</span><br><span class="line">            <span class="keyword">if</span>(ans[i]) <span class="built_in">puts</span>(<span class="string">&quot;hana&quot;</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">&quot;bi&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="comment">//    for(i = 1; i &lt;= m1; ++ i) &#123;</span></span><br><span class="line"><span class="comment">//        if(ans[i] == 1) puts(&quot;yuno&quot;);</span></span><br><span class="line"><span class="comment">//        else puts(&quot;yumi&quot;);</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//    for(i = 1; i &lt;= m1; ++ i) printf(&quot;%d\n&quot;, ans[i]);</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">legendgoddes</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hater.ml/2022/03/28/bitset_function/">https://hater.ml/2022/03/28/bitset_function/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hater.ml" target="_blank">Legendgod's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=293570778" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://npm.elemecdn.com/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://npm.elemecdn.com/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/03/29/cf-solution-830d/"><img class="prev-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=386739258" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CF830D Singer House 题解</div></div></a></div><div class="next-post pull-right"><a href="/2022/03/28/bzoj4369/"><img class="next-cover" src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=664361690" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">#4369. [IOI2015]teams分组 题解</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">legendgoddes</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">230</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/legendgoddess"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/legendgoddess" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3456261198@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">定义：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tt-Bitset-%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">$\tt Bitset$ 函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tt-text-builtin"><span class="toc-number">3.</span> <span class="toc-text">$\tt \text{__builtin}$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">例题</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=239604752" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UOJ 269 [清华集训2016] 如何优雅地求和 题解"/></a><div class="content"><a class="title" href="/2022/06/13/uoj-solution-269/" title="UOJ 269 [清华集训2016] 如何优雅地求和 题解">UOJ 269 [清华集训2016] 如何优雅地求和 题解</a><time datetime="2022-06-13T11:55:00.000Z" title="发表于 2022-06-13 19:55:00">2022-06-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=119753057" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="#593. 新年的军队 题解"/></a><div class="content"><a class="title" href="/2022/06/01/uoj-solution-593/" title="#593. 新年的军队 题解">#593. 新年的军队 题解</a><time datetime="2022-06-01T23:50:00.000Z" title="发表于 2022-06-02 07:50:00">2022-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=850658581" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P4548 [CTSC2006]歌唱王国"/></a><div class="content"><a class="title" href="/2022/05/29/lg-solution-4548/" title="P4548 [CTSC2006]歌唱王国">P4548 [CTSC2006]歌唱王国</a><time datetime="2022-05-29T12:17:00.000Z" title="发表于 2022-05-29 20:17:00">2022-05-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=415064773" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AT2369 [AGC013C] Ants on a Circle 多解法讨论"/></a><div class="content"><a class="title" href="/2022/04/29/at-solution-agc013c/" title="AT2369 [AGC013C] Ants on a Circle 多解法讨论">AT2369 [AGC013C] Ants on a Circle 多解法讨论</a><time datetime="2022-04-29T08:01:00.000Z" title="发表于 2022-04-29 16:01:00">2022-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解"><img src="https://img.xjh.me/random_img.php?type=bg&amp;ctype=nature&amp;return=302&amp;seed=199018446" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="P7987 [USACO21DEC] Paired Up G 题解"/></a><div class="content"><a class="title" href="/2022/04/28/usaco-solution-202112-t3g/" title="P7987 [USACO21DEC] Paired Up G 题解">P7987 [USACO21DEC] Paired Up G 题解</a><time datetime="2022-04-28T12:27:00.000Z" title="发表于 2022-04-28 20:27:00">2022-04-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By legendgoddes</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://npm.elemecdn.com/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://npm.elemecdn.com/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadUtterances () {
+  let ele = document.createElement('script')
+  ele.setAttribute('id', 'utterances_comment')
+  ele.setAttribute('src', 'https://utteranc.es/client.js')
+  ele.setAttribute('repo', 'legendgoddess/Blog')
+  ele.setAttribute('issue-term', 'pathname')
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+  ele.setAttribute('theme', nowTheme)
+  ele.setAttribute('crossorigin', 'anonymous')
+  ele.setAttribute('async', 'true')
+  document.getElementById('utterances-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function utterancesTheme () {
+  if (document.querySelector('.utterances-frame')) {
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+    const message = {
+      type: 'set-theme',
+      theme: theme
+    };
+    const iframe = document.querySelector('.utterances-frame');
+    iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+}
+
+if ('Utterances' === 'Utterances' || !false) {
+  if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+  else loadUtterances()
+} else {
+  function loadOtherComment () {
+    loadUtterances()
+  }
+}</script></div><script src="https://npm.elemecdn.com/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
