@@ -104,7 +104,7 @@ theme: butterfly
 deploy:
   - type: git
     repo:
-        github: git@github.com:legendgoddess/private-Blog.git
+        github: git@github.com:legendgoddess/Blog.git
     branch: master
 
 # Sitemap generator
